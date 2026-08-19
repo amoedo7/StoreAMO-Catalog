@@ -1,5 +1,4 @@
-# StoreAMO auto-discovery: app repos are the source of truth.
-# Manual refresh trigger: GeneralAMO 0.1.13 · 2026-08-19.
+# StoreAMO discovery v2: public repos remain compatible; private source apps publish sanitized manifests into registry/.
 name: discover-apps
 
 on:
@@ -10,6 +9,7 @@ on:
     paths:
       - build_catalog.py
       - enrich_catalog.py
+      - registry/**
       - schemas/storeamo.app.v1.schema.json
       - .github/workflows/discover-apps.yml
 
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Discover app manifests and releases
+      - name: Discover public manifests and sanitized registry entries
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python build_catalog.py --owner amoedo7
@@ -39,17 +39,23 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          c=json.loads(Path('catalog.json').read_text())
-          assert c['schema']=='storeamo.catalog.v1'
+
+          c = json.loads(Path('catalog.json').read_text())
+          assert c['schema'] == 'storeamo.catalog.v1'
+          assert c.get('catalog_version', 0) >= 3
           assert isinstance(c['apps'], list)
-          ids=[x['id'] for x in c['apps']]
-          assert len(ids)==len(set(ids))
+          ids = [x['id'] for x in c['apps']]
+          assert len(ids) == len(set(ids))
           for app in c['apps']:
               assert app['source_manifest'].startswith('https://raw.githubusercontent.com/amoedo7/')
-              assert app.get('audience','public') in {'public','team','system'}
-              for a in app.get('artifacts',[]):
+              assert app.get('audience', 'public') in {'public', 'team', 'system'}
+              assert app.get('source_visibility', 'public') in {'public', 'private'}
+              for a in app.get('artifacts', []):
                   assert a['url'].startswith('https://')
-                  assert len(a['sha256'])==64
+                  assert len(a['sha256']) == 64
+                  cert = a.get('signing_cert_sha256')
+                  if cert:
+                      assert len(cert) == 64
           print('CATALOG_OK', len(c['apps']))
           PY
       - name: Commit catalog changes
