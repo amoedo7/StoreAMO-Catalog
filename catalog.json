@@ -1,6 +1,12 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
+  "generated_at": "2026-08-19T06:44:09+00:00",
+  "generation": {
+    "mode": "repository-manifests",
+    "owner": "amoedo7",
+    "app_schema": "storeamo.app.v1"
+  },
   "brand": {
     "name": "DesarrollAMO",
     "store_name": "StoreAMO",
@@ -8,114 +14,5 @@
     "accent_secondary": "#F16AB5",
     "background": "#06101C"
   },
-  "apps": [
-    {
-      "id": "storeamo",
-      "name": "StoreAMO",
-      "tagline": "Todas las aplicaciones de DesarrollAMO en un solo lugar.",
-      "description": "Catálogo, verificación, instalación y actualizaciones del ecosistema DesarrollAMO.",
-      "category": "Herramientas",
-      "featured": true,
-      "status": "development",
-      "supported_platforms": ["android", "web"],
-      "repository": "https://github.com/amoedo7/StoreAMO",
-      "artifacts": []
-    },
-    {
-      "id": "chessi",
-      "name": "Chessi",
-      "tagline": "Seguimiento y asistencia de ajedrez sobre una partida real.",
-      "description": "Proyecto en revisión profunda de visión, reglas, estado y UX antes de publicar una release oficial.",
-      "category": "Juegos",
-      "featured": true,
-      "status": "development",
-      "supported_platforms": ["android"],
-      "repository": null,
-      "artifacts": []
-    },
-    {
-      "id": "midispositivo",
-      "name": "MiDispositivo",
-      "tagline": "Entendé tu equipo y su entorno en un reporte claro.",
-      "description": "Diagnóstico multiplataforma de sistema, hardware y red básica con privacidad por defecto.",
-      "category": "Diagnóstico",
-      "featured": true,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux"],
-      "repository": "https://github.com/amoedo7/MiDispositivo",
-      "artifacts": []
-    },
-    {
-      "id": "mired",
-      "name": "MiRed",
-      "tagline": "Tu conexión, sin adivinar.",
-      "description": "Diagnóstico seguro de conectividad, DNS, TCP, HTTPS y red local básica.",
-      "category": "Diagnóstico",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux"],
-      "repository": "https://github.com/amoedo7/MiRed",
-      "artifacts": []
-    },
-    {
-      "id": "misistema",
-      "name": "MiSistema",
-      "tagline": "Qué tenés y qué podés ejecutar.",
-      "description": "Inventario local de runtimes, shell, arquitectura y capacidades sin leer secretos.",
-      "category": "Diagnóstico",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux"],
-      "repository": "https://github.com/amoedo7/MiSistema",
-      "artifacts": []
-    },
-    {
-      "id": "miweb",
-      "name": "MiWeb",
-      "tagline": "Una lectura técnica rápida de una web pública.",
-      "description": "Auditoría no intrusiva de HTTP, HTTPS, SEO técnico, recursos y headers de seguridad.",
-      "category": "Web",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux"],
-      "repository": "https://github.com/amoedo7/MiWeb",
-      "artifacts": []
-    },
-    {
-      "id": "miarchivos",
-      "name": "MiArchivos",
-      "tagline": "Entendé qué ocupa espacio y cómo está organizado.",
-      "description": "Análisis local de archivos y almacenamiento con salida portable.",
-      "category": "Herramientas",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux"],
-      "repository": "https://github.com/amoedo7/MiArchivos",
-      "artifacts": []
-    },
-    {
-      "id": "miapi",
-      "name": "MiAPI",
-      "tagline": "Mirá cómo responde un endpoint.",
-      "description": "Inspección reproducible de status, tiempo, headers y cuerpo de respuestas HTTP.",
-      "category": "Desarrollo",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux"],
-      "repository": "https://github.com/amoedo7/MiAPI",
-      "artifacts": []
-    },
-    {
-      "id": "diagnosticoamo",
-      "name": "DiagnosticoAMO",
-      "tagline": "Junta evidencia y la convierte en una lectura útil.",
-      "description": "Agrega reportes compatibles del ecosistema para generar un diagnóstico común.",
-      "category": "Diagnóstico",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": ["android", "windows", "macos", "linux", "web"],
-      "repository": "https://github.com/amoedo7/DiagnosticoAMO",
-      "artifacts": []
-    }
-  ]
+  "apps": []
 }
