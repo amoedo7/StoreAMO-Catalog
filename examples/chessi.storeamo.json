@@ -1,0 +1,30 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "chessi",
+  "name": "Chessi",
+  "tagline": "Seguimiento y asistencia de ajedrez sobre una partida real.",
+  "description": "Asistente de ajedrez con seguimiento del tablero, estado legal de la partida, recomendaciones y recuperación ante cambios visuales ambiguos.",
+  "category": "Juegos",
+  "featured": true,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "store": {"screenshots": []},
+  "release": {
+    "provider": "github",
+    "repo": "amoedo7/Chessi",
+    "channel": "stable",
+    "assets": [
+      {
+        "platform": "android",
+        "pattern": "^Chessi-.*\\.apk$",
+        "format": "apk",
+        "application_id": "com.desarrollamo.chessi",
+        "min_os": "Android 11"
+      }
+    ]
+  },
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": ["sha256", "application-id", "signature", "permissions", "tests", "chess-rules", "perft", "castling", "en-passant", "promotion"]
+  }
+}
