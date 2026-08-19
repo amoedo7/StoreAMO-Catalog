@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
-  "generated_at": "2026-08-19T13:28:22+00:00",
+  "generated_at": "2026-08-19T13:54:47+00:00",
   "generation": {
     "mode": "repository-manifests",
     "owner": "amoedo7",
