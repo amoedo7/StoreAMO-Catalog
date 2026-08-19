@@ -1,0 +1,19 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "plataformamo",
+  "name": "PlataformAMO",
+  "tagline": "El espacio de trabajo de DesarrollAMO.",
+  "description": "Plataforma interna para coordinar personas, clientes, tareas, productos, ventas, pagos y operación compartida de DesarrollAMO.",
+  "category": "Trabajo",
+  "featured": true,
+  "status": "development",
+  "supported_platforms": ["web"],
+  "store": {
+    "homepage": "https://plataforma.desarrollamo.com.ar/",
+    "screenshots": []
+  },
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": ["https", "auth", "access-control", "tests"]
+  }
+}
