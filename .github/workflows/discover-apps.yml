@@ -1,4 +1,5 @@
 # StoreAMO auto-discovery: app repos are the source of truth.
+# Manual refresh trigger: GeneralAMO onboarding 2026-08-19.
 name: discover-apps
 
 on:
