@@ -1,0 +1,30 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "presupuestamo",
+  "name": "PresupuestAMO",
+  "tagline": "Presupuestos profesionales desde tu teléfono.",
+  "description": "Crea, organiza, exporta y comparte presupuestos con clientes, productos, impuestos, descuentos y datos de empresa.",
+  "category": "Negocios",
+  "featured": true,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "store": {"screenshots": []},
+  "release": {
+    "provider": "github",
+    "repo": "amoedo7/PresupuestAMO",
+    "channel": "stable",
+    "assets": [
+      {
+        "platform": "android",
+        "pattern": "^PresupuestAMO-.*\\.apk$",
+        "format": "apk",
+        "application_id": "com.desarrollamo.presupuestamo",
+        "min_os": "Android 8.0"
+      }
+    ]
+  },
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": ["sha256", "application-id", "signature", "permissions", "tests", "pdf-smoke"]
+  }
+}
