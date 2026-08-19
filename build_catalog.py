@@ -129,6 +129,33 @@ def asset_digest(asset: dict[str, Any]) -> str | None:
     return None
 
 
+def checksum_from_release_assets(release_assets: list[dict[str, Any]], target_name: str) -> str | None:
+    """Fallback for GitHub releases that do not expose asset.digest yet.
+
+    DesarrollAMO release workflows publish SHA256SUMS.txt next to the binary.
+    StoreAMO may trust that checksum only as release metadata; StoreAMO-Verify
+    still owns the stronger verification/verified badge decision.
+    """
+    sums_asset = next((a for a in release_assets if str(a.get("name", "")).lower() in {"sha256sums.txt", "sha256sum.txt"}), None)
+    if not sums_asset:
+        return None
+    url = sums_asset.get("browser_download_url")
+    if not isinstance(url, str) or not url.startswith("https://"):
+        return None
+    try:
+        text = request_text(url)
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError, UnicodeDecodeError):
+        return None
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        match = re.match(r"^([0-9a-fA-F]{64})\s+[* ]?(.+)$", line)
+        if match and Path(match.group(2).strip()).name == target_name:
+            return match.group(1).lower()
+    return None
+
+
 def build_artifacts(m: dict[str, Any], token: str | None, warnings: list[str]) -> list[dict[str, Any]]:
     release_cfg = m.get("release")
     if not isinstance(release_cfg, dict) or release_cfg.get("provider") != "github":
@@ -149,9 +176,10 @@ def build_artifacts(m: dict[str, Any], token: str | None, warnings: list[str]) -
         match = next((a for a in assets if pattern.search(str(a.get("name", "")))), None)
         if not match:
             continue
-        sha = asset_digest(match)
+        asset_name = str(match.get("name") or "")
+        sha = asset_digest(match) or checksum_from_release_assets(assets, asset_name)
         if not sha:
-            warnings.append(f"{m['id']}: asset {match.get('name')} sin digest SHA-256 de GitHub; no se publica en catálogo")
+            warnings.append(f"{m['id']}: asset {asset_name} sin SHA-256 verificable; no se publica en catálogo")
             continue
         result.append({
             "platform": rule["platform"],
