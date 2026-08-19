@@ -12,6 +12,10 @@
   "source": {
     "visibility": "private"
   },
+  "distribution": {
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "mode": "direct-artifacts"
+  },
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
