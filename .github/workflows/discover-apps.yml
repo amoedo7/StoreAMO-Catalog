@@ -1,3 +1,4 @@
+# StoreAMO auto-discovery: app repos are the source of truth.
 name: discover-apps
 
 on:
