@@ -12,6 +12,7 @@
     "description": {"type": "string", "minLength": 1},
     "category": {"type": "string", "minLength": 1},
     "featured": {"type": "boolean", "default": false},
+    "audience": {"enum": ["public", "team"], "default": "public"},
     "status": {"enum": ["development", "candidate", "verified", "deprecated"]},
     "supported_platforms": {
       "type": "array",
