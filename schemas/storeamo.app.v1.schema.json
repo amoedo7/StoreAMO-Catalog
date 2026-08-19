@@ -3,26 +3,62 @@
   "$id": "https://desarrollamo.com.ar/schemas/storeamo.app.v1.schema.json",
   "title": "StoreAMO App Manifest v1",
   "type": "object",
-  "required": ["schema", "id", "name", "category", "supported_platforms", "repository"],
+  "required": ["schema", "id", "name", "tagline", "description", "category", "status", "supported_platforms"],
   "properties": {
     "schema": {"const": "storeamo.app.v1"},
     "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
     "name": {"type": "string", "minLength": 1},
-    "tagline": {"type": "string"},
-    "description": {"type": "string"},
+    "tagline": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
     "category": {"type": "string", "minLength": 1},
-    "repository": {"type": "string", "pattern": "^https://github\\.com/"},
+    "featured": {"type": "boolean", "default": false},
+    "status": {"enum": ["development", "candidate", "verified", "deprecated"]},
     "supported_platforms": {
       "type": "array",
+      "minItems": 1,
       "uniqueItems": true,
       "items": {"enum": ["android", "windows", "macos", "linux", "web", "ios", "other"]}
     },
-    "android": {
+    "store": {
       "type": "object",
       "properties": {
-        "application_id": {"type": "string"},
-        "min_sdk": {"type": "integer"},
-        "expected_permissions": {"type": "array", "items": {"type": "string"}}
+        "icon": {"type": ["string", "null"]},
+        "screenshots": {"type": "array", "items": {"type": "string"}},
+        "privacy_url": {"type": ["string", "null"]},
+        "homepage": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "release": {
+      "type": "object",
+      "properties": {
+        "provider": {"const": "github"},
+        "repo": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+        "channel": {"enum": ["stable", "beta"]},
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["platform", "pattern"],
+            "properties": {
+              "platform": {"enum": ["android", "windows", "macos", "linux", "web", "ios", "other"]},
+              "pattern": {"type": "string", "minLength": 1},
+              "arch": {"type": ["string", "null"]},
+              "format": {"type": ["string", "null"]},
+              "application_id": {"type": ["string", "null"]},
+              "min_os": {"type": ["string", "null"]}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "verification": {
+      "type": "object",
+      "properties": {
+        "policy": {"type": "string"},
+        "required_checks": {"type": "array", "items": {"type": "string"}}
       },
       "additionalProperties": true
     }
