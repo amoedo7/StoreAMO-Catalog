@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
-  "generated_at": "2026-08-19T06:44:09+00:00",
+  "generated_at": "2026-08-19T06:49:48+00:00",
   "generation": {
     "mode": "repository-manifests",
     "owner": "amoedo7",
@@ -14,5 +14,232 @@
     "accent_secondary": "#F16AB5",
     "background": "#06101C"
   },
-  "apps": []
+  "apps": [
+    {
+      "id": "midispositivo",
+      "name": "MiDispositivo",
+      "tagline": "Entendé tu equipo y su entorno en un reporte claro.",
+      "description": "Diagnóstico multiplataforma de sistema, hardware y red básica con privacidad por defecto.",
+      "category": "Diagnóstico",
+      "featured": true,
+      "status": "development",
+      "supported_platforms": [
+        "android",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "repository": "https://github.com/amoedo7/MiDispositivo",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiDispositivo/main/storeamo.json"
+    },
+    {
+      "id": "storeamo",
+      "name": "StoreAMO",
+      "tagline": "La tienda del ecosistema DesarrollAMO.",
+      "description": "Descubre, verifica, descarga y actualiza aplicaciones del ecosistema DesarrollAMO desde un catálogo independiente del código de la tienda.",
+      "category": "Herramientas",
+      "featured": true,
+      "status": "development",
+      "supported_platforms": [
+        "android"
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO",
+      "store": {
+        "homepage": "https://github.com/amoedo7/StoreAMO",
+        "privacy_url": "https://github.com/amoedo7/StoreAMO/blob/main/SECURITY.md",
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "sha256",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO/main/storeamo.json"
+    },
+    {
+      "id": "diagnosticoamo",
+      "name": "DiagnosticoAMO",
+      "tagline": "Junta evidencia y la convierte en una lectura útil.",
+      "description": "Agrega reportes compatibles del ecosistema para generar un diagnóstico común.",
+      "category": "Diagnóstico",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "android",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "repository": "https://github.com/amoedo7/DiagnosticoAMO",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/DiagnosticoAMO/main/storeamo.json"
+    },
+    {
+      "id": "miapi",
+      "name": "MiAPI",
+      "tagline": "Mirá cómo responde un endpoint.",
+      "description": "Inspección reproducible de status, tiempo, headers y cuerpo de respuestas HTTP.",
+      "category": "Desarrollo",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "android",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "repository": "https://github.com/amoedo7/MiAPI",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiAPI/main/storeamo.json"
+    },
+    {
+      "id": "miarchivos",
+      "name": "MiArchivos",
+      "tagline": "Entendé qué ocupa espacio y cómo está organizado.",
+      "description": "Análisis local de archivos y almacenamiento con salida portable.",
+      "category": "Herramientas",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "android",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "repository": "https://github.com/amoedo7/MiArchivos",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiArchivos/main/storeamo.json"
+    },
+    {
+      "id": "mired",
+      "name": "MiRed",
+      "tagline": "Tu conexión, sin adivinar.",
+      "description": "Diagnóstico seguro de conectividad, DNS, TCP, HTTPS y red local básica.",
+      "category": "Diagnóstico",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "android",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "repository": "https://github.com/amoedo7/MiRed",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiRed/main/storeamo.json"
+    },
+    {
+      "id": "misistema",
+      "name": "MiSistema",
+      "tagline": "Qué tenés y qué podés ejecutar.",
+      "description": "Inventario local de runtimes, shell, arquitectura y capacidades sin leer secretos.",
+      "category": "Diagnóstico",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "android",
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "repository": "https://github.com/amoedo7/MiSistema",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiSistema/main/storeamo.json"
+    },
+    {
+      "id": "miweb",
+      "name": "MiWeb",
+      "tagline": "Una lectura técnica rápida de una web pública.",
+      "description": "Auditoría no intrusiva de HTTP, HTTPS, SEO técnico, recursos y headers de seguridad.",
+      "category": "Web",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "windows",
+        "macos",
+        "linux",
+        "android"
+      ],
+      "repository": "https://github.com/amoedo7/MiWeb",
+      "store": {
+        "screenshots": []
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "tests",
+          "integrity"
+        ]
+      },
+      "artifacts": [],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
+    }
+  ]
 }
