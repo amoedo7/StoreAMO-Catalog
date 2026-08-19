@@ -1,0 +1,140 @@
+name: depositamo-publish
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - depositamo-publish.trigger
+
+permissions:
+  contents: write
+
+concurrency:
+  group: depositamo-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Fetch and verify DepositAMO signed release
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0'
+          curl -fsSL "$BASE/release.json" -o /tmp/depositamo-release.json
+          python - <<'PY'
+import hashlib, json, pathlib, re, urllib.request
+m = json.loads(pathlib.Path('/tmp/depositamo-release.json').read_text())
+assert m['version'] == '0.1.0'
+assert int(m['version_code']) == 100
+assert m['application_id'] == 'com.desarrollamo.depositamo'
+assert m['artifact'] == 'DepositAMO-0.1.0.apk'
+assert re.fullmatch(r'[0-9a-f]{64}', m['sha256'])
+assert re.fullmatch(r'[0-9a-f]{64}', m['signing_cert_sha256'])
+url = 'https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0/' + m['artifact']
+with urllib.request.urlopen(url, timeout=60) as r:
+    apk = r.read()
+assert hashlib.sha256(apk).hexdigest() == m['sha256']
+assert len(apk) == int(m['size_bytes'])
+print('DEPOSITAMO_RELEASE_OK')
+PY
+
+      - name: Write sanitized StoreAMO registry entry
+        run: |
+          python - <<'PY'
+import json, pathlib
+m = json.loads(pathlib.Path('/tmp/depositamo-release.json').read_text())
+base = 'https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0/'
+manifest = {
+  'schema': 'storeamo.app.v1',
+  'id': 'depositamo',
+  'name': 'DepositAMO',
+  'tagline': 'La materia prima de la fábrica DesarrollAMO.',
+  'description': 'Deposita capturas, textos, documentos, código, APK/ZIP y prototipos desde Android o navegador. Conserva originales, deduplica por SHA-256, clasifica material y genera mapas para alimentar nuevas ideas y actualizaciones.',
+  'category': 'Herramientas',
+  'audience': 'team',
+  'featured': False,
+  'status': 'candidate',
+  'supported_platforms': ['android', 'web'],
+  'source': {'visibility': 'private'},
+  'distribution': {'mode': 'direct-artifacts', 'repository': 'amoedo7/StoreAMO-Catalog'},
+  'store': {
+    'homepage': 'https://desarrollamo.com.ar',
+    'screenshots': [],
+    'notes': 'DepositAMO 0.1.0 candidate firmada con identidad estable. Source privado; distribución pública limitada a APK y metadata sanitizada.'
+  },
+  'artifacts': [{
+    'platform': 'android',
+    'arch': 'universal',
+    'format': 'apk',
+    'application_id': m['application_id'],
+    'min_os': 'Android 8.0',
+    'version': m['version'],
+    'version_code': str(m['version_code']),
+    'url': base + m['artifact'],
+    'sha256': m['sha256'],
+    'signing_cert_sha256': m['signing_cert_sha256'],
+    'size_bytes': int(m['size_bytes']),
+    'verified': False,
+    'verification_report': None,
+    'release_url': base + 'release.json',
+    'source': 'supabase-release'
+  }],
+  'verification': {
+    'policy': 'storeamo-default-v1',
+    'required_checks': ['integrity', 'application-id', 'signature', 'permissions', 'tests']
+  }
+}
+path = pathlib.Path('registry/depositamo.json')
+path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+sidecar = pathlib.Path('registry/depositamo-release-source.json')
+if sidecar.exists(): sidecar.unlink()
+PY
+
+      - name: Rebuild catalog from canonical registry
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python - <<'PY'
+import json
+c=json.load(open('catalog.json'))
+a=next(x for x in c['apps'] if x['id']=='depositamo')
+assert a['status']=='candidate'
+assert a['source_visibility']=='private'
+assert len(a['artifacts'])==1
+x=a['artifacts'][0]
+assert x['version']=='0.1.0'
+assert x['version_code']=='100'
+assert x['application_id']=='com.desarrollamo.depositamo'
+assert len(x['sha256'])==64
+assert len(x['signing_cert_sha256'])==64
+print('STOREAMO_DEPOSITAMO_OK')
+PY
+
+      - name: Commit publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- registry/depositamo.json registry/depositamo-release-source.json catalog.json discovery-report.json; then
+            echo 'DepositAMO already published'
+            exit 0
+          fi
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add registry/depositamo.json catalog.json discovery-report.json
+          git add -A registry/depositamo-release-source.json || true
+          git commit -m 'catalog: publish DepositAMO 0.1.0 signed candidate'
+          git pull --rebase origin main
+          git push origin HEAD:main
