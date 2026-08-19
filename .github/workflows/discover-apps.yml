@@ -4,7 +4,7 @@ name: discover-apps
 on:
   workflow_dispatch:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '*/5 * * * *'
   push:
     paths:
       - build_catalog.py
