@@ -2,58 +2,86 @@
 
 # StoreAMO Catalog
 
-**Catálogo oficial, portable y verificable del ecosistema DesarrollAMO.**
+**El catálogo se construye desde las propias aplicaciones, no desde StoreAMO.**
 
-`storeamo.catalog.v1` · `GitHub Releases` · `Android` · `Windows` · `macOS` · `Linux` · `Web`
+`storeamo.app.v1` · `GitHub Releases` · `Android` · `Windows` · `macOS` · `Linux` · `Web`
 
 </div>
 
 ---
 
-StoreAMO no decide qué descargar leyendo nombres de archivos al azar. Consume este catálogo versionado y muestra primero el artefacto adecuado para el dispositivo detectado.
+Cada aplicación que quiera vivir en StoreAMO declara en la raíz de su repositorio:
 
 ```text
-usuario abre StoreAMO
-        ↓
-detectar plataforma
-        ↓
-cargar catalog.json
-        ↓
-priorizar artefacto compatible
-        ↓
-mostrar OBTENER / ACTUALIZAR / ABRIR
-        ↓
-VER MÁS → otras plataformas disponibles
+storeamo.json
 ```
 
-## Principios
+`StoreAMO-Catalog` descubre automáticamente los repositorios públicos de `amoedo7` que tengan ese manifiesto, valida su identidad y reconstruye `catalog.json`. StoreAMO Android y StoreAMO Web sólo consumen el catálogo: **no necesitan una actualización de código cuando aparece una app nueva**.
 
-- un único registro por aplicación;
-- múltiples artefactos por plataforma cuando corresponda;
-- ningún secreto en el catálogo;
-- descargas oficiales por HTTPS;
-- una versión no se marca `verified` sin evidencia de StoreAMO-Verify;
-- las apps en desarrollo pueden aparecer sin inventar descargas;
-- Android, Windows, macOS y Linux comparten el mismo contrato;
-- StoreAMO puede ocultar artefactos incompatibles sin eliminarlos del catálogo.
+```text
+REPO DE LA APP
+   │
+   ├── código
+   ├── tests
+   ├── GitHub Releases
+   └── storeamo.json
+            ↓
+StoreAMO-Catalog · discovery automático
+            ↓
+      catalog.json
+            ↓
+     StoreAMO / Web
+```
 
-## Estado inicial
+## Alta de una aplicación
 
-El catálogo actual registra la suite pública de DesarrollAMO como `development` mientras preparamos releases verificadas. No se publican APK viejos como versiones oficiales.
+Para entrar al ecosistema, un repo debe tener un `storeamo.json` válido con:
 
-## Archivos
+- identidad y textos de la ficha;
+- plataformas soportadas;
+- estado (`development`, `candidate`, `verified`, `deprecated`);
+- configuración opcional de GitHub Release y patrones de artefactos;
+- política de verificación requerida.
 
-- [`catalog.json`](catalog.json) — catálogo consumible por StoreAMO y StoreAMO-Web.
-- [`schemas/storeamo.catalog.v1.schema.json`](schemas/storeamo.catalog.v1.schema.json) — contrato estructural.
+El schema vive en [`schemas/storeamo.app.v1.schema.json`](schemas/storeamo.app.v1.schema.json).
 
-## Estados
+## Actualizaciones automáticas
+
+Si el manifiesto declara una Release GitHub y patrones de assets, el generador consulta la última Release estable. Cuando GitHub proporciona un digest SHA-256 para el asset, puede incluir el artefacto en el catálogo sin editar StoreAMO.
+
+Una nueva versión puede entonces seguir este camino:
+
+```text
+git tag / release nueva
+        ↓
+asset nuevo
+        ↓
+discovery horario
+        ↓
+catalog.json actualizado
+        ↓
+StoreAMO detecta la versión
+```
+
+## Verificación
+
+Descubrir un repo **no equivale a declararlo seguro**. `StoreAMO-Verify` mantiene la frontera entre presencia en catálogo y `StoreAMO Verified`.
 
 ```text
 development → candidate → verified → deprecated
 ```
 
-`verified` significa que StoreAMO-Verify dispone de evidencia suficiente para ese artefacto. No significa “software sin bugs”.
+Una release sin evidencia suficiente puede aparecer como proyecto, pero no recibe el sello `Verified`. StoreAMO puede ocultar descargas no verificadas por defecto.
+
+## Automatización
+
+[`build_catalog.py`](build_catalog.py) recorre repos públicos, lee `storeamo.json`, valida identidad y genera:
+
+- `catalog.json`
+- `discovery-report.json`
+
+El workflow `discover-apps.yml` lo ejecuta cada hora y también manualmente.
 
 ---
 
-**DesarrollAMO** · software, automatización y sistemas.
+**DesarrollAMO** · la app declara quién es; StoreAMO verifica y distribuye.
