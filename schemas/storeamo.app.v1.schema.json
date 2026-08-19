@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://desarrollamo.com.ar/schemas/storeamo.app.v1.schema.json",
+  "title": "StoreAMO App Manifest v1",
+  "type": "object",
+  "required": ["schema", "id", "name", "category", "supported_platforms", "repository"],
+  "properties": {
+    "schema": {"const": "storeamo.app.v1"},
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "name": {"type": "string", "minLength": 1},
+    "tagline": {"type": "string"},
+    "description": {"type": "string"},
+    "category": {"type": "string", "minLength": 1},
+    "repository": {"type": "string", "pattern": "^https://github\\.com/"},
+    "supported_platforms": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["android", "windows", "macos", "linux", "web", "ios", "other"]}
+    },
+    "android": {
+      "type": "object",
+      "properties": {
+        "application_id": {"type": "string"},
+        "min_sdk": {"type": "integer"},
+        "expected_permissions": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
