@@ -1,0 +1,59 @@
+name: discover-apps
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+  push:
+    paths:
+      - build_catalog.py
+      - schemas/storeamo.app.v1.schema.json
+      - .github/workflows/discover-apps.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: storeamo-catalog-discovery
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover app manifests and releases
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python build_catalog.py --owner amoedo7
+      - name: Validate generated catalog
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('catalog.json').read_text())
+          assert c['schema']=='storeamo.catalog.v1'
+          assert isinstance(c['apps'], list)
+          ids=[x['id'] for x in c['apps']]
+          assert len(ids)==len(set(ids))
+          for app in c['apps']:
+              assert app['source_manifest'].startswith('https://raw.githubusercontent.com/amoedo7/')
+              for a in app.get('artifacts',[]):
+                  assert a['url'].startswith('https://')
+                  assert len(a['sha256'])==64
+          print('CATALOG_OK', len(c['apps']))
+          PY
+      - name: Commit catalog changes
+        run: |
+          if git diff --quiet -- catalog.json discovery-report.json; then
+            echo 'No catalog changes'
+            exit 0
+          fi
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add catalog.json discovery-report.json
+          git commit -m 'chore: refresh StoreAMO catalog'
+          git push
