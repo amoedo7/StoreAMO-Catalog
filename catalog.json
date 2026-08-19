@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
-  "generated_at": "2026-08-19T11:02:47+00:00",
+  "generated_at": "2026-08-19T11:26:47+00:00",
   "generation": {
     "mode": "repository-manifests",
     "owner": "amoedo7",
@@ -15,6 +15,52 @@
     "background": "#06101C"
   },
   "apps": [
+    {
+      "id": "generalamo",
+      "name": "GeneralAMO",
+      "tagline": "Generala para jugar o anotar, incluso sin Internet.",
+      "description": "Juego y marcador local-first de Generala con dados físicos o digitales. La primera candidate funciona offline; compartir por Wi-Fi/hotspot y Bluetooth queda para versiones siguientes.",
+      "category": "Juegos",
+      "featured": true,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "repository": "https://github.com/amoedo7/GeneralAMO",
+      "store": {
+        "screenshots": [],
+        "notes": "Nueva línea separada de GeneralaAMO 0.7.0-beta. Package: com.desarrollamo.generalamo. Candidate local-first sin red."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "smoke-test"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.3",
+          "version_code": "0.1.3",
+          "url": "https://github.com/amoedo7/GeneralAMO/releases/download/v0.1.3/GeneralAMO-0.1.3.apk",
+          "sha256": "0a5bb3030b4b952e5f3ba02075ff345b28fe5e6afa088d8ebf1994da848c34a9",
+          "size_bytes": 11755,
+          "min_os": null,
+          "application_id": "com.desarrollamo.generalamo",
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/GeneralAMO/releases/tag/v0.1.3",
+          "source": "github-release"
+        }
+      ],
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/GeneralAMO/main/storeamo.json",
+      "audience": "public"
+    },
     {
       "id": "midispositivo",
       "name": "MiDispositivo",
@@ -120,36 +166,6 @@
       },
       "artifacts": [],
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/DiagnosticoAMO/main/storeamo.json",
-      "audience": "public"
-    },
-    {
-      "id": "generalamo",
-      "name": "GeneralAMO",
-      "tagline": "Generala para jugar o anotar, incluso sin Internet.",
-      "description": "Juego y marcador local-first de Generala con dados físicos o digitales, preparado para compartir partidas cercanas sin convertir la red en requisito.",
-      "category": "Juegos",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": [
-        "android"
-      ],
-      "repository": "https://github.com/amoedo7/GeneralAMO",
-      "store": {
-        "screenshots": [],
-        "notes": "Nueva línea separada de GeneralaAMO 0.7.0-beta. Todavía no existe una Release instalable; debe mostrarse en Lo que se viene. Package previsto: com.desarrollamo.generalamo."
-      },
-      "verification": {
-        "policy": "storeamo-default-v1",
-        "required_checks": [
-          "tests",
-          "integrity",
-          "application-id",
-          "signature",
-          "smoke-test"
-        ]
-      },
-      "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/GeneralAMO/main/storeamo.json",
       "audience": "public"
     },
     {
