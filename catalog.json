@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
-  "generated_at": "2026-08-19T12:01:11+00:00",
+  "generated_at": "2026-08-19T12:15:58+00:00",
   "generation": {
     "mode": "repository-manifests",
     "owner": "amoedo7",
@@ -45,16 +45,16 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.1.9",
-          "version_code": "0.1.9",
-          "url": "https://github.com/amoedo7/GeneralAMO/releases/download/v0.1.9/GeneralAMO-0.1.9.apk",
-          "sha256": "c8b772db8fcd790eac434c608b1601c1502beed10ace1bea3c5c56251fc7a3f5",
-          "size_bytes": 24003,
+          "version": "0.1.10",
+          "version_code": "0.1.10",
+          "url": "https://github.com/amoedo7/GeneralAMO/releases/download/v0.1.10/GeneralAMO-0.1.10.apk",
+          "sha256": "3e209383607f39bacf11e58ae01a9b04bf21a8ae1e8f9596f54226092ea3bb5d",
+          "size_bytes": 24007,
           "min_os": null,
           "application_id": "com.desarrollamo.generalamo",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/GeneralAMO/releases/tag/v0.1.9",
+          "release_url": "https://github.com/amoedo7/GeneralAMO/releases/tag/v0.1.10",
           "source": "github-release"
         }
       ],
