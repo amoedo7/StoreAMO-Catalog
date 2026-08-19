@@ -1,0 +1,3 @@
+STATUS=1
+StoreAMO: 12 apps · 2 privadas vía registry · 0 warnings · 1 fuentes inválidas
+FAIL {'source': 'registry/depositamo-release-source.json', 'errors': ['schema debe ser storeamo.app.v1', 'name requerido', 'tagline requerido', 'description requerido', 'category requerido', 'status inválido', 'supported_platforms inválido']}
