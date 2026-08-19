@@ -1,0 +1,67 @@
+name: qramomini-catalog-refresh
+
+on:
+  push:
+    branches: [agent/qramomini-refresh-v0.1.0]
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: ${{ !contains(github.event.head_commit.message, '[catalog-result]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Build and validate catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set +e
+          python build_catalog.py --owner amoedo7 > /tmp/qramomini-refresh.log 2>&1
+          STATUS=$?
+          if [ "$STATUS" -eq 0 ]; then
+            python enrich_catalog.py >> /tmp/qramomini-refresh.log 2>&1
+            STATUS=$?
+          fi
+          if [ "$STATUS" -eq 0 ]; then
+            python - <<'PY' >> /tmp/qramomini-refresh.log 2>&1
+          import json
+          from pathlib import Path
+          c = json.loads(Path('catalog.json').read_text())
+          app = next(x for x in c['apps'] if x['id'] == 'qramomini')
+          art = next(x for x in app['artifacts'] if x['platform'] == 'android')
+          assert app['status'] == 'candidate'
+          assert app['source_visibility'] == 'private'
+          assert art['version'] == '0.1.0'
+          assert art['application_id'] == 'com.desarrollamo.qramomini'
+          assert art['sha256'] == '881c6a00f2530e0e34f07f5d518bc3c1053e677f7fc0dba62bd96d032349fc4c'
+          assert art['verified'] is False
+          print('QRAMOMINI_CATALOG_OK')
+          PY
+            STATUS=$?
+          fi
+          if [ "$STATUS" -ne 0 ]; then
+            {
+              echo "STATUS=$STATUS"
+              cat /tmp/qramomini-refresh.log
+            } > qramomini-refresh-result.txt
+          fi
+          echo "status=$STATUS" >> "$GITHUB_ENV"
+      - name: Commit generated result to refresh branch
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git rm .github/workflows/qramomini-catalog-refresh.yml
+          if [ "${status}" = "0" ]; then
+            git add catalog.json discovery-report.json
+            git commit -m '[catalog-result] refresh QRAMOMini catalog'
+          else
+            git add qramomini-refresh-result.txt
+            git commit -m '[catalog-result] QRAMOMini catalog refresh failed'
+          fi
+          git push origin HEAD:${GITHUB_REF_NAME}
