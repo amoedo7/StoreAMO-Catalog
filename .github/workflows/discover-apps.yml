@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - build_catalog.py
+      - enrich_catalog.py
       - schemas/storeamo.app.v1.schema.json
       - .github/workflows/discover-apps.yml
 
@@ -22,14 +23,16 @@ jobs:
   discover:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - name: Discover app manifests and releases
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python build_catalog.py --owner amoedo7
+      - name: Preserve audience metadata
+        run: python enrich_catalog.py
       - name: Validate generated catalog
         run: |
           python - <<'PY'
@@ -42,6 +45,7 @@ jobs:
           assert len(ids)==len(set(ids))
           for app in c['apps']:
               assert app['source_manifest'].startswith('https://raw.githubusercontent.com/amoedo7/')
+              assert app.get('audience','public') in {'public','team','system'}
               for a in app.get('artifacts',[]):
                   assert a['url'].startswith('https://')
                   assert len(a['sha256'])==64
