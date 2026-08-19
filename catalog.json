@@ -1,11 +1,12 @@
 {
   "schema": "storeamo.catalog.v1",
-  "catalog_version": 2,
-  "generated_at": "2026-08-19T16:14:27+00:00",
+  "catalog_version": 3,
+  "generated_at": "2026-08-19T16:17:20+00:00",
   "generation": {
-    "mode": "repository-manifests",
+    "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
-    "app_schema": "storeamo.app.v1"
+    "app_schema": "storeamo.app.v1",
+    "private_sources_supported": true
   },
   "brand": {
     "name": "DesarrollAMO",
@@ -21,12 +22,13 @@
       "tagline": "Generala para jugar, anotar y compartir en la misma red.",
       "description": "Juego y marcador local-first de Generala con dados físicos o digitales. Guarda partidas e historial, muestra turnos y actividad detallada, aplica servido y tachadas, y permite jugar o anotar desde varios dispositivos en la misma Wi-Fi/hotspot mediante enlaces separados de lectura y juego. La interfaz se adapta a teléfono, tablet y escritorio.",
       "category": "Juegos",
+      "audience": "public",
       "featured": true,
       "status": "candidate",
       "supported_platforms": [
         "android"
       ],
-      "repository": "https://github.com/amoedo7/GeneralAMO",
+      "source_visibility": "public",
       "store": {
         "screenshots": [],
         "notes": "GeneralAMO estable para uso funcional. Package: com.desarrollamo.generalamo. Partidas persistentes, historial, reglas tradicionales, juego web local y diseño responsive. El sello StoreAMO Verified sigue dependiendo del proceso de verificación separado."
@@ -52,14 +54,15 @@
           "size_bytes": 39398,
           "min_os": null,
           "application_id": "com.desarrollamo.generalamo",
+          "signing_cert_sha256": null,
           "verified": false,
           "verification_report": null,
           "release_url": "https://github.com/amoedo7/GeneralAMO/releases/tag/v0.1.13",
           "source": "github-release"
         }
       ],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/GeneralAMO/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/GeneralAMO",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/GeneralAMO/main/storeamo.json"
     },
     {
       "id": "midispositivo",
@@ -67,6 +70,7 @@
       "tagline": "Entendé tu equipo y su entorno en un reporte claro.",
       "description": "Diagnóstico multiplataforma de sistema, hardware y red básica con privacidad por defecto.",
       "category": "Diagnóstico",
+      "audience": "public",
       "featured": true,
       "status": "development",
       "supported_platforms": [
@@ -75,7 +79,7 @@
         "macos",
         "linux"
       ],
-      "repository": "https://github.com/amoedo7/MiDispositivo",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -87,8 +91,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiDispositivo/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/MiDispositivo",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiDispositivo/main/storeamo.json"
     },
     {
       "id": "plataformamo",
@@ -96,13 +100,14 @@
       "tagline": "El espacio de trabajo de DesarrollAMO.",
       "description": "Acceso Android al entorno compartido de PlataformAMO, conectado a la plataforma web oficial y preparado para distribuirse y actualizarse desde StoreAMO.",
       "category": "Equipo",
+      "audience": "team",
       "featured": true,
       "status": "candidate",
       "supported_platforms": [
         "android",
         "web"
       ],
-      "repository": "https://github.com/amoedo7/PlataformAMO",
+      "source_visibility": "public",
       "store": {
         "homepage": "https://plataforma.desarrollamo.com.ar",
         "screenshots": [],
@@ -130,14 +135,15 @@
           "size_bytes": 1656258,
           "min_os": null,
           "application_id": "com.desarrollamo.plataformamo.dev",
+          "signing_cert_sha256": null,
           "verified": false,
           "verification_report": null,
           "release_url": "https://github.com/amoedo7/PlataformAMO/releases/tag/v0.9.4-alpha.3",
           "source": "github-release"
         }
       ],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/PlataformAMO/main/storeamo.json",
-      "audience": "team"
+      "repository": "https://github.com/amoedo7/PlataformAMO",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/PlataformAMO/main/storeamo.json"
     },
     {
       "id": "diagnosticoamo",
@@ -145,6 +151,7 @@
       "tagline": "Junta evidencia y la convierte en una lectura útil.",
       "description": "Agrega reportes compatibles del ecosistema para generar un diagnóstico común.",
       "category": "Diagnóstico",
+      "audience": "public",
       "featured": false,
       "status": "development",
       "supported_platforms": [
@@ -153,7 +160,7 @@
         "macos",
         "linux"
       ],
-      "repository": "https://github.com/amoedo7/DiagnosticoAMO",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -165,8 +172,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/DiagnosticoAMO/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/DiagnosticoAMO",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/DiagnosticoAMO/main/storeamo.json"
     },
     {
       "id": "miapi",
@@ -174,6 +181,7 @@
       "tagline": "Mirá cómo responde un endpoint.",
       "description": "Inspección reproducible de status, tiempo, headers y cuerpo de respuestas HTTP.",
       "category": "Desarrollo",
+      "audience": "public",
       "featured": false,
       "status": "development",
       "supported_platforms": [
@@ -182,7 +190,7 @@
         "macos",
         "linux"
       ],
-      "repository": "https://github.com/amoedo7/MiAPI",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -194,8 +202,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiAPI/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/MiAPI",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiAPI/main/storeamo.json"
     },
     {
       "id": "miarchivos",
@@ -203,6 +211,7 @@
       "tagline": "Entendé qué ocupa espacio y cómo está organizado.",
       "description": "Análisis local de archivos y almacenamiento con salida portable.",
       "category": "Herramientas",
+      "audience": "public",
       "featured": false,
       "status": "development",
       "supported_platforms": [
@@ -211,7 +220,7 @@
         "macos",
         "linux"
       ],
-      "repository": "https://github.com/amoedo7/MiArchivos",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -223,8 +232,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiArchivos/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/MiArchivos",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiArchivos/main/storeamo.json"
     },
     {
       "id": "mired",
@@ -232,6 +241,7 @@
       "tagline": "Tu conexión, sin adivinar.",
       "description": "Diagnóstico seguro de conectividad, DNS, TCP, HTTPS y red local básica.",
       "category": "Diagnóstico",
+      "audience": "public",
       "featured": false,
       "status": "development",
       "supported_platforms": [
@@ -240,7 +250,7 @@
         "macos",
         "linux"
       ],
-      "repository": "https://github.com/amoedo7/MiRed",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -252,8 +262,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiRed/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/MiRed",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiRed/main/storeamo.json"
     },
     {
       "id": "misistema",
@@ -261,6 +271,7 @@
       "tagline": "Qué tenés y qué podés ejecutar.",
       "description": "Inventario local de runtimes, shell, arquitectura y capacidades sin leer secretos.",
       "category": "Diagnóstico",
+      "audience": "public",
       "featured": false,
       "status": "development",
       "supported_platforms": [
@@ -269,7 +280,7 @@
         "macos",
         "linux"
       ],
-      "repository": "https://github.com/amoedo7/MiSistema",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -281,8 +292,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiSistema/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/MiSistema",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiSistema/main/storeamo.json"
     },
     {
       "id": "miweb",
@@ -290,6 +301,7 @@
       "tagline": "Una lectura técnica rápida de una web pública.",
       "description": "Auditoría no intrusiva de HTTP, HTTPS, SEO técnico, recursos y headers de seguridad.",
       "category": "Web",
+      "audience": "public",
       "featured": false,
       "status": "development",
       "supported_platforms": [
@@ -298,7 +310,7 @@
         "linux",
         "android"
       ],
-      "repository": "https://github.com/amoedo7/MiWeb",
+      "source_visibility": "public",
       "store": {
         "screenshots": []
       },
@@ -310,8 +322,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json",
-      "audience": "public"
+      "repository": "https://github.com/amoedo7/MiWeb",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
     },
     {
       "id": "storeamo",
@@ -319,12 +331,13 @@
       "tagline": "La tienda del ecosistema DesarrollAMO.",
       "description": "Descubre, verifica, descarga y actualiza aplicaciones del ecosistema DesarrollAMO desde un catálogo independiente del código de la tienda.",
       "category": "Sistema",
+      "audience": "system",
       "featured": false,
       "status": "development",
       "supported_platforms": [
         "android"
       ],
-      "repository": "https://github.com/amoedo7/StoreAMO",
+      "source_visibility": "public",
       "store": {
         "homepage": "https://github.com/amoedo7/StoreAMO",
         "privacy_url": "https://github.com/amoedo7/StoreAMO/blob/main/SECURITY.md",
@@ -342,8 +355,8 @@
         ]
       },
       "artifacts": [],
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO/main/storeamo.json",
-      "audience": "system"
+      "repository": "https://github.com/amoedo7/StoreAMO",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO/main/storeamo.json"
     }
   ]
 }
