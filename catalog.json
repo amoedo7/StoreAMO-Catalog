@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
-  "generated_at": "2026-08-19T14:56:54+00:00",
+  "generated_at": "2026-08-19T15:21:22+00:00",
   "generation": {
     "mode": "repository-manifests",
     "owner": "amoedo7",
@@ -19,7 +19,7 @@
       "id": "generalamo",
       "name": "GeneralAMO",
       "tagline": "Generala para jugar, anotar y compartir en la misma red.",
-      "description": "Juego y marcador local-first de Generala con dados físicos o digitales. Guarda la partida, permite eliminar jugadores, conserva puntajes entre turnos y puede compartir una mesa por Wi-Fi/hotspot con enlaces separados de lectura y edición. Bluetooth queda para una versión posterior.",
+      "description": "Juego y marcador local-first de Generala con dados físicos o digitales. Guarda partidas e historial, muestra turnos y actividad detallada, aplica servido y tachadas, y permite jugar o anotar desde varios dispositivos en la misma Wi-Fi/hotspot mediante enlaces separados de lectura y juego.",
       "category": "Juegos",
       "featured": true,
       "status": "candidate",
@@ -29,7 +29,7 @@
       "repository": "https://github.com/amoedo7/GeneralAMO",
       "store": {
         "screenshots": [],
-        "notes": "Nueva línea separada de GeneralaAMO 0.7.0-beta. Package: com.desarrollamo.generalamo. Candidate local-first con acceso compartido por Wi-Fi/hotspot."
+        "notes": "Línea GeneralAMO 0.1.x. Package estable: com.desarrollamo.generalamo. Candidate local-first con partidas persistentes y juego web local por Wi-Fi/hotspot."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -45,16 +45,16 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.1.11",
-          "version_code": "0.1.11",
-          "url": "https://github.com/amoedo7/GeneralAMO/releases/download/v0.1.11/GeneralAMO-0.1.11.apk",
-          "sha256": "ad5c249c6cc85babca27165b121cea6108455d576ac2c429947742bf7506303f",
-          "size_bytes": 27863,
+          "version": "0.1.12",
+          "version_code": "0.1.12",
+          "url": "https://github.com/amoedo7/GeneralAMO/releases/download/v0.1.12/GeneralAMO-0.1.12.apk",
+          "sha256": "4d33e809b3372bdaa4979496b613514a8a6f0e2f766d8a67ec4f1257a574594b",
+          "size_bytes": 36796,
           "min_os": null,
           "application_id": "com.desarrollamo.generalamo",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/GeneralAMO/releases/tag/v0.1.11",
+          "release_url": "https://github.com/amoedo7/GeneralAMO/releases/tag/v0.1.12",
           "source": "github-release"
         }
       ],
