@@ -1,0 +1,28 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "depositamo",
+  "name": "DepositAMO",
+  "tagline": "La materia prima de la fábrica DesarrollAMO.",
+  "description": "Deposita capturas, textos, documentos, código, APK/ZIP y prototipos desde Android o navegador. Conserva originales, deduplica por SHA-256, clasifica material y genera mapas para alimentar nuevas ideas y actualizaciones.",
+  "category": "Herramientas",
+  "audience": "team",
+  "featured": false,
+  "status": "candidate",
+  "supported_platforms": ["android", "web"],
+  "source": {
+    "visibility": "private"
+  },
+  "distribution": {
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "mode": "direct-artifacts"
+  },
+  "store": {
+    "homepage": "https://desarrollamo.com.ar",
+    "screenshots": [],
+    "notes": "DepositAMO 0.1.0 candidate. Source privado. La ficha ya es visible en StoreAMO; el APK instalable se publicará únicamente con firma Android estable y verificación de integridad."
+  },
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]
+  }
+}
