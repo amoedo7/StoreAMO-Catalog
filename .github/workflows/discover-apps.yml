@@ -1,5 +1,5 @@
 # StoreAMO auto-discovery: app repos are the source of truth.
-# Manual refresh trigger: GeneralAMO candidate 2026-08-19.
+# Manual refresh trigger: GeneralAMO Wi-Fi candidate 2026-08-19.
 name: discover-apps
 
 on:
