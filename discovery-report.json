@@ -1,12 +1,13 @@
 {
   "schema": "storeamo.discovery.report.v1",
-  "generated_at": "2026-08-19T10:45:09+00:00",
+  "generated_at": "2026-08-19T11:02:24+00:00",
   "owner": "amoedo7",
-  "apps_discovered": 9,
+  "apps_discovered": 10,
   "repositories": [
     "https://github.com/amoedo7/MiDispositivo",
     "https://github.com/amoedo7/PlataformAMO",
     "https://github.com/amoedo7/DiagnosticoAMO",
+    "https://github.com/amoedo7/GeneralAMO",
     "https://github.com/amoedo7/MiAPI",
     "https://github.com/amoedo7/MiArchivos",
     "https://github.com/amoedo7/MiRed",
