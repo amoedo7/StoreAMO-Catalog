@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 2,
-  "generated_at": "2026-08-19T08:19:26+00:00",
+  "generated_at": "2026-08-19T08:44:09+00:00",
   "generation": {
     "mode": "repository-manifests",
     "owner": "amoedo7",
@@ -72,7 +72,24 @@
           "smoke-test"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.9.4-alpha.3",
+          "version_code": "0.9.4-alpha.3",
+          "url": "https://github.com/amoedo7/PlataformAMO/releases/download/v0.9.4-alpha.3/PlataformAMO-0.9.4-alpha.3.apk",
+          "sha256": "f5d69e2cfd099accb7979869b2d5286acc1f64e9d68d74adb941f418c1e61587",
+          "size_bytes": 1656258,
+          "min_os": null,
+          "application_id": "com.desarrollamo.plataformamo.dev",
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/PlataformAMO/releases/tag/v0.9.4-alpha.3",
+          "source": "github-release"
+        }
+      ],
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/PlataformAMO/main/storeamo.json",
       "audience": "team"
     },
