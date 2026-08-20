@@ -22,30 +22,19 @@ jobs:
           APK=/tmp/brujulamo/BrujulAMO-0.1.0.apk
           test -s "$APK"
           echo '430aa12769a2d7337062e8835cd0fa08fbd4bcf774d6fc9475467431f13441dd  /tmp/brujulamo/BrujulAMO-0.1.0.apk' | sha256sum -c -
-          test "$(wc -c < "$APK" | tr -d ' ')" = 15181
+          unzip -tqq "$APK"
       - name: Publish public distribution release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           APK=/tmp/brujulamo/BrujulAMO-0.1.0.apk
-          if gh release view brujulamo-v0.1.0 >/dev/null 2>&1; then
-            gh release upload brujulamo-v0.1.0 "$APK#BrujulAMO-0.1.0.apk" --clobber
-          else
-            gh release create brujulamo-v0.1.0 "$APK#BrujulAMO-0.1.0.apk" --target main --title 'BrujulAMO v0.1.0' --notes 'Candidate de distribución StoreAMO. APK exacto producido por BrujulAMO Android CI run 32380827149; source privado.'
-          fi
-      - name: Verify public download and record evidence
-        env:
-          GH_TOKEN: ${{ github.token }}
+          gh release view brujulamo-v0.1.0 >/dev/null 2>&1 || gh release create brujulamo-v0.1.0 --target main --title 'BrujulAMO v0.1.0' --notes 'Candidate de distribución StoreAMO.'
+          gh release upload brujulamo-v0.1.0 "$APK#BrujulAMO-0.1.0.apk" --clobber
+      - name: Verify public download
         run: |
           set -euo pipefail
-          URL='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/brujulamo-v0.1.0/BrujulAMO-0.1.0.apk'
-          curl -fL --retry 3 "$URL" -o /tmp/public.apk
+          curl -fL --retry 5 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/brujulamo-v0.1.0/BrujulAMO-0.1.0.apk' -o /tmp/public.apk
           echo '430aa12769a2d7337062e8835cd0fa08fbd4bcf774d6fc9475467431f13441dd  /tmp/public.apk' | sha256sum -c -
-          test "$(wc -c < /tmp/public.apk | tr -d ' ')" = 15181
-          mkdir -p verification
-          printf '%s\n' '{"schema":"storeamo.distribution-check.v1","app_id":"brujulamo","version":"0.1.0","url":"https://github.com/amoedo7/StoreAMO-Catalog/releases/download/brujulamo-v0.1.0/BrujulAMO-0.1.0.apk","size_bytes":15181,"sha256":"430aa12769a2d7337062e8835cd0fa08fbd4bcf774d6fc9475467431f13441dd","application_id":"com.desarrollamo.brujulamo","result":"public-download-ok"}' > verification/brujulamo-v0.1.0.json
-          git config user.name 'StoreAMO Bot'
-          git config user.email 'actions@users.noreply.github.com'
-          git add verification/brujulamo-v0.1.0.json
-          git diff --cached --quiet || { git commit -m 'verify: BrujulAMO public distribution'; git push; }
+          unzip -tqq /tmp/public.apk
+# repair-trigger: 2026-08-21
