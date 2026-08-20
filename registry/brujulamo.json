@@ -14,7 +14,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "BrujulAMO 0.1.0 candidate. APK exacto de Android CI run 32380827149. Source privado; metadata pública sanitizada."
+    "notes": "BrujulAMO 0.1.0 candidate. APK exacto de Android CI run 32380827149, artifact 9410963366. Source privado; metadata pública sanitizada."
   },
   "artifacts": [{
     "platform": "android",
