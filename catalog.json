@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T06:59:38+00:00",
+  "generated_at": "2026-08-20T07:00:23+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -193,6 +193,38 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/qramomini.json"
+    },
+    {
+      "id": "calculamo",
+      "name": "CalculAMO",
+      "tagline": "Calculadora rápida con historial local.",
+      "description": "Calculadora Android offline con operaciones básicas, paréntesis e historial persistente.",
+      "category": "Herramientas",
+      "audience": "public",
+      "featured": false,
+      "status": "development",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MVP v0.1.0 implementado. Esperando build firmado y hash antes de candidate."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests"
+        ]
+      },
+      "artifacts": [],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/calculamo.json"
     },
     {
       "id": "depositamo",
