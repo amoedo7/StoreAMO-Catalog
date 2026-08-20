@@ -1,0 +1,136 @@
+name: repair-gastamo-relojamo
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repair-gastamo-relojamo
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        run: sdkmanager "build-tools;35.0.0" >/dev/null
+
+      - name: Download and validate public APKs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/storeamo-repair
+
+          GURL='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk'
+          RURL='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/relojamo-v0.1.0/RelojAMO-0.1.0.apk'
+          curl -fL --retry 3 "$GURL" -o /tmp/storeamo-repair/GastAMO-0.1.0.apk
+          curl -fL --retry 3 "$RURL" -o /tmp/storeamo-repair/RelojAMO-0.1.0.apk
+
+          unzip -tqq /tmp/storeamo-repair/GastAMO-0.1.0.apk
+          unzip -tqq /tmp/storeamo-repair/RelojAMO-0.1.0.apk
+
+          "$ANDROID_SDK_ROOT/build-tools/35.0.0/aapt" dump badging /tmp/storeamo-repair/GastAMO-0.1.0.apk > /tmp/storeamo-repair/gast.badging
+          "$ANDROID_SDK_ROOT/build-tools/35.0.0/aapt" dump badging /tmp/storeamo-repair/RelojAMO-0.1.0.apk > /tmp/storeamo-repair/reloj.badging
+          grep -q "package: name='com.desarrollamo.gastamo' versionCode='1' versionName='0.1.0'" /tmp/storeamo-repair/gast.badging
+          grep -q "package: name='com.desarrollamo.relojamo' versionCode='1' versionName='0.1.0'" /tmp/storeamo-repair/reloj.badging
+
+          sha256sum /tmp/storeamo-repair/GastAMO-0.1.0.apk | awk '{print $1}' > /tmp/storeamo-repair/gast.sha
+          sha256sum /tmp/storeamo-repair/RelojAMO-0.1.0.apk | awk '{print $1}' > /tmp/storeamo-repair/reloj.sha
+          stat -c%s /tmp/storeamo-repair/GastAMO-0.1.0.apk > /tmp/storeamo-repair/gast.size
+          stat -c%s /tmp/storeamo-repair/RelojAMO-0.1.0.apk > /tmp/storeamo-repair/reloj.size
+
+      - name: Update canonical registry metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib
+
+          root = pathlib.Path('/tmp/storeamo-repair')
+          values = {
+              'gastamo': {
+                  'sha': (root/'gast.sha').read_text().strip(),
+                  'size': int((root/'gast.size').read_text().strip()),
+                  'url': 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk',
+                  'release_url': 'https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.1.0',
+                  'application_id': 'com.desarrollamo.gastamo',
+              },
+              'relojamo': {
+                  'sha': (root/'reloj.sha').read_text().strip(),
+                  'size': int((root/'reloj.size').read_text().strip()),
+                  'url': 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/relojamo-v0.1.0/RelojAMO-0.1.0.apk',
+                  'release_url': 'https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/relojamo-v0.1.0',
+                  'application_id': 'com.desarrollamo.relojamo',
+              },
+          }
+
+          for app_id, v in values.items():
+              p = pathlib.Path('registry') / f'{app_id}.json'
+              m = json.loads(p.read_text(encoding='utf-8'))
+              m['status'] = 'candidate'
+              m.setdefault('distribution', {})['repository'] = 'amoedo7/StoreAMO-Catalog'
+              m['distribution']['mode'] = 'direct-artifacts'
+              m['artifacts'] = [{
+                  'platform': 'android',
+                  'arch': 'universal',
+                  'format': 'apk',
+                  'version': '0.1.0',
+                  'version_code': '1',
+                  'url': v['url'],
+                  'sha256': v['sha'],
+                  'size_bytes': v['size'],
+                  'min_os': 'Android 8.0 (API 26)',
+                  'application_id': v['application_id'],
+                  'verified': False,
+                  'verification_report': None,
+                  'release_url': v['release_url'],
+                  'source': 'distribution-registry',
+              }]
+              p.write_text(json.dumps(m, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+              print(app_id, v['size'], v['sha'])
+          PY
+
+      - name: Rebuild StoreAMO catalog
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          for app_id in ('gastamo','relojamo'):
+              a=next(x for x in c['apps'] if x['id']==app_id)
+              assert a['status']=='candidate'
+              assert len(a['artifacts'])==1
+              x=a['artifacts'][0]
+              assert len(x['sha256'])==64
+              assert int(x['size_bytes']) > 0
+              assert x['url'].startswith('https://github.com/amoedo7/StoreAMO-Catalog/releases/download/')
+              assert x['verified'] is False
+          print('STOREAMO_REPAIR_OK')
+          PY
+
+      - name: Commit repaired metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- registry/gastamo.json registry/relojamo.json catalog.json discovery-report.json; then
+            echo 'Metadata already canonical'
+            exit 0
+          fi
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add registry/gastamo.json registry/relojamo.json catalog.json discovery-report.json
+          git commit -m 'catalog: repair GastAMO and RelojAMO distribution metadata'
+          git pull --rebase origin main
+          git push origin HEAD:main
