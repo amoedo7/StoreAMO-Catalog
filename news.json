@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T09:44:03.499159+00:00",
+  "generated_at": "2026-08-20T09:46:07.705429+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "calculamo-registry-7322f690253d",
+      "app_id": "calculamo",
+      "app_name": "CalculAMO",
+      "type": "candidate",
+      "title": "CalculAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T09:45:17+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "habitamo-registry-52eca2a496e8",
       "app_id": "habitamo",
@@ -157,17 +168,6 @@
       "title": "CronAMO está en desarrollo",
       "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
       "published_at": "2026-08-20T07:00:39+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "calculamo-registry-d0f154a16890",
-      "app_id": "calculamo",
-      "app_name": "CalculAMO",
-      "type": "development",
-      "title": "CalculAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:00:11+00:00",
       "status": "development",
       "source_visibility": "private"
     },
