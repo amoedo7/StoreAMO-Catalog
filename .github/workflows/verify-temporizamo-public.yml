@@ -19,13 +19,16 @@ jobs:
     steps:
       - name: Download exact public artifact and verify
         shell: bash
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
           if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
             REF=main
           else
-            REF="${GITHUB_SHA}"
+            REF="${PR_HEAD_SHA}"
           fi
+          test -n "${REF}"
           URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${REF}/artifacts/temporizamo/TemporizAMO-0.1.0.apk"
           curl -fL --retry 4 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/TemporizAMO-0.1.0.apk
           test "$(wc -c < /tmp/TemporizAMO-0.1.0.apk | tr -d ' ')" = "11493"
