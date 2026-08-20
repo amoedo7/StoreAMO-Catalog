@@ -1,4 +1,4 @@
-# StoreAMO discovery v2: public repos remain compatible; private source apps publish sanitized manifests into registry/.
+# StoreAMO discovery v3: catalog + public activity feed; private sources remain sanitized.
 name: discover-apps
 
 on:
@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - build_catalog.py
+      - build_news.py
       - enrich_catalog.py
       - registry/**
       - schemas/storeamo.app.v1.schema.json
@@ -34,7 +35,12 @@ jobs:
         run: python build_catalog.py --owner amoedo7
       - name: Preserve audience metadata
         run: python enrich_catalog.py
-      - name: Validate generated catalog
+      - name: Build Buenas Nuevas feed
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STOREAMO_NEWS_TOKEN: ${{ secrets.STOREAMO_NEWS_TOKEN }}
+        run: python build_news.py --owner amoedo7
+      - name: Validate generated catalog and news
         run: |
           python - <<'PY'
           import json
@@ -56,16 +62,25 @@ jobs:
                   cert = a.get('signing_cert_sha256')
                   if cert:
                       assert len(cert) == 64
-          print('CATALOG_OK', len(c['apps']))
+
+          n = json.loads(Path('news.json').read_text())
+          assert n['schema'] == 'storeamo.news.v1'
+          assert isinstance(n['items'], list)
+          assert len(n['items']) <= 120
+          for item in n['items']:
+              assert item['app_id'] in ids
+              assert item['source_visibility'] in {'public', 'private'}
+              assert item['title'] and item['published_at']
+          print('CATALOG_OK', len(c['apps']), 'NEWS_OK', len(n['items']))
           PY
-      - name: Commit catalog changes
+      - name: Commit catalog and news changes
         run: |
-          if git diff --quiet -- catalog.json discovery-report.json; then
-            echo 'No catalog changes'
+          if git diff --quiet -- catalog.json discovery-report.json news.json; then
+            echo 'No catalog/news changes'
             exit 0
           fi
           git config user.name 'StoreAMO Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add catalog.json discovery-report.json
-          git commit -m 'chore: refresh StoreAMO catalog'
+          git add catalog.json discovery-report.json news.json
+          git commit -m 'chore: refresh StoreAMO catalog and Buenas Nuevas'
           git push
