@@ -8,9 +8,14 @@
   "audience": "team",
   "featured": false,
   "status": "candidate",
-  "supported_platforms": ["android", "web"],
+  "supported_platforms": [
+    "android",
+    "web"
+  ],
   "source": {
-    "visibility": "private"
+    "visibility": "public",
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "path": "rebuild-android/depositamo"
   },
   "distribution": {
     "repository": "amoedo7/StoreAMO-Catalog",
@@ -19,10 +24,35 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "DepositAMO 0.1.0 candidate. Source privado. La ficha ya es visible en StoreAMO; el APK instalable se publicará únicamente con firma Android estable y verificación de integridad."
+    "notes": "DepositAMO 0.1.0 reconstruida desde cero. Guarda textos y archivos localmente, calcula SHA-256 y conserva historial. APK público directo probado por descarga HTTPS anónima. Candidate; no se declara Verified."
   },
   "verification": {
     "policy": "storeamo-default-v1",
-    "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]
-  }
+    "required_checks": [
+      "integrity",
+      "application-id",
+      "signature",
+      "permissions",
+      "tests"
+    ]
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "universal",
+      "format": "apk",
+      "version": "0.1.0",
+      "version_code": "1",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/depositamo/0.1.0/DepositAMO-0.1.0.apk",
+      "sha256": "b2cfbfb46980572b090194369faf20b867a67772fca9823be6f6497f495b0c4e",
+      "signing_cert_sha256": "653719d327467463b0081e52c330e1859d91876160e82fbd5068aef3bbb6f7b6",
+      "size_bytes": 17543,
+      "min_os": "Android 6.0 (API 23)",
+      "application_id": "com.desarrollamo.depositamo",
+      "verified": false,
+      "verification_report": null,
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/depositamo/0.1.0",
+      "source": "distribution-registry"
+    }
+  ]
 }
