@@ -1,0 +1,15 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "contrasenamo",
+  "name": "ContrasenAMO",
+  "tagline": "Genera contraseñas localmente, sin guardarlas.",
+  "description": "Generador local de contraseñas configurables sin cuentas, red ni almacenamiento de secretos.",
+  "category": "Seguridad",
+  "audience": "public",
+  "featured": false,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "source": {"visibility": "private"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."},
+  "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
+}
