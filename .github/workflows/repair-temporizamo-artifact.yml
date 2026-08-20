@@ -1,0 +1,36 @@
+name: repair-temporizamo-artifact
+
+on:
+  push:
+    branches: [fix/temporizamo-artifact-integrity]
+    paths:
+      - 'tmp/temporizamo/**'
+      - '.github/workflows/repair-temporizamo-artifact.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: fix/temporizamo-artifact-integrity
+      - name: Rebuild canonical APK from staged chunks
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat tmp/temporizamo/part1.b64 tmp/temporizamo/part2.b64 tmp/temporizamo/part3.b64 tmp/temporizamo/part4.b64 | base64 -d > artifacts/temporizamo/TemporizAMO-0.1.0.apk
+          test "$(stat -c %s artifacts/temporizamo/TemporizAMO-0.1.0.apk)" = "11493"
+          echo '0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d  artifacts/temporizamo/TemporizAMO-0.1.0.apk' | sha256sum -c -
+      - name: Commit repaired binary only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git rm -r tmp/temporizamo .github/workflows/repair-temporizamo-artifact.yml
+          git add -- artifacts/temporizamo/TemporizAMO-0.1.0.apk
+          git commit -m 'fix: publish canonical TemporizAMO 0.1.0 APK [skip ci]'
+          git push origin HEAD:fix/temporizamo-artifact-integrity
