@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T11:10:36.036784+00:00",
+  "generated_at": "2026-08-20T11:17:36.622672+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -186,11 +186,11 @@
       "id": "temporizamo-registry-8bab5eb74b69",
       "app_id": "temporizamo",
       "app_name": "TemporizAMO",
-      "type": "development",
-      "title": "TemporizAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
+      "type": "candidate",
+      "title": "TemporizAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T07:00:46+00:00",
-      "status": "development",
+      "status": "candidate",
       "source_visibility": "private"
     },
     {
