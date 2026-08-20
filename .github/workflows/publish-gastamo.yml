@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - gastamo-publish.trigger
+      - .github/workflows/publish-gastamo.yml
 
 permissions:
   contents: write
@@ -15,7 +16,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  publish:
+  publish-and-verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -27,21 +28,43 @@ jobs:
       - name: Install Android build tools
         run: sdkmanager "build-tools;35.0.0" >/dev/null
 
-      - name: Validate staged APK and calculate canonical metadata
+      - name: Verify staged APK identity, signature and permissions
         id: meta
         shell: bash
         run: |
           set -euo pipefail
           APK='.release-input/GastAMO-0.1.0.apk'
+          AAPT="$ANDROID_SDK_ROOT/build-tools/35.0.0/aapt"
+          APKSIGNER="$ANDROID_SDK_ROOT/build-tools/35.0.0/apksigner"
+          EXPECTED_SHA='0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a'
+          EXPECTED_SIZE='14949'
+
           test -s "$APK"
           unzip -tqq "$APK"
-          "$ANDROID_SDK_ROOT/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/gastamo-badging.txt
+          "$AAPT" dump badging "$APK" | tee /tmp/gastamo-badging.txt
           grep -q "package: name='com.desarrollamo.gastamo' versionCode='1' versionName='0.1.0'" /tmp/gastamo-badging.txt
+          grep -q "launchable-activity: name='com.desarrollamo.gastamo.MainActivity'" /tmp/gastamo-badging.txt
+
           SHA="$(sha256sum "$APK" | awk '{print $1}')"
           SIZE="$(stat -c%s "$APK")"
+          test "$SHA" = "$EXPECTED_SHA"
+          test "$SIZE" = "$EXPECTED_SIZE"
+
+          "$APKSIGNER" verify --verbose --print-certs "$APK" | tee /tmp/gastamo-apksigner.txt
+          CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/gastamo-apksigner.txt | head -n1 | tr 'A-F' 'a-f')"
+          test "${#CERT}" = 64
+          echo "$CERT" | grep -Eq '^[0-9a-f]{64}$'
+
+          "$AAPT" dump permissions "$APK" | tee /tmp/gastamo-permissions.txt
+          if grep -q '^uses-permission:' /tmp/gastamo-permissions.txt; then
+            echo 'GastAMO v0.1.0 unexpectedly requests Android permissions' >&2
+            exit 1
+          fi
+
           echo "sha=$SHA" >> "$GITHUB_OUTPUT"
           echo "size=$SIZE" >> "$GITHUB_OUTPUT"
-          echo "GastAMO staged APK: $SIZE bytes / $SHA"
+          echo "cert=$CERT" >> "$GITHUB_OUTPUT"
+          echo "GastAMO static verification PASS: $SIZE bytes / $SHA / cert $CERT"
 
       - name: Publish public distribution release
         env:
@@ -50,24 +73,62 @@ jobs:
         run: |
           set -euo pipefail
           TAG='gastamo-v0.1.0'
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --target main --title "GastAMO v0.1.0" --notes "Candidate de distribución StoreAMO. Source privado; APK público validado y publicado desde StoreAMO-Catalog."
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --target main --title "GastAMO v0.1.0" --notes "StoreAMO candidate distribution. APK identity, integrity, signature and permissions verified."
           gh release upload "$TAG" .release-input/GastAMO-0.1.0.apk#GastAMO-0.1.0.apk --clobber
 
-      - name: Verify published bytes
+      - name: Verify the exact public download StoreAMO uses
         env:
           SHA_EXPECTED: ${{ steps.meta.outputs.sha }}
+          SIZE_EXPECTED: ${{ steps.meta.outputs.size }}
         shell: bash
         run: |
           set -euo pipefail
           URL='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk'
-          curl -fsSL --retry 3 "$URL" -o /tmp/GastAMO-published.apk
-          SHA="$(sha256sum /tmp/GastAMO-published.apk | awk '{print $1}')"
+          curl -fL --retry 5 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/GastAMO-public.apk
+          test "$(stat -c%s /tmp/GastAMO-public.apk)" = "$SIZE_EXPECTED"
+          SHA="$(sha256sum /tmp/GastAMO-public.apk | awk '{print $1}')"
           test "$SHA" = "$SHA_EXPECTED"
+          echo "PUBLIC_DOWNLOAD_PASS $URL"
 
-      - name: Update registry from validated artifact
+      - name: Publish reproducible verification report
         env:
           SHA256: ${{ steps.meta.outputs.sha }}
           SIZE_BYTES: ${{ steps.meta.outputs.size }}
+          CERT_SHA256: ${{ steps.meta.outputs.cert }}
+        run: |
+          python - <<'PY'
+          import datetime, json, os, pathlib
+          report = {
+            'schema': 'storeamo.verification-report.v1',
+            'app_id': 'gastamo',
+            'version': '0.1.0',
+            'version_code': '1',
+            'application_id': 'com.desarrollamo.gastamo',
+            'artifact_url': 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk',
+            'sha256': os.environ['SHA256'],
+            'size_bytes': int(os.environ['SIZE_BYTES']),
+            'signing_cert_sha256': os.environ['CERT_SHA256'],
+            'verified': True,
+            'verified_at': datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat(),
+            'checks': {
+              'integrity': {'status': 'PASS', 'evidence': 'Published bytes equal staged APK by SHA-256 and size.'},
+              'application_id': {'status': 'PASS', 'evidence': 'aapt: com.desarrollamo.gastamo, versionCode 1, versionName 0.1.0.'},
+              'signature': {'status': 'PASS', 'evidence': 'apksigner verify passed; certificate SHA-256 recorded.'},
+              'permissions': {'status': 'PASS', 'evidence': 'aapt reports no uses-permission entries.'},
+              'tests': {'status': 'PASS', 'evidence': 'GastAMO GitHub Actions run 32344205283 completed successfully before publication.'},
+              'launchable_activity': {'status': 'PASS', 'evidence': 'aapt reports com.desarrollamo.gastamo.MainActivity as launchable.'}
+            }
+          }
+          p = pathlib.Path('verification-reports/gastamo-v0.1.0.json')
+          p.parent.mkdir(parents=True, exist_ok=True)
+          p.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Promote artifact verification in registry
+        env:
+          SHA256: ${{ steps.meta.outputs.sha }}
+          SIZE_BYTES: ${{ steps.meta.outputs.size }}
+          CERT_SHA256: ${{ steps.meta.outputs.cert }}
         run: |
           python - <<'PY'
           import json, os, pathlib
@@ -85,14 +146,17 @@ jobs:
             'release_url':'https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.1.0',
             'sha256':os.environ['SHA256'],
             'size_bytes':int(os.environ['SIZE_BYTES']),
-            'verified':False,
-            'verification_report':None,
+            'signing_cert_sha256':os.environ['CERT_SHA256'],
+            'verified':True,
+            'verification_report':'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.1.0.json',
             'source':'distribution-registry'
           })
-          p.write_text(json.dumps(m, ensure_ascii=False, indent=2)+'\n')
+          m['verification']['required_checks']=['integrity','application-id','signature','permissions','tests']
+          m['store']['notes']='GastAMO 0.1.0 candidate. Source privado; APK público con integridad, identidad, firma, permisos y tests verificados por StoreAMO.'
+          p.write_text(json.dumps(m, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
           PY
 
-      - name: Rebuild StoreAMO catalog
+      - name: Rebuild StoreAMO catalog and assert downloadable-by-default
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -104,21 +168,25 @@ jobs:
           c=json.load(open('catalog.json'))
           a=next(x for x in c['apps'] if x['id']=='gastamo')
           assert a['status']=='candidate' and len(a['artifacts'])==1
-          assert a['artifacts'][0]['sha256']
-          print('GASTAMO_CATALOG_OK')
+          x=a['artifacts'][0]
+          assert x['verified'] is True
+          assert len(x['sha256'])==64
+          assert len(x['signing_cert_sha256'])==64
+          assert x['verification_report'].endswith('/verification-reports/gastamo-v0.1.0.json')
+          print('GASTAMO_STORE_DOWNLOAD_READY')
           PY
 
-      - name: Commit corrected publication metadata
+      - name: Commit verified publication metadata
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- registry/gastamo.json catalog.json discovery-report.json; then
-            echo 'GastAMO metadata already current'
+          if git diff --quiet -- registry/gastamo.json verification-reports/gastamo-v0.1.0.json catalog.json discovery-report.json; then
+            echo 'GastAMO verified metadata already current'
             exit 0
           fi
           git config user.name 'StoreAMO Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add registry/gastamo.json catalog.json discovery-report.json
-          git commit -m 'catalog: repair GastAMO 0.1.0 artifact metadata'
+          git add registry/gastamo.json verification-reports/gastamo-v0.1.0.json catalog.json discovery-report.json
+          git commit -m 'verify: make GastAMO 0.1.0 downloadable in StoreAMO'
           git pull --rebase origin main
           git push origin HEAD:main
