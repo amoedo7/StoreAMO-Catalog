@@ -1,4 +1,4 @@
-name: publish-notasamo
+name: finalize-notasamo
 
 on:
   push:
@@ -6,47 +6,23 @@ on:
       - fix/notasamo-public-distribution
     paths:
       - '.github/workflows/publish-notasamo.yml'
-      - 'registry/notasamo.json'
 
 permissions:
   contents: write
 
 concurrency:
-  group: publish-notasamo-v0.1.0
-  cancel-in-progress: false
+  group: finalize-notasamo-v0.1.0
+  cancel-in-progress: true
 
 jobs:
-  publish:
+  finalize:
     runs-on: ubuntu-latest
     env:
-      SOURCE_URL: 'https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-b91c-8211-a8ae-00d728fb4312/raw?se=2026-08-20T14%3A58%3A33Z&sp=r&sv=2026-02-06&sr=b&scid=293d6094-8a31-5d54-bc4c-42070e8635fe&skoid=e5f84a89-964a-4fd3-92c2-c2cb3a12ea16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-20T06%3A16%3A49Z&ske=2026-08-21T06%3A16%3A49Z&sks=b&skv=2026-02-06&sig=XDh2yDm766aA94ojX7egU9GbYits9yLwla4yenM3Hi4%3D'
+      PUBLIC_URL: 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/notasamo-v0.1.0/NotasAMO-0.1.0.apk'
       EXPECTED_SHA256: '5c195e8c74f37b648a8245bb373fb0562112f93986e0d2afe36eceb3f03b381f'
       EXPECTED_SIZE: '5581509'
-      PUBLIC_URL: 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/notasamo-v0.1.0/NotasAMO-0.1.0.apk'
     steps:
       - uses: actions/checkout@v4
-
-      - name: Recover exact APK from CI artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl -fL --retry 3 --retry-all-errors "$SOURCE_URL" -o /tmp/notasamo-ci.zip
-          mkdir -p /tmp/notasamo
-          unzip -q /tmp/notasamo-ci.zip -d /tmp/notasamo
-          cp /tmp/notasamo/NotasAMO-v0.1.0-debug.apk /tmp/NotasAMO-0.1.0.apk
-          test "$(stat -c%s /tmp/NotasAMO-0.1.0.apk)" = "$EXPECTED_SIZE"
-          echo "$EXPECTED_SHA256  /tmp/NotasAMO-0.1.0.apk" | sha256sum -c -
-          unzip -tqq /tmp/NotasAMO-0.1.0.apk
-
-      - name: Publish public StoreAMO distribution
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          TAG='notasamo-v0.1.0'
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --target main --title 'NotasAMO v0.1.0' --notes 'Candidate pública de distribución StoreAMO. Source privado; APK exacto recuperado de Android CI #1 y verificado por SHA-256.'
-          gh release upload "$TAG" /tmp/NotasAMO-0.1.0.apk#NotasAMO-0.1.0.apk --clobber
 
       - name: Verify anonymous public download
         shell: bash
@@ -57,14 +33,30 @@ jobs:
           echo "$EXPECTED_SHA256  /tmp/notasamo-public.apk" | sha256sum -c -
           unzip -tqq /tmp/notasamo-public.apk
 
-      - name: Persist verification evidence
+      - name: Rebuild catalog and Buenas Nuevas
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p verification
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python build_news.py
           python - <<'PY'
           import json, os
           from datetime import datetime, timezone
+          c=json.load(open('catalog.json'))
+          a=next(x for x in c['apps'] if x['id']=='notasamo')
+          x=next(x for x in a['artifacts'] if x['platform']=='android')
+          assert a['status']=='candidate'
+          assert a['source_visibility']=='private'
+          assert x['version']=='0.1.0'
+          assert x['version_code']=='1'
+          assert x['application_id']=='com.desarrollamo.notasamo'
+          assert x['url']==os.environ['PUBLIC_URL']
+          assert x['sha256']==os.environ['EXPECTED_SHA256']
+          assert x['size_bytes']==int(os.environ['EXPECTED_SIZE'])
+          assert x['verified'] is False
           payload = {
             'schema': 'storeamo.public-artifact-verification.v1',
             'app_id': 'notasamo',
@@ -75,15 +67,24 @@ jobs:
             'sha256': os.environ['EXPECTED_SHA256'],
             'size_bytes': int(os.environ['EXPECTED_SIZE']),
             'application_id': 'com.desarrollamo.notasamo',
-            'checks': ['anonymous_https_download', 'sha256', 'size_bytes', 'apk_zip_integrity'],
+            'checks': ['anonymous_https_download','sha256','size_bytes','apk_zip_integrity','catalog_candidate','catalog_application_id'],
+            'catalog_includes_app': True,
             'verified': False
           }
-          open('verification/notasamo-v0.1.0.json','w').write(json.dumps(payload, indent=2, ensure_ascii=False) + '\n')
+          import pathlib
+          pathlib.Path('verification').mkdir(exist_ok=True)
+          pathlib.Path('verification/notasamo-v0.1.0.json').write_text(json.dumps(payload, indent=2, ensure_ascii=False)+'\n')
+          print('NOTASAMO_STOREAMO_OK')
           PY
+
+      - name: Persist finalized branch state
+        shell: bash
+        run: |
+          set -euo pipefail
           git config user.name 'StoreAMO Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add verification/notasamo-v0.1.0.json
+          git add catalog.json news.json discovery-report.json verification/notasamo-v0.1.0.json
           if ! git diff --cached --quiet; then
-            git commit -m 'verify: NotasAMO public distribution'
+            git commit -m 'catalog: finalize NotasAMO 0.1.0 candidate'
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
