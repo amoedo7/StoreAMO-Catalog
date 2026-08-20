@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T13:00:48+00:00",
+  "generated_at": "2026-08-20T14:55:02+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -732,6 +732,55 @@
       "artifacts": [],
       "repository": "https://github.com/amoedo7/MiWeb",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
+    },
+    {
+      "id": "notasamo",
+      "name": "NotasAMO",
+      "tagline": "Notas locales con búsqueda y favoritos.",
+      "description": "Bloc de notas Android offline con creación, edición, eliminación, búsqueda y favoritos persistidos en el dispositivo.",
+      "category": "Productividad",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "NotasAMO 0.1.0 candidate. Source privado; APK exacto recuperado de Android CI #1 y redistribuido públicamente por StoreAMO-Catalog. No se declara StoreAMO Verified."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/notasamo-v0.1.0/NotasAMO-0.1.0.apk",
+          "sha256": "5c195e8c74f37b648a8245bb373fb0562112f93986e0d2afe36eceb3f03b381f",
+          "size_bytes": 5581509,
+          "min_os": "Android 7.0 (API 24)",
+          "application_id": "com.desarrollamo.notasamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/notasamo-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/notasamo.json"
     },
     {
       "id": "porcentamo",

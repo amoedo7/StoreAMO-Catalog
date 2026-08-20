@@ -1,0 +1,21 @@
+{
+  "schema": "storeamo.public-artifact-verification.v1",
+  "app_id": "notasamo",
+  "version": "0.1.0",
+  "status": "passed",
+  "checked_at": "2026-08-20T14:55:10.823996+00:00",
+  "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/notasamo-v0.1.0/NotasAMO-0.1.0.apk",
+  "sha256": "5c195e8c74f37b648a8245bb373fb0562112f93986e0d2afe36eceb3f03b381f",
+  "size_bytes": 5581509,
+  "application_id": "com.desarrollamo.notasamo",
+  "checks": [
+    "anonymous_https_download",
+    "sha256",
+    "size_bytes",
+    "apk_zip_integrity",
+    "catalog_candidate",
+    "catalog_application_id"
+  ],
+  "catalog_includes_app": true,
+  "verified": false
+}
