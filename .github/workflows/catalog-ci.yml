@@ -16,19 +16,19 @@ jobs:
         run: git clone --depth 1 https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
       - name: Validate catalog
         run: python /tmp/storeamo-verify/verify_catalog.py catalog.json
+      - uses: android-actions/setup-android@v3
       - name: Inspect TemporizAMO public artifact
         shell: bash
         run: |
           set -euo pipefail
           APK='artifacts/temporizamo/TemporizAMO-0.1.0.apk'
+          unzip -t "$APK"
           echo "SIZE=$(stat -c %s "$APK")"
           echo "SHA256=$(sha256sum "$APK" | awk '{print $1}')"
-          python - <<'PY'
-          from pathlib import Path
-          p = Path('artifacts/temporizamo/TemporizAMO-0.1.0.apk')
-          data = p.read_bytes()
-          assert data.startswith(b'PK'), 'not an APK/ZIP'
-          needle = 'com.desarrollamo.temporizamo'.encode('utf-16le')
-          assert needle in data, 'application_id not found in APK resources'
-          print('APPLICATION_ID=com.desarrollamo.temporizamo')
-          PY
+          AAPT="$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -1)"
+          test -n "$AAPT"
+          "$AAPT" dump badging "$APK" | tee /tmp/temporizamo.badging
+          grep -q "package: name='com.desarrollamo.temporizamo' versionCode='1' versionName='0.1.0'" /tmp/temporizamo.badging
+          echo 'APPLICATION_ID=com.desarrollamo.temporizamo'
+          echo 'VERSION_CODE=1'
+          echo 'VERSION_NAME=0.1.0'
