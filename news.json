@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T14:55:10.794739+00:00",
+  "generated_at": "2026-08-20T14:56:18.942616+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "notasamo-registry-f5df2fdfe61d",
+      "app_id": "notasamo",
+      "app_name": "NotasAMO",
+      "type": "candidate",
+      "title": "NotasAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T14:55:48+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "temporizamo-registry-6c3a3af9d75c",
       "app_id": "temporizamo",
