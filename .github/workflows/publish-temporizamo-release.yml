@@ -1,0 +1,41 @@
+name: publish-temporizamo-release
+
+on:
+  push:
+    branches: [fix/temporizamo-public-distribution]
+    paths:
+      - 'artifacts/temporizamo/TemporizAMO-0.1.0.apk'
+      - '.github/workflows/publish-temporizamo-release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify source artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK=artifacts/temporizamo/TemporizAMO-0.1.0.apk
+          test "$(wc -c < "$APK" | tr -d ' ')" = "11493"
+          echo "0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d  $APK" | sha256sum -c -
+          unzip -tqq "$APK"
+      - name: Publish public distribution asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG=temporizamo-v0.1.0
+          SRC=artifacts/temporizamo/TemporizAMO-0.1.0.apk
+          ASSET=TemporizAMO-0.1.0.apk
+          cp "$SRC" "$ASSET"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$ASSET" --clobber
+          else
+            gh release create "$TAG" "$ASSET" --target main --title "TemporizAMO v0.1.0" --notes "Public distribution candidate for StoreAMO. Source remains private."
+          fi
