@@ -1,0 +1,44 @@
+name: Bootstrap MensajAMO artifact
+
+on:
+  push:
+    branches:
+      - 'candidate/mensajamo-0.1.0'
+    paths:
+      - '.github/workflows/bootstrap-mensajamo-artifact.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download CI artifact bundle
+        env:
+          BUNDLE_URL: 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-2710-8246-b76f-356e44baab77/raw?se=2026-08-20T14%3A47%3A45Z&sp=r&sv=2026-02-06&sr=b&scid=30b79bdb-293b-5c7f-873d-533b771bb263&skoid=e32cbaad-a1eb-4299-9f16-1b364ab43781&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-20T04%3A50%3A34Z&ske=2026-08-21T04%3A50%3A34Z&sks=b&skv=2026-02-06&sig=FAjLe9G1vZVLR9vBk4eqtfbsFyJkYYc06JDYzAQTZR0%3D'
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 "$BUNDLE_URL" -o /tmp/mensajamo.zip
+          rm -rf /tmp/mensajamo && mkdir -p /tmp/mensajamo
+          unzip -q /tmp/mensajamo.zip -d /tmp/mensajamo
+          APK=/tmp/mensajamo/MensajAMO-0.1.0.apk
+          test -s "$APK"
+          test "$(stat -c '%s' "$APK")" = '31201'
+          echo '4e995d2644ecc02769784a455283ff65158a3f5258dbfa270e10f172dc53c465  /tmp/mensajamo/MensajAMO-0.1.0.apk' | sha256sum -c -
+          unzip -tqq "$APK"
+          mkdir -p artifacts/mensajamo
+          cp "$APK" artifacts/mensajamo/MensajAMO-0.1.0.apk
+
+      - name: Commit public distribution artifact
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add artifacts/mensajamo/MensajAMO-0.1.0.apk
+          git commit -m 'artifact: MensajAMO 0.1.0 candidate'
+          git push
