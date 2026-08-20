@@ -1,0 +1,186 @@
+name: rebuild-three-apps-from-scratch
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'rebuild-android/**'
+      - '.github/workflows/rebuild-three-apps.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: storeamo-rebuild-three
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Install Android SDK
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0" >/dev/null
+
+      - name: Build all three apps from clean source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd rebuild-android
+          gradle --no-daemon clean :calculamo:assembleDebug :cronamo:assembleDebug :brujulamo:assembleDebug --stacktrace
+
+      - name: Verify APK identity, zip structure and signatures
+        shell: bash
+        run: |
+          set -euo pipefail
+          BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
+          mkdir -p /tmp/storeamo-three public-artifacts/calculamo/0.1.0 public-artifacts/cronamo/0.1.0 public-artifacts/brujulamo/0.1.0
+          verify_copy() {
+            local module="$1" id="$2" name="$3" package="$4"
+            local src="rebuild-android/${module}/build/outputs/apk/debug/${module}-debug.apk"
+            local dst="public-artifacts/${id}/0.1.0/${name}-0.1.0.apk"
+            test -s "$src"
+            unzip -tqq "$src"
+            "$BT/aapt" dump badging "$src" | tee "/tmp/storeamo-three/${id}.badging"
+            grep -q "package: name='${package}' versionCode='1' versionName='0.1.0'" "/tmp/storeamo-three/${id}.badging"
+            grep -q "launchable-activity:" "/tmp/storeamo-three/${id}.badging"
+            "$BT/apksigner" verify --verbose --print-certs "$src" | tee "/tmp/storeamo-three/${id}.signature"
+            cp "$src" "$dst"
+            sha256sum "$dst" | awk '{print $1}' > "/tmp/storeamo-three/${id}.sha256"
+            stat -c%s "$dst" > "/tmp/storeamo-three/${id}.size"
+            sed -n 's/^Signer #1 certificate SHA-256 digest: //p' "/tmp/storeamo-three/${id}.signature" | head -n1 | tr '[:upper:]' '[:lower:]' > "/tmp/storeamo-three/${id}.cert"
+            test -s "/tmp/storeamo-three/${id}.cert"
+            echo "APK_OK ${id} $(cat /tmp/storeamo-three/${id}.size) $(cat /tmp/storeamo-three/${id}.sha256)"
+          }
+          verify_copy calculamo calculamo CalculAMO com.desarrollamo.calculamo
+          verify_copy cronamo cronamo CronAMO com.desarrollamo.cronamo
+          verify_copy brujulamo brujulamo BrujulAMO com.desarrollamo.brujulamo
+
+      - name: Replace broken distribution metadata with direct public artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          apps = {
+              'calculamo': ('CalculAMO', 'com.desarrollamo.calculamo', 'Herramientas'),
+              'cronamo': ('CronAMO', 'com.desarrollamo.cronamo', 'Herramientas'),
+              'brujulamo': ('BrujulAMO', 'com.desarrollamo.brujulamo', 'Movilidad'),
+          }
+          for app_id, (name, package, category) in apps.items():
+              p = Path('registry') / f'{app_id}.json'
+              d = json.loads(p.read_text())
+              sha = Path(f'/tmp/storeamo-three/{app_id}.sha256').read_text().strip()
+              size = int(Path(f'/tmp/storeamo-three/{app_id}.size').read_text().strip())
+              cert = Path(f'/tmp/storeamo-three/{app_id}.cert').read_text().strip()
+              url = f'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/{app_id}/0.1.0/{name}-0.1.0.apk'
+              d['source'] = {'visibility': 'public', 'repository': 'amoedo7/StoreAMO-Catalog', 'path': f'rebuild-android/{app_id}'}
+              d['distribution'] = {'repository': 'amoedo7/StoreAMO-Catalog', 'mode': 'direct-artifacts'}
+              d['status'] = 'candidate'
+              d.setdefault('store', {})['notes'] = 'Reconstruida desde cero en StoreAMO-Catalog. APK público directo, firmado, validado y probado por descarga HTTPS anónima. Candidate; no se declara Verified.'
+              a = next(x for x in d['artifacts'] if x['platform'] == 'android')
+              a.update({
+                  'version': '0.1.0',
+                  'version_code': '1',
+                  'url': url,
+                  'sha256': sha,
+                  'size_bytes': size,
+                  'min_os': 'Android 6.0 (API 23)',
+                  'application_id': package,
+                  'signing_cert_sha256': cert,
+                  'verified': False,
+                  'verification_report': None,
+                  'release_url': f'https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/{app_id}/0.1.0',
+                  'source': 'distribution-registry',
+              })
+              p.write_text(json.dumps(d, ensure_ascii=False, indent=2) + '\n')
+          PY
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+
+      - name: Publish rebuilt APKs and catalog contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Rebuild Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -f public-artifacts/calculamo/0.1.0/CalculAMO-0.1.0.apk public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk public-artifacts/brujulamo/0.1.0/BrujulAMO-0.1.0.apk
+          git add registry/calculamo.json registry/cronamo.json registry/brujulamo.json catalog.json discovery-report.json
+          git commit -m 'rebuild: publish CalculAMO CronAMO BrujulAMO from scratch'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Prove all three anonymous public downloads
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe() {
+            local id="$1" name="$2"
+            local expected="$(cat /tmp/storeamo-three/${id}.sha256)"
+            local url="https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/${id}/0.1.0/${name}-0.1.0.apk"
+            for n in $(seq 1 18); do
+              if curl -fsSL --retry 2 --connect-timeout 15 --max-time 60 "$url" -o "/tmp/storeamo-three/${id}.public.apk"; then
+                actual="$(sha256sum "/tmp/storeamo-three/${id}.public.apk" | awk '{print $1}')"
+                if [ "$actual" = "$expected" ]; then
+                  unzip -tqq "/tmp/storeamo-three/${id}.public.apk"
+                  echo "PUBLIC_DOWNLOAD_OK ${id} ${actual}"
+                  return 0
+                fi
+              fi
+              sleep 5
+            done
+            echo "PUBLIC_DOWNLOAD_FAILED ${id}" >&2
+            return 1
+          }
+          probe calculamo CalculAMO
+          probe cronamo CronAMO
+          probe brujulamo BrujulAMO
+
+      - name: Final StoreAMO contract and evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          c=json.loads(Path('catalog.json').read_text())
+          evidence={'schema':'storeamo.download-proof.v1','result':'PASS','apps':[]}
+          names={'calculamo':'CalculAMO','cronamo':'CronAMO','brujulamo':'BrujulAMO'}
+          for app_id,name in names.items():
+              app=next(x for x in c['apps'] if x['id']==app_id)
+              a=next(x for x in app['artifacts'] if x['platform']=='android')
+              sha=Path(f'/tmp/storeamo-three/{app_id}.sha256').read_text().strip()
+              size=int(Path(f'/tmp/storeamo-three/{app_id}.size').read_text().strip())
+              expected=f'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/{app_id}/0.1.0/{name}-0.1.0.apk'
+              assert a['url']==expected
+              assert a['sha256']==sha
+              assert a['size_bytes']==size
+              assert a['application_id']==f'com.desarrollamo.{app_id}'
+              evidence['apps'].append({'id':app_id,'url':expected,'sha256':sha,'size_bytes':size,'anonymous_download':'PASS','zip':'PASS','signature':'PASS','application_id':a['application_id']})
+              print('STOREAMO_INSTALLABLE_ARTIFACT_OK', app_id, size, sha)
+          Path('verification/three-apps-rebuilt.json').write_text(json.dumps(evidence,indent=2)+'\n')
+          PY
+          git add verification/three-apps-rebuilt.json
+          git config user.name 'StoreAMO Rebuild Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git commit -m 'verify: three rebuilt StoreAMO APK downloads pass'
+          git pull --rebase origin main
+          git push origin HEAD:main
