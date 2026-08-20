@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T15:05:49+00:00",
+  "generated_at": "2026-08-20T20:40:57+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -582,6 +582,55 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/habitamo.json"
+    },
+    {
+      "id": "mensajamo",
+      "name": "MensajAMO",
+      "tagline": "Mensajes y archivos entre Android y PC, por tu red local.",
+      "description": "Puente de comunicación local-first entre Android y un navegador de PC para intercambiar mensajes y archivos sin WhatsApp, cuentas, nube ni backend externo.",
+      "category": "Comunicación",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MensajAMO 0.1.0 candidate. Source privado; APK público de distribución producido por Android CI y preservado en StoreAMO-Catalog. Comunicación local Android-PC, sin cuentas ni backend externo. No se declara StoreAMO Verified."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/artifacts/mensajamo/MensajAMO-0.1.0.apk",
+          "sha256": "4e995d2644ecc02769784a455283ff65158a3f5258dbfa270e10f172dc53c465",
+          "size_bytes": 31201,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.mensajamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/blob/main/artifacts/mensajamo/MensajAMO-0.1.0.apk",
+          "source": "distribution-registry"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/mensajamo.json"
     },
     {
       "id": "miapi",
