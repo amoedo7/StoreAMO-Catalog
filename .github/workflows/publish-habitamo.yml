@@ -25,38 +25,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Reconstruct and verify APK
+      - name: Sync latest catalog state
         shell: bash
         run: |
           set -euo pipefail
-          base64 -d .release-input/habitamo-0.1.0.part00 > /tmp/HabitAMO-0.1.0.apk
-          test "$(stat -c%s /tmp/HabitAMO-0.1.0.apk)" = "14337"
-          echo "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb  /tmp/HabitAMO-0.1.0.apk" | sha256sum -c -
+          git pull --ff-only origin main
 
-      - name: Publish public distribution release
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Reconstruct exact CI APK
         shell: bash
         run: |
           set -euo pipefail
-          TAG='habitamo-v0.1.0'
-          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "HabitAMO v0.1.0" --notes "Candidate de distribución StoreAMO. Source privado; APK público verificado por SHA-256. Sin permiso INTERNET."
-          gh release upload "$TAG" /tmp/HabitAMO-0.1.0.apk#HabitAMO-0.1.0.apk --clobber
+          mkdir -p artifacts/habitamo
+          base64 -d .release-input/habitamo-0.1.0.part00 > artifacts/habitamo/HabitAMO-0.1.0.apk
+          test "$(stat -c%s artifacts/habitamo/HabitAMO-0.1.0.apk)" = "14337"
+          echo "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb  artifacts/habitamo/HabitAMO-0.1.0.apk" | sha256sum -c -
+          unzip -tqq artifacts/habitamo/HabitAMO-0.1.0.apk
+          echo 'HABITAMO_EXACT_APK_OK'
 
-      - name: Verify published asset from GitHub Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -rf /tmp/habitamo-release-check
-          mkdir -p /tmp/habitamo-release-check
-          gh release download habitamo-v0.1.0 --pattern 'HabitAMO-0.1.0.apk' --dir /tmp/habitamo-release-check --clobber
-          test "$(stat -c%s /tmp/habitamo-release-check/HabitAMO-0.1.0.apk)" = "14337"
-          echo "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb  /tmp/habitamo-release-check/HabitAMO-0.1.0.apk" | sha256sum -c -
-          echo 'HABITAMO_PUBLIC_RELEASE_ASSET_OK'
-
-      - name: Validate registry contract
+      - name: Validate StoreAMO registry contract
         shell: bash
         run: |
           set -euo pipefail
@@ -68,42 +54,36 @@ jobs:
           assert m['distribution']['repository']=='amoedo7/StoreAMO-Catalog'
           assert m['distribution']['mode']=='direct-artifacts'
           a=m['artifacts'][0]
+          assert a['platform']=='android'
           assert a['version']=='0.1.0'
           assert a['version_code']=='1'
           assert a['application_id']=='com.desarrollamo.habitamo'
           assert a['sha256']=='a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb'
           assert a['size_bytes']==14337
           assert a['verified'] is False
-          assert a['url']=='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/habitamo-v0.1.0/HabitAMO-0.1.0.apk'
+          assert a['url']=='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/artifacts/habitamo/HabitAMO-0.1.0.apk'
           print('HABITAMO_REGISTRY_OK')
           PY
 
-      - name: Record release proof
+      - name: Publish exact APK to public catalog
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p release-proof
-          cat > release-proof/habitamo-v0.1.0.json <<'JSON'
-          {
-            "schema": "storeamo.release-proof.v1",
-            "app_id": "habitamo",
-            "version": "0.1.0",
-            "tag": "habitamo-v0.1.0",
-            "asset_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/habitamo-v0.1.0/HabitAMO-0.1.0.apk",
-            "sha256": "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb",
-            "size_bytes": 14337,
-            "application_id": "com.desarrollamo.habitamo",
-            "verified_download": true,
-            "storeamo_verified": false
-          }
-          JSON
           git config user.name 'StoreAMO Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add -- release-proof/habitamo-v0.1.0.json
+          git add -- artifacts/habitamo/HabitAMO-0.1.0.apk
           if git diff --cached --quiet; then
-            echo 'Release proof already current'
+            echo 'Exact HabitAMO APK already published'
             exit 0
           fi
-          git commit -m 'release: record verified HabitAMO 0.1.0 asset'
+          git commit -m 'dist: publish exact HabitAMO 0.1.0 APK'
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Final local integrity proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(stat -c%s artifacts/habitamo/HabitAMO-0.1.0.apk)" = "14337"
+          echo "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb  artifacts/habitamo/HabitAMO-0.1.0.apk" | sha256sum -c -
+          echo 'HABITAMO_PUBLIC_DIRECT_ARTIFACT_OK'
