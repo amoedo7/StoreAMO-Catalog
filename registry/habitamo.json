@@ -19,7 +19,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "HabitAMO 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
+    "notes": "HabitAMO 0.1.0 candidate. Source privado; publicación pública por StoreAMO-Catalog con binario verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
   },
   "artifacts": [
     {
