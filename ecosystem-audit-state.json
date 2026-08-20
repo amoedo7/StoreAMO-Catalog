@@ -1,0 +1,11 @@
+{
+  "schema": "desarrollamo.ecosystem-audit-state.v1",
+  "last_scan_at": "2026-08-20T12:45:00Z",
+  "catalog_main_sha_at_scan": "c9062b11c19edc3ab90d9c1ca83aa41934ef1a37",
+  "focus": "artifact-download-integrity-gate",
+  "observed_open_work": [
+    "StoreAMO#4 stable signing identity",
+    "StoreAMO#6 bootstrap"
+  ],
+  "notes": "Incremental checkpoint only; no private source, credentials or internal paths are stored here."
+}
