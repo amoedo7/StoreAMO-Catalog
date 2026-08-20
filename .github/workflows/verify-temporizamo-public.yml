@@ -4,12 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - 'artifacts/temporizamo/**'
       - 'registry/temporizamo.json'
       - '.github/workflows/verify-temporizamo-public.yml'
   pull_request:
     paths:
-      - 'artifacts/temporizamo/**'
       - 'registry/temporizamo.json'
       - '.github/workflows/verify-temporizamo-public.yml'
 
@@ -17,21 +15,13 @@ jobs:
   verify-public-download:
     runs-on: ubuntu-latest
     steps:
-      - name: Download exact public artifact and verify
+      - name: Download public release asset and verify
         shell: bash
-        env:
-          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          if [ "${GITHUB_REF}" = "refs/heads/main" ]; then
-            REF=main
-          else
-            REF="${PR_HEAD_SHA}"
-          fi
-          test -n "${REF}"
-          URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${REF}/artifacts/temporizamo/TemporizAMO-0.1.0.apk"
+          URL="https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.0/TemporizAMO-0.1.0.apk"
           curl -fL --retry 4 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/TemporizAMO-0.1.0.apk
           test "$(wc -c < /tmp/TemporizAMO-0.1.0.apk | tr -d ' ')" = "11493"
           echo "0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d  /tmp/TemporizAMO-0.1.0.apk" | sha256sum -c -
           unzip -tqq /tmp/TemporizAMO-0.1.0.apk
-          echo "Public download OK: 11493 bytes"
+          echo "Public release download OK: 11493 bytes"
