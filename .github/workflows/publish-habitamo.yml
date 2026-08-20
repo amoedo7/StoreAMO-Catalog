@@ -38,6 +38,19 @@ jobs:
           gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "HabitAMO v0.1.0" --notes "Candidate de distribución StoreAMO. Source privado; APK público verificado por SHA-256. Sin permiso INTERNET."
           gh release upload "$TAG" /tmp/HabitAMO-0.1.0.apk#HabitAMO-0.1.0.apk --clobber
 
+      - name: Verify published asset from GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/habitamo-release-check
+          mkdir -p /tmp/habitamo-release-check
+          gh release download habitamo-v0.1.0 --pattern 'HabitAMO-0.1.0.apk' --dir /tmp/habitamo-release-check --clobber
+          test "$(stat -c%s /tmp/habitamo-release-check/HabitAMO-0.1.0.apk)" = "14337"
+          echo "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb  /tmp/habitamo-release-check/HabitAMO-0.1.0.apk" | sha256sum -c -
+          echo 'HABITAMO_PUBLIC_RELEASE_ASSET_OK'
+
       - name: Validate registry contract
         shell: bash
         run: |
@@ -58,3 +71,33 @@ jobs:
           assert a['url'].startswith('https://github.com/amoedo7/StoreAMO-Catalog/releases/download/')
           print('HABITAMO_REGISTRY_OK')
           PY
+
+      - name: Record release proof
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          mkdir -p release-proof
+          cat > release-proof/habitamo-v0.1.0.json <<'JSON'
+          {
+            "schema": "storeamo.release-proof.v1",
+            "app_id": "habitamo",
+            "version": "0.1.0",
+            "tag": "habitamo-v0.1.0",
+            "asset_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/habitamo-v0.1.0/HabitAMO-0.1.0.apk",
+            "sha256": "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb",
+            "size_bytes": 14337,
+            "application_id": "com.desarrollamo.habitamo",
+            "verified_download": true,
+            "storeamo_verified": false
+          }
+          JSON
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -- release-proof/habitamo-v0.1.0.json
+          if git diff --cached --quiet; then
+            echo 'Release proof already current'
+          else
+            git commit -m 'release: record verified HabitAMO 0.1.0 asset'
+            git push
+          fi
