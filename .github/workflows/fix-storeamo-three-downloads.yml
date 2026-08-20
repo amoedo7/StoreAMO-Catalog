@@ -1,0 +1,204 @@
+name: fix-storeamo-three-downloads
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-storeamo-three-downloads.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fix-storeamo-three-downloads
+  cancel-in-progress: false
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        shell: bash
+        run: sdkmanager "build-tools;35.0.0" >/dev/null
+
+      - name: Fetch exact APKs from private source repositories
+        env:
+          GH_TOKEN: ${{ secrets.STOREAMO_NEWS_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${GH_TOKEN:-}"
+          mkdir -p /tmp/storeamo-fix
+          fetch_private() {
+            local repo="$1" path="$2" out="$3"
+            for n in $(seq 1 18); do
+              if gh api -H 'Accept: application/vnd.github.raw+json' "repos/${repo}/contents/${path}?ref=main" >"$out" 2>/tmp/fetch.err && test -s "$out"; then
+                echo "Fetched $repo/$path"
+                return 0
+              fi
+              echo "Waiting for $repo/$path ($n/18)"
+              cat /tmp/fetch.err || true
+              rm -f "$out"
+              sleep 10
+            done
+            echo "Could not fetch $repo/$path" >&2
+            return 1
+          }
+          fetch_private amoedo7/CalculAMO dist/CalculAMO-0.1.0.apk /tmp/storeamo-fix/CalculAMO-0.1.0.apk
+          fetch_private amoedo7/CronAMO dist/CronAMO-0.1.0.apk /tmp/storeamo-fix/CronAMO-0.1.0.apk
+          fetch_private amoedo7/BrujulAMO dist/BrujulAMO-0.1.0.apk /tmp/storeamo-fix/BrujulAMO-0.1.0.apk
+
+      - name: Verify APK structure, package identity, signature and calculate metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
+          verify_one() {
+            local id="$1" name="$2" package="$3"
+            local apk="/tmp/storeamo-fix/${name}-0.1.0.apk"
+            unzip -tqq "$apk"
+            "$BT/aapt" dump badging "$apk" > "/tmp/storeamo-fix/${id}.badging"
+            grep -q "package: name='${package}' versionCode='1' versionName='0.1.0'" "/tmp/storeamo-fix/${id}.badging"
+            "$BT/apksigner" verify --verbose --print-certs "$apk" > "/tmp/storeamo-fix/${id}.signature"
+            sha256sum "$apk" | awk '{print $1}' > "/tmp/storeamo-fix/${id}.sha256"
+            stat -c%s "$apk" > "/tmp/storeamo-fix/${id}.size"
+            sed -n 's/^Signer #1 certificate SHA-256 digest: //p' "/tmp/storeamo-fix/${id}.signature" | head -n1 > "/tmp/storeamo-fix/${id}.cert"
+            test -s "/tmp/storeamo-fix/${id}.cert"
+            echo "$id $(cat /tmp/storeamo-fix/${id}.size) bytes $(cat /tmp/storeamo-fix/${id}.sha256)"
+          }
+          verify_one calculamo CalculAMO com.desarrollamo.calculamo
+          verify_one cronamo CronAMO com.desarrollamo.cronamo
+          verify_one brujulamo BrujulAMO com.desarrollamo.brujulamo
+
+      - name: Publish direct raw APK artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public-artifacts/calculamo/0.1.0 public-artifacts/cronamo/0.1.0 public-artifacts/brujulamo/0.1.0
+          cp /tmp/storeamo-fix/CalculAMO-0.1.0.apk public-artifacts/calculamo/0.1.0/CalculAMO-0.1.0.apk
+          cp /tmp/storeamo-fix/CronAMO-0.1.0.apk public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk
+          cp /tmp/storeamo-fix/BrujulAMO-0.1.0.apk public-artifacts/brujulamo/0.1.0/BrujulAMO-0.1.0.apk
+          git config user.name 'StoreAMO Repair Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add -f public-artifacts/calculamo/0.1.0/CalculAMO-0.1.0.apk public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk public-artifacts/brujulamo/0.1.0/BrujulAMO-0.1.0.apk
+          if ! git diff --cached --quiet; then
+            git commit -m 'artifact: publish direct APKs for CalculAMO CronAMO BrujulAMO'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Prove anonymous raw downloads before switching StoreAMO
+        shell: bash
+        run: |
+          set -euo pipefail
+          probe() {
+            local id="$1" name="$2"
+            local url="https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/${id}/0.1.0/${name}-0.1.0.apk"
+            local expected
+            expected="$(cat /tmp/storeamo-fix/${id}.sha256)"
+            for n in $(seq 1 12); do
+              if curl -fL --connect-timeout 15 --max-time 60 --retry 2 "$url" -o "/tmp/storeamo-fix/${id}.public.apk"; then
+                actual="$(sha256sum "/tmp/storeamo-fix/${id}.public.apk" | awk '{print $1}')"
+                if [ "$actual" = "$expected" ]; then
+                  unzip -tqq "/tmp/storeamo-fix/${id}.public.apk"
+                  echo "PUBLIC_DOWNLOAD_OK $id $url"
+                  return 0
+                fi
+                echo "SHA mismatch for $id: $actual != $expected"
+              fi
+              sleep 5
+            done
+            return 1
+          }
+          probe calculamo CalculAMO
+          probe cronamo CronAMO
+          probe brujulamo BrujulAMO
+
+      - name: Switch registry and catalog to proven direct URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          apps = {
+              'calculamo': ('CalculAMO', 'com.desarrollamo.calculamo'),
+              'cronamo': ('CronAMO', 'com.desarrollamo.cronamo'),
+              'brujulamo': ('BrujulAMO', 'com.desarrollamo.brujulamo'),
+          }
+          for app_id, (name, package) in apps.items():
+              p = Path('registry') / f'{app_id}.json'
+              data = json.loads(p.read_text())
+              artifact = next(a for a in data['artifacts'] if a['platform'] == 'android')
+              sha = Path(f'/tmp/storeamo-fix/{app_id}.sha256').read_text().strip()
+              size = int(Path(f'/tmp/storeamo-fix/{app_id}.size').read_text().strip())
+              cert = Path(f'/tmp/storeamo-fix/{app_id}.cert').read_text().strip().lower()
+              url = f'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/{app_id}/0.1.0/{name}-0.1.0.apk'
+              artifact.update({
+                  'url': url,
+                  'sha256': sha,
+                  'size_bytes': size,
+                  'application_id': package,
+                  'signing_cert_sha256': cert,
+                  'source': 'distribution-registry',
+              })
+              store = data.setdefault('store', {})
+              old = store.get('notes', '')
+              marker = ' Descarga directa raw GitHub probada anónimamente por CI.'
+              if marker.strip() not in old:
+                  store['notes'] = (old.rstrip() + marker).strip()
+              p.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+          PY
+          GITHUB_TOKEN='${{ secrets.GITHUB_TOKEN }}' python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          catalog = json.loads(Path('catalog.json').read_text())
+          names = {'calculamo':'CalculAMO','cronamo':'CronAMO','brujulamo':'BrujulAMO'}
+          for app_id, name in names.items():
+              app = next(x for x in catalog['apps'] if x['id'] == app_id)
+              artifact = next(x for x in app['artifacts'] if x['platform'] == 'android')
+              expected_url = f'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/{app_id}/0.1.0/{name}-0.1.0.apk'
+              expected_sha = Path(f'/tmp/storeamo-fix/{app_id}.sha256').read_text().strip()
+              expected_size = int(Path(f'/tmp/storeamo-fix/{app_id}.size').read_text().strip())
+              assert artifact['url'] == expected_url, (app_id, artifact['url'])
+              assert artifact['sha256'] == expected_sha
+              assert artifact['size_bytes'] == expected_size
+              assert artifact['application_id'].startswith('com.desarrollamo.')
+              print('CATALOG_DIRECT_OK', app_id, expected_size, expected_sha)
+          PY
+          git add registry/calculamo.json registry/cronamo.json registry/brujulamo.json catalog.json discovery-report.json
+          if ! git diff --cached --quiet; then
+            git config user.name 'StoreAMO Repair Bot'
+            git config user.email 'actions@users.noreply.github.com'
+            git commit -m 'fix: make CalculAMO CronAMO BrujulAMO directly downloadable'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Final public contract check
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          for app_id in ('calculamo','cronamo','brujulamo'):
+              app=next(x for x in c['apps'] if x['id']==app_id)
+              a=next(x for x in app['artifacts'] if x['platform']=='android')
+              assert a['url'].startswith('https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/')
+              assert len(a['sha256'])==64
+              assert a['size_bytes'] > 1000
+              print('STOREAMO_READY', app_id, a['url'], a['sha256'], a['size_bytes'])
+          PY
