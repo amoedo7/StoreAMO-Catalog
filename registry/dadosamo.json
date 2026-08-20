@@ -1,0 +1,15 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "dadosamo",
+  "name": "DadosAMO",
+  "tagline": "Dados digitales para jugar donde quieras.",
+  "description": "Dados D4, D6, D8, D10, D12 y D20 con múltiples tiradas e historial local.",
+  "category": "Juegos",
+  "audience": "public",
+  "featured": false,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "source": {"visibility": "private"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."},
+  "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
+}
