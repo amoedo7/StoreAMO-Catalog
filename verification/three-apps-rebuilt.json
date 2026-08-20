@@ -1,0 +1,36 @@
+{
+  "schema": "storeamo.download-proof.v1",
+  "result": "PASS",
+  "apps": [
+    {
+      "id": "calculamo",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/calculamo/0.1.0/CalculAMO-0.1.0.apk",
+      "sha256": "dee7d282de042603d309cf6a66eb6f5b1d5d34f5ef65e92093c0a5d25a6797ed",
+      "size_bytes": 11231,
+      "anonymous_download": "PASS",
+      "zip": "PASS",
+      "signature": "PASS",
+      "application_id": "com.desarrollamo.calculamo"
+    },
+    {
+      "id": "cronamo",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk",
+      "sha256": "b96f268ddb98c38aadd1da87742f6f7532863a4db280c0256d1689c71ec865bc",
+      "size_bytes": 11369,
+      "anonymous_download": "PASS",
+      "zip": "PASS",
+      "signature": "PASS",
+      "application_id": "com.desarrollamo.cronamo"
+    },
+    {
+      "id": "brujulamo",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/brujulamo/0.1.0/BrujulAMO-0.1.0.apk",
+      "sha256": "754776f7f67b80ecefab6adaef64784dd4d38a866f66c34c100701904276ff30",
+      "size_bytes": 10656,
+      "anonymous_download": "PASS",
+      "zip": "PASS",
+      "signature": "PASS",
+      "application_id": "com.desarrollamo.brujulamo"
+    }
+  ]
+}
