@@ -1,0 +1,15 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "calculamo",
+  "name": "CalculAMO",
+  "tagline": "Calculadora rápida con historial local.",
+  "description": "Calculadora Android offline con operaciones básicas, paréntesis e historial persistente.",
+  "category": "Herramientas",
+  "audience": "public",
+  "featured": false,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "source": {"visibility": "private"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando build firmado y hash antes de candidate."},
+  "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
+}
