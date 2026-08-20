@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T20:42:13.155391+00:00",
+  "generated_at": "2026-08-20T21:04:19.506995+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "brujulamo-registry-db4a5e2af451",
+      "app_id": "brujulamo",
+      "app_name": "BrujulAMO",
+      "type": "candidate",
+      "title": "BrujulAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T21:03:56+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "mensajamo-registry-17de6a451a68",
       "app_id": "mensajamo",
