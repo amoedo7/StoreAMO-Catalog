@@ -1,0 +1,23 @@
+name: verify-temporizamo-011
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify public StoreAMO artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.1/TemporizAMO-0.1.1.apk'
+          SHA='ea2df6bebc3f5c2542ca0b3d2a014e74f1417f6516cd303648aa7705f644110f'
+          SIZE='15889'
+          curl -fL --retry 5 --retry-all-errors "$URL" -o /tmp/TemporizAMO-0.1.1.apk
+          test "$(stat -c%s /tmp/TemporizAMO-0.1.1.apk)" = "$SIZE"
+          echo "$SHA  /tmp/TemporizAMO-0.1.1.apk" | sha256sum -c -
+          unzip -tqq /tmp/TemporizAMO-0.1.1.apk

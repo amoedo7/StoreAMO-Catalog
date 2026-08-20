@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T14:56:07+00:00",
+  "generated_at": "2026-08-20T15:04:05+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -964,7 +964,7 @@
       "id": "temporizamo",
       "name": "TemporizAMO",
       "tagline": "Cuenta regresiva clara y offline.",
-      "description": "Temporizador Android con minutos y segundos, pausa, reanudación y reinicio.",
+      "description": "Temporizador Android con atajos 1/5/10/25 min, selector personalizado, progreso visible, estados claros, pausa, reanudación, reinicio y aviso al finalizar.",
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
@@ -976,7 +976,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "TemporizAMO 0.1.0 candidate. Source privado; APK recuperado del Android CI #7 y distribuido como asset público de StoreAMO-Catalog. No se declara StoreAMO Verified."
+        "notes": "TemporizAMO 0.1.1 candidate. Renovación completa de UX/UI; APK exacto recuperado de Android CI #12 y distribuido públicamente por StoreAMO-Catalog. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -992,17 +992,17 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.1.0",
-          "version_code": "1",
-          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.0/TemporizAMO-0.1.0.apk",
-          "sha256": "0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d",
-          "size_bytes": 11493,
+          "version": "0.1.1",
+          "version_code": "2",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.1/TemporizAMO-0.1.1.apk",
+          "sha256": "ea2df6bebc3f5c2542ca0b3d2a014e74f1417f6516cd303648aa7705f644110f",
+          "size_bytes": 15889,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.temporizamo",
           "signing_cert_sha256": null,
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/temporizamo-v0.1.0",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/temporizamo-v0.1.1",
           "source": "distribution-registry"
         }
       ],
