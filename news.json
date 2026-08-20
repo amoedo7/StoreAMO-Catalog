@@ -1,19 +1,19 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T09:54:40.108521+00:00",
+  "generated_at": "2026-08-20T10:10:01.161796+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "habitamo-registry-41876b39599c",
+      "id": "habitamo-registry-5417e93c02d6",
       "app_id": "habitamo",
       "app_name": "HabitAMO",
       "type": "candidate",
       "title": "HabitAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T09:54:22+00:00",
+      "published_at": "2026-08-20T10:09:41+00:00",
       "status": "candidate",
       "source_visibility": "private"
     },
