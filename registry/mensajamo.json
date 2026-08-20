@@ -1,0 +1,46 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "mensajamo",
+  "name": "MensajAMO",
+  "tagline": "Mensajes y archivos entre Android y PC, por tu red local.",
+  "description": "Puente de comunicación local-first entre Android y un navegador de PC para intercambiar mensajes y archivos sin WhatsApp, cuentas, nube ni backend externo.",
+  "category": "Comunicación",
+  "audience": "public",
+  "featured": false,
+  "status": "candidate",
+  "supported_platforms": ["android"],
+  "source": {
+    "visibility": "private"
+  },
+  "distribution": {
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "mode": "direct-artifacts"
+  },
+  "store": {
+    "homepage": "https://desarrollamo.com.ar",
+    "screenshots": [],
+    "notes": "MensajAMO 0.1.0 candidate. Source privado; APK público de distribución producido por Android CI y preservado en StoreAMO-Catalog. Comunicación local Android-PC, sin cuentas ni backend externo. No se declara StoreAMO Verified."
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "universal",
+      "format": "apk",
+      "version": "0.1.0",
+      "version_code": "1",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/artifacts/mensajamo/MensajAMO-0.1.0.apk",
+      "sha256": "4e995d2644ecc02769784a455283ff65158a3f5258dbfa270e10f172dc53c465",
+      "size_bytes": 31201,
+      "min_os": "Android 8.0 (API 26)",
+      "application_id": "com.desarrollamo.mensajamo",
+      "verified": false,
+      "verification_report": null,
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/blob/main/artifacts/mensajamo/MensajAMO-0.1.0.apk",
+      "source": "distribution-registry"
+    }
+  ],
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": ["integrity", "application-id", "signature", "tests"]
+  }
+}
