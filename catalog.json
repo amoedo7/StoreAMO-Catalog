@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T21:04:09+00:00",
+  "generated_at": "2026-08-20T23:03:10+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -206,11 +206,11 @@
       "supported_platforms": [
         "android"
       ],
-      "source_visibility": "private",
+      "source_visibility": "public",
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "BrujulAMO 0.1.0 candidate. APK exacto de Android CI run 32380827149, artifact 9410963366. Source privado; metadata pública sanitizada."
+        "notes": "Reconstruida desde cero en StoreAMO-Catalog. APK público directo, firmado, validado y probado por descarga HTTPS anónima. Candidate; no se declara Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -228,19 +228,19 @@
           "format": "apk",
           "version": "0.1.0",
           "version_code": "1",
-          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/brujulamo-v0.1.0/BrujulAMO-0.1.0.apk",
-          "sha256": "430aa12769a2d7337062e8835cd0fa08fbd4bcf774d6fc9475467431f13441dd",
-          "size_bytes": 15181,
-          "min_os": "Android 8.0 (API 26)",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/brujulamo/0.1.0/BrujulAMO-0.1.0.apk",
+          "sha256": "754776f7f67b80ecefab6adaef64784dd4d38a866f66c34c100701904276ff30",
+          "size_bytes": 10656,
+          "min_os": "Android 6.0 (API 23)",
           "application_id": "com.desarrollamo.brujulamo",
-          "signing_cert_sha256": "380bb3f8e417cb53f4caa64f431d6e9e4392fca54362211335ea55973b01d7cf",
+          "signing_cert_sha256": "7da6ffcc5a95db73919aeaaf094dd51dc80d0a7e4f804fb1f747951cfcdf61c3",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/brujulamo-v0.1.0",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/brujulamo/0.1.0",
           "source": "distribution-registry"
         }
       ],
-      "repository": "https://desarrollamo.com.ar",
+      "repository": "amoedo7/StoreAMO-Catalog",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/brujulamo.json"
     },
     {
@@ -255,11 +255,11 @@
       "supported_platforms": [
         "android"
       ],
-      "source_visibility": "private",
+      "source_visibility": "public",
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "CalculAMO 0.1.0 candidate. Source privado; APK público de distribución reconstruido, probado y republicado por GitHub Actions. No se declara StoreAMO Verified."
+        "notes": "Reconstruida desde cero en StoreAMO-Catalog. APK público directo, firmado, validado y probado por descarga HTTPS anónima. Candidate; no se declara Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -277,19 +277,19 @@
           "format": "apk",
           "version": "0.1.0",
           "version_code": "1",
-          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/calculamo-v0.1.0/CalculAMO-0.1.0.apk",
-          "sha256": "021eb4dcd8cf845d89d0153eba1eb08fe4f399a9c9cf31676b13301931bb39ef",
-          "size_bytes": 12793,
-          "min_os": "Android 8.0 (API 26)",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/calculamo/0.1.0/CalculAMO-0.1.0.apk",
+          "sha256": "dee7d282de042603d309cf6a66eb6f5b1d5d34f5ef65e92093c0a5d25a6797ed",
+          "size_bytes": 11231,
+          "min_os": "Android 6.0 (API 23)",
           "application_id": "com.desarrollamo.calculamo",
-          "signing_cert_sha256": "7dd1c2654eddaad5fd86541458202859ad1069ab6f444715c5b1a44ec105dedd",
+          "signing_cert_sha256": "7da6ffcc5a95db73919aeaaf094dd51dc80d0a7e4f804fb1f747951cfcdf61c3",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/calculamo-v0.1.0",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/calculamo/0.1.0",
           "source": "distribution-registry"
         }
       ],
-      "repository": "https://desarrollamo.com.ar",
+      "repository": "amoedo7/StoreAMO-Catalog",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/calculamo.json"
     },
     {
@@ -400,11 +400,11 @@
       "supported_platforms": [
         "android"
       ],
-      "source_visibility": "private",
+      "source_visibility": "public",
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución reconstruido, probado y republicado por GitHub Actions. No se declara StoreAMO Verified."
+        "notes": "Reconstruida desde cero en StoreAMO-Catalog. APK público directo, firmado, validado y probado por descarga HTTPS anónima. Candidate; no se declara Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -422,19 +422,19 @@
           "format": "apk",
           "version": "0.1.0",
           "version_code": "1",
-          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/cronamo-v0.1.0/CronAMO-0.1.0.apk",
-          "sha256": "9dd9dcb91e394ebcb5135297b2eb7bd03e9e591f84428e028394e00a29cb2253",
-          "size_bytes": 11181,
-          "min_os": "Android 8.0 (API 26)",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk",
+          "sha256": "b96f268ddb98c38aadd1da87742f6f7532863a4db280c0256d1689c71ec865bc",
+          "size_bytes": 11369,
+          "min_os": "Android 6.0 (API 23)",
           "application_id": "com.desarrollamo.cronamo",
-          "signing_cert_sha256": null,
+          "signing_cert_sha256": "7da6ffcc5a95db73919aeaaf094dd51dc80d0a7e4f804fb1f747951cfcdf61c3",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/cronamo-v0.1.0",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/cronamo/0.1.0",
           "source": "distribution-registry"
         }
       ],
-      "repository": "https://desarrollamo.com.ar",
+      "repository": "amoedo7/StoreAMO-Catalog",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/cronamo.json"
     },
     {

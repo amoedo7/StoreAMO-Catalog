@@ -8,8 +8,14 @@
   "audience": "public",
   "featured": false,
   "status": "candidate",
-  "supported_platforms": ["android"],
-  "source": {"visibility": "private"},
+  "supported_platforms": [
+    "android"
+  ],
+  "source": {
+    "visibility": "public",
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "path": "rebuild-android/cronamo"
+  },
   "distribution": {
     "repository": "amoedo7/StoreAMO-Catalog",
     "mode": "direct-artifacts"
@@ -17,7 +23,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución reconstruido, probado y republicado por GitHub Actions. No se declara StoreAMO Verified."
+    "notes": "Reconstruida desde cero en StoreAMO-Catalog. APK público directo, firmado, validado y probado por descarga HTTPS anónima. Candidate; no se declara Verified."
   },
   "artifacts": [
     {
@@ -26,19 +32,25 @@
       "format": "apk",
       "version": "0.1.0",
       "version_code": "1",
-      "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/cronamo-v0.1.0/CronAMO-0.1.0.apk",
-      "sha256": "9dd9dcb91e394ebcb5135297b2eb7bd03e9e591f84428e028394e00a29cb2253",
-      "size_bytes": 11181,
-      "min_os": "Android 8.0 (API 26)",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk",
+      "sha256": "b96f268ddb98c38aadd1da87742f6f7532863a4db280c0256d1689c71ec865bc",
+      "size_bytes": 11369,
+      "min_os": "Android 6.0 (API 23)",
       "application_id": "com.desarrollamo.cronamo",
       "verified": false,
       "verification_report": null,
-      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/cronamo-v0.1.0",
-      "source": "distribution-registry"
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/cronamo/0.1.0",
+      "source": "distribution-registry",
+      "signing_cert_sha256": "7da6ffcc5a95db73919aeaaf094dd51dc80d0a7e4f804fb1f747951cfcdf61c3"
     }
   ],
   "verification": {
     "policy": "storeamo-default-v1",
-    "required_checks": ["integrity", "application-id", "signature", "tests"]
+    "required_checks": [
+      "integrity",
+      "application-id",
+      "signature",
+      "tests"
+    ]
   }
 }
