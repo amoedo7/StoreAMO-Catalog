@@ -104,3 +104,5 @@ jobs:
           git commit -m 'catalog: publish CronAMO 0.1.0 candidate'
           git pull --rebase origin main
           git push origin HEAD:main
+
+# retrigger: 2026-08-20
