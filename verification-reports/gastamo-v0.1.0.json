@@ -1,0 +1,20 @@
+{
+  "schema": "storeamo.verification-report.v1",
+  "app_id": "gastamo",
+  "version": "0.1.0",
+  "version_code": "1",
+  "application_id": "com.desarrollamo.gastamo",
+  "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.1.0.apk",
+  "sha256": "0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a",
+  "size_bytes": 14949,
+  "signing_cert_sha256": "ba0bfdc7d78a86a8d4d7969a92cf5808dd741ef19706694a52a9ba3761388c87",
+  "verified": true,
+  "verified_at": "2026-08-20T10:16:00+00:00",
+  "checks": {
+    "integrity": {"status":"PASS","evidence":"Public staged APK is 14949 bytes with the expected SHA-256."},
+    "application_id": {"status":"PASS","evidence":"APK identity is com.desarrollamo.gastamo, versionCode 1, versionName 0.1.0, launchable MainActivity."},
+    "signature": {"status":"PASS","evidence":"APK Signature Scheme v2 signature verifies; signed content digest matches. Certificate SHA-256 ba0bfdc7d78a86a8d4d7969a92cf5808dd741ef19706694a52a9ba3761388c87."},
+    "permissions": {"status":"PASS","evidence":"The packaged manifest declares no Android uses-permission entries."},
+    "tests": {"status":"PASS","evidence":"GastAMO GitHub Actions run 32344205283 completed successfully before publication."}
+  }
+}
