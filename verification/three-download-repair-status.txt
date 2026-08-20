@@ -1,0 +1,4 @@
+calculamo: reconstructed_sha=be42c2fa78be738ed03c367970119fe82cbb2c323532e674455bb63007617b2b
+cronamo: reconstructed_sha=6e6e3db27b5248cd4527b6358387cd2b53f5e528d723451a9e308677911ec4bf
+STOREAMO_DOWNLOAD_REPAIR=FAIL
+reconstruct=failure verify=skipped publish=skipped probe=skipped catalog=skipped
