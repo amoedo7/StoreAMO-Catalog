@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T11:18:33.642712+00:00",
+  "generated_at": "2026-08-20T11:38:39.088180+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
