@@ -72,6 +72,8 @@ jobs:
           verify_copy brujulamo brujulamo BrujulAMO com.desarrollamo.brujulamo
 
       - name: Replace broken distribution metadata with direct public artifacts
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
@@ -184,3 +186,18 @@ jobs:
           git commit -m 'verify: three rebuilt StoreAMO APK downloads pass'
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Persist run status
+        if: always()
+        shell: bash
+        run: |
+          set +e
+          git pull --rebase origin main
+          mkdir -p verification
+          printf 'job_status=%s\nsource_commit=%s\nrun_id=%s\n' '${{ job.status }}' '${{ github.sha }}' '${{ github.run_id }}' > verification/rebuild-three-run-status.txt
+          git config user.name 'StoreAMO Rebuild Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add verification/rebuild-three-run-status.txt
+          git commit -m 'ci: record three-app rebuild status [skip ci]' || true
+          git pull --rebase origin main || true
+          git push origin HEAD:main || true
