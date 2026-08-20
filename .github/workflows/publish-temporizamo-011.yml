@@ -1,0 +1,109 @@
+name: publish-temporizamo-011
+
+on:
+  push:
+    branches:
+      - release/temporizamo-0.1.1
+    paths:
+      - '.github/workflows/publish-temporizamo-011.yml'
+      - 'registry/temporizamo.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-temporizamo-v0.1.1
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_URL: 'https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-d194-820a-ae57-0663d3e2ff32/raw?se=2026-08-20T15%3A06%3A44Z&sp=r&sv=2026-02-06&sr=b&scid=c288b1c1-3c47-57a8-b939-7be038171bb0&skoid=e5f84a89-964a-4fd3-92c2-c2cb3a12ea16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-20T07%3A05%3A50Z&ske=2026-08-21T07%3A05%3A50Z&sks=b&skv=2026-02-06&sig=4wfbqAB85aQb6QpB0ZxEwQOnYV1xtgqu915ea68pA8U%3D'
+      PUBLIC_URL: 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.1/TemporizAMO-0.1.1.apk'
+      EXPECTED_SHA256: 'ea2df6bebc3f5c2542ca0b3d2a014e74f1417f6516cd303648aa7705f644110f'
+      EXPECTED_SIZE: '15889'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Recover exact APK from Android CI
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --retry-all-errors "$SOURCE_URL" -o /tmp/temporizamo-ci.zip
+          mkdir -p /tmp/temporizamo
+          unzip -q /tmp/temporizamo-ci.zip -d /tmp/temporizamo
+          cp /tmp/temporizamo/TemporizAMO-v0.1.1-debug.apk /tmp/TemporizAMO-0.1.1.apk
+          test "$(stat -c%s /tmp/TemporizAMO-0.1.1.apk)" = "$EXPECTED_SIZE"
+          echo "$EXPECTED_SHA256  /tmp/TemporizAMO-0.1.1.apk" | sha256sum -c -
+          unzip -tqq /tmp/TemporizAMO-0.1.1.apk
+
+      - name: Publish public StoreAMO release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG='temporizamo-v0.1.1'
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --target main --title 'TemporizAMO v0.1.1' --notes 'Candidate pública StoreAMO con UX/UI renovada. Source privado; APK exacto de Android CI #12.'
+          gh release upload "$TAG" /tmp/TemporizAMO-0.1.1.apk#TemporizAMO-0.1.1.apk --clobber
+
+      - name: Verify anonymous public download
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fL --retry 5 --retry-all-errors "$PUBLIC_URL" -o /tmp/temporizamo-public.apk
+          test "$(stat -c%s /tmp/temporizamo-public.apk)" = "$EXPECTED_SIZE"
+          echo "$EXPECTED_SHA256  /tmp/temporizamo-public.apk" | sha256sum -c -
+          unzip -tqq /tmp/temporizamo-public.apk
+
+      - name: Rebuild catalog and evidence
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python build_news.py
+          python - <<'PY'
+          import json, os, pathlib
+          from datetime import datetime, timezone
+          c=json.load(open('catalog.json'))
+          a=next(x for x in c['apps'] if x['id']=='temporizamo')
+          x=next(x for x in a['artifacts'] if x['platform']=='android')
+          assert a['status']=='candidate'
+          assert a['source_visibility']=='private'
+          assert x['version']=='0.1.1'
+          assert x['version_code']=='2'
+          assert x['application_id']=='com.desarrollamo.temporizamo'
+          assert x['url']==os.environ['PUBLIC_URL']
+          assert x['sha256']==os.environ['EXPECTED_SHA256']
+          assert x['size_bytes']==int(os.environ['EXPECTED_SIZE'])
+          assert x['verified'] is False
+          payload={
+            'schema':'storeamo.public-artifact-verification.v1',
+            'app_id':'temporizamo','version':'0.1.1','status':'passed',
+            'checked_at':datetime.now(timezone.utc).isoformat(),
+            'url':os.environ['PUBLIC_URL'],'sha256':os.environ['EXPECTED_SHA256'],
+            'size_bytes':int(os.environ['EXPECTED_SIZE']),
+            'application_id':'com.desarrollamo.temporizamo','version_code':'2',
+            'checks':['android_ci_tests','assemble_debug','anonymous_https_download','sha256','size_bytes','apk_zip_integrity','catalog_candidate','catalog_application_id'],
+            'catalog_includes_app':True,'verified':False
+          }
+          pathlib.Path('verification').mkdir(exist_ok=True)
+          pathlib.Path('verification/temporizamo-v0.1.1.json').write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
+          print('TEMPORIZAMO_011_STOREAMO_OK')
+          PY
+
+      - name: Persist branch state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add catalog.json news.json discovery-report.json verification/temporizamo-v0.1.1.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'catalog: finalize TemporizAMO 0.1.1 UX candidate'
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
