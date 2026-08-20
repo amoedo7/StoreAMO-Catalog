@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T10:21:49+00:00",
+  "generated_at": "2026-08-20T10:47:19+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -518,14 +518,14 @@
           "format": "apk",
           "version": "0.1.0",
           "version_code": "1",
-          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.1.0.apk",
-          "sha256": "0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk",
+          "sha256": "cd3133f83d97dbc8aed44c3c0552ee051d4a8794502e9d36bc1c2a3f9bcdbfb1",
           "size_bytes": 14949,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.gastamo",
-          "signing_cert_sha256": "ba0bfdc7d78a86a8d4d7969a92cf5808dd741ef19706694a52a9ba3761388c87",
-          "verified": true,
-          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.1.0.json",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
           "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.1.0",
           "source": "distribution-registry"
         }
@@ -800,7 +800,7 @@
           "version": "0.1.0",
           "version_code": "1",
           "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/relojamo-v0.1.0/RelojAMO-0.1.0.apk",
-          "sha256": "0fd0bef2ddb62a99656727fef55d99b0d468353f4854b27dd0dbb8b8c5eb12c0",
+          "sha256": "ebcbff2179e33c9ddd3ca246d6d23e1accb33f460861604cc2919f2c5eba6e47",
           "size_bytes": 10537,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.relojamo",

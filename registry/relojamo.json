@@ -8,7 +8,9 @@
   "audience": "public",
   "featured": false,
   "status": "candidate",
-  "supported_platforms": ["android"],
+  "supported_platforms": [
+    "android"
+  ],
   "source": {
     "visibility": "private"
   },
@@ -29,7 +31,7 @@
       "version": "0.1.0",
       "version_code": "1",
       "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/relojamo-v0.1.0/RelojAMO-0.1.0.apk",
-      "sha256": "0fd0bef2ddb62a99656727fef55d99b0d468353f4854b27dd0dbb8b8c5eb12c0",
+      "sha256": "ebcbff2179e33c9ddd3ca246d6d23e1accb33f460861604cc2919f2c5eba6e47",
       "size_bytes": 10537,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.relojamo",
@@ -41,6 +43,11 @@
   ],
   "verification": {
     "policy": "storeamo-default-v1",
-    "required_checks": ["integrity", "application-id", "signature", "smoke-test"]
+    "required_checks": [
+      "integrity",
+      "application-id",
+      "signature",
+      "smoke-test"
+    ]
   }
 }
