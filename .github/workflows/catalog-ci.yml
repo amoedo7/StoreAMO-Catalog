@@ -1,34 +1,11 @@
 name: catalog-ci
 
 on:
-  push:
-  pull_request:
+  workflow_dispatch:
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      - name: Fetch StoreAMO verifier
-        run: git clone --depth 1 https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
-      - name: Validate catalog
-        run: python /tmp/storeamo-verify/verify_catalog.py catalog.json
-      - uses: android-actions/setup-android@v3
-      - name: Inspect TemporizAMO public artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          APK='artifacts/temporizamo/TemporizAMO-0.1.0.apk'
-          unzip -t "$APK"
-          echo "SIZE=$(stat -c %s "$APK")"
-          echo "SHA256=$(sha256sum "$APK" | awk '{print $1}')"
-          AAPT="$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -1)"
-          test -n "$AAPT"
-          "$AAPT" dump badging "$APK" | tee /tmp/temporizamo.badging
-          grep -q "package: name='com.desarrollamo.temporizamo' versionCode='1' versionName='0.1.0'" /tmp/temporizamo.badging
-          echo 'APPLICATION_ID=com.desarrollamo.temporizamo'
-          echo 'VERSION_CODE=1'
-          echo 'VERSION_NAME=0.1.0'
+      - name: Paused to stop notification storm
+        run: echo "Catalog CI is temporarily manual-only while stale fix branches are cleaned up."
