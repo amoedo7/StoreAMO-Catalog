@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T06:28:14+00:00",
+  "generated_at": "2026-08-20T06:58:50+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -144,6 +144,55 @@
       ],
       "repository": "https://github.com/amoedo7/PlataformAMO",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/PlataformAMO/main/storeamo.json"
+    },
+    {
+      "id": "qramomini",
+      "name": "QRAMOMini",
+      "tagline": "Texto adentro, QR afuera. Todo local.",
+      "description": "Generador Android sencillo de códigos QR desde texto, enlaces y otros contenidos. Funciona localmente, sin cuenta y sin permisos especiales.",
+      "category": "Herramientas",
+      "audience": "public",
+      "featured": true,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "QRAMOMini 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Package: com.desarrollamo.qramomini. Destacada temporalmente para que la primera versión nueva sea visible en Inicio. No se declara StoreAMO Verified."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "smoke-test"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/qramomini-v0.1.0/QRAMOMini-0.1.0.apk",
+          "sha256": "881c6a00f2530e0e34f07f5d518bc3c1053e677f7fc0dba62bd96d032349fc4c",
+          "size_bytes": 298459,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.qramomini",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/qramomini-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/qramomini.json"
     },
     {
       "id": "depositamo",
@@ -357,55 +406,6 @@
       "artifacts": [],
       "repository": "https://github.com/amoedo7/MiWeb",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
-    },
-    {
-      "id": "qramomini",
-      "name": "QRAMOMini",
-      "tagline": "Texto adentro, QR afuera. Todo local.",
-      "description": "Generador Android sencillo de códigos QR desde texto, enlaces y otros contenidos. Funciona localmente, sin cuenta y sin permisos especiales.",
-      "category": "Herramientas",
-      "audience": "public",
-      "featured": false,
-      "status": "candidate",
-      "supported_platforms": [
-        "android"
-      ],
-      "source_visibility": "private",
-      "store": {
-        "homepage": "https://desarrollamo.com.ar",
-        "screenshots": [],
-        "notes": "QRAMOMini 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Package: com.desarrollamo.qramomini. No se declara StoreAMO Verified."
-      },
-      "verification": {
-        "policy": "storeamo-default-v1",
-        "required_checks": [
-          "integrity",
-          "application-id",
-          "signature",
-          "smoke-test"
-        ]
-      },
-      "artifacts": [
-        {
-          "platform": "android",
-          "arch": "universal",
-          "format": "apk",
-          "version": "0.1.0",
-          "version_code": "1",
-          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/qramomini-v0.1.0/QRAMOMini-0.1.0.apk",
-          "sha256": "881c6a00f2530e0e34f07f5d518bc3c1053e677f7fc0dba62bd96d032349fc4c",
-          "size_bytes": 298459,
-          "min_os": "Android 8.0 (API 26)",
-          "application_id": "com.desarrollamo.qramomini",
-          "signing_cert_sha256": null,
-          "verified": false,
-          "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/qramomini-v0.1.0",
-          "source": "distribution-registry"
-        }
-      ],
-      "repository": "https://desarrollamo.com.ar",
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/qramomini.json"
     },
     {
       "id": "storeamo",
