@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T12:51:39+00:00",
+  "generated_at": "2026-08-20T13:00:48+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -927,7 +927,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "TemporizAMO 0.1.0 candidate. Source privado; APK público de distribución recuperado del CI Android verde y verificado por SHA-256. No se declara StoreAMO Verified."
+        "notes": "TemporizAMO 0.1.0 candidate. Source privado; APK recuperado del Android CI #7 y distribuido como asset público de StoreAMO-Catalog. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -945,7 +945,7 @@
           "format": "apk",
           "version": "0.1.0",
           "version_code": "1",
-          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/artifacts/temporizamo/TemporizAMO-0.1.0.apk",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.0/TemporizAMO-0.1.0.apk",
           "sha256": "0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d",
           "size_bytes": 11493,
           "min_os": "Android 8.0 (API 26)",
@@ -953,7 +953,7 @@
           "signing_cert_sha256": null,
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/artifacts/temporizamo",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/temporizamo-v0.1.0",
           "source": "distribution-registry"
         }
       ],
