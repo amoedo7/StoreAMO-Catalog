@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T20:41:08.295010+00:00",
+  "generated_at": "2026-08-20T20:42:13.155391+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "mensajamo-registry-17de6a451a68",
+      "app_id": "mensajamo",
+      "app_name": "MensajAMO",
+      "type": "candidate",
+      "title": "MensajAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T20:41:43+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "temporizamo-registry-3fbc0d1ee89a",
       "app_id": "temporizamo",
