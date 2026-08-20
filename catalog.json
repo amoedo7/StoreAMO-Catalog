@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T09:43:52+00:00",
+  "generated_at": "2026-08-20T09:45:40+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -202,7 +202,7 @@
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -210,7 +210,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando build firmado y hash antes de candidate."
+        "notes": "CalculAMO 0.1.0 candidate. Source privado; APK público de distribución construido y probado por GitHub Actions. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -218,11 +218,28 @@
           "integrity",
           "application-id",
           "signature",
-          "permissions",
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/calculamo-v0.1.0/CalculAMO-0.1.0.apk",
+          "sha256": "021eb4dcd8cf845d89d0153eba1eb08fe4f399a9c9cf31676b13301931bb39ef",
+          "size_bytes": 12793,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.calculamo",
+          "signing_cert_sha256": "7dd1c2654eddaad5fd86541458202859ad1069ab6f444715c5b1a44ec105dedd",
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/calculamo-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/calculamo.json"
     },
