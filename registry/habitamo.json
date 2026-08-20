@@ -19,7 +19,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "HabitAMO 0.1.0 candidate. Source privado; publicación pública por StoreAMO-Catalog con binario verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
+    "notes": "HabitAMO 0.1.0 candidate. Source privado; APK público distribuido directamente desde StoreAMO-Catalog y verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
   },
   "artifacts": [
     {
@@ -28,14 +28,14 @@
       "format": "apk",
       "version": "0.1.0",
       "version_code": "1",
-      "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/habitamo-v0.1.0/HabitAMO-0.1.0.apk",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/artifacts/habitamo/HabitAMO-0.1.0.apk",
       "sha256": "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb",
       "size_bytes": 14337,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.habitamo",
       "verified": false,
       "verification_report": null,
-      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/habitamo-v0.1.0",
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/blob/main/artifacts/habitamo/HabitAMO-0.1.0.apk",
       "source": "distribution-registry"
     }
   ],
