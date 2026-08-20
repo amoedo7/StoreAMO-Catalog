@@ -7,6 +7,10 @@ on:
     paths:
       - '.github/workflows/calculamo-publish.yml'
       - '.release-input/calculamo-0.1.0.part*'
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/calculamo-publish.yml'
 
 permissions:
   contents: write
@@ -27,6 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # This exact artifact is the known 0.1.0 distribution binary; never rebuild it with a new signing key.
           cat .release-input/calculamo-0.1.0.part* | base64 -d > /tmp/CalculAMO-0.1.0.apk
           test "$(stat -c%s /tmp/CalculAMO-0.1.0.apk)" = "12793"
           echo "021eb4dcd8cf845d89d0153eba1eb08fe4f399a9c9cf31676b13301931bb39ef  /tmp/CalculAMO-0.1.0.apk" | sha256sum -c -
@@ -36,6 +41,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git fetch origin main
+          git checkout -B publication origin/main
           DEST='public-artifacts/calculamo/0.1.0/CalculAMO-0.1.0.apk'
           mkdir -p "$(dirname "$DEST")"
           cp /tmp/CalculAMO-0.1.0.apk "$DEST"
@@ -49,5 +56,4 @@ jobs:
             exit 0
           fi
           git commit -m 'artifact: publish CalculAMO 0.1.0'
-          git pull --rebase origin main
           git push origin HEAD:main
