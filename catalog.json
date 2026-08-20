@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T10:09:52+00:00",
+  "generated_at": "2026-08-20T10:21:49+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -347,7 +347,7 @@
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -355,7 +355,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución construido y probado por GitHub Actions. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -363,11 +363,28 @@
           "integrity",
           "application-id",
           "signature",
-          "permissions",
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/cronamo-v0.1.0/CronAMO-0.1.0.apk",
+          "sha256": "9dd9dcb91e394ebcb5135297b2eb7bd03e9e591f84428e028394e00a29cb2253",
+          "size_bytes": 11181,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.cronamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/cronamo-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/cronamo.json"
     },
@@ -482,7 +499,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "GastAMO 0.1.0 candidate. Source privado; APK público construido y probado por GitHub Actions. No se declara StoreAMO Verified."
+        "notes": "GastAMO 0.1.0 candidate. Source privado; APK público directo con integridad, identidad, firma, permisos y tests verificados."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -490,7 +507,8 @@
           "integrity",
           "application-id",
           "signature",
-          "smoke-test"
+          "permissions",
+          "tests"
         ]
       },
       "artifacts": [
@@ -500,14 +518,14 @@
           "format": "apk",
           "version": "0.1.0",
           "version_code": "1",
-          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.1.0.apk",
           "sha256": "0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a",
           "size_bytes": 14949,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.gastamo",
-          "signing_cert_sha256": null,
-          "verified": false,
-          "verification_report": null,
+          "signing_cert_sha256": "ba0bfdc7d78a86a8d4d7969a92cf5808dd741ef19706694a52a9ba3761388c87",
+          "verified": true,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.1.0.json",
           "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.1.0",
           "source": "distribution-registry"
         }

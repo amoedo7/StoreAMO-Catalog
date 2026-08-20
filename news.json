@@ -1,11 +1,44 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T10:10:01.161796+00:00",
+  "generated_at": "2026-08-20T10:21:55.704022+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "gastamo-registry-013b2e9b4624",
+      "app_id": "gastamo",
+      "app_name": "GastAMO",
+      "type": "candidate",
+      "title": "GastAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T10:21:40+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "cronamo-registry-227d270d5250",
+      "app_id": "cronamo",
+      "app_name": "CronAMO",
+      "type": "candidate",
+      "title": "CronAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T10:14:52+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "storeamo-b71ffa335258",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.66 · habilitar descargas candidate",
+      "published_at": "2026-08-20T10:14:01+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "habitamo-registry-5417e93c02d6",
       "app_id": "habitamo",
@@ -49,17 +82,6 @@
       "published_at": "2026-08-20T09:12:55+00:00",
       "status": "development",
       "source_visibility": "public"
-    },
-    {
-      "id": "gastamo-registry-85c8c14a086f",
-      "app_id": "gastamo",
-      "app_name": "GastAMO",
-      "type": "candidate",
-      "title": "GastAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T07:36:26+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
     },
     {
       "id": "relojamo-registry-70ec1cf1b9af",
@@ -161,17 +183,6 @@
       "source_visibility": "private"
     },
     {
-      "id": "cronamo-registry-829df6499a25",
-      "app_id": "cronamo",
-      "app_name": "CronAMO",
-      "type": "development",
-      "title": "CronAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:00:39+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
       "id": "qramomini-registry-b95fc0b17e2b",
       "app_id": "qramomini",
       "app_name": "QRAMOMini",
@@ -235,17 +246,6 @@
       "summary": "GeneralAMO 0.1.11 · publicar UI real y reparar Nueva partida (#2)",
       "published_at": "2026-08-19T13:24:48+00:00",
       "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-a48b1cfe102b",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "StoreAMO · detectar apps instaladas sin hardcodear packages",
-      "published_at": "2026-08-19T12:56:56+00:00",
-      "status": "development",
       "source_visibility": "public"
     },
     {
