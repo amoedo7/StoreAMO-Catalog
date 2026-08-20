@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T07:22:59+00:00",
+  "generated_at": "2026-08-20T07:30:25+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -634,12 +634,12 @@
     {
       "id": "relojamo",
       "name": "RelojAMO",
-      "tagline": "Hora, fecha y zona horaria sin vueltas.",
-      "description": "Reloj Android sencillo del ecosistema DesarrollAMO con hora digital, fecha y zona horaria local.",
-      "category": "Herramientas",
+      "tagline": "Reloj digital y analógico, siempre disponible.",
+      "description": "Reloj offline para Android con hora digital, esfera analógica, fecha local y zona horaria del dispositivo.",
+      "category": "Utilidades",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -647,7 +647,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado en source privado. Esperando artifact firmado antes de pasar a candidate."
+        "notes": "RelojAMO 0.1.0 candidate. Source privado; APK público de distribución construido y probado por GitHub Actions. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -655,11 +655,28 @@
           "integrity",
           "application-id",
           "signature",
-          "permissions",
-          "tests"
+          "smoke-test"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/relojamo-v0.1.0/RelojAMO-0.1.0.apk",
+          "sha256": "0fd0bef2ddb62a99656727fef55d99b0d468353f4854b27dd0dbb8b8c5eb12c0",
+          "size_bytes": 10537,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.relojamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/relojamo-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/relojamo.json"
     },
