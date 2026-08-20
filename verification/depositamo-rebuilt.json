@@ -1,0 +1,17 @@
+{
+  "schema": "storeamo.download-proof.v1",
+  "result": "PASS",
+  "run_id": "32429131740",
+  "app": {
+    "id": "depositamo",
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/depositamo/0.1.0/DepositAMO-0.1.0.apk",
+    "sha256": "b2cfbfb46980572b090194369faf20b867a67772fca9823be6f6497f495b0c4e",
+    "size_bytes": 17543,
+    "anonymous_download": "PASS",
+    "zip": "PASS",
+    "signature": "PASS",
+    "permissions": "PASS_ZERO",
+    "application_id": "com.desarrollamo.depositamo",
+    "launchable_activity": "PASS"
+  }
+}
