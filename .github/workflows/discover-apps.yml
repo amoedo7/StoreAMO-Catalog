@@ -10,6 +10,7 @@ on:
       - build_catalog.py
       - build_news.py
       - enrich_catalog.py
+      - tests/test_build_news.py
       - registry/**
       - schemas/storeamo.app.v1.schema.json
       - .github/workflows/discover-apps.yml
@@ -29,6 +30,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Test Buenas Nuevas generator
+        run: python -m unittest discover -s tests -p 'test_*.py'
       - name: Discover public manifests and sanitized registry entries
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
