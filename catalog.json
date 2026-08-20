@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T09:17:52+00:00",
+  "generated_at": "2026-08-20T09:43:52+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -497,6 +497,56 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/gastamo.json"
+    },
+    {
+      "id": "habitamo",
+      "name": "HabitAMO",
+      "tagline": "Un toque al día. Sin cuentas ni nube.",
+      "description": "Seguimiento Android minimalista de hábitos diarios y rachas. Todo funciona offline y los datos permanecen en el dispositivo.",
+      "category": "Productividad",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "HabitAMO 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/habitamo-v0.1.0/HabitAMO-0.1.0.apk",
+          "sha256": "a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb",
+          "size_bytes": 14337,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.habitamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/habitamo-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/habitamo.json"
     },
     {
       "id": "miapi",
