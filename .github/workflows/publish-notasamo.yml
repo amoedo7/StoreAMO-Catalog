@@ -3,7 +3,6 @@ name: publish-notasamo
 on:
   push:
     branches:
-      - main
       - fix/notasamo-public-distribution
     paths:
       - '.github/workflows/publish-notasamo.yml'
@@ -20,9 +19,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     env:
-      SOURCE_URL: 'https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-b7a0-820a-99c0-630685145b78/raw?se=2026-08-20T14%3A55%3A54Z&sp=r&sv=2026-02-06&sr=b&scid=6d85046d-a176-5709-a3bd-2f603a5106d6&skoid=e5f84a89-964a-4fd3-92c2-c2cb3a12ea16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-20T04%3A45%3A47Z&ske=2026-08-21T04%3A45%3A47Z&sks=b&skv=2026-02-06&sig=rLU%2BQYct1ianuSYlnT1orqJCVP3xSSQQ3o6scIeschE%3D'
+      SOURCE_URL: 'https://sdmntprindiasocentral.oaiusercontent.com/files/00000000-b91c-8211-a8ae-00d728fb4312/raw?se=2026-08-20T14%3A58%3A33Z&sp=r&sv=2026-02-06&sr=b&scid=293d6094-8a31-5d54-bc4c-42070e8635fe&skoid=e5f84a89-964a-4fd3-92c2-c2cb3a12ea16&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-20T06%3A16%3A49Z&ske=2026-08-21T06%3A16%3A49Z&sks=b&skv=2026-02-06&sig=XDh2yDm766aA94ojX7egU9GbYits9yLwla4yenM3Hi4%3D'
       EXPECTED_SHA256: '5c195e8c74f37b648a8245bb373fb0562112f93986e0d2afe36eceb3f03b381f'
       EXPECTED_SIZE: '5581509'
+      PUBLIC_URL: 'https://github.com/amoedo7/StoreAMO-Catalog/releases/download/notasamo-v0.1.0/NotasAMO-0.1.0.apk'
     steps:
       - uses: actions/checkout@v4
 
@@ -52,42 +52,38 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          URL='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/notasamo-v0.1.0/NotasAMO-0.1.0.apk'
-          curl -fL --retry 5 --retry-all-errors "$URL" -o /tmp/notasamo-public.apk
+          curl -fL --retry 5 --retry-all-errors "$PUBLIC_URL" -o /tmp/notasamo-public.apk
           test "$(stat -c%s /tmp/notasamo-public.apk)" = "$EXPECTED_SIZE"
           echo "$EXPECTED_SHA256  /tmp/notasamo-public.apk" | sha256sum -c -
           unzip -tqq /tmp/notasamo-public.apk
 
-      - name: Rebuild StoreAMO catalog on main
-        if: github.ref == 'refs/heads/main'
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+      - name: Persist verification evidence
         shell: bash
         run: |
           set -euo pipefail
-          python build_catalog.py --owner amoedo7
-          python enrich_catalog.py
-          python build_news.py
+          mkdir -p verification
           python - <<'PY'
-          import json
-          c=json.load(open('catalog.json'))
-          a=next(x for x in c['apps'] if x['id']=='notasamo')
-          x=next(x for x in a['artifacts'] if x['platform']=='android')
-          assert a['status']=='candidate'
-          assert a['source_visibility']=='private'
-          assert x['version']=='0.1.0'
-          assert x['version_code']=='1'
-          assert x['application_id']=='com.desarrollamo.notasamo'
-          assert x['sha256']=='5c195e8c74f37b648a8245bb373fb0562112f93986e0d2afe36eceb3f03b381f'
-          assert x['size_bytes']==5581509
-          assert x['verified'] is False
-          print('NOTASAMO_STOREAMO_OK')
+          import json, os
+          from datetime import datetime, timezone
+          payload = {
+            'schema': 'storeamo.public-artifact-verification.v1',
+            'app_id': 'notasamo',
+            'version': '0.1.0',
+            'status': 'passed',
+            'checked_at': datetime.now(timezone.utc).isoformat(),
+            'url': os.environ['PUBLIC_URL'],
+            'sha256': os.environ['EXPECTED_SHA256'],
+            'size_bytes': int(os.environ['EXPECTED_SIZE']),
+            'application_id': 'com.desarrollamo.notasamo',
+            'checks': ['anonymous_https_download', 'sha256', 'size_bytes', 'apk_zip_integrity'],
+            'verified': False
+          }
+          open('verification/notasamo-v0.1.0.json','w').write(json.dumps(payload, indent=2, ensure_ascii=False) + '\n')
           PY
-          if ! git diff --quiet -- catalog.json news.json discovery-report.json; then
-            git config user.name 'StoreAMO Bot'
-            git config user.email 'actions@users.noreply.github.com'
-            git add catalog.json news.json discovery-report.json
-            git commit -m 'catalog: publish NotasAMO 0.1.0 candidate'
-            git pull --rebase origin main
-            git push origin HEAD:main
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add verification/notasamo-v0.1.0.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'verify: NotasAMO public distribution'
+            git push origin HEAD:${GITHUB_REF_NAME}
           fi
