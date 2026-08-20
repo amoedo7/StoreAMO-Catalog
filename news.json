@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T09:07:21.174704+00:00",
+  "generated_at": "2026-08-20T09:18:02.618237+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-e9121198e556",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.65 · Desinstalar + Buenas Nuevas",
+      "published_at": "2026-08-20T09:12:55+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "gastamo-registry-85c8c14a086f",
       "app_id": "gastamo",
@@ -234,17 +245,6 @@
       "title": "StoreAMO prepara cambios",
       "summary": "describe catalog freshness maintenance",
       "published_at": "2026-08-19T11:55:29+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-9631e345be3f",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "fix",
-      "title": "Corrección en StoreAMO",
-      "summary": "bypass stale catalog responses",
-      "published_at": "2026-08-19T11:55:10+00:00",
       "status": "development",
       "source_visibility": "public"
     },
