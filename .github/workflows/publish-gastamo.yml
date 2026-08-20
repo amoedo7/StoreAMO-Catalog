@@ -1,0 +1,60 @@
+name: publish-gastamo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - gastamo-publish.trigger
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-gastamo-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Verify APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK='.release-input/GastAMO-0.1.0.apk'
+          test "$(stat -c%s "$APK")" = "14949"
+          echo "0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a  $APK" | sha256sum -c -
+
+      - name: Publish public distribution release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG='gastamo-v0.1.0'
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "GastAMO v0.1.0" --notes "Candidate de distribución StoreAMO. Source privado; APK público verificado por SHA-256."
+          gh release upload "$TAG" .release-input/GastAMO-0.1.0.apk#GastAMO-0.1.0.apk --clobber
+
+      - name: Validate registry contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib
+          m=json.loads(pathlib.Path('registry/gastamo.json').read_text())
+          assert m['status']=='candidate'
+          assert m['source']['visibility']=='private'
+          assert m['distribution']['mode']=='direct-artifacts'
+          a=m['artifacts'][0]
+          assert a['version']=='0.1.0'
+          assert a['version_code']=='1'
+          assert a['application_id']=='com.desarrollamo.gastamo'
+          assert a['sha256']=='0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a'
+          assert a['size_bytes']==14949
+          assert a['verified'] is False
+          assert a['url'].startswith('https://github.com/amoedo7/StoreAMO-Catalog/releases/download/')
+          print('GASTAMO_REGISTRY_OK')
+          PY
