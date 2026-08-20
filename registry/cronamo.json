@@ -33,15 +33,15 @@
       "version": "0.1.0",
       "version_code": "1",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cronamo/0.1.0/CronAMO-0.1.0.apk",
-      "sha256": "b96f268ddb98c38aadd1da87742f6f7532863a4db280c0256d1689c71ec865bc",
-      "size_bytes": 11369,
+      "sha256": "c2758dbab16775ac0d1af92d022aed264f1482fab58c185e16e475904b314091",
+      "size_bytes": 11364,
       "min_os": "Android 6.0 (API 23)",
       "application_id": "com.desarrollamo.cronamo",
       "verified": false,
       "verification_report": null,
       "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/cronamo/0.1.0",
       "source": "distribution-registry",
-      "signing_cert_sha256": "7da6ffcc5a95db73919aeaaf094dd51dc80d0a7e4f804fb1f747951cfcdf61c3"
+      "signing_cert_sha256": "31fd299a2893eccc820017cae408a9a27a647c3cb0e3fa573fda12d005f6bf2a"
     }
   ],
   "verification": {
