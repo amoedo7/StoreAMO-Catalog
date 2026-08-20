@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T12:38:03+00:00",
+  "generated_at": "2026-08-20T12:43:31+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -210,7 +210,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "CalculAMO 0.1.0 candidate. Source privado; APK público de distribución construido y probado por GitHub Actions. No se declara StoreAMO Verified."
+        "notes": "CalculAMO 0.1.0 candidate. Source privado; APK público de distribución reconstruido, probado y republicado por GitHub Actions. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -355,7 +355,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución construido y probado por GitHub Actions. No se declara StoreAMO Verified."
+        "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución reconstruido, probado y republicado por GitHub Actions. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",

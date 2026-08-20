@@ -1,11 +1,33 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T12:38:11.911230+00:00",
+  "generated_at": "2026-08-20T12:43:40.762320+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "cronamo-registry-f57420c860c2",
+      "app_id": "cronamo",
+      "app_name": "CronAMO",
+      "type": "candidate",
+      "title": "CronAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T12:43:14+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "calculamo-registry-375744c74db1",
+      "app_id": "calculamo",
+      "app_name": "CalculAMO",
+      "type": "candidate",
+      "title": "CalculAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T12:43:04+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "temporizamo-registry-8dab335f3bcb",
       "app_id": "temporizamo",
@@ -73,17 +95,6 @@
       "source_visibility": "private"
     },
     {
-      "id": "cronamo-registry-227d270d5250",
-      "app_id": "cronamo",
-      "app_name": "CronAMO",
-      "type": "candidate",
-      "title": "CronAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T10:14:52+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
       "id": "storeamo-b71ffa335258",
       "app_id": "storeamo",
       "app_name": "StoreAMO",
@@ -102,17 +113,6 @@
       "title": "HabitAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T10:09:41+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "calculamo-registry-7322f690253d",
-      "app_id": "calculamo",
-      "app_name": "CalculAMO",
-      "type": "candidate",
-      "title": "CalculAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T09:45:17+00:00",
       "status": "candidate",
       "source_visibility": "private"
     },
