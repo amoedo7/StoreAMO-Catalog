@@ -6,7 +6,7 @@
   "description": "Generador Android sencillo de códigos QR desde texto, enlaces y otros contenidos. Funciona localmente, sin cuenta y sin permisos especiales.",
   "category": "Herramientas",
   "audience": "public",
-  "featured": false,
+  "featured": true,
   "status": "candidate",
   "supported_platforms": ["android"],
   "source": {
@@ -19,7 +19,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "QRAMOMini 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Package: com.desarrollamo.qramomini. No se declara StoreAMO Verified."
+    "notes": "QRAMOMini 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Package: com.desarrollamo.qramomini. Destacada temporalmente para que la primera versión nueva sea visible en Inicio. No se declara StoreAMO Verified."
   },
   "artifacts": [
     {
