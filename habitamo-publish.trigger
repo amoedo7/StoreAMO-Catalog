@@ -1,3 +1,4 @@
 HabitAMO 0.1.0
 sha256=a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb
 size_bytes=14337
+verify_public_asset=2
