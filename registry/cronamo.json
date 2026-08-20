@@ -17,7 +17,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución construido y probado por GitHub Actions. No se declara StoreAMO Verified."
+    "notes": "CronAMO 0.1.0 candidate. Source privado; APK público de distribución reconstruido, probado y republicado por GitHub Actions. No se declara StoreAMO Verified."
   },
   "artifacts": [
     {
