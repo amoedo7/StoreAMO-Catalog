@@ -16,3 +16,5 @@ jobs:
         run: git clone --depth 1 https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
       - name: Validate catalog
         run: python /tmp/storeamo-verify/verify_catalog.py catalog.json
+      - name: Verify public APK downloads
+        run: python verify_artifact_downloads.py catalog.json
