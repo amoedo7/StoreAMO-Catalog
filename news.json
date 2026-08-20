@@ -1,11 +1,44 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T10:48:09.227526+00:00",
+  "generated_at": "2026-08-20T11:10:36.036784+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-fa2f5210ab08",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "make uninstall repair build and publish 0.4.3.67",
+      "published_at": "2026-08-20T11:01:19+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-c7136f1cc1aa",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "build",
+      "title": "StoreAMO prepara cambios",
+      "summary": "trigger StoreAMO uninstall repair",
+      "published_at": "2026-08-20T10:58:38+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-c201d27b54bf",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "build",
+      "title": "StoreAMO prepara cambios",
+      "summary": "add one-shot StoreAMO uninstall repair",
+      "published_at": "2026-08-20T10:58:32+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "relojamo-registry-05684ea76492",
       "app_id": "relojamo",
@@ -71,28 +104,6 @@
       "published_at": "2026-08-20T09:45:17+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "storeamo-8db915a7de37",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "make StoreAMO 0.4.3 release publication idempotent",
-      "published_at": "2026-08-20T09:18:36+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-e9121198e556",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.65 · Desinstalar + Buenas Nuevas",
-      "published_at": "2026-08-20T09:12:55+00:00",
-      "status": "development",
-      "source_visibility": "public"
     },
     {
       "id": "conversamo-registry-77aa7389020b",
@@ -224,17 +235,6 @@
       "summary": "GeneralAMO 0.1.12 · reglas, historial y juego Wi‑Fi",
       "published_at": "2026-08-19T15:18:25+00:00",
       "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-27433e5ecf6c",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "StoreAMO · actualización de un toque",
-      "published_at": "2026-08-19T14:07:15+00:00",
-      "status": "development",
       "source_visibility": "public"
     },
     {
