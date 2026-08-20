@@ -1,0 +1,15 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "contamo",
+  "name": "ContAMO",
+  "tagline": "Contadores múltiples que quedan guardados.",
+  "description": "App Android offline para crear contadores independientes, sumar, restar, reiniciar y persistir valores.",
+  "category": "Herramientas",
+  "audience": "public",
+  "featured": false,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "source": {"visibility": "private"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."},
+  "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
+}
