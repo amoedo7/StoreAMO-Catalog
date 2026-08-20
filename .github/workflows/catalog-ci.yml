@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [main]
+  push:
+    branches: [main]
 
 permissions:
   contents: read
@@ -16,7 +18,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - name: Enable Android build-tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          BUILD_TOOLS="$(find "$ANDROID_HOME/build-tools" -mindepth 1 -maxdepth 1 -type d | sort -V | tail -1)"
+          test -n "$BUILD_TOOLS"
+          echo "$BUILD_TOOLS" >> "$GITHUB_PATH"
+          "$BUILD_TOOLS/aapt" version || "$BUILD_TOOLS/aapt2" version
+          "$BUILD_TOOLS/apksigner" --version
       - name: Fetch StoreAMO verifier
         run: git clone --depth 1 https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
-      - name: Validate catalog
-        run: python /tmp/storeamo-verify/verify_catalog.py catalog.json
+      - name: Validate catalog and public APKs
+        run: |
+          python /tmp/storeamo-verify/verify_catalog.py catalog.json \
+            --audit-downloads \
+            --output verification/catalog-audit.json \
+            --output-dir verification/runtime
+      - name: Upload technical evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storeamo-public-apk-audit
+          path: verification/
+          if-no-files-found: warn
