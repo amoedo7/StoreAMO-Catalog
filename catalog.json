@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T09:52:02+00:00",
+  "generated_at": "2026-08-20T09:54:33+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -531,7 +531,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "HabitAMO 0.1.0 candidate. Source privado; binario público de distribución verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
+        "notes": "HabitAMO 0.1.0 candidate. Source privado; publicación pública por StoreAMO-Catalog con binario verificado por SHA-256. Sin permiso INTERNET, cuentas, backend ni analytics. No se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",

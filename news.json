@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T09:52:13.339684+00:00",
+  "generated_at": "2026-08-20T09:54:40.108521+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "habitamo-registry-41876b39599c",
+      "app_id": "habitamo",
+      "app_name": "HabitAMO",
+      "type": "candidate",
+      "title": "HabitAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T09:54:22+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "calculamo-registry-7322f690253d",
       "app_id": "calculamo",
@@ -14,17 +25,6 @@
       "title": "CalculAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T09:45:17+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "habitamo-registry-52eca2a496e8",
-      "app_id": "habitamo",
-      "app_name": "HabitAMO",
-      "type": "candidate",
-      "title": "HabitAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T09:43:35+00:00",
       "status": "candidate",
       "source_visibility": "private"
     },
