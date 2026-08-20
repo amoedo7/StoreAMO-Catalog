@@ -1,0 +1,54 @@
+{
+  "schema": "desarrollamo.ecosystem-improvements.v1",
+  "updated_at": "2026-08-20T12:45:00Z",
+  "items": [
+    {
+      "id": "artifact-download-integrity-gate",
+      "title": "Verificar descargas públicas de APK de extremo a extremo",
+      "scope": "StoreAMO-Catalog",
+      "type": "infrastructure",
+      "apps_affected": ["all-installable-android-apps"],
+      "benefit_expected": "Impedir que el catálogo publique OBTENER/ACTUALIZAR para un APK ausente, privado, truncado o distinto del SHA/tamaño declarado.",
+      "evidence": "El catálogo validaba estructura y metadatos, pero catalog-ci no hacía una descarga HTTPS anónima del APK como la que necesita un usuario de StoreAMO.",
+      "priority": "P0",
+      "effort": "small",
+      "risk": "low",
+      "dependencies": [],
+      "discovered_at": "2026-08-20T12:40:00Z",
+      "last_reviewed_at": "2026-08-20T12:45:00Z",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "stable-storeamo-signing-identity",
+      "title": "Completar identidad de firma estable de StoreAMO",
+      "scope": "StoreAMO",
+      "type": "security",
+      "apps_affected": ["storeamo"],
+      "benefit_expected": "Permitir una línea estable actualizable sin depender de la identidad debug histórica.",
+      "evidence": "PRs activos #4 y #6 preparan la transición y permanecen deliberadamente bloqueados hasta disponer de secretos de firma estable.",
+      "priority": "P0",
+      "effort": "medium",
+      "risk": "medium",
+      "dependencies": ["stable-signing-secrets"],
+      "discovered_at": "2026-08-20T12:40:00Z",
+      "last_reviewed_at": "2026-08-20T12:45:00Z",
+      "status": "BLOCKED"
+    },
+    {
+      "id": "remove-one-shot-repair-workflows",
+      "title": "Retirar workflows temporales de reparación una vez estabilizados",
+      "scope": "StoreAMO and StoreAMO-Catalog",
+      "type": "maintenance",
+      "apps_affected": ["storeamo", "catalog"],
+      "benefit_expected": "Reducir CI residual, ruido y riesgo de ejecuciones accidentales.",
+      "evidence": "Persisten workflows con nombres de reparación one-shot en los árboles actuales.",
+      "priority": "P1",
+      "effort": "small",
+      "risk": "low",
+      "dependencies": ["confirm-repairs-complete"],
+      "discovered_at": "2026-08-20T12:40:00Z",
+      "last_reviewed_at": "2026-08-20T12:45:00Z",
+      "status": "READY"
+    }
+  ]
+}
