@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-20T13:00:48+00:00",
+  "generated_at": "2026-08-20T21:03:28+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -193,6 +193,55 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/qramomini.json"
+    },
+    {
+      "id": "brujulamo",
+      "name": "BrujulAMO",
+      "tagline": "Brújula magnética offline y privada.",
+      "description": "Brújula Android local-first con rumbo magnético, cardinal de 16 puntos, intensidad del campo, estado de precisión, aviso de interferencia y guía de recalibración. No usa GPS, cuenta, red ni permisos.",
+      "category": "Movilidad",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "BrujulAMO 0.1.0 candidate. APK exacto de Android CI run 32380827149. Source privado; metadata pública sanitizada."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/brujulamo-v0.1.0/BrujulAMO-0.1.0.apk",
+          "sha256": "430aa12769a2d7337062e8835cd0fa08fbd4bcf774d6fc9475467431f13441dd",
+          "size_bytes": 15181,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.brujulamo",
+          "signing_cert_sha256": "380bb3f8e417cb53f4caa64f431d6e9e4392fca54362211335ea55973b01d7cf",
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/brujulamo-v0.1.0",
+          "source": "distribution-registry"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/brujulamo.json"
     },
     {
       "id": "calculamo",

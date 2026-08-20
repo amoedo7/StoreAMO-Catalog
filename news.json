@@ -1,11 +1,33 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-20T13:00:59.030194+00:00",
+  "generated_at": "2026-08-20T21:03:36.583285+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "brujulamo-registry-826833cb32f0",
+      "app_id": "brujulamo",
+      "app_name": "BrujulAMO",
+      "type": "candidate",
+      "title": "BrujulAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T21:03:31+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "temporizamo-registry-3fbc0d1ee89a",
+      "app_id": "temporizamo",
+      "app_name": "TemporizAMO",
+      "type": "candidate",
+      "title": "TemporizAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-20T15:05:33+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "cronamo-registry-f57420c860c2",
       "app_id": "cronamo",
@@ -25,17 +47,6 @@
       "title": "CalculAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T12:43:04+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "temporizamo-registry-8dab335f3bcb",
-      "app_id": "temporizamo",
-      "app_name": "TemporizAMO",
-      "type": "candidate",
-      "title": "TemporizAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T11:18:02+00:00",
       "status": "candidate",
       "source_visibility": "private"
     },
