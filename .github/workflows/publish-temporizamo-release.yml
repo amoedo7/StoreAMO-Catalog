@@ -1,62 +1,14 @@
 name: publish-and-verify-temporizamo-release
 
 on:
-  pull_request:
-    paths:
-      - '.release-input/temporizamo-0.1.0.part*'
-      - 'registry/temporizamo.json'
-      - '.github/workflows/publish-temporizamo-release.yml'
-  push:
-    branches: [main]
-    paths:
-      - '.release-input/temporizamo-0.1.0.part*'
-      - 'registry/temporizamo.json'
-      - '.github/workflows/publish-temporizamo-release.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
-  verify-source:
+  paused:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Reconstruct and verify exact CI artifact
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat .release-input/temporizamo-0.1.0.part00 .release-input/temporizamo-0.1.0.part01 .release-input/temporizamo-0.1.0.part02 | base64 -d > /tmp/TemporizAMO-0.1.0.apk
-          test "$(wc -c < /tmp/TemporizAMO-0.1.0.apk | tr -d ' ')" = "11493"
-          echo "0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d  /tmp/TemporizAMO-0.1.0.apk" | sha256sum -c -
-          unzip -tqq /tmp/TemporizAMO-0.1.0.apk
-
-  publish-and-verify:
-    if: github.event_name != 'pull_request'
-    needs: verify-source
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Publish public distribution asset
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          cat .release-input/temporizamo-0.1.0.part00 .release-input/temporizamo-0.1.0.part01 .release-input/temporizamo-0.1.0.part02 | base64 -d > TemporizAMO-0.1.0.apk
-          TAG=temporizamo-v0.1.0
-          if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" TemporizAMO-0.1.0.apk --clobber
-          else
-            gh release create "$TAG" TemporizAMO-0.1.0.apk --target main --title "TemporizAMO v0.1.0" --notes "Public distribution candidate for StoreAMO. Source remains private."
-          fi
-      - name: Verify anonymous public download
-        shell: bash
-        run: |
-          set -euo pipefail
-          URL="https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.0/TemporizAMO-0.1.0.apk"
-          curl -fL --retry 6 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/TemporizAMO-public.apk
-          test "$(wc -c < /tmp/TemporizAMO-public.apk | tr -d ' ')" = "11493"
-          echo "0582286941d47f9cea1e4e6c527ac9214e60ad3558b349ac8d3fad93b84e159d  /tmp/TemporizAMO-public.apk" | sha256sum -c -
-          unzip -tqq /tmp/TemporizAMO-public.apk
-          echo "Public release download OK: 11493 bytes"
+      - name: Paused to stop notification storm
+        run: echo "TemporizAMO publication is temporarily manual-only while distribution integrity is repaired."
