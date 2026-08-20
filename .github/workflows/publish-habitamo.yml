@@ -5,7 +5,10 @@ on:
   push:
     branches: [main]
     paths:
-      - habitamo-publish.trigger
+      - '.github/workflows/publish-habitamo.yml'
+      - 'registry/habitamo.json'
+      - '.release-input/habitamo-0.1.0.part*'
+      - 'habitamo-publish.trigger'
 
 permissions:
   contents: write
@@ -19,6 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Reconstruct and verify APK
         shell: bash
@@ -60,6 +65,7 @@ jobs:
           m=json.loads(pathlib.Path('registry/habitamo.json').read_text())
           assert m['status']=='candidate'
           assert m['source']['visibility']=='private'
+          assert m['distribution']['repository']=='amoedo7/StoreAMO-Catalog'
           assert m['distribution']['mode']=='direct-artifacts'
           a=m['artifacts'][0]
           assert a['version']=='0.1.0'
@@ -68,7 +74,7 @@ jobs:
           assert a['sha256']=='a449beb69ebfc01df7b1667d9d9619eeb0399479d504b93e25fa2ac30a2869bb'
           assert a['size_bytes']==14337
           assert a['verified'] is False
-          assert a['url'].startswith('https://github.com/amoedo7/StoreAMO-Catalog/releases/download/')
+          assert a['url']=='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/habitamo-v0.1.0/HabitAMO-0.1.0.apk'
           print('HABITAMO_REGISTRY_OK')
           PY
 
@@ -76,7 +82,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          git pull --rebase origin main
           mkdir -p release-proof
           cat > release-proof/habitamo-v0.1.0.json <<'JSON'
           {
@@ -97,7 +102,8 @@ jobs:
           git add -- release-proof/habitamo-v0.1.0.json
           if git diff --cached --quiet; then
             echo 'Release proof already current'
-          else
-            git commit -m 'release: record verified HabitAMO 0.1.0 asset'
-            git push
+            exit 0
           fi
+          git commit -m 'release: record verified HabitAMO 0.1.0 asset'
+          git pull --rebase origin main
+          git push origin HEAD:main
