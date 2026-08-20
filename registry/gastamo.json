@@ -17,7 +17,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "GastAMO 0.1.0 candidate. Source privado; APK público construido y probado por GitHub Actions. No se declara StoreAMO Verified."
+    "notes": "GastAMO 0.1.0 candidate. Source privado; APK público directo con integridad, identidad, firma, permisos y tests verificados."
   },
   "artifacts": [
     {
@@ -26,19 +26,20 @@
       "format": "apk",
       "version": "0.1.0",
       "version_code": "1",
-      "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.1.0.apk",
       "sha256": "0272559619a62738d63c880ebe92ae0615d887cf6b9b3e9622b0b44278c15b2a",
       "size_bytes": 14949,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.gastamo",
-      "verified": false,
-      "verification_report": null,
+      "signing_cert_sha256": "ba0bfdc7d78a86a8d4d7969a92cf5808dd741ef19706694a52a9ba3761388c87",
+      "verified": true,
+      "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.1.0.json",
       "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.1.0",
       "source": "distribution-registry"
     }
   ],
   "verification": {
     "policy": "storeamo-default-v1",
-    "required_checks": ["integrity", "application-id", "signature", "smoke-test"]
+    "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]
   }
 }
