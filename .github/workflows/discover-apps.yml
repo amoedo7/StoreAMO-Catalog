@@ -14,12 +14,21 @@ on:
       - registry/**
       - schemas/storeamo.app.v1.schema.json
       - .github/workflows/discover-apps.yml
+  pull_request:
+    paths:
+      - build_catalog.py
+      - build_news.py
+      - enrich_catalog.py
+      - tests/test_build_news.py
+      - registry/**
+      - schemas/storeamo.app.v1.schema.json
+      - .github/workflows/discover-apps.yml
 
 permissions:
   contents: write
 
 concurrency:
-  group: storeamo-catalog-discovery
+  group: storeamo-catalog-discovery-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -77,6 +86,7 @@ jobs:
           print('CATALOG_OK', len(c['apps']), 'NEWS_OK', len(n['items']))
           PY
       - name: Commit catalog and news changes
+        if: github.event_name != 'pull_request'
         run: |
           if git diff --quiet -- catalog.json discovery-report.json news.json; then
             echo 'No catalog/news changes'
