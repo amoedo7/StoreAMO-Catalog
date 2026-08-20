@@ -1,0 +1,106 @@
+name: publish-cronamo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/cronamo-publish.yml'
+      - 'registry/cronamo.json'
+      - '.release-input/cronamo-0.1.0.part*'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-cronamo-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Reconstruct and verify APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .release-input/cronamo-0.1.0.part* | base64 -d > /tmp/CronAMO-0.1.0.apk
+          test "$(stat -c%s /tmp/CronAMO-0.1.0.apk)" = "11181"
+          echo "9dd9dcb91e394ebcb5135297b2eb7bd03e9e591f84428e028394e00a29cb2253  /tmp/CronAMO-0.1.0.apk" | sha256sum -c -
+
+      - name: Publish public distribution release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG='cronamo-v0.1.0'
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "CronAMO v0.1.0" --notes "Candidate de distribución StoreAMO. Source privado; APK público verificado por SHA-256."
+          gh release upload "$TAG" /tmp/CronAMO-0.1.0.apk#CronAMO-0.1.0.apk --clobber
+
+      - name: Validate registry contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, pathlib, re
+          m=json.loads(pathlib.Path('registry/cronamo.json').read_text())
+          assert m['status']=='candidate'
+          assert m['source']['visibility']=='private'
+          assert m['distribution']['repository']=='amoedo7/StoreAMO-Catalog'
+          assert m['distribution']['mode']=='direct-artifacts'
+          a=m['artifacts'][0]
+          assert a['platform']=='android'
+          assert a['version']=='0.1.0'
+          assert a['version_code']=='1'
+          assert a['application_id']=='com.desarrollamo.cronamo'
+          assert a['sha256']=='9dd9dcb91e394ebcb5135297b2eb7bd03e9e591f84428e028394e00a29cb2253'
+          assert a['size_bytes']==11181
+          assert a['url']=='https://github.com/amoedo7/StoreAMO-Catalog/releases/download/cronamo-v0.1.0/CronAMO-0.1.0.apk'
+          assert a['verified'] is False
+          print('CRONAMO_REGISTRY_OK')
+          PY
+
+      - name: Rebuild catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python - <<'PY'
+          import json, re
+          c=json.load(open('catalog.json'))
+          a=next(x for x in c['apps'] if x['id']=='cronamo')
+          assert a['status']=='candidate'
+          assert a['source_visibility']=='private'
+          x=next(x for x in a['artifacts'] if x['platform']=='android')
+          assert x['version']=='0.1.0'
+          assert x['version_code']=='1'
+          assert x['application_id']=='com.desarrollamo.cronamo'
+          assert x['url'].startswith('https://github.com/amoedo7/StoreAMO-Catalog/releases/download/')
+          assert re.fullmatch(r'[0-9a-f]{64}', x['sha256'])
+          assert x['sha256']=='9dd9dcb91e394ebcb5135297b2eb7bd03e9e591f84428e028394e00a29cb2253'
+          assert x['size_bytes']==11181
+          print('STOREAMO_CRONAMO_OK')
+          PY
+
+      - name: Commit refreshed catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- catalog.json discovery-report.json; then
+            echo 'Catalog already current'
+            exit 0
+          fi
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add catalog.json discovery-report.json
+          git commit -m 'catalog: publish CronAMO 0.1.0 candidate'
+          git pull --rebase origin main
+          git push origin HEAD:main
