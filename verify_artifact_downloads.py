@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
-"""Verify that every installable Android artifact in catalog.json is really downloadable.
-
-This intentionally performs anonymous HTTPS GETs, because that is what StoreAMO users need.
-It catches the class of failure where metadata looks valid but the public asset is missing,
-private, truncated, or different from the declared SHA-256/size.
-"""
+"""Verify that every installable Android artifact in catalog.json is really downloadable."""
 from __future__ import annotations
 
 import hashlib
@@ -26,10 +21,7 @@ def fail(message: str) -> None:
 
 
 def download(url: str) -> bytes:
-    request = urllib.request.Request(
-        url,
-        headers={"User-Agent": USER_AGENT, "Accept": "application/octet-stream"},
-    )
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/octet-stream"})
     with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
         if response.status != 200:
             raise RuntimeError(f"HTTP {response.status}")
@@ -41,9 +33,7 @@ def download(url: str) -> bytes:
 
 def main() -> int:
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-    checked = 0
-    errors = 0
-
+    checked = errors = 0
     for app in catalog.get("apps", []):
         app_id = app.get("id", "<unknown>")
         for artifact in app.get("artifacts", []):
@@ -54,25 +44,24 @@ def main() -> int:
             expected_sha = str(artifact.get("sha256", "")).lower()
             expected_size = artifact.get("size_bytes")
             label = f"{app_id} {artifact.get('version', '?')}"
-
             try:
                 if not url.startswith("https://"):
                     raise RuntimeError("artifact URL is not HTTPS")
                 body = download(url)
                 actual_sha = hashlib.sha256(body).hexdigest()
+                actual_size = len(body)
                 if actual_sha != expected_sha:
-                    raise RuntimeError(f"SHA-256 mismatch: expected {expected_sha}, got {actual_sha}")
-                if expected_size is not None and len(body) != int(expected_size):
-                    raise RuntimeError(f"size mismatch: expected {expected_size}, got {len(body)}")
+                    raise RuntimeError(f"SHA-256 mismatch: expected {expected_sha}, got {actual_sha}; downloaded_size={actual_size}")
+                if expected_size is not None and actual_size != int(expected_size):
+                    raise RuntimeError(f"size mismatch: expected {expected_size}, got {actual_size}")
                 with zipfile.ZipFile(io.BytesIO(body)) as apk:
                     bad = apk.testzip()
                     if bad is not None:
                         raise RuntimeError(f"corrupt APK ZIP member: {bad}")
-                print(f"OK {label}: {len(body)} bytes · {actual_sha}")
+                print(f"OK {label}: {actual_size} bytes · {actual_sha}")
             except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, OSError, ValueError, zipfile.BadZipFile, RuntimeError) as exc:
                 errors += 1
                 fail(f"{label}: public download verification failed: {exc}")
-
     if checked == 0:
         fail("catalog contains no Android APK artifacts to verify")
         return 1
