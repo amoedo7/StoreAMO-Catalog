@@ -1,0 +1,15 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "cronamo",
+  "name": "CronAMO",
+  "tagline": "Cronómetro simple con vueltas.",
+  "description": "Cronómetro Android offline con iniciar, pausar, reiniciar y registrar vueltas.",
+  "category": "Herramientas",
+  "audience": "public",
+  "featured": false,
+  "status": "development",
+  "supported_platforms": ["android"],
+  "source": {"visibility": "private"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."},
+  "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
+}
