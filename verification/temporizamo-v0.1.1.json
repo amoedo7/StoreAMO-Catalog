@@ -1,0 +1,24 @@
+{
+  "schema": "storeamo.public-artifact-verification.v1",
+  "app_id": "temporizamo",
+  "version": "0.1.1",
+  "status": "passed",
+  "checked_at": "2026-08-20T15:04:16.742983+00:00",
+  "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/temporizamo-v0.1.1/TemporizAMO-0.1.1.apk",
+  "sha256": "ea2df6bebc3f5c2542ca0b3d2a014e74f1417f6516cd303648aa7705f644110f",
+  "size_bytes": 15889,
+  "application_id": "com.desarrollamo.temporizamo",
+  "version_code": "2",
+  "checks": [
+    "android_ci_tests",
+    "assemble_debug",
+    "anonymous_https_download",
+    "sha256",
+    "size_bytes",
+    "apk_zip_integrity",
+    "catalog_candidate",
+    "catalog_application_id"
+  ],
+  "catalog_includes_app": true,
+  "verified": false
+}
