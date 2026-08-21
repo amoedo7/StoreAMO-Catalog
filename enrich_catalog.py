@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Discovery stage: preserve audience metadata after rebuilding catalog.json.
 import json
 import urllib.request
 from pathlib import Path
