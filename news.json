@@ -1,20 +1,53 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-21T14:08:26.825349+00:00",
+  "generated_at": "2026-08-21T14:28:20.069871+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "generalamo-928ee1cf1dbb",
+      "id": "generalamo-6c5493fed98f",
       "app_id": "generalamo",
       "app_name": "GeneralAMO",
       "type": "release",
       "title": "Nueva versión de GeneralAMO",
-      "summary": "GeneralAMO 0.1.14: selector válido por casilla",
-      "published_at": "2026-08-21T14:05:35+00:00",
+      "summary": "publish GeneralAMO 0.1.15 interaction fix",
+      "published_at": "2026-08-21T14:23:59+00:00",
       "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "generalamo-90bf440a9b56",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "release",
+      "title": "Nueva versión de GeneralAMO",
+      "summary": "bump GeneralAMO to 0.1.15",
+      "published_at": "2026-08-21T14:23:44+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "generalamo-e76f207b4707",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "tests",
+      "title": "Pruebas en GeneralAMO",
+      "summary": "cover tap-through guard and Wi-Fi parity",
+      "published_at": "2026-08-21T14:23:33+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-bbe58baf6c0e",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.72 · identity redesign and news filters",
+      "published_at": "2026-08-21T14:16:55+00:00",
+      "status": "development",
       "source_visibility": "public"
     },
     {
@@ -47,17 +80,6 @@
       "title": "Nueva versión de StoreAMO",
       "summary": "remove one-shot StoreAMO 0.4.3.71 release verifier [skip ci]",
       "published_at": "2026-08-21T10:20:31+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-2267960aa752",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "remove one-shot signature migration patcher [skip ci]",
-      "published_at": "2026-08-21T10:20:24+00:00",
       "status": "development",
       "source_visibility": "public"
     },
@@ -225,39 +247,6 @@
       "published_at": "2026-08-20T06:59:22+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "generalamo-5497cefbd678",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "GeneralAMO 0.1.13 · cierre estable responsive",
-      "published_at": "2026-08-19T15:44:06+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-d1cf7749c353",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "GeneralAMO 0.1.12 · reglas, historial y juego Wi‑Fi",
-      "published_at": "2026-08-19T15:18:25+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-7937feb9255f",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "GeneralAMO 0.1.11 · publicar UI real y reparar Nueva partida (#2)",
-      "published_at": "2026-08-19T13:24:48+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
     },
     {
       "id": "plataformamo-8b996e5ddfd9",
