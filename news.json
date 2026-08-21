@@ -1,19 +1,63 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-21T09:56:47.933233+00:00",
+  "generated_at": "2026-08-21T14:08:26.825349+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "storeamo-74a30e36010f",
+      "id": "generalamo-928ee1cf1dbb",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "release",
+      "title": "Nueva versión de GeneralAMO",
+      "summary": "GeneralAMO 0.1.14: selector válido por casilla",
+      "published_at": "2026-08-21T14:05:35+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-3750f95d4dcf",
       "app_id": "storeamo",
       "app_name": "StoreAMO",
-      "type": "build",
-      "title": "StoreAMO prepara cambios",
-      "summary": "trigger StoreAMO signature migration branch patch",
-      "published_at": "2026-08-21T09:56:30+00:00",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "remove obsolete StoreAMO 0.4.3.67 one-shot repair [skip ci]",
+      "published_at": "2026-08-21T10:22:03+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-7208d53df38c",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "remove one-shot StoreAMO 0.4.3.71 release trigger [skip ci]",
+      "published_at": "2026-08-21T10:21:25+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-f5ea191c3429",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "remove one-shot StoreAMO 0.4.3.71 release verifier [skip ci]",
+      "published_at": "2026-08-21T10:20:31+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-2267960aa752",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "remove one-shot signature migration patcher [skip ci]",
+      "published_at": "2026-08-21T10:20:24+00:00",
       "status": "development",
       "source_visibility": "public"
     },
@@ -27,39 +71,6 @@
       "published_at": "2026-08-21T09:56:10+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "storeamo-bd2087cd2d2f",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "build",
-      "title": "StoreAMO prepara cambios",
-      "summary": "temporary branch patch runner for signer migration",
-      "published_at": "2026-08-21T09:54:22+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-e91e9fc518da",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.70 · Desinstalar + Info de aplicación",
-      "published_at": "2026-08-21T08:26:01+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-d8d2b2f87158",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove temporary 0.4.3.70 trigger",
-      "published_at": "2026-08-21T08:18:53+00:00",
-      "status": "development",
-      "source_visibility": "public"
     },
     {
       "id": "mensajamo-registry-17de6a451a68",
@@ -245,17 +256,6 @@
       "title": "Nueva versión de GeneralAMO",
       "summary": "GeneralAMO 0.1.11 · publicar UI real y reparar Nueva partida (#2)",
       "published_at": "2026-08-19T13:24:48+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-67bf21b08fce",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "GeneralAMO 0.1.10 · semáforo, UX y versión estable",
-      "published_at": "2026-08-19T12:55:32+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
