@@ -1,0 +1,44 @@
+name: refresh-signing-continuity-fix
+
+on:
+  push:
+    branches:
+      - fix/android-signing-continuity
+    paths:
+      - registry/depositamo.json
+      - android-signing-pins.json
+      - scripts/validate_android_signing_pins.py
+      - .github/workflows/refresh-signing-continuity-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/android-signing-continuity
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Rebuild catalog from canonical registry
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python scripts/validate_android_signing_pins.py
+      - name: Commit generated catalog
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Signing Guard'
+          git config user.email 'actions@users.noreply.github.com'
+          git add catalog.json discovery-report.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'catalog: refresh after DepositAMO signing pin'
+            git push origin HEAD:fix/android-signing-continuity
+          fi
