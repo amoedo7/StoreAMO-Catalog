@@ -1,11 +1,44 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-21T14:28:20.069871+00:00",
+  "generated_at": "2026-08-21T21:02:10.510725+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "generalamo-4e4a100f19fc",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "release",
+      "title": "Nueva versión de GeneralAMO",
+      "summary": "GeneralAMO 0.1.16: ajustes y actualización directa",
+      "published_at": "2026-08-21T20:59:48+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-fc8f41b73818",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.73 · Solar Calm",
+      "published_at": "2026-08-21T20:55:19+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-36d2c67f1609",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "define StoreAMO 0.4.3.73 Solar Calm direction",
+      "published_at": "2026-08-21T20:51:07+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "generalamo-6c5493fed98f",
       "app_id": "generalamo",
@@ -29,17 +62,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "generalamo-e76f207b4707",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "tests",
-      "title": "Pruebas en GeneralAMO",
-      "summary": "cover tap-through guard and Wi-Fi parity",
-      "published_at": "2026-08-21T14:23:33+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
       "id": "storeamo-bbe58baf6c0e",
       "app_id": "storeamo",
       "app_name": "StoreAMO",
@@ -58,28 +80,6 @@
       "title": "Nueva versión de StoreAMO",
       "summary": "remove obsolete StoreAMO 0.4.3.67 one-shot repair [skip ci]",
       "published_at": "2026-08-21T10:22:03+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-7208d53df38c",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot StoreAMO 0.4.3.71 release trigger [skip ci]",
-      "published_at": "2026-08-21T10:21:25+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-f5ea191c3429",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot StoreAMO 0.4.3.71 release verifier [skip ci]",
-      "published_at": "2026-08-21T10:20:31+00:00",
       "status": "development",
       "source_visibility": "public"
     },
