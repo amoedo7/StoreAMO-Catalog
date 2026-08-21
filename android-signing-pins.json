@@ -1,0 +1,18 @@
+{
+  "schema": "storeamo.android-signing-pins.v1",
+  "packages": {
+    "com.desarrollamo.depositamo": {
+      "app_id": "depositamo",
+      "canonical_cert_sha256": "2b7ab55c5337735cad89c8006d94bf929244db21277fc9b7bd053f6ab8c5f685",
+      "canonical_since_version": "0.2.0",
+      "legacy_certificates": [
+        {
+          "cert_sha256": "653719d327467463b0081e52c330e1859d91876160e82fbd5068aef3bbb6f7b6",
+          "last_version": "0.1.0",
+          "reason": "legacy CI debug signer; private key was ephemeral and was not preserved",
+          "migration": "one_time_reinstall_required"
+        }
+      ]
+    }
+  }
+}
