@@ -1,21 +1,43 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-21T09:17:50.332058+00:00",
+  "generated_at": "2026-08-21T09:56:47.933233+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "depositamo-registry-82d8041ac873",
+      "id": "storeamo-74a30e36010f",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "build",
+      "title": "StoreAMO prepara cambios",
+      "summary": "trigger StoreAMO signature migration branch patch",
+      "published_at": "2026-08-21T09:56:30+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "depositamo-registry-0e0c7464d25e",
       "app_id": "depositamo",
       "app_name": "DepositAMO",
       "type": "candidate",
       "title": "DepositAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-21T09:17:24+00:00",
+      "published_at": "2026-08-21T09:56:10+00:00",
       "status": "candidate",
       "source_visibility": "private"
+    },
+    {
+      "id": "storeamo-bd2087cd2d2f",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "build",
+      "title": "StoreAMO prepara cambios",
+      "summary": "temporary branch patch runner for signer migration",
+      "published_at": "2026-08-21T09:54:22+00:00",
+      "status": "development",
+      "source_visibility": "public"
     },
     {
       "id": "storeamo-e91e9fc518da",
@@ -36,28 +58,6 @@
       "title": "Nueva versión de StoreAMO",
       "summary": "remove temporary 0.4.3.70 trigger",
       "published_at": "2026-08-21T08:18:53+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-0b47ed5cf827",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove temporary 0.4.3.70 workflow",
-      "published_at": "2026-08-21T08:18:48+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-899288f31b0a",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot 0.4.3.70 preparer",
-      "published_at": "2026-08-21T08:18:41+00:00",
       "status": "development",
       "source_visibility": "public"
     },
