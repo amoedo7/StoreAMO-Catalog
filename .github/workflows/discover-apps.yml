@@ -1,4 +1,4 @@
-# StoreAMO discovery v3: catalog + public activity feed; private sources remain sanitized.
+# StoreAMO discovery v3: catalog + public activity feed; private sources remain sanitized. Refresh GeneralAMO 0.1.15.
 name: discover-apps
 
 on:
