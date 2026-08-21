@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-21T08:46:13+00:00",
+  "generated_at": "2026-08-21T09:17:39+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -472,8 +472,8 @@
     {
       "id": "depositamo",
       "name": "DepositAMO",
-      "tagline": "El depósito de materia prima para crear y mejorar apps.",
-      "description": "Recibe material desordenado —capturas, textos, documentos, código, prototipos, APK/ZIP y otros archivos—, conserva los originales, calcula SHA-256, deduplica, extrae metadata, clasifica y genera índices/mapas. Ese contexto alimenta candidatos de fábrica para crear nuevas apps o mejorar las que ya existen.",
+      "tagline": "Materia prima e ideas para crear y mejorar apps.",
+      "description": "Recibe material desordenado —capturas, textos, documentos, código, prototipos, APK/ZIP y otros archivos— y también patrones útiles de aplicaciones de referencia. Conserva originales, deduplica por SHA-256, clasifica, genera mapas y prepara un Factory Inbox para convertir ese contexto en nuevas apps o mejoras concretas.",
       "category": "Herramientas",
       "audience": "team",
       "featured": false,
@@ -486,7 +486,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "DepositAMO 0.1.0 real: DEPOSITAR, VER DEPÓSITO y GENERAR MAPA; Android Share para uno o varios archivos; SHA-256 y deduplicación; clasificación clear/review/sensitive; object storage privado e índices/mapas para convertir material bruto en contexto de nuevas apps o mejoras. Source privado. APK firmado y publicado por el circuito OIDC seguro; no se declara StoreAMO Verified."
+        "notes": "DepositAMO 0.2.0: DEPOSITAR, COPIAR IDEA, VER DEPÓSITO, GENERAR MAPA y CREAR / MEJORAR. COPIAR IDEA registra app de referencia, patrón funcional, observación, adaptación y app destino con política principles_only; no copia código, marcas, textos ni activos de terceros. CREAR / MEJORAR genera Factory Inbox para nuevas apps o mejoras. Source privado. APK firmado con identidad estable y publicación HTTPS verificada; no se declara StoreAMO Verified."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -503,17 +503,17 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.1.0",
-          "version_code": "100",
-          "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0/DepositAMO-0.1.0.apk",
-          "sha256": "b57c8ba441084e6706e35b0dbbbaea810b8342dfe2453c83b5adcbaccb095a11",
-          "size_bytes": 29524,
+          "version": "0.2.0",
+          "version_code": "200",
+          "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.2.0/DepositAMO-0.2.0.apk",
+          "sha256": "e8de9664387741ae6c75b7ea44d5374301aa650eb83ce2824a9859e41f1aec29",
+          "size_bytes": 35344,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.depositamo",
           "signing_cert_sha256": "2b7ab55c5337735cad89c8006d94bf929244db21277fc9b7bd053f6ab8c5f685",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0/release.json",
+          "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.2.0/release.json",
           "source": "distribution-registry"
         }
       ],
