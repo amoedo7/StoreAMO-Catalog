@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-21T09:17:39+00:00",
+  "generated_at": "2026-08-21T09:45:32+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -486,7 +486,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "DepositAMO 0.2.0: DEPOSITAR, COPIAR IDEA, VER DEPÓSITO, GENERAR MAPA y CREAR / MEJORAR. COPIAR IDEA registra app de referencia, patrón funcional, observación, adaptación y app destino con política principles_only; no copia código, marcas, textos ni activos de terceros. CREAR / MEJORAR genera Factory Inbox para nuevas apps o mejoras. Source privado. APK firmado con identidad estable y publicación HTTPS verificada; no se declara StoreAMO Verified."
+        "notes": "DepositAMO 0.2.1: funciona local-first y deja la sincronización segura como opcional. Incluye DEPOSITAR, COPIAR IDEA, VER DEPÓSITO, GENERAR MAPA y CREAR / MEJORAR. La identidad Android queda fijada al certificado canónico para que las próximas versiones sean actualizaciones reales y no reinstalaciones. La instalación legacy 0.1.0 reconstruida con una clave debug efímera requiere una única migración porque esa clave privada no fue preservada."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -503,17 +503,17 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.2.0",
-          "version_code": "200",
-          "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.2.0/DepositAMO-0.2.0.apk",
-          "sha256": "e8de9664387741ae6c75b7ea44d5374301aa650eb83ce2824a9859e41f1aec29",
-          "size_bytes": 35344,
+          "version": "0.2.1",
+          "version_code": "201",
+          "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.2.1/DepositAMO-0.2.1.apk",
+          "sha256": "b1a405919a1442f11fbdd13837aff2f37aeb5610765ead8e31f39418850b1f12",
+          "size_bytes": 48124,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.depositamo",
           "signing_cert_sha256": "2b7ab55c5337735cad89c8006d94bf929244db21277fc9b7bd053f6ab8c5f685",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.2.0/release.json",
+          "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.2.1/release.json",
           "source": "distribution-registry"
         }
       ],
