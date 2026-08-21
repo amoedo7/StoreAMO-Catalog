@@ -2,8 +2,8 @@
   "schema": "storeamo.app.v1",
   "id": "depositamo",
   "name": "DepositAMO",
-  "tagline": "La materia prima de la fábrica DesarrollAMO.",
-  "description": "Deposita capturas, textos, documentos, código, APK/ZIP y prototipos desde Android o navegador. Conserva originales, deduplica por SHA-256, clasifica material y genera mapas para alimentar nuevas ideas y actualizaciones.",
+  "tagline": "El depósito de materia prima para crear y mejorar apps.",
+  "description": "Recibe material desordenado —capturas, textos, documentos, código, prototipos, APK/ZIP y otros archivos—, conserva los originales, calcula SHA-256, deduplica, extrae metadata, clasifica y genera índices/mapas. Ese contexto alimenta candidatos de fábrica para crear nuevas apps o mejorar las que ya existen.",
   "category": "Herramientas",
   "audience": "team",
   "featured": false,
@@ -13,18 +13,16 @@
     "web"
   ],
   "source": {
-    "visibility": "public",
-    "repository": "amoedo7/StoreAMO-Catalog",
-    "path": "rebuild-android/depositamo"
+    "visibility": "private"
   },
   "distribution": {
     "repository": "amoedo7/StoreAMO-Catalog",
-    "mode": "direct-artifacts"
+    "mode": "external"
   },
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "DepositAMO 0.1.0 reconstruida desde cero. Guarda textos y archivos localmente, calcula SHA-256 y conserva historial. APK público directo probado por descarga HTTPS anónima. Candidate; no se declara Verified."
+    "notes": "DepositAMO 0.1.0 real: DEPOSITAR, VER DEPÓSITO y GENERAR MAPA; Android Share para uno o varios archivos; SHA-256 y deduplicación; clasificación clear/review/sensitive; object storage privado e índices/mapas para convertir material bruto en contexto de nuevas apps o mejoras. Source privado. APK firmado y publicado por el circuito OIDC seguro; no se declara StoreAMO Verified."
   },
   "verification": {
     "policy": "storeamo-default-v1",
@@ -42,16 +40,16 @@
       "arch": "universal",
       "format": "apk",
       "version": "0.1.0",
-      "version_code": "1",
-      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/depositamo/0.1.0/DepositAMO-0.1.0.apk",
-      "sha256": "b2cfbfb46980572b090194369faf20b867a67772fca9823be6f6497f495b0c4e",
-      "signing_cert_sha256": "653719d327467463b0081e52c330e1859d91876160e82fbd5068aef3bbb6f7b6",
-      "size_bytes": 17543,
-      "min_os": "Android 6.0 (API 23)",
+      "version_code": "100",
+      "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0/DepositAMO-0.1.0.apk",
+      "sha256": "b57c8ba441084e6706e35b0dbbbaea810b8342dfe2453c83b5adcbaccb095a11",
+      "signing_cert_sha256": "2b7ab55c5337735cad89c8006d94bf929244db21277fc9b7bd053f6ab8c5f685",
+      "size_bytes": 29524,
+      "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.depositamo",
       "verified": false,
       "verification_report": null,
-      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/depositamo/0.1.0",
+      "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.1.0/release.json",
       "source": "distribution-registry"
     }
   ]
