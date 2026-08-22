@@ -2,8 +2,8 @@
   "schema": "storeamo.app.v1",
   "id": "factoryamo",
   "name": "FactoryAMO",
-  "tagline": "La cabina móvil de la fábrica de apps de DesarrollAMO.",
-  "description": "Controlador Android candidate para preparar nuevas ideas de apps desde el teléfono, visualizar el estado de la fábrica y trabajar con un flujo conversacional. Incluye el cubo 2x2 animado como identidad de FactoryAMO, preparación local de especificaciones y el flujo CREAR RÁPIDO / A FONDO. La conexión segura con DAMO y los proveedores de IA todavía no está habilitada en esta versión y no se embeben tokens ni credenciales.",
+  "tagline": "La cabina Android que coordina proyectos con ChatGPT mediante Llegada.",
+  "description": "FactoryAMO 0.1.1 introduce Relay Mode: crea un JOB local por proyecto, prepara la instrucción para ChatGPT, abre la app de ChatGPT, conserva el enlace de cada conversación y consulta por HTTPS el estado real que ChatGPT publica en GitHub bajo factoryamo-relay/llegada/<JOB_ID>/status.json. El cubo 2x2, la barra y las etapas reflejan el estado recibido; no se embeben claves de OpenAI ni GitHub. Esta candidate usa únicamente el permiso INTERNET para leer Llegada.",
   "category": "Desarrollo",
   "audience": "team",
   "featured": true,
@@ -19,24 +19,24 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "FactoryAMO 0.1.0 candidate para pruebas internas/amigos. El APK fue compilado por CI desde source privado, valida identidad, ZIP y cero permisos Android. La firma actual es de candidate/debug y todavía no se declara StoreAMO Verified."
+    "notes": "FactoryAMO 0.1.1 candidate para pruebas internas. Relay Mode usa ChatGPT mediante Intent/portapapeles y GitHub Llegada como canal de retorno. v0.1.0 fue firmada con una clave debug efímera que no se preservó: para migrar a 0.1.1 se requiere una única desinstalación/reinstalación. Desde 0.1.1 se fija una identidad de firma candidate estable. No se declara StoreAMO Verified hasta completar smoke test físico del relay en Android."
   },
   "artifacts": [
     {
       "platform": "android",
       "arch": "universal",
       "format": "apk",
-      "version": "0.1.0",
-      "version_code": "1",
-      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/factoryamo/0.1.0/FactoryAMO-0.1.0.apk",
-      "sha256": "8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907",
-      "size_bytes": 14881,
+      "version": "0.1.1",
+      "version_code": "2",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/factoryamo/0.1.1/FactoryAMO-0.1.1.apk",
+      "sha256": "a5a576c51bd388b5c2577f8ed2b5fccd153ada81c2b9d1f45e365c50d49b9af8",
+      "size_bytes": 23405,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.factoryamo",
-      "signing_cert_sha256": "473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561",
+      "signing_cert_sha256": "b21e2701a13c54008727dc0d6931daff25df7bdf2e0562b5e0f657ca766179de",
       "verified": false,
       "verification_report": null,
-      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/factoryamo/0.1.0",
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/factoryamo/0.1.1",
       "source": "distribution-registry"
     }
   ],
