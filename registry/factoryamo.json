@@ -1,0 +1,47 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "factoryamo",
+  "name": "FactoryAMO",
+  "tagline": "La cabina móvil de la fábrica de apps de DesarrollAMO.",
+  "description": "Controlador Android candidate para preparar nuevas ideas de apps desde el teléfono, visualizar el estado de la fábrica y trabajar con un flujo conversacional. Incluye el cubo 2x2 animado como identidad de FactoryAMO, preparación local de especificaciones y el flujo CREAR RÁPIDO / A FONDO. La conexión segura con DAMO y los proveedores de IA todavía no está habilitada en esta versión y no se embeben tokens ni credenciales.",
+  "category": "Desarrollo",
+  "audience": "team",
+  "featured": true,
+  "status": "candidate",
+  "supported_platforms": ["android"],
+  "source": {
+    "visibility": "private"
+  },
+  "distribution": {
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "mode": "direct-artifacts"
+  },
+  "store": {
+    "homepage": "https://desarrollamo.com.ar",
+    "screenshots": [],
+    "notes": "FactoryAMO 0.1.0 candidate para pruebas internas/amigos. El APK fue compilado por CI desde source privado, valida identidad, ZIP y cero permisos Android. La firma actual es de candidate/debug y todavía no se declara StoreAMO Verified."
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "universal",
+      "format": "apk",
+      "version": "0.1.0",
+      "version_code": "1",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/factoryamo/0.1.0/FactoryAMO-0.1.0.apk",
+      "sha256": "8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907",
+      "size_bytes": 14881,
+      "min_os": "Android 8.0 (API 26)",
+      "application_id": "com.desarrollamo.factoryamo",
+      "signing_cert_sha256": "473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561",
+      "verified": false,
+      "verification_report": null,
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/factoryamo/0.1.0",
+      "source": "distribution-registry"
+    }
+  ],
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": ["integrity", "application-id", "signature", "permissions", "https", "device-smoke"]
+  }
+}
