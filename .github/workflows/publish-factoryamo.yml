@@ -24,6 +24,35 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
+      - name: Materialize exact 0.1.1 artifact when staged
+        shell: bash
+        run: |
+          set -euo pipefail
+          EXPECTED_SHA='a5a576c51bd388b5c2577f8ed2b5fccd153ada81c2b9d1f45e365c50d49b9af8'
+          EXPECTED_SIZE='23405'
+          TARGET='public-artifacts/factoryamo/0.1.1/FactoryAMO-0.1.1.apk'
+          if [ ! -f "$TARGET" ]; then
+            for p in 00 01 02 03; do test -f ".release-input/factoryamo-0.1.1.part${p}"; done
+            cat .release-input/factoryamo-0.1.1.part00 \
+                .release-input/factoryamo-0.1.1.part01 \
+                .release-input/factoryamo-0.1.1.part02 \
+                .release-input/factoryamo-0.1.1.part03 | base64 -d > /tmp/FactoryAMO-0.1.1.apk
+            test "$(stat -c%s /tmp/FactoryAMO-0.1.1.apk)" = "$EXPECTED_SIZE"
+            test "$(sha256sum /tmp/FactoryAMO-0.1.1.apk | awk '{print $1}')" = "$EXPECTED_SHA"
+            unzip -tqq /tmp/FactoryAMO-0.1.1.apk
+            git config user.name 'StoreAMO Artifact Bot'
+            git config user.email 'actions@users.noreply.github.com'
+            git pull --rebase origin main
+            mkdir -p "$(dirname "$TARGET")"
+            cp /tmp/FactoryAMO-0.1.1.apk "$TARGET"
+            git add -f "$TARGET"
+            git commit -m 'artifact(factoryamo): publish exact 0.1.1 relay candidate APK'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          else
+            test "$(stat -c%s "$TARGET")" = "$EXPECTED_SIZE"
+            test "$(sha256sum "$TARGET" | awk '{print $1}')" = "$EXPECTED_SHA"
+          fi
       - uses: android-actions/setup-android@v3
       - name: Install Android build tools
         run: sdkmanager "build-tools;35.0.0" >/dev/null
@@ -36,24 +65,24 @@ jobs:
           EXPECTED_SIZE='23405'
           EXPECTED_CERT='b21e2701a13c54008727dc0d6931daff25df7bdf2e0562b5e0f657ca766179de'
           for attempt in $(seq 1 20); do
-            if curl -fsSL --retry 2 --connect-timeout 15 --max-time 60 "$URL" -o /tmp/FactoryAMO-0.1.1.apk; then
-              SHA="$(sha256sum /tmp/FactoryAMO-0.1.1.apk | awk '{print $1}')"
-              SIZE="$(stat -c%s /tmp/FactoryAMO-0.1.1.apk)"
+            if curl -fsSL --retry 2 --connect-timeout 15 --max-time 60 "$URL" -o /tmp/public-FactoryAMO-0.1.1.apk; then
+              SHA="$(sha256sum /tmp/public-FactoryAMO-0.1.1.apk | awk '{print $1}')"
+              SIZE="$(stat -c%s /tmp/public-FactoryAMO-0.1.1.apk)"
               if [ "$SHA" = "$EXPECTED_SHA" ] && [ "$SIZE" = "$EXPECTED_SIZE" ]; then break; fi
             fi
             sleep 3
           done
-          test "$(sha256sum /tmp/FactoryAMO-0.1.1.apk | awk '{print $1}')" = "$EXPECTED_SHA"
-          test "$(stat -c%s /tmp/FactoryAMO-0.1.1.apk)" = "$EXPECTED_SIZE"
-          unzip -tqq /tmp/FactoryAMO-0.1.1.apk
+          test "$(sha256sum /tmp/public-FactoryAMO-0.1.1.apk | awk '{print $1}')" = "$EXPECTED_SHA"
+          test "$(stat -c%s /tmp/public-FactoryAMO-0.1.1.apk)" = "$EXPECTED_SIZE"
+          unzip -tqq /tmp/public-FactoryAMO-0.1.1.apk
           BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
-          "$BT/aapt" dump badging /tmp/FactoryAMO-0.1.1.apk | tee /tmp/factoryamo.badging
+          "$BT/aapt" dump badging /tmp/public-FactoryAMO-0.1.1.apk | tee /tmp/factoryamo.badging
           grep -q "package: name='com.desarrollamo.factoryamo' versionCode='2' versionName='0.1.1'" /tmp/factoryamo.badging
-          "$BT/aapt" dump permissions /tmp/FactoryAMO-0.1.1.apk | tee /tmp/factoryamo.permissions
+          "$BT/aapt" dump permissions /tmp/public-FactoryAMO-0.1.1.apk | tee /tmp/factoryamo.permissions
           grep -q "android.permission.INTERNET" /tmp/factoryamo.permissions
           EXTRA="$(grep '^uses-permission:' /tmp/factoryamo.permissions | grep -v "android.permission.INTERNET" || true)"
           test -z "$EXTRA"
-          "$BT/apksigner" verify --verbose --print-certs /tmp/FactoryAMO-0.1.1.apk | tee /tmp/factoryamo.signature
+          "$BT/apksigner" verify --verbose --print-certs /tmp/public-FactoryAMO-0.1.1.apk | tee /tmp/factoryamo.signature
           CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/factoryamo.signature | head -n1 | tr 'A-F' 'a-f')"
           test "$CERT" = "$EXPECTED_CERT"
           echo FACTORYAMO_011_PUBLIC_ARTIFACT_PASS
