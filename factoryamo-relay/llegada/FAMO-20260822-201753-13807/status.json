@@ -1,0 +1,11 @@
+{
+  "schema": "factoryamo.relay.v1",
+  "job_id": "FAMO-20260822-201753-13807",
+  "app_name": "ClimaAMO",
+  "stage": "NEW",
+  "progress": 2,
+  "message": "Trabajo recibido por FactoryAMO. Iniciando inspeccion de patrones Android y publicacion StoreAMO existentes.",
+  "question": "",
+  "updated_at": "2026-08-22T20:18:30+02:00",
+  "storeamo_url": ""
+}
