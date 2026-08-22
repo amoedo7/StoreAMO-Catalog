@@ -1,0 +1,170 @@
+name: finalize-cerebramo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - cerebramo-finalize.trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finalize-cerebramo-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Record finalize run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p verification
+          cat > verification/cerebramo-finalize-run.json <<EOF
+          {
+            "schema": "desarrollamo.ci-run.v1",
+            "app": "CerebrAMO",
+            "version": "0.1.0",
+            "run_id": "${GITHUB_RUN_ID}",
+            "source_sha": "${GITHUB_SHA}",
+            "job_status": "in_progress"
+          }
+          EOF
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add verification/cerebramo-finalize-run.json
+          git commit -m 'ci(cerebramo): record finalizer run [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Reverify public artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk'
+          curl -fL --retry 5 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/CerebrAMO-0.1.0.apk
+          test "$(stat -c%s /tmp/CerebrAMO-0.1.0.apk)" = '29375'
+          test "$(sha256sum /tmp/CerebrAMO-0.1.0.apk | awk '{print $1}')" = 'ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c'
+          unzip -tqq /tmp/CerebrAMO-0.1.0.apk
+          echo 'CEREBRAMO_PUBLIC_APK_PASS'
+
+      - name: Rebuild catalog and Buenas Nuevas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          for attempt in 1 2 3 4 5; do
+            python build_news.py --owner amoedo7
+            if python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          a=app['artifacts'][0]
+          assert app['status']=='candidate'
+          assert app['source_visibility']=='private'
+          assert a['verified'] is True
+          assert a['sha256']=='ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c'
+          assert a['signing_cert_sha256']=='c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8'
+          n=json.load(open('news.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          print('CEREBRAMO_FINAL_CATALOG_PASS')
+          PY
+            then break; fi
+            sleep 3
+          done
+          python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          assert app['artifacts'][0]['verified'] is True
+          n=json.load(open('news.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          PY
+
+      - name: Commit catalog and news
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add catalog.json discovery-report.json news.json
+          git commit -m 'catalog: add CerebrAMO 0.1.0 to StoreAMO' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Verify exact public StoreAMO contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main'
+          OK=0
+          for attempt in 1 2 3 4 5; do
+            curl -fsSL "$BASE/catalog.json" -o /tmp/catalog-public.json || true
+            curl -fsSL "$BASE/news.json" -o /tmp/news-public.json || true
+            if python - <<'PY'
+          import json
+          c=json.load(open('/tmp/catalog-public.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          a=app['artifacts'][0]
+          assert app['status']=='candidate'
+          assert app['source_visibility']=='private'
+          assert a['verified'] is True
+          assert a['url']=='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk'
+          assert a['sha256']=='ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c'
+          n=json.load(open('/tmp/news-public.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          PY
+            then OK=1; break; fi
+            sleep 3
+          done
+          test "$OK" = '1'
+          echo 'CEREBRAMO_PUBLIC_STORE_READY'
+
+      - name: Remove finalize trigger
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard HEAD
+          git clean -fd
+          git pull --rebase origin main
+          if test -f cerebramo-finalize.trigger; then
+            git rm cerebramo-finalize.trigger
+            git commit -m 'ci(cerebramo): remove finalizer trigger [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Record finalize result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard HEAD
+          git clean -fd
+          git pull --rebase origin main
+          mkdir -p verification
+          cat > verification/cerebramo-finalize-run.json <<EOF
+          {
+            "schema": "desarrollamo.ci-run.v1",
+            "app": "CerebrAMO",
+            "version": "0.1.0",
+            "run_id": "${GITHUB_RUN_ID}",
+            "source_sha": "${GITHUB_SHA}",
+            "job_status": "${{ job.status }}"
+          }
+          EOF
+          git add verification/cerebramo-finalize-run.json
+          git commit -m 'ci(cerebramo): record finalizer result [skip ci]' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
