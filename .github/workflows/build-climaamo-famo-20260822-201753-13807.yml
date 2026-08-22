@@ -1,22 +1,21 @@
 name: build-climaamo-famo-20260822-201753-13807
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO/**'
-      - '.github/workflows/build-climaamo-famo-20260822-201753-13807.yml'
+  issues:
+    types: [opened]
   workflow_dispatch:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: climaamo-famo-20260822-201753-13807
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   android:
+    if: github.event_name != 'issues' || github.event.issue.title == 'BUILD_CLIMAAMO_FAMO_20260822_201753_13807'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -76,3 +75,9 @@ jobs:
           git commit -m 'artifact(climaamo): publish verified 0.1.0 candidate APK' || true
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Close trigger issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close "${{ github.event.issue.number }}" --comment 'ClimaAMO 0.1.0 build, tests and artifact publication completed.'
