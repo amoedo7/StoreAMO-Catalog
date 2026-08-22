@@ -13,6 +13,12 @@
           "migration": "one_time_reinstall_required"
         }
       ]
+    },
+    "com.desarrollamo.cerebramo": {
+      "app_id": "cerebramo",
+      "canonical_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
+      "canonical_since_version": "0.1.0",
+      "legacy_certificates": []
     }
   }
 }

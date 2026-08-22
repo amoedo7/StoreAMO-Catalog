@@ -1,0 +1,21 @@
+{
+  "schema": "storeamo.verification-report.v1",
+  "app_id": "cerebramo",
+  "version": "0.1.0",
+  "version_code": "1",
+  "application_id": "com.desarrollamo.cerebramo",
+  "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk",
+  "sha256": "ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c",
+  "size_bytes": 29375,
+  "signing_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
+  "verified": true,
+  "verified_at": "2026-08-22T12:19:20+00:00",
+  "checks": {
+    "integrity": {"status":"PASS","evidence":"Public staged APK is 29375 bytes with the expected SHA-256."},
+    "application_id": {"status":"PASS","evidence":"APK identity is com.desarrollamo.cerebramo, versionCode 1, versionName 0.1.0, minSdk 26."},
+    "signature": {"status":"PASS","evidence":"APK signature verifies. Certificate SHA-256 c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8."},
+    "permissions": {"status":"PASS","evidence":"The packaged manifest declares only android.permission.INTERNET; cleartext traffic is blocked by app policy."},
+    "tests": {"status":"PASS","evidence":"CerebrAMO signed candidate GitHub Actions run 32572179185 completed tests and release build successfully before publication."},
+    "https": {"status":"PASS","evidence":"The exact HTTPS direct URL consumed by StoreAMO was downloaded and matched size, SHA-256 and signing certificate."}
+  }
+}
