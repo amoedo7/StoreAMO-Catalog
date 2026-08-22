@@ -10,74 +10,47 @@ permissions:
   issues: write
 
 concurrency:
-  group: climaamo-famo-20260822-201753-13807
+  group: factoryamo-020-emergency-publish
   cancel-in-progress: false
 
 jobs:
-  android:
+  publish-factoryamo:
     if: github.event_name != 'issues' || github.event.issue.title == 'BUILD_CLIMAAMO_FAMO_20260822_201753_13807'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 10
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Java 17
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v5
         with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install Android 35
-        shell: bash
-        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-
-      - name: Gradle 8.9
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
-
-      - name: Unit tests and debug build
-        working-directory: factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO
-        run: gradle --no-daemon testDebugUnitTest assembleDebug
-
-      - name: Verify APK
+          fetch-depth: 0
+      - name: Reassemble and verify FactoryAMO 0.2.0
         shell: bash
         run: |
           set -euo pipefail
-          APK='factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO/app/build/outputs/apk/debug/app-debug.apk'
-          test -s "$APK"
-          unzip -tqq "$APK"
-          sha256sum "$APK"
-
-      - name: Upload CI artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ClimaAMO-0.1.0-debug-apk
-          path: factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO/app/build/outputs/apk/debug/app-debug.apk
-          if-no-files-found: error
-
-      - name: Publish verified candidate artifact into catalog repo
+          for p in 00 01 02 03 04; do test -f ".release-input/factoryamo-0.2.0.part${p}"; done
+          cat .release-input/factoryamo-0.2.0.part00 \
+              .release-input/factoryamo-0.2.0.part01 \
+              .release-input/factoryamo-0.2.0.part02 \
+              .release-input/factoryamo-0.2.0.part03 \
+              .release-input/factoryamo-0.2.0.part04 | base64 -d > /tmp/FactoryAMO-0.2.0.apk
+          test "$(stat -c%s /tmp/FactoryAMO-0.2.0.apk)" = '28621'
+          test "$(sha256sum /tmp/FactoryAMO-0.2.0.apk | awk '{print $1}')" = '8187bf7a22ffed6a6e23fda935f61e3858c55a22c43c4f3a53196aaf1279a87e'
+          unzip -tqq /tmp/FactoryAMO-0.2.0.apk
+      - name: Publish exact verified APK
         shell: bash
         run: |
           set -euo pipefail
-          SRC='factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO/app/build/outputs/apk/debug/app-debug.apk'
-          DEST='public-artifacts/climaamo/0.1.0'
+          DEST='public-artifacts/factoryamo/0.2.0'
           mkdir -p "$DEST"
-          cp "$SRC" "$DEST/ClimaAMO-0.1.0.apk"
-          sha256sum "$DEST/ClimaAMO-0.1.0.apk" | awk '{print $1}' > "$DEST/sha256.txt"
-          git config user.name 'FactoryAMO Build Bot'
+          cp /tmp/FactoryAMO-0.2.0.apk "$DEST/FactoryAMO-0.2.0.apk"
+          printf '%s\n' '8187bf7a22ffed6a6e23fda935f61e3858c55a22c43c4f3a53196aaf1279a87e' > "$DEST/sha256.txt"
+          git config user.name 'StoreAMO Artifact Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add -f "$DEST/ClimaAMO-0.1.0.apk" "$DEST/sha256.txt"
-          git commit -m 'artifact(climaamo): publish verified 0.1.0 candidate APK' || true
+          git add -f "$DEST/FactoryAMO-0.2.0.apk" "$DEST/sha256.txt"
+          git commit -m 'artifact(factoryamo): publish exact 0.2.0 mass-production candidate APK' || true
           git pull --rebase origin main
           git push origin HEAD:main
-
       - name: Close trigger issue
         if: github.event_name == 'issues'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh issue close "${{ github.event.issue.number }}" --comment 'ClimaAMO 0.1.0 build, tests and artifact publication completed.'
+        run: gh issue close "${{ github.event.issue.number }}" --comment 'FactoryAMO 0.2.0 exact artifact publication completed.'
