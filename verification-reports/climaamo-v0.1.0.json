@@ -1,0 +1,43 @@
+{
+  "schema": "storeamo.verification-report.v1",
+  "app_id": "climaamo",
+  "version": "0.1.0",
+  "version_code": "1",
+  "application_id": "com.desarrollamo.climaamo",
+  "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.1.0/ClimaAMO-0.1.0.apk",
+  "sha256": "88c8a820e1c76cb4198807f46a2e8a87499f775d7570175a0d2dfbb5d6bccaa1",
+  "size_bytes": 19683,
+  "signing_cert_sha256": "a367903dd262bef57121e87eb2a2f92688b8a4a86e22aedb72e6573ed080315e",
+  "verified": false,
+  "verified_at": "2026-08-22T18:26:16Z",
+  "checks": {
+    "integrity": {
+      "status": "PASS",
+      "evidence": "APK exists, ZIP integrity passed and SHA-256 matches the published checksum."
+    },
+    "application_id": {
+      "status": "PASS",
+      "evidence": "Packaged APK is com.desarrollamo.climaamo, versionCode 1, versionName 0.1.0, minSdk 26, targetSdk 35."
+    },
+    "signature": {
+      "status": "PASS",
+      "evidence": "APK signature verifies; certificate SHA-256 recorded for this candidate build."
+    },
+    "permissions": {
+      "status": "PASS",
+      "evidence": "Packaged manifest declares only android.permission.INTERNET."
+    },
+    "tests": {
+      "status": "PASS",
+      "evidence": "Artifact publication step is reached only after unit tests and assembleDebug succeed in the FactoryAMO build workflow."
+    },
+    "https": {
+      "status": "PASS",
+      "evidence": "Open-Meteo geocoding and forecast HTTPS endpoints returned valid data during verification."
+    },
+    "device_smoke": {
+      "status": "NOT_RUN",
+      "evidence": "Candidate has not yet been smoke-tested on a physical Android device."
+    }
+  }
+}
