@@ -2,10 +2,10 @@
   "schema": "factoryamo.relay.v1",
   "job_id": "FAMO-20260822-201753-13807",
   "app_name": "ClimaAMO",
-  "stage": "TESTING",
-  "progress": 48,
-  "message": "Implementacion Android completa. CI disparado para ejecutar pruebas unitarias y validar el proyecto antes de generar el APK candidate.",
+  "stage": "COMPILING",
+  "progress": 60,
+  "message": "Build Android disparado mediante trigger observable en GitHub. El workflow ejecuta tests unitarios, compila el APK y verifica que el archivo sea valido antes de publicarlo como artefacto candidate.",
   "question": "",
-  "updated_at": "2026-08-22T20:31:00+02:00",
+  "updated_at": "2026-08-22T20:24:20+02:00",
   "storeamo_url": ""
 }
