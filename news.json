@@ -1,21 +1,32 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-22T12:48:50.656252+00:00",
+  "generated_at": "2026-08-22T14:13:23.635076+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "factoryamo-registry-dba1048bdcb5",
+      "id": "factoryamo-registry-fc844c401c92",
       "app_id": "factoryamo",
       "app_name": "FactoryAMO",
       "type": "candidate",
       "title": "FactoryAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-22T12:48:27+00:00",
+      "published_at": "2026-08-22T14:13:05+00:00",
       "status": "candidate",
       "source_visibility": "private"
+    },
+    {
+      "id": "storeamo-3f5009e0226c",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.74 · correct Solar Calm version",
+      "published_at": "2026-08-22T12:58:25+00:00",
+      "status": "development",
+      "source_visibility": "public"
     },
     {
       "id": "cerebramo-registry-8dd5bdedbe99",
@@ -91,17 +102,6 @@
       "title": "Nueva versión de StoreAMO",
       "summary": "StoreAMO 0.4.3.72 · identity redesign and news filters",
       "published_at": "2026-08-21T14:16:55+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-3750f95d4dcf",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove obsolete StoreAMO 0.4.3.67 one-shot repair [skip ci]",
-      "published_at": "2026-08-21T10:22:03+00:00",
       "status": "development",
       "source_visibility": "public"
     },
