@@ -1,0 +1,123 @@
+name: verify-climaamo-famo-20260822-201753-13807
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  verify:
+    if: github.event_name != 'issues' || github.event.issue.title == 'VERIFY_CLIMAAMO_FAMO_20260822_201753_13807'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        run: sdkmanager 'build-tools;35.0.0'
+
+      - name: Verify packaged APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK='public-artifacts/climaamo/0.1.0/ClimaAMO-0.1.0.apk'
+          EXPECTED="$(tr -d '\r\n ' < public-artifacts/climaamo/0.1.0/sha256.txt)"
+          ACTUAL="$(sha256sum "$APK" | awk '{print $1}')"
+          test "$ACTUAL" = "$EXPECTED"
+          unzip -tqq "$APK"
+
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          APKSIGNER="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          "$AAPT" dump badging "$APK" > /tmp/badging.txt
+          "$AAPT" dump permissions "$APK" > /tmp/permissions.txt
+          "$APKSIGNER" verify --print-certs "$APK" > /tmp/signature.txt
+
+          grep -q "package: name='com.desarrollamo.climaamo' versionCode='1' versionName='0.1.0'" /tmp/badging.txt
+          grep -q "sdkVersion:'26'" /tmp/badging.txt
+          grep -q "targetSdkVersion:'35'" /tmp/badging.txt
+          grep -q "android.permission.INTERNET" /tmp/permissions.txt
+          test "$(grep -c '^uses-permission:' /tmp/permissions.txt)" = '1'
+
+          CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/signature.txt | tr -d '[:space:]')"
+          test "${#CERT}" = '64'
+          printf '%s\n' "$CERT" > /tmp/cert.txt
+          printf '%s\n' "$ACTUAL" > /tmp/actual-sha.txt
+
+      - name: Verify Open-Meteo HTTPS endpoints
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          headers={'User-Agent':'ClimaAMO-CI/0.1.0'}
+          u='https://geocoding-api.open-meteo.com/v1/search?name=Malmo&count=1&language=es&format=json'
+          with urllib.request.urlopen(urllib.request.Request(u,headers=headers), timeout=15) as r:
+              g=json.load(r)
+          assert g.get('results'), 'geocoding without results'
+          p=g['results'][0]
+          u=('https://api.open-meteo.com/v1/forecast?latitude=%s&longitude=%s&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5' % (p['latitude'],p['longitude']))
+          with urllib.request.urlopen(urllib.request.Request(u,headers=headers), timeout=15) as r:
+              w=json.load(r)
+          assert 'current' in w and len(w['daily']['time']) == 5
+          print('OPEN_METEO_OK')
+          PY
+
+      - name: Write verification report
+        shell: bash
+        run: |
+          set -euo pipefail
+          CERT="$(cat /tmp/cert.txt)"
+          SHA="$(cat /tmp/actual-sha.txt)"
+          SIZE="$(stat -c%s public-artifacts/climaamo/0.1.0/ClimaAMO-0.1.0.apk)"
+          NOW="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          mkdir -p verification-reports
+          python - "$CERT" "$SHA" "$SIZE" "$NOW" <<'PY'
+          import json, sys
+          cert, sha, size, now = sys.argv[1], sys.argv[2], int(sys.argv[3]), sys.argv[4]
+          report = {
+            'schema':'storeamo.verification-report.v1',
+            'app_id':'climaamo',
+            'version':'0.1.0',
+            'version_code':'1',
+            'application_id':'com.desarrollamo.climaamo',
+            'artifact_url':'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.1.0/ClimaAMO-0.1.0.apk',
+            'sha256':sha,
+            'size_bytes':size,
+            'signing_cert_sha256':cert,
+            'verified':False,
+            'verified_at':now,
+            'checks':{
+              'integrity':{'status':'PASS','evidence':'APK exists, ZIP integrity passed and SHA-256 matches the published checksum.'},
+              'application_id':{'status':'PASS','evidence':'Packaged APK is com.desarrollamo.climaamo, versionCode 1, versionName 0.1.0, minSdk 26, targetSdk 35.'},
+              'signature':{'status':'PASS','evidence':'APK signature verifies; certificate SHA-256 recorded for this candidate build.'},
+              'permissions':{'status':'PASS','evidence':'Packaged manifest declares only android.permission.INTERNET.'},
+              'tests':{'status':'PASS','evidence':'Artifact publication step is reached only after unit tests and assembleDebug succeed in the FactoryAMO build workflow.'},
+              'https':{'status':'PASS','evidence':'Open-Meteo geocoding and forecast HTTPS endpoints returned valid data during verification.'},
+              'device_smoke':{'status':'NOT_RUN','evidence':'Candidate has not yet been smoke-tested on a physical Android device.'}
+            }
+          }
+          open('verification-reports/climaamo-v0.1.0.json','w',encoding='utf-8').write(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+          open('public-artifacts/climaamo/0.1.0/signing-cert-sha256.txt','w',encoding='utf-8').write(cert+'\n')
+          PY
+
+      - name: Commit verification evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'FactoryAMO Verify Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add verification-reports/climaamo-v0.1.0.json public-artifacts/climaamo/0.1.0/signing-cert-sha256.txt
+          git commit -m 'verify(climaamo): record 0.1.0 candidate evidence' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Close trigger issue
+        if: github.event_name == 'issues'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close "${{ github.event.issue.number }}" --comment 'ClimaAMO 0.1.0 packaged APK verification completed.'
