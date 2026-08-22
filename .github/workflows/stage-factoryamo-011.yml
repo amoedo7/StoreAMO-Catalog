@@ -27,14 +27,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f .release-input/factoryamo-0.1.1.part00
-          test -f .release-input/factoryamo-0.1.1.part01
-          test -f .release-input/factoryamo-0.1.1.part02
-          test -f .release-input/factoryamo-0.1.1.part03
-          cat .release-input/factoryamo-0.1.1.part00 \
-              .release-input/factoryamo-0.1.1.part01 \
-              .release-input/factoryamo-0.1.1.part02 \
-              .release-input/factoryamo-0.1.1.part03 | base64 -d > /tmp/FactoryAMO-0.1.1.apk
+          P='.release-input/factoryamo-0.1.1'
+          for n in 00 01 02 03; do test -f "${P}.part${n}"; done
+          PREFIX='UN5JMACBe9vqvI9CpZeeYmL8qawYsdorpwtG6QamyEog4vySRtSfegkJzwtlE2urGhC9KDDh0QZm/SxNPC3b2jWbK5XECPw0DNrN+i0AadhAFW5ScYywK4Q/bzvrPkSosI+VDYJv/qi+TcHEKeNKch61gkIVJKRQ6Lfp3qQ5gvzjtjrsUjve5GN2QowbQK35CWZDcg7G39cDqC927GFFJWCGbPLwN6Bd7ROPgRD+iywGHc25SHnmctZwnlgnAYa8gtGenGYxjBjv+MOZbNhlSwwjHhnVKfL6FBDekD/lKp1VKEb1lQXeSvxrGST2N0jwIDAQABGAoAAAAAAAB3ZXJC'
+          SUFFIX='+A8AAAAAAABBUEsgU2lnIEJsb2NrIDQyUEsBAgADAAAAAAgAIQghAgVHCCs0AAAAOAAAADkAAAAAAAAAAAAAAKSBAAAAAE1FVEEtSU5GL2NvbS9hbmRyb2lkL2J1aWxkL2dyYWRsZS9hcHAtbWV0YWRhdGEucHJvcGVydGllc1BLAQIAAwAAAAAIACEIIQIEgZ5ObgIAAFQEAAALAAAAAAAAAAAAAACkgYsAAABjbGFzc2VzLmRleFBLAQIAAwAAAAAIACEIIQIUJkwohkAAAGx6AAAMAAAAAAAAAAAAAACkgSIDAABjbGFzc2VzMi5kZXhQSwECAAAAAAAACAAhCCEC6GtinWYDAAB0CQAAEwAAAAAAAAAAAAAAAADSQwAAQW5kcm9pZE1hbmlmZXN0LnhtbFBLAQIAAAAAAAAAACEIIQI7tqsWaAIAAGgCAAAOAAAAAAAAAAAAAAAAAGlHAAByZXNvdXJjZXMuYXJzY1BLBQYAAAAABQAFAFcBAAAAWgAAAAA='
+          {
+            cat "${P}.part00" "${P}.part01" "${P}.part02" "${P}.part03"
+            printf '%s' "$PREFIX"
+            printf 'A%.0s' {1..3440}
+            printf '%s' "$SUFFIX"
+          } > /tmp/factoryamo.b64
+          test "$(stat -c%s /tmp/factoryamo.b64)" = '31208'
+          base64 -d /tmp/factoryamo.b64 > /tmp/FactoryAMO-0.1.1.apk
           test "$(stat -c%s /tmp/FactoryAMO-0.1.1.apk)" = '23405'
           test "$(sha256sum /tmp/FactoryAMO-0.1.1.apk | awk '{print $1}')" = 'a5a576c51bd388b5c2577f8ed2b5fccd153ada81c2b9d1f45e365c50d49b9af8'
           unzip -tqq /tmp/FactoryAMO-0.1.1.apk
@@ -48,13 +52,14 @@ jobs:
           mkdir -p public-artifacts/factoryamo/0.1.1
           cp /tmp/FactoryAMO-0.1.1.apk public-artifacts/factoryamo/0.1.1/FactoryAMO-0.1.1.apk
           git add -f public-artifacts/factoryamo/0.1.1/FactoryAMO-0.1.1.apk
-          git rm -f .release-input/factoryamo-0.1.1.part00 \
-                    .release-input/factoryamo-0.1.1.part01 \
-                    .release-input/factoryamo-0.1.1.part02 \
-                    .release-input/factoryamo-0.1.1.part03 \
-                    .github/workflows/stage-factoryamo-011.yml
+          rm -f .release-input/factoryamo-0.1.1.part00 \
+                .release-input/factoryamo-0.1.1.part01 \
+                .release-input/factoryamo-0.1.1.part02 \
+                .release-input/factoryamo-0.1.1.part03 \
+                .release-input/factoryamo-0.1.1.part04 \
+                .release-input/factoryamo-0.1.1.part99 \
+                .release-input/factoryamo-0.1.1.parttrigger
+          git add -A .release-input public-artifacts/factoryamo/0.1.1
           git commit -m 'artifact(factoryamo): publish exact 0.1.1 relay candidate APK'
           git pull --rebase origin main
           git push origin HEAD:main
-
-# retrigger 2026-08-22T19:10+02:00
