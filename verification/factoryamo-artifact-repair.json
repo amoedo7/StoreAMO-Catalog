@@ -1,0 +1,11 @@
+{
+  "schema": "storeamo.artifact-repair.v1",
+  "app_id": "factoryamo",
+  "version": "0.1.0",
+  "application_id": "com.desarrollamo.factoryamo",
+  "sha256": "8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907",
+  "size_bytes": 14881,
+  "signing_cert_sha256": "473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561",
+  "reason": "initial binary transfer did not preserve the APK bytes",
+  "status": "REPAIRED"
+}
