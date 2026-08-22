@@ -1,0 +1,58 @@
+name: stage-factoryamo-020
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.release-input/factoryamo-0.2.0.part*'
+      - '.github/workflows/stage-factoryamo-020.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stage-factoryamo-020
+  cancel-in-progress: false
+
+jobs:
+  publish-exact-binary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Reassemble and verify exact APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          for p in 00 01 02 03 04; do test -f ".release-input/factoryamo-0.2.0.part${p}"; done
+          cat .release-input/factoryamo-0.2.0.part00 \
+              .release-input/factoryamo-0.2.0.part01 \
+              .release-input/factoryamo-0.2.0.part02 \
+              .release-input/factoryamo-0.2.0.part03 \
+              .release-input/factoryamo-0.2.0.part04 | base64 -d > /tmp/FactoryAMO-0.2.0.apk
+          test "$(stat -c%s /tmp/FactoryAMO-0.2.0.apk)" = '28621'
+          test "$(sha256sum /tmp/FactoryAMO-0.2.0.apk | awk '{print $1}')" = '8187bf7a22ffed6a6e23fda935f61e3858c55a22c43c4f3a53196aaf1279a87e'
+          unzip -tqq /tmp/FactoryAMO-0.2.0.apk
+      - name: Publish verified APK bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Artifact Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git pull --rebase origin main
+          TARGET='public-artifacts/factoryamo/0.2.0/FactoryAMO-0.2.0.apk'
+          mkdir -p "$(dirname "$TARGET")"
+          cp /tmp/FactoryAMO-0.2.0.apk "$TARGET"
+          git add -f "$TARGET"
+          git rm -f .release-input/factoryamo-0.2.0.part00 \
+                    .release-input/factoryamo-0.2.0.part01 \
+                    .release-input/factoryamo-0.2.0.part02 \
+                    .release-input/factoryamo-0.2.0.part03 \
+                    .release-input/factoryamo-0.2.0.part04 \
+                    .github/workflows/stage-factoryamo-020.yml
+          git commit -m 'artifact(factoryamo): publish exact 0.2.0 mass-production candidate APK'
+          git pull --rebase origin main
+          git push origin HEAD:main
