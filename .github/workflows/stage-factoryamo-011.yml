@@ -56,3 +56,5 @@ jobs:
           git commit -m 'artifact(factoryamo): publish exact 0.1.1 relay candidate APK'
           git pull --rebase origin main
           git push origin HEAD:main
+
+# retrigger 2026-08-22T19:10+02:00
