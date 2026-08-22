@@ -1,0 +1,125 @@
+name: publish-factoryamo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/publish-factoryamo.yml'
+      - 'registry/factoryamo.json'
+      - 'public-artifacts/factoryamo/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-factoryamo-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  publish-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        run: sdkmanager "build-tools;35.0.0" >/dev/null
+
+      - name: Verify public FactoryAMO artifact contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/factoryamo/0.1.0/FactoryAMO-0.1.0.apk'
+          EXPECTED_SHA='8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907'
+          EXPECTED_SIZE='14881'
+          EXPECTED_CERT='473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561'
+          for attempt in 1 2 3 4 5; do
+            if curl -fsSL --retry 3 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/FactoryAMO-0.1.0.apk; then
+              SHA="$(sha256sum /tmp/FactoryAMO-0.1.0.apk | awk '{print $1}')"
+              SIZE="$(stat -c%s /tmp/FactoryAMO-0.1.0.apk)"
+              if [ "$SHA" = "$EXPECTED_SHA" ] && [ "$SIZE" = "$EXPECTED_SIZE" ]; then break; fi
+            fi
+            sleep 2
+          done
+          test "$(sha256sum /tmp/FactoryAMO-0.1.0.apk | awk '{print $1}')" = "$EXPECTED_SHA"
+          test "$(stat -c%s /tmp/FactoryAMO-0.1.0.apk)" = "$EXPECTED_SIZE"
+          unzip -tqq /tmp/FactoryAMO-0.1.0.apk
+          BT="$ANDROID_SDK_ROOT/build-tools/35.0.0"
+          "$BT/aapt" dump badging /tmp/FactoryAMO-0.1.0.apk | tee /tmp/factoryamo.badging
+          grep -q "package: name='com.desarrollamo.factoryamo' versionCode='1' versionName='0.1.0'" /tmp/factoryamo.badging
+          "$BT/aapt" dump permissions /tmp/FactoryAMO-0.1.0.apk | tee /tmp/factoryamo.permissions
+          if grep -q '^uses-permission:' /tmp/factoryamo.permissions; then
+            echo 'FactoryAMO v0.1.0 must request zero Android permissions' >&2
+            exit 1
+          fi
+          "$BT/apksigner" verify --verbose --print-certs /tmp/FactoryAMO-0.1.0.apk | tee /tmp/factoryamo.signature
+          CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/factoryamo.signature | head -n1 | tr 'A-F' 'a-f')"
+          test "$CERT" = "$EXPECTED_CERT"
+          echo FACTORYAMO_PUBLIC_ARTIFACT_PASS
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Rebuild StoreAMO catalog and news
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          python build_news.py --owner amoedo7
+          python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          app=next(x for x in c['apps'] if x['id']=='factoryamo')
+          a=next(x for x in app['artifacts'] if x['platform']=='android')
+          assert app['status']=='candidate'
+          assert app['source_visibility']=='private'
+          assert a['application_id']=='com.desarrollamo.factoryamo'
+          assert a['sha256']=='8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907'
+          assert a['size_bytes']==14881
+          assert a['signing_cert_sha256']=='473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561'
+          n=json.load(open('news.json'))
+          print('FACTORYAMO_CATALOG_PASS', app['name'], a['version'])
+          print('FACTORYAMO_NEWS_PRESENT', any(x.get('app_id')=='factoryamo' for x in n.get('items', [])))
+          PY
+
+      - name: Commit StoreAMO publication state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git pull --rebase origin main
+          git add catalog.json discovery-report.json news.json
+          git commit -m 'catalog: publish FactoryAMO 0.1.0 candidate' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Verify StoreAMO public catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4 5; do
+            if curl -fsSL --retry 3 'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/catalog.json' -o /tmp/catalog-public.json; then
+              if python - <<'PY'
+          import json
+          c=json.load(open('/tmp/catalog-public.json'))
+          a=next((x for x in c['apps'] if x['id']=='factoryamo'), None)
+          assert a is not None
+          art=a['artifacts'][0]
+          assert art['sha256']=='8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907'
+          print('FACTORYAMO_VISIBLE_IN_PUBLIC_CATALOG')
+          PY
+              then exit 0; fi
+            fi
+            sleep 3
+          done
+          exit 1
