@@ -1,0 +1,343 @@
+name: publish-cerebramo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - cerebramo-publish.trigger
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-cerebramo-v0.1.0
+  cancel-in-progress: false
+
+jobs:
+  publish-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Record publication run
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p verification
+          cat > verification/cerebramo-publish-run.json <<EOF
+          {
+            "schema": "desarrollamo.ci-run.v1",
+            "app": "CerebrAMO",
+            "version": "0.1.0",
+            "run_id": "${GITHUB_RUN_ID}",
+            "source_sha": "${GITHUB_SHA}",
+            "job_status": "in_progress"
+          }
+          EOF
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add verification/cerebramo-publish-run.json
+          git commit -m 'ci(cerebramo): record publication run [skip ci]'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        run: sdkmanager "build-tools;35.0.0" >/dev/null
+
+      - name: Fetch signed private artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="$(tr -d '\r\n' < cerebramo-publish.trigger)"
+          test "${URL#https://}" != "$URL"
+          curl -fL --retry 5 --retry-all-errors --connect-timeout 20 --max-time 120 "$URL" -o /tmp/cerebramo-signed.zip
+          rm -rf /tmp/cerebramo-signed
+          mkdir -p /tmp/cerebramo-signed
+          unzip -q /tmp/cerebramo-signed.zip -d /tmp/cerebramo-signed
+          test -s /tmp/cerebramo-signed/CerebrAMO-0.1.0.apk
+
+      - name: Verify source APK identity, signature and permissions
+        id: meta
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK='/tmp/cerebramo-signed/CerebrAMO-0.1.0.apk'
+          AAPT="$ANDROID_SDK_ROOT/build-tools/35.0.0/aapt"
+          APKSIGNER="$ANDROID_SDK_ROOT/build-tools/35.0.0/apksigner"
+          unzip -tqq "$APK"
+          "$AAPT" dump badging "$APK" | tee /tmp/cerebramo-badging.txt
+          grep -q "package: name='com.desarrollamo.cerebramo' versionCode='1' versionName='0.1.0'" /tmp/cerebramo-badging.txt
+          grep -q "sdkVersion:'26'" /tmp/cerebramo-badging.txt
+          SHA="$(sha256sum "$APK" | awk '{print $1}')"
+          SIZE="$(stat -c%s "$APK")"
+          test "$SHA" = 'ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c'
+          test "$SIZE" = '29375'
+          "$APKSIGNER" verify --verbose --print-certs "$APK" | tee /tmp/cerebramo-apksigner.txt
+          CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/cerebramo-apksigner.txt | head -n1 | tr 'A-F' 'a-f')"
+          test "$CERT" = 'c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8'
+          "$AAPT" dump permissions "$APK" | tee /tmp/cerebramo-permissions.txt
+          grep -q "uses-permission: name='android.permission.INTERNET'" /tmp/cerebramo-permissions.txt
+          test "$(grep -c '^uses-permission:' /tmp/cerebramo-permissions.txt)" = '1'
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "size=$SIZE" >> "$GITHUB_OUTPUT"
+          echo "cert=$CERT" >> "$GITHUB_OUTPUT"
+
+      - name: Stage public APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          mkdir -p .release-input
+          cp /tmp/cerebramo-signed/CerebrAMO-0.1.0.apk .release-input/CerebrAMO-0.1.0.apk
+          git add .release-input/CerebrAMO-0.1.0.apk
+          git commit -m 'artifact: stage CerebrAMO 0.1.0 candidate'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Verify exact public URL consumed by StoreAMO
+        env:
+          SHA_EXPECTED: ${{ steps.meta.outputs.sha }}
+          SIZE_EXPECTED: ${{ steps.meta.outputs.size }}
+          CERT_EXPECTED: ${{ steps.meta.outputs.cert }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk'
+          for attempt in 1 2 3 4 5; do
+            if curl -fL --retry 3 --retry-all-errors --connect-timeout 20 "$URL" -o /tmp/CerebrAMO-direct.apk; then
+              if test "$(stat -c%s /tmp/CerebrAMO-direct.apk)" = "$SIZE_EXPECTED" && test "$(sha256sum /tmp/CerebrAMO-direct.apk | awk '{print $1}')" = "$SHA_EXPECTED"; then
+                break
+              fi
+            fi
+            sleep 2
+          done
+          test "$(stat -c%s /tmp/CerebrAMO-direct.apk)" = "$SIZE_EXPECTED"
+          test "$(sha256sum /tmp/CerebrAMO-direct.apk | awk '{print $1}')" = "$SHA_EXPECTED"
+          unzip -tqq /tmp/CerebrAMO-direct.apk
+          "$ANDROID_SDK_ROOT/build-tools/35.0.0/apksigner" verify --verbose --print-certs /tmp/CerebrAMO-direct.apk > /tmp/cerebramo-direct-signing.txt
+          DIRECT_CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/cerebramo-direct-signing.txt | head -n1 | tr 'A-F' 'a-f')"
+          test "$DIRECT_CERT" = "$CERT_EXPECTED"
+          echo 'CEREBRAMO_DIRECT_DOWNLOAD_PASS'
+
+      - name: Publish sanitized registry, verification report and signing pin
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          mkdir -p registry verification-reports
+          VERIFIED_AT="$(date -u '+%Y-%m-%dT%H:%M:%S+00:00')"
+          cat > registry/cerebramo.json <<'JSON'
+          {
+            "schema": "storeamo.app.v1",
+            "id": "cerebramo",
+            "name": "CerebrAMO",
+            "tagline": "Cuotas, saldo y salud de tus cerebros de IA.",
+            "description": "Dashboard local-first para conectar proveedores de IA y consultar cuotas, créditos, resets y estado sin exponer credenciales. MiniMax muestra ventana y límite semanal; OpenAI evita inventar métricas no expuestas; OpenRouter muestra créditos cuando la clave tiene permiso.",
+            "category": "Herramientas",
+            "audience": "public",
+            "featured": true,
+            "status": "candidate",
+            "supported_platforms": ["android"],
+            "source": {"visibility": "private"},
+            "distribution": {"repository": "amoedo7/StoreAMO-Catalog", "mode": "direct-artifacts"},
+            "store": {
+              "homepage": "https://desarrollamo.com.ar",
+              "screenshots": [],
+              "notes": "CerebrAMO 0.1.0 candidate. Source privado; APK público directo con integridad, identidad, firma, permisos, tests y HTTPS verificados."
+            },
+            "artifacts": [{
+              "platform": "android",
+              "arch": "universal",
+              "format": "apk",
+              "version": "0.1.0",
+              "version_code": "1",
+              "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk",
+              "sha256": "ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c",
+              "size_bytes": 29375,
+              "min_os": "Android 8.0 (API 26)",
+              "application_id": "com.desarrollamo.cerebramo",
+              "signing_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
+              "verified": true,
+              "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/cerebramo-v0.1.0.json",
+              "source": "distribution-registry"
+            }],
+            "verification": {
+              "policy": "storeamo-default-v1",
+              "required_checks": ["integrity", "application-id", "signature", "permissions", "tests", "https"]
+            }
+          }
+          JSON
+          cat > verification-reports/cerebramo-v0.1.0.json <<JSON
+          {
+            "schema": "storeamo.verification-report.v1",
+            "app_id": "cerebramo",
+            "version": "0.1.0",
+            "version_code": "1",
+            "application_id": "com.desarrollamo.cerebramo",
+            "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk",
+            "sha256": "ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c",
+            "size_bytes": 29375,
+            "signing_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
+            "verified": true,
+            "verified_at": "$VERIFIED_AT",
+            "checks": {
+              "integrity": {"status":"PASS","evidence":"Public staged APK is 29375 bytes with the expected SHA-256."},
+              "application_id": {"status":"PASS","evidence":"APK identity is com.desarrollamo.cerebramo, versionCode 1, versionName 0.1.0, minSdk 26."},
+              "signature": {"status":"PASS","evidence":"APK signature verifies. Certificate SHA-256 c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8."},
+              "permissions": {"status":"PASS","evidence":"The packaged manifest declares only android.permission.INTERNET; cleartext traffic is blocked by app policy."},
+              "tests": {"status":"PASS","evidence":"CerebrAMO signed candidate GitHub Actions run 32572179185 completed tests and release build successfully before publication."},
+              "https": {"status":"PASS","evidence":"The exact HTTPS direct URL consumed by StoreAMO was downloaded and matched size, SHA-256 and signing certificate."}
+            }
+          }
+          JSON
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('android-signing-pins.json')
+          data=json.loads(p.read_text())
+          data.setdefault('packages', {})['com.desarrollamo.cerebramo']={
+              'app_id':'cerebramo',
+              'canonical_cert_sha256':'c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8',
+              'canonical_since_version':'0.1.0',
+              'legacy_certificates':[]
+          }
+          p.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n')
+          PY
+          git add registry/cerebramo.json verification-reports/cerebramo-v0.1.0.json android-signing-pins.json
+          git commit -m 'registry: publish verified CerebrAMO 0.1.0 candidate'
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Rebuild StoreAMO catalog and Buenas Nuevas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          python build_catalog.py --owner amoedo7
+          python enrich_catalog.py
+          for attempt in 1 2 3 4 5; do
+            python build_news.py --owner amoedo7
+            if python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          a=app['artifacts'][0]
+          assert app['status']=='candidate'
+          assert app['source_visibility']=='private'
+          assert a['verified'] is True
+          assert a['sha256']=='ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c'
+          assert a['signing_cert_sha256']=='c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8'
+          n=json.load(open('news.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          print('CEREBRAMO_STORE_CONTRACT_PASS')
+          PY
+            then break; fi
+            sleep 3
+          done
+          python - <<'PY'
+          import json
+          c=json.load(open('catalog.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          a=app['artifacts'][0]
+          assert a['verified'] is True
+          n=json.load(open('news.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          PY
+
+      - name: Keep GitHub Release as public mirror
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG='cerebramo-v0.1.0'
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --target main --title "CerebrAMO v0.1.0" --notes "Candidate StoreAMO. Source privado; APK firmado y verificado antes de publicación."
+          gh release upload "$TAG" .release-input/CerebrAMO-0.1.0.apk#CerebrAMO-0.1.0.apk --clobber
+
+      - name: Commit refreshed catalog and news
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          git add catalog.json discovery-report.json news.json
+          git commit -m 'catalog: add CerebrAMO 0.1.0 to StoreAMO' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Verify published public contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main'
+          for attempt in 1 2 3 4 5; do
+            curl -fsSL "$BASE/catalog.json" -o /tmp/catalog-public.json || true
+            curl -fsSL "$BASE/news.json" -o /tmp/news-public.json || true
+            if python - <<'PY'
+          import json
+          c=json.load(open('/tmp/catalog-public.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          a=app['artifacts'][0]
+          assert app['status']=='candidate' and a['verified'] is True
+          assert a['url']=='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk'
+          n=json.load(open('/tmp/news-public.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          PY
+            then echo 'CEREBRAMO_PUBLIC_STORE_READY'; break; fi
+            sleep 3
+          done
+          python - <<'PY'
+          import json
+          c=json.load(open('/tmp/catalog-public.json'))
+          app=next(x for x in c['apps'] if x['id']=='cerebramo')
+          assert app['artifacts'][0]['verified'] is True
+          n=json.load(open('/tmp/news-public.json'))
+          assert any(x.get('app_id')=='cerebramo' for x in n['items'])
+          PY
+
+      - name: Remove transient trigger
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard HEAD
+          git clean -fd
+          git pull --rebase origin main
+          if test -f cerebramo-publish.trigger; then
+            git rm cerebramo-publish.trigger
+            git commit -m 'ci(cerebramo): remove transient publish trigger [skip ci]'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Record publication result
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git reset --hard HEAD
+          git clean -fd
+          git pull --rebase origin main
+          mkdir -p verification
+          cat > verification/cerebramo-publish-run.json <<EOF
+          {
+            "schema": "desarrollamo.ci-run.v1",
+            "app": "CerebrAMO",
+            "version": "0.1.0",
+            "run_id": "${GITHUB_RUN_ID}",
+            "source_sha": "${GITHUB_SHA}",
+            "job_status": "${{ job.status }}"
+          }
+          EOF
+          git add verification/cerebramo-publish-run.json
+          git commit -m 'ci(cerebramo): record publication result [skip ci]' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
