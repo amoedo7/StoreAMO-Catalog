@@ -1,10 +1,10 @@
 {
   "schema": "storeamo.discovery.report.v2",
-  "generated_at": "2026-08-21T21:02:02+00:00",
+  "generated_at": "2026-08-22T12:20:57+00:00",
   "owner": "amoedo7",
-  "apps_discovered": 28,
+  "apps_discovered": 29,
   "public_repository_entries": 13,
-  "private_registry_entries": 15,
+  "private_registry_entries": 16,
   "warnings": [],
   "errors": []
 }
