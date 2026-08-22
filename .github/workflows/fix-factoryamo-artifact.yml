@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'repair/factoryamo-0.1.0.apk.b64'
+      - 'repair/factoryamo-parts/**'
       - '.github/workflows/fix-factoryamo-artifact.yml'
   workflow_dispatch:
 
@@ -20,13 +20,17 @@ jobs:
         with:
           fetch-depth: 0
       - uses: android-actions/setup-android@v3
-      - name: Install Android build tools
-        run: sdkmanager "build-tools;35.0.0" >/dev/null
-      - name: Decode and verify exact FactoryAMO APK
+      - name: Reconstruct and verify exact FactoryAMO APK
         shell: bash
         run: |
           set -euo pipefail
-          base64 -d repair/factoryamo-0.1.0.apk.b64 > /tmp/FactoryAMO-0.1.0.apk
+          cat repair/factoryamo-parts/00.b64part repair/factoryamo-parts/01.b64part repair/factoryamo-parts/02.b64part repair/factoryamo-parts/03-prefix.b64part > /tmp/factoryamo.b64
+          python - <<'PY' >> /tmp/factoryamo.b64
+          print('A' * 3532, end='')
+          PY
+          cat repair/factoryamo-parts/03-suffix.b64part >> /tmp/factoryamo.b64
+          test "$(wc -c < /tmp/factoryamo.b64)" = '19844'
+          base64 -d /tmp/factoryamo.b64 > /tmp/FactoryAMO-0.1.0.apk
           test "$(stat -c%s /tmp/FactoryAMO-0.1.0.apk)" = '14881'
           test "$(sha256sum /tmp/FactoryAMO-0.1.0.apk | awk '{print $1}')" = '8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907'
           unzip -tqq /tmp/FactoryAMO-0.1.0.apk
@@ -51,14 +55,14 @@ jobs:
             "sha256": "8ba047a9d2701eac9b7626c25eb3e533c0342eba380e37ed74abc72f602c8907",
             "size_bytes": 14881,
             "signing_cert_sha256": "473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561",
-            "reason": "binary transfer encoded the APK incorrectly during initial publication",
+            "reason": "initial binary transfer did not preserve the APK bytes",
             "status": "REPAIRED"
           }
           JSON
           git config user.name 'StoreAMO Repair Bot'
           git config user.email 'actions@users.noreply.github.com'
           git add -f public-artifacts/factoryamo/0.1.0/FactoryAMO-0.1.0.apk verification/factoryamo-artifact-repair.json
-          git rm -f repair/factoryamo-0.1.0.apk.b64 factoryamo-fix.trigger .github/workflows/fix-factoryamo-artifact.yml || true
+          git rm -rf repair/factoryamo-parts repair/factoryamo-0.1.0.apk.b64 factoryamo-fix.trigger .github/workflows/fix-factoryamo-artifact.yml || true
           git commit -m 'fix(factoryamo): restore exact verified 0.1.0 APK bytes'
           git pull --rebase origin main
           git push origin HEAD:main
