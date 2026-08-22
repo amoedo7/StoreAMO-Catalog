@@ -19,6 +19,19 @@
       "canonical_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
       "canonical_since_version": "0.1.0",
       "legacy_certificates": []
+    },
+    "com.desarrollamo.factoryamo": {
+      "app_id": "factoryamo",
+      "canonical_cert_sha256": "b21e2701a13c54008727dc0d6931daff25df7bdf2e0562b5e0f657ca766179de",
+      "canonical_since_version": "0.1.1",
+      "legacy_certificates": [
+        {
+          "cert_sha256": "473441518b7c10ca2c0d193a81499c012f9c7083dab628688c6198879b536561",
+          "last_version": "0.1.0",
+          "reason": "legacy CI debug signer; private key was ephemeral and was not preserved",
+          "migration": "one_time_reinstall_required"
+        }
+      ]
     }
   }
 }
