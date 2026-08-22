@@ -1,0 +1,47 @@
+name: factoryamo-emergency-publish
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  publish:
+    if: github.event.issue.title == 'PUBLISH_FACTORYAMO_0_1_1'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Reassemble exact APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .release-input/factoryamo-0.1.1.part00 \
+              .release-input/factoryamo-0.1.1.part01 \
+              .release-input/factoryamo-0.1.1.part02 \
+              .release-input/factoryamo-0.1.1.part03 | base64 -d > /tmp/FactoryAMO-0.1.1.apk
+          test "$(stat -c%s /tmp/FactoryAMO-0.1.1.apk)" = '23405'
+          test "$(sha256sum /tmp/FactoryAMO-0.1.1.apk | awk '{print $1}')" = 'a5a576c51bd388b5c2577f8ed2b5fccd153ada81c2b9d1f45e365c50d49b9af8'
+          unzip -tqq /tmp/FactoryAMO-0.1.1.apk
+      - name: Publish exact APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Artifact Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git pull --rebase origin main
+          mkdir -p public-artifacts/factoryamo/0.1.1
+          cp /tmp/FactoryAMO-0.1.1.apk public-artifacts/factoryamo/0.1.1/FactoryAMO-0.1.1.apk
+          git add -f public-artifacts/factoryamo/0.1.1/FactoryAMO-0.1.1.apk
+          git commit -m 'artifact(factoryamo): publish exact 0.1.1 relay candidate APK' || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+      - name: Close trigger issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue close "${{ github.event.issue.number }}" --comment 'FactoryAMO 0.1.1 exact artifact published.'
