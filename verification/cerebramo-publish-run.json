@@ -4,5 +4,5 @@
   "version": "0.1.0",
   "run_id": "32572647260",
   "source_sha": "be3053cb073022b7db8b356aeaaebf240cd94b21",
-  "job_status": "in_progress"
+  "job_status": "failure"
 }
