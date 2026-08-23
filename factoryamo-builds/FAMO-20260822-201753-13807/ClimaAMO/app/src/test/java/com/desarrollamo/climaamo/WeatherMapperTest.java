@@ -15,6 +15,12 @@ public class WeatherMapperTest {
     }
 
     @Test
+    public void distinguishesClearDayAndNight() {
+        assertEquals("☀️", WeatherMapper.emoji(0, true));
+        assertEquals("🌙", WeatherMapper.emoji(0, false));
+    }
+
+    @Test
     public void providesStableFallback() {
         assertEquals("Condiciones variables", WeatherMapper.label(1000));
         assertEquals("🌡️", WeatherMapper.emoji(1000));
