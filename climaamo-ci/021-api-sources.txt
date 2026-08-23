@@ -1,0 +1,1 @@
+Sources intended for 0.2.1: Open-Meteo Forecast API, Open-Meteo Air Quality API, MET Norway Locationforecast 2.0. No API keys embedded.
