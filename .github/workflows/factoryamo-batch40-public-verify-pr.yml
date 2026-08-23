@@ -13,225 +13,134 @@ jobs:
   verify40:
     if: github.event.pull_request.title == 'FACTORYAMO BATCH40 VERIFY FAMO-20260822-201753-13807'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 35
     env:
       BATCH: factoryamo-builds/FAMO-20260822-201753-13807/Batch40
       STATUS: factoryamo-relay/llegada/FAMO-20260822-201753-13807/status.json
-      REPORT: verification-reports/factoryamo-batch40-public.json
     steps:
       - uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
-      - name: Register all 40 candidates in StoreAMO
+      - name: Check whether the 40 staged APKs already exist
+        id: staged
         shell: bash
         run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          import json, os, re
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import hashlib, json, os
           from pathlib import Path
-
-          batch=Path(os.environ['BATCH'])
-          meta=json.loads((batch/'build-meta.json').read_text())
-          apps=meta.get('apps',[])
-          if len(apps)!=40:
-              raise SystemExit(f'Expected 40 apps, got {len(apps)}')
-
-          registry=Path('registry')
-          registry.mkdir(exist_ok=True)
-          reports=Path('verification-reports')
-          reports.mkdir(exist_ok=True)
-
-          for a in apps:
-              slug=a['id']; name=a['name']
-              config=batch/'app'/'src'/slug/'assets'/'config.js'
-              if not config.exists():
-                  raise SystemExit(f'{slug}: missing flavor config.js')
-              text=config.read_text(encoding='utf-8').strip()
-              m=re.fullmatch(r'window\.APP_CONFIG=(\{.*\});?',text)
-              if not m:
-                  raise SystemExit(f'{slug}: invalid APP_CONFIG')
-              cfg=json.loads(m.group(1))
-              if cfg.get('id')!=slug or cfg.get('name')!=name:
-                  raise SystemExit(f'{slug}: APP_CONFIG identity mismatch')
-              tagline=str(cfg.get('tagline') or f'Utilidad local {name}').strip()
-              app_id=f'com.desarrollamo.{slug}'
-              report_path=reports/f'{slug}-v0.1.0.json'
-              app_report={
-                  'schema':'storeamo.verification.v1',
-                  'app_id':slug,
-                  'name':name,
-                  'version':'0.1.0',
-                  'job_id':'FAMO-20260822-201753-13807',
-                  'checks':{
-                      'self_tests':True,
-                      'android_build':True,
-                      'application_id':True,
-                      'signature':True,
-                      'permissions':True,
-                      'artifact_integrity':True,
-                      'public_https':False,
-                      'device_smoke':False
-                  },
-                  'artifact':{
-                      'url':a['url'],
-                      'sha256':a['sha256'],
-                      'size_bytes':a['size_bytes'],
-                      'application_id':app_id,
-                      'signing_cert_sha256':a['cert']
-                  },
-                  'status':'candidate',
-                  'note':'Candidate técnico. Falta instalación real en Android para device-smoke y promoción futura a Verified.'
-              }
-              report_path.write_text(json.dumps(app_report,ensure_ascii=False,indent=2)+'\n')
-
-              manifest={
-                  'schema':'storeamo.app.v1',
-                  'id':slug,
-                  'name':name,
-                  'tagline':tagline,
-                  'description':f'{tagline}. App Android local-first del lote FactoryAMO, sin cuenta, sin telemetría y sin dependencias de red.',
-                  'category':'Utilidades',
-                  'audience':'public',
-                  'featured':False,
-                  'status':'candidate',
-                  'supported_platforms':['android'],
-                  'source':{
-                      'visibility':'public',
-                      'repository':'https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40'
-                  },
-                  'store':{
-                      'homepage':'https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40',
-                      'screenshots':[],
-                      'notes':f'{name} 0.1.0 candidate. {tagline}. Falta device-smoke en Android físico para promoción futura a StoreAMO Verified.'
-                  },
-                  'verification':{
-                      'policy':'storeamo-default-v1',
-                      'required_checks':['integrity','application-id','signature','permissions','tests','https','device-smoke']
-                  },
-                  'artifacts':[{
-                      'platform':'android',
-                      'arch':'universal',
-                      'format':'apk',
-                      'version':'0.1.0',
-                      'version_code':'1',
-                      'url':a['url'],
-                      'sha256':a['sha256'],
-                      'size_bytes':a['size_bytes'],
-                      'min_os':'Android 8.0 (API 26)',
-                      'application_id':app_id,
-                      'signing_cert_sha256':a['cert'],
-                      'verified':False,
-                      'verification_report':f'https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/{slug}-v0.1.0.json',
-                      'release_url':f'https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/{slug}/0.1.0',
-                      'source':'distribution-registry'
-                  }]
-              }
-              (registry/f'{slug}.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
-
-          print('PASS generated 40 StoreAMO registry manifests and 40 technical reports')
+          meta_path=Path(os.environ['BATCH'])/'build-meta.json'
+          ready=False
+          if meta_path.exists():
+              try:
+                  apps=json.loads(meta_path.read_text()).get('apps',[])
+                  ready=len(apps)==40
+                  for a in apps:
+                      p=Path(a['apk'])
+                      if not p.exists():
+                          ready=False; break
+                      body=p.read_bytes()
+                      if len(body)!=a['size_bytes'] or hashlib.sha256(body).hexdigest()!=a['sha256']:
+                          ready=False; break
+              except Exception:
+                  ready=False
+          print('ready='+('true' if ready else 'false'))
           PY
 
-          python3 build_catalog.py
+      - uses: actions/setup-java@v5
+        if: steps.staged.outputs.ready != 'true'
+        with:
+          distribution: temurin
+          java-version: '17'
 
-      - name: Verify candidate catalog and all 40 public APKs
+      - uses: android-actions/setup-android@v3
+        if: steps.staged.outputs.ready != 'true'
+
+      - uses: gradle/actions/setup-gradle@v4
+        if: steps.staged.outputs.ready != 'true'
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Install Android SDK
+        if: steps.staged.outputs.ready != 'true'
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0" >/dev/null
+
+      - name: Compile all 40 Android variants
+        if: steps.staged.outputs.ready != 'true'
+        working-directory: factoryamo-builds/FAMO-20260822-201753-13807/Batch40
+        run: gradle --no-daemon :app:assembleDebug --stacktrace
+
+      - name: Package the 40 APKs into public-artifacts and rebuild StoreAMO
+        if: steps.staged.outputs.ready != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          export PATH="$ANDROID_HOME/build-tools/35.0.0:$PATH"
+          python3 -u "$BATCH/generate.py" package
+          python3 build_catalog.py
+          python3 - <<'PY'
+          import json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          p=Path(os.environ['STATUS']); d=json.loads(p.read_text())
+          d.update(
+              stage='PUBLISHING', current_state='PUBLISHING', current_index=40,
+              current_app='SlugAMO', completed=40, blocked=0,
+              message='FactoryAMO Batch40: 40/40 APK empaquetados y 40/40 entradas StoreAMO preparadas. Pendiente merge a main para la verificación HTTPS pública final.',
+              last_completed_action='Compilados y empaquetados los 40 APK dentro de public-artifacts; catálogo reconstruido.',
+              next_action='Fusionar a main y verificar 40/40 descargas públicas por HTTP 200, tamaño y SHA-256.',
+              updated_at=datetime.now(timezone.utc).isoformat()
+          )
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Validate all 40 staged APKs and catalog entries locally
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import hashlib, json, os, time, urllib.request
-          from datetime import datetime, timezone
+          import hashlib, json, os
           from pathlib import Path
-
           meta=json.loads((Path(os.environ['BATCH'])/'build-meta.json').read_text())
           apps=meta.get('apps',[])
           if len(apps)!=40:
               raise SystemExit(f'Expected 40 apps, got {len(apps)}')
           ids=[a['id'] for a in apps]
           if len(set(ids))!=40:
-              raise SystemExit('Duplicate app ids in Batch40')
-
+              raise SystemExit('Duplicate app ids')
           catalog=json.loads(Path('catalog.json').read_text())
           blob=json.dumps(catalog,ensure_ascii=False).lower()
-          missing=[slug for slug in ids if slug.lower() not in blob]
-          if missing:
-              raise SystemExit('Missing StoreAMO catalog entries: '+', '.join(missing))
-
-          pending={a['id']:a for a in apps}
-          results={}
-          last={}
-          for round_no in range(1,13):
-              for slug,a in list(pending.items()):
-                  try:
-                      req=urllib.request.Request(a['url'],headers={'User-Agent':'FactoryAMO-Batch40-Verifier/1.0','Cache-Control':'no-cache'})
-                      with urllib.request.urlopen(req,timeout=30) as r:
-                          body=r.read(); code=r.status; ctype=r.headers.get('Content-Type','')
-                      got=hashlib.sha256(body).hexdigest()
-                      ok=(code==200 and len(body)==a['size_bytes'] and got==a['sha256'] and not body.lstrip().startswith(b'<'))
-                      if ok:
-                          results[slug]={
-                              'index':a.get('index'), 'id':slug, 'name':a.get('name',slug),
-                              'url':a['url'], 'http_status':code, 'size_bytes':len(body),
-                              'sha256':got, 'expected_sha256':a['sha256'],
-                              'catalog_visible':True, 'public_download_verified':True
-                          }
-                          del pending[slug]
-                          print(f'PASS {slug} HTTP={code} bytes={len(body)} sha256={got}')
-                      else:
-                          last[slug]=f'HTTP={code} bytes={len(body)} expected_bytes={a["size_bytes"]} type={ctype} sha={got} expected_sha={a["sha256"]}'
-                  except Exception as e:
-                      last[slug]=repr(e)
-              if not pending:
-                  break
-              print(f'round {round_no}: waiting for {len(pending)} public APKs')
-              time.sleep(5)
-
-          if pending:
-              for slug in pending:
-                  print('FAIL',slug,last.get(slug,'unknown'))
-              raise SystemExit(f'{len(pending)} public downloads failed verification')
-
-          now=datetime.now(timezone.utc).isoformat()
-          report={
-              'schema':'factoryamo.batch40.public-verification.v1',
-              'job_id':'FAMO-20260822-201753-13807',
-              'verified_at':now,
-              'catalog_visible_count':40,
-              'public_download_verified_count':40,
-              'checks':['catalog entry generated','HTTP 200','exact byte size','SHA-256 exact match','response is not HTML'],
-              'apps':[results[slug] for slug in ids]
-          }
-          rp=Path(os.environ['REPORT']); rp.parent.mkdir(parents=True,exist_ok=True)
-          rp.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-
-          sp=Path(os.environ['STATUS']); status=json.loads(sp.read_text())
-          status.update(
-              stage='PUBLISHING', current_state='PUBLISHING', current_index=40,
-              current_app='SlugAMO', completed=40, blocked=0,
-              message='FactoryAMO Batch40: 40/40 manifests listos y 40/40 APK públicos verificados. Pendiente fusionar el catálogo a main y auditar visibilidad pública final.',
-              last_completed_action='Generados 40 manifests StoreAMO y verificadas 40/40 descargas públicas exactas.',
-              next_action='Fusionar este PR a main y ejecutar auditoría pública final de StoreAMO.',
-              updated_at=now,
-              storeamo_url='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/catalog.json'
-          )
-          sp.write_text(json.dumps(status,ensure_ascii=False,indent=2)+'\n')
-          print('PASS candidate StoreAMO catalog visibility 40/40')
-          print('PASS public APK download verification 40/40')
+          for a in apps:
+              p=Path(a['apk'])
+              if not p.exists():
+                  raise SystemExit(f"Missing staged APK: {p}")
+              body=p.read_bytes(); got=hashlib.sha256(body).hexdigest()
+              if len(body)!=a['size_bytes'] or got!=a['sha256']:
+                  raise SystemExit(f"Integrity mismatch: {a['id']}")
+              if a['id'].lower() not in blob:
+                  raise SystemExit(f"Missing catalog entry: {a['id']}")
+              if not body.startswith(b'PK'):
+                  raise SystemExit(f"Not an APK ZIP: {a['id']}")
+              print(f"PASS {a['id']} bytes={len(body)} sha256={got}")
+          print('PASS staged StoreAMO catalog entries 40/40')
+          print('PASS staged APK integrity 40/40')
           PY
 
-      - name: Commit StoreAMO publication payload and evidence
+      - name: Commit publication payload to PR branch
+        if: steps.staged.outputs.ready != 'true'
         shell: bash
         env:
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
-          git config user.name 'FactoryAMO Verification Bot'
+          git config user.name 'FactoryAMO Publication Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add registry catalog.json verification-reports "$STATUS"
+          git add "$BATCH" registry verification-reports catalog.json "$STATUS"
+          git add -f public-artifacts
           if git diff --cached --quiet; then
-            echo 'Publication payload already committed.'
+            echo 'No publication changes to commit.'
           else
-            git commit -m 'publish(factoryamo): register 40 Batch40 candidates in StoreAMO'
+            git commit -m 'publish(factoryamo): stage 40 Batch40 APKs for StoreAMO'
             git push origin HEAD:"$HEAD_REF"
           fi
