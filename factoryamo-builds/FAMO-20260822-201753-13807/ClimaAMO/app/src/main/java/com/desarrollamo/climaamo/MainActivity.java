@@ -1,32 +1,34 @@
 package com.desarrollamo.climaamo;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -46,11 +48,16 @@ public class MainActivity extends Activity {
     private static final int CYAN = Color.rgb(90, 178, 255);
     private static final int ERROR = Color.rgb(255, 134, 134);
     private static final int STROKE = Color.rgb(32, 54, 78);
+    private static final int LOCATION_REQUEST = 421;
 
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private final WeatherRepository repository = new WeatherRepository();
+    private final Handler handler = new Handler(Looper.getMainLooper());
 
+    private ScrollView scrollView;
     private EditText cityInput;
     private Button searchButton;
+    private ImageButton gpsButton;
     private ProgressBar progressBar;
     private TextView statusText;
 
@@ -69,13 +76,27 @@ public class MainActivity extends Activity {
     private TextView detailsTitle;
     private LinearLayout detailsContainer;
 
+    private TextView sourceTitle;
+    private LinearLayout sourceContainer;
+
+    private TextView airTitle;
+    private LinearLayout airContainer;
+
     private TextView forecastTitle;
+    private TextView forecastHint;
     private LinearLayout forecastContainer;
 
     private LinearLayout tempTrendCard;
     private WeatherTrendView tempTrendView;
     private LinearLayout moistureTrendCard;
     private WeatherTrendView moistureTrendView;
+
+    private WeatherRepository.Forecast activeForecast;
+    private int selectedDayIndex = 0;
+
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private boolean waitingLocation = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +107,14 @@ public class MainActivity extends Activity {
     }
 
     private View buildUi() {
-        ScrollView scroll = new ScrollView(this);
-        scroll.setFillViewport(true);
-        scroll.setBackgroundColor(BG);
+        scrollView = new ScrollView(this);
+        scrollView.setFillViewport(true);
+        scrollView.setBackgroundColor(BG);
 
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
         root.setPadding(dp(20), dp(22), dp(20), dp(34));
-        scroll.addView(root, new ScrollView.LayoutParams(-1, -2));
+        scrollView.addView(root, new ScrollView.LayoutParams(-1, -2));
 
         LinearLayout brandRow = new LinearLayout(this);
         brandRow.setOrientation(LinearLayout.HORIZONTAL);
@@ -109,9 +130,8 @@ public class MainActivity extends Activity {
         LinearLayout.LayoutParams brandTextLp = new LinearLayout.LayoutParams(0, -2, 1f);
         brandTextLp.leftMargin = dp(12);
         brandRow.addView(brandTextWrap, brandTextLp);
-
         brandTextWrap.addView(text("ClimaAMO", 24, TEXT, true));
-        brandTextWrap.addView(text("DESARROLLAMO · candidate 0.2.0", 11, ACCENT, true));
+        brandTextWrap.addView(text("DESARROLLAMO · candidate 0.2.1", 11, ACCENT, true));
 
         TextView intro = text("El clima que importa, sin cuentas ni claves.", 15, MUTED, false);
         LinearLayout.LayoutParams introLp = new LinearLayout.LayoutParams(-1, -2);
@@ -132,7 +152,7 @@ public class MainActivity extends Activity {
         searchCard.addView(searchRow, searchRowLp);
 
         cityInput = new EditText(this);
-        cityInput.setHint("Ej. Pergamino, Malmö, Barcelona");
+        cityInput.setHint("Ej. Pergamino, Malmö");
         cityInput.setHintTextColor(Color.rgb(103, 128, 153));
         cityInput.setTextColor(TEXT);
         cityInput.setTextSize(15);
@@ -142,15 +162,24 @@ public class MainActivity extends Activity {
         cityInput.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);
         searchRow.addView(cityInput, new LinearLayout.LayoutParams(0, dp(50), 1f));
 
+        gpsButton = new ImageButton(this);
+        gpsButton.setImageResource(R.drawable.ic_gps);
+        gpsButton.setContentDescription("Usar mi ubicación");
+        gpsButton.setPadding(dp(13), dp(13), dp(13), dp(13));
+        gpsButton.setBackground(rounded(ACCENT, dp(14), ACCENT));
+        LinearLayout.LayoutParams gpsLp = new LinearLayout.LayoutParams(dp(50), dp(50));
+        gpsLp.leftMargin = dp(8);
+        searchRow.addView(gpsButton, gpsLp);
+
         searchButton = new Button(this);
         searchButton.setText("Buscar");
         searchButton.setTextColor(BG);
-        searchButton.setTextSize(14);
+        searchButton.setTextSize(13);
         searchButton.setTypeface(Typeface.DEFAULT_BOLD);
         searchButton.setAllCaps(false);
         searchButton.setBackground(rounded(ACCENT, dp(14), ACCENT));
-        LinearLayout.LayoutParams buttonLp = new LinearLayout.LayoutParams(dp(92), dp(50));
-        buttonLp.leftMargin = dp(10);
+        LinearLayout.LayoutParams buttonLp = new LinearLayout.LayoutParams(dp(82), dp(50));
+        buttonLp.leftMargin = dp(8);
         searchRow.addView(searchButton, buttonLp);
 
         LinearLayout statusRow = new LinearLayout(this);
@@ -165,7 +194,7 @@ public class MainActivity extends Activity {
         progressBar.setVisibility(View.GONE);
         statusRow.addView(progressBar, new LinearLayout.LayoutParams(dp(22), dp(22)));
 
-        statusText = text("Escribí una ciudad para empezar.", 13, MUTED, false);
+        statusText = text("Buscá una ciudad o tocá el GPS para usar Aquí.", 13, MUTED, false);
         LinearLayout.LayoutParams statusLp = new LinearLayout.LayoutParams(0, -2, 1f);
         statusLp.leftMargin = dp(8);
         statusRow.addView(statusText, statusLp);
@@ -227,9 +256,28 @@ public class MainActivity extends Activity {
         detailsContainer.setVisibility(View.GONE);
         root.addView(detailsContainer, sectionLp(8));
 
+        sourceTitle = sectionTitle("FUENTES · COMPARACIÓN REAL");
+        sourceTitle.setVisibility(View.GONE);
+        root.addView(sourceTitle, sectionLp(18));
+        sourceContainer = new LinearLayout(this);
+        sourceContainer.setOrientation(LinearLayout.VERTICAL);
+        sourceContainer.setVisibility(View.GONE);
+        root.addView(sourceContainer, sectionLp(8));
+
+        airTitle = sectionTitle("CALIDAD DEL AIRE · AHORA");
+        airTitle.setVisibility(View.GONE);
+        root.addView(airTitle, sectionLp(18));
+        airContainer = new LinearLayout(this);
+        airContainer.setOrientation(LinearLayout.VERTICAL);
+        airContainer.setVisibility(View.GONE);
+        root.addView(airContainer, sectionLp(8));
+
         forecastTitle = sectionTitle("PRÓXIMOS 5 DÍAS");
         forecastTitle.setVisibility(View.GONE);
         root.addView(forecastTitle, sectionLp(22));
+        forecastHint = text("Tocá cualquier día para abrir sus horas y todos sus datos.", 12, CYAN, false);
+        forecastHint.setVisibility(View.GONE);
+        root.addView(forecastHint, sectionLp(6));
         forecastContainer = new LinearLayout(this);
         forecastContainer.setOrientation(LinearLayout.VERTICAL);
         root.addView(forecastContainer, sectionLp(8));
@@ -241,8 +289,7 @@ public class MainActivity extends Activity {
         LinearLayout.LayoutParams tempSubLp = new LinearLayout.LayoutParams(-1, -2);
         tempSubLp.topMargin = dp(6);
         tempTrendCard.addView(tempSub, tempSubLp);
-        TextView tempLegend = text("● Máxima     ● Mínima", 12, MUTED, true);
-        tempLegend.setTextColor(ACCENT);
+        TextView tempLegend = text("● Máxima     ● Mínima", 12, ACCENT, true);
         LinearLayout.LayoutParams tempLegendLp = new LinearLayout.LayoutParams(-1, -2);
         tempLegendLp.topMargin = dp(10);
         tempTrendCard.addView(tempLegend, tempLegendLp);
@@ -269,13 +316,19 @@ public class MainActivity extends Activity {
         moistureTrendCard.addView(moistureTrendView, moistureChartLp);
         root.addView(moistureTrendCard, sectionLp(12));
 
-        TextView source = text("Datos meteorológicos reales: Open-Meteo Forecast API · sin API key. Los valores pueden diferir de Google o Meteored porque usan modelos y actualizaciones distintas.", 11, Color.rgb(95, 120, 145), false);
-        source.setGravity(Gravity.CENTER_HORIZONTAL);
+        TextView sourceFooter = text(
+                "Datos reales · Open-Meteo (CC BY 4.0): https://open-meteo.com/ · MET Norway (CC BY 4.0): https://api.met.no/ · sin promedios ocultos ni valores simulados.",
+                10, Color.rgb(95, 120, 145), false
+        );
+        sourceFooter.setGravity(Gravity.CENTER_HORIZONTAL);
+        Linkify.addLinks(sourceFooter, Linkify.WEB_URLS);
+        sourceFooter.setLinkTextColor(CYAN);
         LinearLayout.LayoutParams sourceLp = new LinearLayout.LayoutParams(-1, -2);
         sourceLp.topMargin = dp(24);
-        root.addView(source, sourceLp);
+        root.addView(sourceFooter, sourceLp);
 
         searchButton.setOnClickListener(v -> performSearch());
+        gpsButton.setOnClickListener(v -> useHere());
         cityInput.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH) {
                 performSearch();
@@ -284,7 +337,7 @@ public class MainActivity extends Activity {
             return false;
         });
 
-        return scroll;
+        return scrollView;
     }
 
     private void performSearch() {
@@ -293,236 +346,365 @@ public class MainActivity extends Activity {
             showStatus("Escribí al menos 2 caracteres.", true);
             return;
         }
-
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (imm != null) imm.hideSoftInputFromWindow(cityInput.getWindowToken(), 0);
-
-        setLoading(true);
+        hideKeyboard();
+        setLoading(true, "Buscando ciudad y consultando fuentes reales…");
         executor.execute(() -> {
             try {
-                Place place = geocode(raw);
-                Forecast forecast = fetchForecast(place);
+                WeatherRepository.Place place = repository.geocode(raw);
+                WeatherRepository.Forecast forecast = repository.load(place);
                 runOnUiThread(() -> renderForecast(forecast));
             } catch (Exception e) {
                 runOnUiThread(() -> {
-                    setLoading(false);
+                    setLoading(false, null);
                     showStatus(readableError(e), true);
                 });
             }
         });
     }
 
-    private Place geocode(String query) throws Exception {
-        String encoded = URLEncoder.encode(query, StandardCharsets.UTF_8.name());
-        String url = "https://geocoding-api.open-meteo.com/v1/search?name=" + encoded + "&count=1&language=es&format=json";
-        JSONObject json = getJson(url);
-        JSONArray results = json.optJSONArray("results");
-        if (results == null || results.length() == 0) throw new IllegalArgumentException("No encontré esa ciudad.");
-        JSONObject first = results.getJSONObject(0);
-        String name = first.optString("name", query);
-        String admin = first.optString("admin1", "");
-        String country = first.optString("country", "");
-        String display = name;
-        if (!admin.isEmpty() && !admin.equalsIgnoreCase(name)) display += ", " + admin;
-        if (!country.isEmpty()) display += " · " + country;
-        return new Place(first.getDouble("latitude"), first.getDouble("longitude"), display);
+    private void useHere() {
+        hideKeyboard();
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, LOCATION_REQUEST);
+            return;
+        }
+        acquireLocation();
     }
 
-    private Forecast fetchForecast(Place place) throws Exception {
-        String url = "https://api.open-meteo.com/v1/forecast"
-                + "?latitude=" + place.latitude
-                + "&longitude=" + place.longitude
-                + "&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m"
-                + "&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,precipitation,weather_code,cloud_cover,visibility,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m,is_day"
-                + "&daily=weather_code,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,wind_direction_10m_dominant,uv_index_max"
-                + "&timezone=auto&forecast_days=5";
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode != LOCATION_REQUEST) return;
+        boolean granted = false;
+        for (int result : grantResults) if (result == PackageManager.PERMISSION_GRANTED) granted = true;
+        if (granted) acquireLocation();
+        else showStatus("Sin permiso de ubicación. Podés seguir buscando una ciudad manualmente.", true);
+    }
 
-        JSONObject json = getJson(url);
-        JSONObject current = json.getJSONObject("current");
-        JSONObject hourly = json.getJSONObject("hourly");
-        JSONObject daily = json.getJSONObject("daily");
+    private void acquireLocation() {
+        if (waitingLocation) return;
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) return;
 
-        Forecast f = new Forecast();
-        f.location = place.displayName;
-        f.currentTime = current.optString("time", "");
-        f.temperature = current.optDouble("temperature_2m", Double.NaN);
-        f.apparent = current.optDouble("apparent_temperature", Double.NaN);
-        f.humidity = current.optInt("relative_humidity_2m", -1);
-        f.wind = current.optDouble("wind_speed_10m", Double.NaN);
-        f.windDirection = current.optDouble("wind_direction_10m", Double.NaN);
-        f.gust = current.optDouble("wind_gusts_10m", Double.NaN);
-        f.precipitation = current.optDouble("precipitation", Double.NaN);
-        f.cloudCover = current.optInt("cloud_cover", -1);
-        f.pressureMsl = current.optDouble("pressure_msl", Double.NaN);
-        f.surfacePressure = current.optDouble("surface_pressure", Double.NaN);
-        f.weatherCode = current.optInt("weather_code", -1);
-        f.isDay = current.optInt("is_day", 1) == 1;
-
-        JSONArray hTimes = hourly.getJSONArray("time");
-        JSONArray hTemp = hourly.getJSONArray("temperature_2m");
-        JSONArray hHumidity = hourly.getJSONArray("relative_humidity_2m");
-        JSONArray hApparent = hourly.getJSONArray("apparent_temperature");
-        JSONArray hProb = hourly.getJSONArray("precipitation_probability");
-        JSONArray hPrecip = hourly.getJSONArray("precipitation");
-        JSONArray hCode = hourly.getJSONArray("weather_code");
-        JSONArray hCloud = hourly.getJSONArray("cloud_cover");
-        JSONArray hVisibility = hourly.getJSONArray("visibility");
-        JSONArray hPressure = hourly.getJSONArray("pressure_msl");
-        JSONArray hWind = hourly.getJSONArray("wind_speed_10m");
-        JSONArray hWindDir = hourly.getJSONArray("wind_direction_10m");
-        JSONArray hGust = hourly.getJSONArray("wind_gusts_10m");
-        JSONArray hIsDay = hourly.getJSONArray("is_day");
-
-        List<Hour> allHours = new ArrayList<>();
-        for (int i = 0; i < hTimes.length(); i++) {
-            Hour h = new Hour();
-            h.time = hTimes.optString(i, "");
-            h.temperature = optDouble(hTemp, i);
-            h.humidity = optInt(hHumidity, i);
-            h.apparent = optDouble(hApparent, i);
-            h.precipProbability = optInt(hProb, i);
-            h.precipitation = optDouble(hPrecip, i);
-            h.code = optInt(hCode, i);
-            h.cloudCover = optInt(hCloud, i);
-            h.visibilityKm = safeDivide(optDouble(hVisibility, i), 1000.0);
-            h.pressureMsl = optDouble(hPressure, i);
-            h.wind = optDouble(hWind, i);
-            h.windDirection = optDouble(hWindDir, i);
-            h.gust = optDouble(hGust, i);
-            h.isDay = optInt(hIsDay, i) != 0;
-            allHours.add(h);
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager == null) {
+            showStatus("Android no ofrece un proveedor de ubicación en este dispositivo.", true);
+            return;
         }
 
-        int currentIndex = findCurrentHour(allHours, f.currentTime);
-        if (!allHours.isEmpty()) {
-            Hour nowHour = allHours.get(Math.min(currentIndex, allHours.size() - 1));
-            f.currentPrecipProbability = nowHour.precipProbability;
-            f.visibilityKm = nowHour.visibilityKm;
+        Location best = null;
+        for (String provider : new String[]{LocationManager.GPS_PROVIDER, LocationManager.NETWORK_PROVIDER, LocationManager.PASSIVE_PROVIDER}) {
+            try {
+                Location candidate = locationManager.getLastKnownLocation(provider);
+                if (candidate != null && (best == null || candidate.getTime() > best.getTime())) best = candidate;
+            } catch (Exception ignored) { }
         }
-        for (int i = currentIndex; i < Math.min(currentIndex + 12, allHours.size()); i++) f.hours.add(allHours.get(i));
+        long tenMinutes = 10L * 60L * 1000L;
+        if (best != null && System.currentTimeMillis() - best.getTime() <= tenMinutes) {
+            loadCoordinates(best);
+            return;
+        }
 
-        JSONArray dTimes = daily.getJSONArray("time");
-        JSONArray dCode = daily.getJSONArray("weather_code");
-        JSONArray dMax = daily.getJSONArray("temperature_2m_max");
-        JSONArray dMin = daily.getJSONArray("temperature_2m_min");
-        JSONArray dAppMax = daily.getJSONArray("apparent_temperature_max");
-        JSONArray dAppMin = daily.getJSONArray("apparent_temperature_min");
-        JSONArray dSunrise = daily.getJSONArray("sunrise");
-        JSONArray dSunset = daily.getJSONArray("sunset");
-        JSONArray dRain = daily.getJSONArray("precipitation_sum");
-        JSONArray dRainProb = daily.getJSONArray("precipitation_probability_max");
-        JSONArray dWind = daily.getJSONArray("wind_speed_10m_max");
-        JSONArray dGust = daily.getJSONArray("wind_gusts_10m_max");
-        JSONArray dWindDir = daily.getJSONArray("wind_direction_10m_dominant");
-        JSONArray dUv = daily.getJSONArray("uv_index_max");
+        boolean gpsEnabled = false;
+        boolean networkEnabled = false;
+        try { gpsEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER); } catch (Exception ignored) { }
+        try { networkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER); } catch (Exception ignored) { }
+        if (!gpsEnabled && !networkEnabled) {
+            showStatus("Activá la ubicación/GPS de Android y tocá Aquí otra vez.", true);
+            return;
+        }
 
-        int dayCount = Math.min(5, dTimes.length());
-        for (int i = 0; i < dayCount; i++) {
-            Day d = new Day();
-            d.isoDate = dTimes.optString(i, "");
-            d.code = optInt(dCode, i);
-            d.max = optDouble(dMax, i);
-            d.min = optDouble(dMin, i);
-            d.apparentMax = optDouble(dAppMax, i);
-            d.apparentMin = optDouble(dAppMin, i);
-            d.sunrise = dSunrise.optString(i, "");
-            d.sunset = dSunset.optString(i, "");
-            d.precipitationSum = optDouble(dRain, i);
-            d.precipProbabilityMax = optInt(dRainProb, i);
-            d.windMax = optDouble(dWind, i);
-            d.gustMax = optDouble(dGust, i);
-            d.windDirection = optDouble(dWindDir, i);
-            d.uvMax = optDouble(dUv, i);
+        waitingLocation = true;
+        setLoading(true, "Buscando tu ubicación real…");
+        locationListener = new LocationListener() {
+            @Override public void onLocationChanged(Location location) {
+                if (!waitingLocation || location == null) return;
+                stopLocationUpdates();
+                loadCoordinates(location);
+            }
+            @Override public void onStatusChanged(String provider, int status, Bundle extras) { }
+            @Override public void onProviderEnabled(String provider) { }
+            @Override public void onProviderDisabled(String provider) { }
+        };
 
-            int minHumidity = Integer.MAX_VALUE;
-            int maxHumidity = Integer.MIN_VALUE;
-            for (Hour h : allHours) {
-                if (h.time.startsWith(d.isoDate) && h.humidity >= 0) {
-                    minHumidity = Math.min(minHumidity, h.humidity);
-                    maxHumidity = Math.max(maxHumidity, h.humidity);
+        try {
+            if (gpsEnabled) locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0L, 0f, locationListener, Looper.getMainLooper());
+            if (networkEnabled) locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener, Looper.getMainLooper());
+        } catch (SecurityException e) {
+            stopLocationUpdates();
+            showStatus("Android bloqueó el acceso a la ubicación.", true);
+            return;
+        }
+
+        handler.postDelayed(() -> {
+            if (!waitingLocation) return;
+            stopLocationUpdates();
+            setLoading(false, null);
+            showStatus("No recibí una ubicación a tiempo. Revisá GPS y señal e intentá otra vez.", true);
+        }, 12000L);
+    }
+
+    private void stopLocationUpdates() {
+        waitingLocation = false;
+        handler.removeCallbacksAndMessages(null);
+        if (locationManager != null && locationListener != null) {
+            try { locationManager.removeUpdates(locationListener); } catch (SecurityException ignored) { }
+        }
+        locationListener = null;
+    }
+
+    private void loadCoordinates(Location location) {
+        final double lat = location.getLatitude();
+        final double lon = location.getLongitude();
+        setLoading(true, "Ubicación obtenida · consultando el clima de Aquí…");
+        executor.execute(() -> {
+            try {
+                WeatherRepository.Place place = placeFromCoordinates(lat, lon);
+                WeatherRepository.Forecast forecast = repository.load(place);
+                runOnUiThread(() -> {
+                    cityInput.setText("Aquí");
+                    renderForecast(forecast);
+                });
+            } catch (Exception e) {
+                runOnUiThread(() -> {
+                    setLoading(false, null);
+                    showStatus(readableError(e), true);
+                });
+            }
+        });
+    }
+
+    private WeatherRepository.Place placeFromCoordinates(double lat, double lon) {
+        String display = String.format(Locale.getDefault(), "Aquí · %.4f, %.4f", lat, lon);
+        try {
+            Geocoder geocoder = new Geocoder(this, new Locale("es"));
+            List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                Address a = addresses.get(0);
+                String locality = firstNonBlank(a.getLocality(), a.getSubAdminArea(), a.getAdminArea());
+                String country = a.getCountryName();
+                if (locality != null && !locality.isEmpty()) {
+                    display = "Aquí · " + locality + (country == null || country.isEmpty() ? "" : " · " + country);
                 }
             }
-            if (minHumidity != Integer.MAX_VALUE) {
-                d.humidityMin = minHumidity;
-                d.humidityMax = maxHumidity;
-            }
-            f.days.add(d);
-        }
-        return f;
+        } catch (Exception ignored) { }
+        return new WeatherRepository.Place(lat, lon, display);
     }
 
-    private JSONObject getJson(String urlString) throws Exception {
-        HttpURLConnection connection = (HttpURLConnection) new URL(urlString).openConnection();
-        connection.setRequestMethod("GET");
-        connection.setConnectTimeout(9000);
-        connection.setReadTimeout(9000);
-        connection.setRequestProperty("Accept", "application/json");
-        connection.setRequestProperty("User-Agent", "ClimaAMO/0.2.0");
-        int code = connection.getResponseCode();
-        if (code < 200 || code >= 300) {
-            connection.disconnect();
-            throw new IllegalStateException("El servicio respondió " + code + ".");
-        }
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
-            StringBuilder out = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) out.append(line);
-            return new JSONObject(out.toString());
-        } finally {
-            connection.disconnect();
-        }
+    private String firstNonBlank(String... values) {
+        for (String value : values) if (value != null && !value.trim().isEmpty()) return value.trim();
+        return null;
     }
 
-    private void renderForecast(Forecast f) {
-        setLoading(false);
+    private void renderForecast(WeatherRepository.Forecast f) {
+        activeForecast = f;
+        selectedDayIndex = 0;
+        setLoading(false, null);
         String updated = displayTime(f.currentTime);
-        showStatus(updated.isEmpty() ? "Datos recibidos de Open-Meteo." : "Actualizado " + updated + " · Open-Meteo", false);
+        String sources = f.met == null ? "Open-Meteo" : "Open-Meteo + MET Norway";
+        showStatus((updated.isEmpty() ? "Datos actualizados" : "Actualizado " + updated) + " · " + sources, false);
 
         currentCard.setVisibility(View.VISIBLE);
         hourlyTitle.setVisibility(View.VISIBLE);
         hourlyScroll.setVisibility(View.VISIBLE);
         detailsTitle.setVisibility(View.VISIBLE);
         detailsContainer.setVisibility(View.VISIBLE);
+        sourceTitle.setVisibility(View.VISIBLE);
+        sourceContainer.setVisibility(View.VISIBLE);
         forecastTitle.setVisibility(View.VISIBLE);
+        forecastHint.setVisibility(View.VISIBLE);
         tempTrendCard.setVisibility(View.VISIBLE);
         moistureTrendCard.setVisibility(View.VISIBLE);
 
+        if (f.airQuality != null) {
+            airTitle.setVisibility(View.VISIBLE);
+            airContainer.setVisibility(View.VISIBLE);
+            renderAirQuality(f.airQuality);
+        } else {
+            airTitle.setVisibility(View.GONE);
+            airContainer.setVisibility(View.GONE);
+        }
+
+        renderSelectedDay(0, false);
+        renderTrends(f);
+    }
+
+    private void renderSelectedDay(int index, boolean scrollToTop) {
+        if (activeForecast == null || activeForecast.days.isEmpty()) return;
+        selectedDayIndex = Math.max(0, Math.min(index, activeForecast.days.size() - 1));
+        WeatherRepository.Day day = activeForecast.days.get(selectedDayIndex);
+        boolean today = selectedDayIndex == 0;
+
+        if (today) renderToday(activeForecast, day);
+        else renderFutureDay(activeForecast, day);
+
+        renderHourly(activeForecast, day, today);
+        renderDetails(activeForecast, day, today);
+        renderSources(activeForecast, day, today);
+        renderForecastCards(activeForecast);
+
+        if (scrollToTop) {
+            scrollView.post(() -> scrollView.smoothScrollTo(0, Math.max(0, currentCard.getTop() - dp(12))));
+        }
+    }
+
+    private void renderToday(WeatherRepository.Forecast f, WeatherRepository.Day day) {
         locationText.setText(f.location);
         currentIcon.setText(WeatherMapper.emoji(f.weatherCode, f.isDay));
         currentTemp.setText(formatTemp(f.temperature));
+        currentTemp.setTextSize(42);
         currentDescription.setText(WeatherMapper.label(f.weatherCode));
-
-        if (!f.days.isEmpty()) {
-            Day today = f.days.get(0);
-            currentToday.setText("Hoy " + formatTemp(today.max) + " / " + formatTemp(today.min)
-                    + "   ·   Lluvia " + formatPercent(today.precipProbabilityMax));
-        } else currentToday.setText("");
-
+        currentToday.setText("Hoy " + formatTemp(day.max) + " / " + formatTemp(day.min)
+                + "   ·   Lluvia " + formatPercent(day.precipProbabilityMax));
         detailText.setText("Sensación " + formatTemp(f.apparent)
                 + "   ·   Humedad " + formatPercent(f.humidity)
                 + "   ·   Viento " + formatSpeed(f.wind));
+        hourlyTitle.setText("PRÓXIMAS HORAS");
+        detailsTitle.setText("AHORA · DETALLES REALES");
+    }
 
+    private void renderFutureDay(WeatherRepository.Forecast f, WeatherRepository.Day day) {
+        locationText.setText(f.location + " · " + fullDay(day.isoDate));
+        currentIcon.setText(WeatherMapper.emoji(day.code));
+        currentTemp.setText(formatTemp(day.max) + " / " + formatTemp(day.min));
+        currentTemp.setTextSize(31);
+        currentDescription.setText(WeatherMapper.label(day.code));
+        currentToday.setText("Pronóstico del día · Lluvia " + formatMm(day.precipitationSum)
+                + " · " + formatPercent(day.precipProbabilityMax));
+        detailText.setText("Sensación " + formatTemp(day.apparentMax) + " / " + formatTemp(day.apparentMin)
+                + "   ·   Humedad " + humidityRange(day)
+                + "   ·   Viento máx. " + formatSpeed(day.windMax));
+        hourlyTitle.setText("HORAS · " + fullDay(day.isoDate).toUpperCase(new Locale("es")));
+        detailsTitle.setText("DETALLE · " + fullDay(day.isoDate).toUpperCase(new Locale("es")));
+    }
+
+    private void renderHourly(WeatherRepository.Forecast f, WeatherRepository.Day day, boolean today) {
         hourlyContainer.removeAllViews();
-        for (int i = 0; i < f.hours.size(); i++) hourlyContainer.addView(hourCard(f.hours.get(i), i == 0));
+        List<WeatherRepository.Hour> hours = new ArrayList<>();
+        if (today) hours.addAll(f.nextHours);
+        else {
+            for (WeatherRepository.Hour h : f.allHours) if (h.time.startsWith(day.isoDate)) hours.add(h);
+        }
+        for (int i = 0; i < hours.size(); i++) hourlyContainer.addView(hourCard(hours.get(i), today && i == 0));
+        hourlyScroll.scrollTo(0, 0);
+    }
 
+    private void renderDetails(WeatherRepository.Forecast f, WeatherRepository.Day day, boolean today) {
         detailsContainer.removeAllViews();
-        Day today = f.days.isEmpty() ? null : f.days.get(0);
+        WeatherRepository.Hour representative = representativeHour(f, day.isoDate);
+        if (today) {
+            detailsContainer.addView(metricRow(
+                    metricCard("Precipitación", formatMm(f.precipitation), "Ahora · prob. " + formatPercent(f.currentPrecipProbability)),
+                    metricCard("Viento", formatSpeed(f.wind), directionLabel(f.windDirection) + " · ráfagas " + formatSpeed(f.gust))));
+            detailsContainer.addView(metricRow(
+                    metricCard("Humedad", formatPercent(f.humidity), "Hoy " + humidityRange(day)),
+                    metricCard("Presión", formatPressure(f.pressureMsl), "Nivel del mar")));
+            detailsContainer.addView(metricRow(
+                    metricCard("Visibilidad", formatKm(f.visibilityKm), "Dato horario del modelo"),
+                    metricCard("Nubosidad", formatPercent(f.cloudCover), "Cobertura total")));
+        } else {
+            detailsContainer.addView(metricRow(
+                    metricCard("Lluvia del día", formatMm(day.precipitationSum), "Prob. máx. " + formatPercent(day.precipProbabilityMax)),
+                    metricCard("Viento máximo", formatSpeed(day.windMax), directionLabel(day.windDirection) + " · ráfagas " + formatSpeed(day.gustMax))));
+            detailsContainer.addView(metricRow(
+                    metricCard("Humedad", humidityRange(day), "Rango horario previsto"),
+                    metricCard("Presión", representative == null ? "N/D" : formatPressure(representative.pressureMsl), "Referencia de las 12:00")));
+            detailsContainer.addView(metricRow(
+                    metricCard("Visibilidad", representative == null ? "N/D" : formatKm(representative.visibilityKm), "Referencia de las 12:00"),
+                    metricCard("Nubosidad", representative == null ? "N/D" : formatPercent(representative.cloudCover), "Referencia de las 12:00")));
+        }
         detailsContainer.addView(metricRow(
-                metricCard("Precipitación", formatMm(f.precipitation), "Ahora · prob. " + formatPercent(f.currentPrecipProbability)),
-                metricCard("Viento", formatSpeed(f.wind), directionLabel(f.windDirection) + " · ráfagas " + formatSpeed(f.gust))));
-        detailsContainer.addView(metricRow(
-                metricCard("Humedad", formatPercent(f.humidity), today == null ? "" : "Hoy " + humidityRange(today)),
-                metricCard("Presión", formatPressure(f.pressureMsl), "Nivel del mar")));
-        detailsContainer.addView(metricRow(
-                metricCard("Visibilidad", formatKm(f.visibilityKm), "Dato horario del modelo"),
-                metricCard("Nubosidad", formatPercent(f.cloudCover), "Cobertura total")));
-        detailsContainer.addView(metricRow(
-                metricCard("Sol", today == null ? "N/D" : displayTime(today.sunrise), today == null ? "" : "Atardecer " + displayTime(today.sunset)),
-                metricCard("UV máximo", today == null ? "N/D" : formatOne(today.uvMax), "Pronóstico de hoy")));
+                metricCard("Sol", displayTime(day.sunrise), "Atardecer " + displayTime(day.sunset)),
+                metricCard("UV máximo", formatOne(day.uvMax), "Pronóstico del día")));
+    }
 
+    private WeatherRepository.Hour representativeHour(WeatherRepository.Forecast f, String isoDate) {
+        WeatherRepository.Hour first = null;
+        for (WeatherRepository.Hour h : f.allHours) {
+            if (!h.time.startsWith(isoDate)) continue;
+            if (first == null) first = h;
+            if (h.time.contains("T12:")) return h;
+        }
+        return first;
+    }
+
+    private void renderSources(WeatherRepository.Forecast f, WeatherRepository.Day day, boolean today) {
+        sourceContainer.removeAllViews();
+        LinearLayout box = card();
+        box.setPadding(dp(14), dp(14), dp(14), dp(14));
+        sourceContainer.addView(box, new LinearLayout.LayoutParams(-1, -2));
+
+        if (today) {
+            box.addView(sourceLine("Open-Meteo",
+                    formatTemp(f.temperature) + " · Hum " + formatPercent(f.humidity)
+                            + " · Viento " + formatSpeed(f.wind) + " · " + formatPressure(f.pressureMsl), ACCENT));
+            if (f.met != null && f.met.current != null) {
+                WeatherRepository.MetSnapshot m = f.met.current;
+                box.addView(sourceLine("MET Norway",
+                        formatTemp(m.temperature) + " · Hum " + formatPercent(m.humidity)
+                                + " · Viento " + formatSpeed(m.wind) + " · " + formatPressure(m.pressureMsl)
+                                + " · Próx. 1h " + formatMm(m.precipitationNextHour), CYAN));
+            } else {
+                box.addView(sourceLine("MET Norway", "No disponible en esta consulta.", CYAN));
+            }
+        } else {
+            box.addView(sourceLine("Open-Meteo",
+                    formatTemp(day.max) + " / " + formatTemp(day.min)
+                            + " · Lluvia " + formatMm(day.precipitationSum)
+                            + " · Viento máx. " + formatSpeed(day.windMax), ACCENT));
+            WeatherRepository.MetDay metDay = f.met == null ? null : f.met.findDay(day.isoDate);
+            if (metDay != null && (Double.isFinite(metDay.max) || Double.isFinite(metDay.min))) {
+                box.addView(sourceLine("MET Norway",
+                        formatTemp(metDay.max) + " / " + formatTemp(metDay.min)
+                                + " · Lluvia " + formatMm(metDay.precipitationSum)
+                                + " · Viento máx. " + formatSpeed(metDay.windMax), CYAN));
+            } else {
+                box.addView(sourceLine("MET Norway", "No disponible para este día/ubicación.", CYAN));
+            }
+        }
+        TextView note = text("Las fuentes se muestran por separado. ClimaAMO no promedia ni oculta diferencias entre modelos.", 10, MUTED, false);
+        LinearLayout.LayoutParams noteLp = new LinearLayout.LayoutParams(-1, -2);
+        noteLp.topMargin = dp(10);
+        box.addView(note, noteLp);
+    }
+
+    private View sourceLine(String source, String values, int sourceColor) {
+        LinearLayout row = new LinearLayout(this);
+        row.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout.LayoutParams rowLp = new LinearLayout.LayoutParams(-1, -2);
+        rowLp.bottomMargin = dp(9);
+        row.setLayoutParams(rowLp);
+        row.addView(text(source, 12, sourceColor, true));
+        TextView v = text(values, 12, TEXT, false);
+        LinearLayout.LayoutParams vLp = new LinearLayout.LayoutParams(-1, -2);
+        vLp.topMargin = dp(3);
+        row.addView(v, vLp);
+        return row;
+    }
+
+    private void renderAirQuality(WeatherRepository.AirQuality aq) {
+        airContainer.removeAllViews();
+        airContainer.addView(metricRow(
+                metricCard("AQI europeo", formatOne(aq.europeanAqi), "Open-Meteo Air Quality"),
+                metricCard("AQI EE. UU.", formatOne(aq.usAqi), "Índice equivalente")));
+        airContainer.addView(metricRow(
+                metricCard("PM2.5", formatMicrograms(aq.pm25), "Partículas finas"),
+                metricCard("PM10", formatMicrograms(aq.pm10), "Partículas")));
+        airContainer.addView(metricRow(
+                metricCard("Ozono", formatMicrograms(aq.ozone), "O₃"),
+                metricCard("Actualizado", displayTime(aq.time), "Dato actual de la API")));
+    }
+
+    private void renderForecastCards(WeatherRepository.Forecast f) {
         forecastContainer.removeAllViews();
-        for (Day d : f.days) forecastContainer.addView(dayCard(d));
+        for (int i = 0; i < f.days.size(); i++) {
+            final int index = i;
+            forecastContainer.addView(dayCard(f.days.get(i), index, index == selectedDayIndex));
+        }
+    }
 
+    private void renderTrends(WeatherRepository.Forecast f) {
         String[] labels = new String[f.days.size()];
         double[] max = new double[f.days.size()];
         double[] min = new double[f.days.size()];
@@ -530,7 +712,7 @@ public class MainActivity extends Activity {
         double[] humMin = new double[f.days.size()];
         double[] rain = new double[f.days.size()];
         for (int i = 0; i < f.days.size(); i++) {
-            Day d = f.days.get(i);
+            WeatherRepository.Day d = f.days.get(i);
             labels[i] = shortDay(d.isoDate);
             max[i] = d.max;
             min[i] = d.min;
@@ -542,41 +724,42 @@ public class MainActivity extends Activity {
         moistureTrendView.setData(labels, humMax, humMin, rain, "%", Color.rgb(76, 190, 220), CYAN);
     }
 
-    private View hourCard(Hour h, boolean now) {
-        LinearLayout card = new LinearLayout(this);
-        card.setOrientation(LinearLayout.VERTICAL);
-        card.setGravity(Gravity.CENTER_HORIZONTAL);
-        card.setPadding(dp(10), dp(11), dp(10), dp(11));
-        card.setBackground(rounded(PANEL, dp(16), STROKE));
+    private View hourCard(WeatherRepository.Hour h, boolean now) {
+        LinearLayout box = new LinearLayout(this);
+        box.setOrientation(LinearLayout.VERTICAL);
+        box.setGravity(Gravity.CENTER_HORIZONTAL);
+        box.setPadding(dp(10), dp(11), dp(10), dp(11));
+        box.setBackground(rounded(PANEL, dp(16), STROKE));
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dp(112), -2);
         lp.rightMargin = dp(8);
-        card.setLayoutParams(lp);
+        box.setLayoutParams(lp);
 
         TextView time = text(now ? "Ahora" : displayTime(h.time), 12, TEXT, true);
         time.setGravity(Gravity.CENTER);
-        card.addView(time);
+        box.addView(time);
         TextView icon = text(WeatherMapper.emoji(h.code, h.isDay), 26, TEXT, false);
         icon.setGravity(Gravity.CENTER);
         LinearLayout.LayoutParams iconLp = new LinearLayout.LayoutParams(-1, -2);
         iconLp.topMargin = dp(5);
-        card.addView(icon, iconLp);
+        box.addView(icon, iconLp);
         TextView temp = text(formatTemp(h.temperature), 20, TEXT, true);
         temp.setGravity(Gravity.CENTER);
-        card.addView(temp);
+        box.addView(temp);
         TextView rain = text("Lluvia " + formatPercent(h.precipProbability), 11, CYAN, false);
         rain.setGravity(Gravity.CENTER);
-        card.addView(rain);
+        box.addView(rain);
         TextView wind = text(directionLabel(h.windDirection) + " " + formatSpeed(h.wind), 10, MUTED, false);
         wind.setGravity(Gravity.CENTER);
-        card.addView(wind);
+        box.addView(wind);
         TextView humidity = text("Humedad " + formatPercent(h.humidity), 10, MUTED, false);
         humidity.setGravity(Gravity.CENTER);
-        card.addView(humidity);
-        return card;
+        box.addView(humidity);
+        return box;
     }
 
-    private View dayCard(Day d) {
+    private View dayCard(WeatherRepository.Day d, int index, boolean selected) {
         LinearLayout box = card();
+        box.setBackground(rounded(PANEL, dp(18), selected ? ACCENT : STROKE, selected ? 2 : 1));
         LinearLayout.LayoutParams boxLp = new LinearLayout.LayoutParams(-1, -2);
         boxLp.bottomMargin = dp(10);
         box.setLayoutParams(boxLp);
@@ -586,13 +769,13 @@ public class MainActivity extends Activity {
         header.setGravity(Gravity.CENTER_VERTICAL);
         box.addView(header, new LinearLayout.LayoutParams(-1, -2));
 
-        TextView date = text(fullDay(d.isoDate), 15, TEXT, true);
-        header.addView(date, new LinearLayout.LayoutParams(dp(88), -2));
-        TextView condition = text(WeatherMapper.emoji(d.code) + "  " + WeatherMapper.label(d.code), 13, MUTED, false);
+        TextView date = text(index == 0 ? "Hoy · " + fullDay(d.isoDate) : fullDay(d.isoDate), 14, TEXT, true);
+        header.addView(date, new LinearLayout.LayoutParams(dp(102), -2));
+        TextView condition = text(WeatherMapper.emoji(d.code) + "  " + WeatherMapper.label(d.code), 12, MUTED, false);
         header.addView(condition, new LinearLayout.LayoutParams(0, -2, 1f));
-        TextView temps = text(formatTemp(d.max) + " / " + formatTemp(d.min), 15, TEXT, true);
+        TextView temps = text(formatTemp(d.max) + " / " + formatTemp(d.min), 14, TEXT, true);
         temps.setGravity(Gravity.END);
-        header.addView(temps, new LinearLayout.LayoutParams(dp(92), -2));
+        header.addView(temps, new LinearLayout.LayoutParams(dp(86), -2));
 
         TextView line1 = text("Sensación " + formatTemp(d.apparentMax) + " / " + formatTemp(d.apparentMin)
                 + "   ·   Lluvia " + formatMm(d.precipitationSum) + " · " + formatPercent(d.precipProbabilityMax), 12, MUTED, false);
@@ -611,6 +794,12 @@ public class MainActivity extends Activity {
         LinearLayout.LayoutParams line3Lp = new LinearLayout.LayoutParams(-1, -2);
         line3Lp.topMargin = dp(5);
         box.addView(line3, line3Lp);
+
+        TextView action = text(selected ? "Viendo este día ↑" : "Tocar para ver detalle →", 11, selected ? ACCENT : CYAN, true);
+        LinearLayout.LayoutParams actionLp = new LinearLayout.LayoutParams(-1, -2);
+        actionLp.topMargin = dp(8);
+        box.addView(action, actionLp);
+        box.setOnClickListener(v -> renderSelectedDay(index, true));
         return box;
     }
 
@@ -648,25 +837,12 @@ public class MainActivity extends Activity {
         return mini;
     }
 
-    private int findCurrentHour(List<Hour> hours, String currentTime) {
-        if (hours.isEmpty() || currentTime == null || currentTime.length() < 13) return 0;
-        String key = currentTime.substring(0, 13);
-        for (int i = 0; i < hours.size(); i++) if (hours.get(i).time.startsWith(key)) return i;
-        try {
-            LocalDateTime current = LocalDateTime.parse(currentTime);
-            for (int i = 0; i < hours.size(); i++) {
-                LocalDateTime candidate = LocalDateTime.parse(hours.get(i).time);
-                if (!candidate.isBefore(current)) return i;
-            }
-        } catch (Exception ignored) { }
-        return 0;
-    }
-
-    private void setLoading(boolean loading) {
+    private void setLoading(boolean loading, String message) {
         progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
         searchButton.setEnabled(!loading);
+        gpsButton.setEnabled(!loading);
         cityInput.setEnabled(!loading);
-        if (loading) showStatus("Consultando datos reales en Open-Meteo…", false);
+        if (loading && message != null) showStatus(message, false);
     }
 
     private void showStatus(String message, boolean isError) {
@@ -676,7 +852,12 @@ public class MainActivity extends Activity {
 
     private String readableError(Exception e) {
         if (e instanceof IllegalArgumentException && e.getMessage() != null) return e.getMessage();
-        return "No pude obtener el clima. Revisá tu conexión e intentá otra vez.";
+        return "No pude obtener todos los datos. Revisá tu conexión e intentá otra vez.";
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) imm.hideSoftInputFromWindow(cityInput.getWindowToken(), 0);
     }
 
     private LinearLayout card() {
@@ -707,29 +888,19 @@ public class MainActivity extends Activity {
     }
 
     private GradientDrawable rounded(int fill, int radius, int stroke) {
+        return rounded(fill, radius, stroke, 1);
+    }
+
+    private GradientDrawable rounded(int fill, int radius, int stroke, int strokeWidth) {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setColor(fill);
         drawable.setCornerRadius(radius);
-        drawable.setStroke(dp(1), stroke);
+        drawable.setStroke(dp(strokeWidth), stroke);
         return drawable;
     }
 
     private int dp(int value) {
         return Math.round(value * getResources().getDisplayMetrics().density);
-    }
-
-    private static double optDouble(JSONArray array, int index) {
-        if (array == null || index < 0 || index >= array.length() || array.isNull(index)) return Double.NaN;
-        return array.optDouble(index, Double.NaN);
-    }
-
-    private static int optInt(JSONArray array, int index) {
-        if (array == null || index < 0 || index >= array.length() || array.isNull(index)) return -1;
-        return array.optInt(index, -1);
-    }
-
-    private static double safeDivide(double value, double divisor) {
-        return Double.isFinite(value) ? value / divisor : Double.NaN;
     }
 
     private String formatTemp(double value) {
@@ -752,6 +923,10 @@ public class MainActivity extends Activity {
         return Double.isFinite(value) ? String.format(Locale.getDefault(), "%.1f km", value) : "N/D";
     }
 
+    private String formatMicrograms(double value) {
+        return Double.isFinite(value) ? String.format(Locale.getDefault(), "%.1f µg/m³", value) : "N/D";
+    }
+
     private String formatOne(double value) {
         return Double.isFinite(value) ? String.format(Locale.getDefault(), "%.1f", value) : "N/D";
     }
@@ -767,13 +942,13 @@ public class MainActivity extends Activity {
         return labels[index];
     }
 
-    private String humidityRange(Day d) {
+    private String humidityRange(WeatherRepository.Day d) {
         if (d == null || d.humidityMin < 0 || d.humidityMax < 0) return "N/D";
         return d.humidityMin + "–" + d.humidityMax + "%";
     }
 
     private String displayTime(String iso) {
-        if (iso == null || iso.isEmpty()) return "";
+        if (iso == null || iso.isEmpty()) return "N/D";
         try {
             return LocalDateTime.parse(iso).format(DateTimeFormatter.ofPattern("HH:mm"));
         } catch (Exception ignored) {
@@ -805,75 +980,8 @@ public class MainActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+        stopLocationUpdates();
         executor.shutdownNow();
         super.onDestroy();
-    }
-
-    private static final class Place {
-        final double latitude;
-        final double longitude;
-        final String displayName;
-        Place(double latitude, double longitude, String displayName) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.displayName = displayName;
-        }
-    }
-
-    private static final class Forecast {
-        String location;
-        String currentTime;
-        double temperature = Double.NaN;
-        double apparent = Double.NaN;
-        int humidity = -1;
-        double wind = Double.NaN;
-        double windDirection = Double.NaN;
-        double gust = Double.NaN;
-        double precipitation = Double.NaN;
-        int currentPrecipProbability = -1;
-        int cloudCover = -1;
-        double visibilityKm = Double.NaN;
-        double pressureMsl = Double.NaN;
-        double surfacePressure = Double.NaN;
-        int weatherCode = -1;
-        boolean isDay = true;
-        final List<Hour> hours = new ArrayList<>();
-        final List<Day> days = new ArrayList<>();
-    }
-
-    private static final class Hour {
-        String time = "";
-        double temperature = Double.NaN;
-        double apparent = Double.NaN;
-        int humidity = -1;
-        int precipProbability = -1;
-        double precipitation = Double.NaN;
-        int code = -1;
-        int cloudCover = -1;
-        double visibilityKm = Double.NaN;
-        double pressureMsl = Double.NaN;
-        double wind = Double.NaN;
-        double windDirection = Double.NaN;
-        double gust = Double.NaN;
-        boolean isDay = true;
-    }
-
-    private static final class Day {
-        String isoDate = "";
-        int code = -1;
-        double max = Double.NaN;
-        double min = Double.NaN;
-        double apparentMax = Double.NaN;
-        double apparentMin = Double.NaN;
-        String sunrise = "";
-        String sunset = "";
-        double precipitationSum = Double.NaN;
-        int precipProbabilityMax = -1;
-        double windMax = Double.NaN;
-        double gustMax = Double.NaN;
-        double windDirection = Double.NaN;
-        double uvMax = Double.NaN;
-        int humidityMin = -1;
-        int humidityMax = -1;
     }
 }
