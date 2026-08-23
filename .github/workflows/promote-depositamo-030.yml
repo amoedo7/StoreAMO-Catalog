@@ -1,0 +1,72 @@
+name: promote-depositamo-030
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - promotions/depositamo-0.3.0.json
+      - promote_external_release.py
+      - .github/workflows/promote-depositamo-030.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promote-depositamo-030
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+
+      - name: Verify signed release and update registry
+        run: python promote_external_release.py promotions/depositamo-0.3.0.json
+
+      - name: Rebuild StoreAMO catalog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python build_catalog.py --owner amoedo7
+
+      - name: Validate pinned Android signers
+        run: python scripts/validate_android_signing_pins.py
+
+      - name: Validate generated catalog
+        run: |
+          git clone --depth 1 https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
+          python /tmp/storeamo-verify/verify_catalog.py catalog.json
+
+      - name: Assert DepositAMO 0.3.0 is downloadable
+        run: |
+          python - <<'PY'
+          import json, urllib.request
+          c=json.load(open('catalog.json', encoding='utf-8'))
+          app=next(x for x in c['apps'] if x['id']=='depositamo')
+          a=next(x for x in app['artifacts'] if x['platform']=='android')
+          assert a['version']=='0.3.0', a
+          assert a['version_code']=='300', a
+          assert len(a['sha256'])==64, a
+          req=urllib.request.Request(a['url'], method='HEAD', headers={'User-Agent':'StoreAMO-Promoter/1'})
+          with urllib.request.urlopen(req, timeout=20) as r:
+              assert 200 <= r.status < 400, r.status
+          print('DEPOSITAMO_030_DOWNLOADABLE', a['sha256'], a.get('size_bytes'))
+          PY
+
+      - name: Publish registry and catalog
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- registry/depositamo.json catalog.json discovery-report.json; then
+            echo 'No StoreAMO changes required'
+            exit 0
+          fi
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add registry/depositamo.json catalog.json discovery-report.json
+          git commit -m 'release: publish DepositAMO 0.3.0 in StoreAMO'
+          git push
