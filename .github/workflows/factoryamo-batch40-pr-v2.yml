@@ -69,6 +69,10 @@ jobs:
             done
           } > "$BATCH/tooling.log"
 
+          nl -ba "$BATCH/generate.py" | sed -n '272,294p' > "$BATCH/generator-context.log"
+          MONO="$BATCH/app/build/outputs/apk/monedamo/debug/app-monedamo-debug.apk"
+          apksigner verify --print-certs "$MONO" > "$BATCH/monedamo-signer.log" 2>&1 || true
+
           set +e
           python3 -u "$BATCH/generate.py" package > "$BATCH/package.log" 2>&1
           rc=$?
@@ -78,8 +82,11 @@ jobs:
             echo "== tooling =="
             cat "$BATCH/tooling.log" || true
             echo
-            echo "== Android build tools =="
-            ls -la "$ANDROID_HOME/build-tools/35.0.0" || true
+            echo "== generator context =="
+            cat "$BATCH/generator-context.log" || true
+            echo
+            echo "== monedamo signer =="
+            cat "$BATCH/monedamo-signer.log" || true
             echo
             echo "== APK files =="
             find "$BATCH/app/build/outputs/apk" -type f -name '*.apk' -print | sort || true
@@ -89,8 +96,8 @@ jobs:
           if [ "$rc" -ne 0 ]; then
             git config user.name 'FactoryAMO Batch Bot'
             git config user.email 'actions@users.noreply.github.com'
-            git add "$BATCH/package.log" "$BATCH/tooling.log"
-            git commit -m 'diagnostic(factoryamo): capture Batch40 package failure' || true
+            git add "$BATCH/package.log" "$BATCH/tooling.log" "$BATCH/generator-context.log" "$BATCH/monedamo-signer.log"
+            git commit -m 'diagnostic(factoryamo): capture signer parser failure' || true
             git push origin HEAD:"$HEAD_REF" || true
             exit "$rc"
           fi
