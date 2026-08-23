@@ -1,4 +1,4 @@
-name: test-climaamo-020
+name: test-climaamo-021
 
 on:
   pull_request:
@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
@@ -40,5 +40,34 @@ jobs:
           test -x "$APKSIGNER"
           test -s "$APK"
           unzip -tqq "$APK"
-          "$AAPT" dump badging "$APK" | grep -q "package: name='com.desarrollamo.climaamo' versionCode='2' versionName='0.2.0'"
+          "$AAPT" dump badging "$APK" | grep -q "package: name='com.desarrollamo.climaamo' versionCode='3' versionName='0.2.1'"
+          PERMS="$($AAPT dump permissions "$APK")"
+          echo "$PERMS" | grep -q 'android.permission.INTERNET'
+          echo "$PERMS" | grep -q 'android.permission.ACCESS_COARSE_LOCATION'
+          echo "$PERMS" | grep -q 'android.permission.ACCESS_FINE_LOCATION'
           "$APKSIGNER" verify --verbose "$APK"
+      - name: Live weather source contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, urllib.parse, urllib.request
+          lat, lon = 55.6761, 12.5683
+          ua = 'ClimaAMO/0.2.1 https://desarrollamo.com.ar'
+          def get(url):
+              req=urllib.request.Request(url,headers={'User-Agent':ua,'Accept':'application/json'})
+              return json.load(urllib.request.urlopen(req,timeout=20))
+          om=get('https://api.open-meteo.com/v1/forecast?'+urllib.parse.urlencode({
+              'latitude':lat,'longitude':lon,
+              'current':'temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m',
+              'hourly':'temperature_2m,relative_humidity_2m,precipitation_probability,visibility,pressure_msl,wind_speed_10m',
+              'daily':'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,uv_index_max',
+              'timezone':'auto','forecast_days':5}))
+          assert len(om['daily']['time']) == 5
+          met=get('https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=55.6761&lon=12.5683')
+          assert met['properties']['timeseries']
+          aq=get('https://air-quality-api.open-meteo.com/v1/air-quality?'+urllib.parse.urlencode({
+              'latitude':lat,'longitude':lon,'current':'european_aqi,us_aqi,pm10,pm2_5,ozone','timezone':'auto'}))
+          assert 'current' in aq
+          print('REAL_SOURCES_OK Open-Meteo MET-Norway Air-Quality')
+          PY
