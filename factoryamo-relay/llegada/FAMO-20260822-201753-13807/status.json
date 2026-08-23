@@ -1,11 +1,18 @@
 {
   "schema": "factoryamo.relay.v1",
   "job_id": "FAMO-20260822-201753-13807",
-  "app_name": "ClimaAMO",
-  "stage": "PUBLISHED",
-  "progress": 100,
-  "message": "ClimaAMO 0.1.0 candidate publicada: el catalogo generado de StoreAMO contiene climaamo con APK Android descargable. Build, tests, integridad, identidad, firma, permiso INTERNET y Open-Meteo HTTPS verificados; device smoke queda pendiente para promover a Verified.",
+  "app_name": "FACTORYAMO — LOTE 40",
+  "stage": "IMPLEMENTING",
+  "message": "Controlador de lote activado. Objetivo: producir, probar, compilar, publicar y verificar 40 APK Android distintos en StoreAMO sin pedir confirmación entre aplicaciones.",
   "question": "",
-  "updated_at": "2026-08-22T20:28:40+02:00",
-  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.1.0/ClimaAMO-0.1.0.apk"
+  "updated_at": "2026-08-23T01:57:00+02:00",
+  "target": 40,
+  "completed": 0,
+  "blocked": 0,
+  "current_index": 1,
+  "current_app": "MonedAMO",
+  "current_state": "IMPLEMENTING",
+  "last_completed_action": "Recuperado el JOB y activado el loop supervisor del lote.",
+  "next_action": "Generar el proyecto Android Batch40, ejecutar self-tests y compilar los 40 product flavors.",
+  "storeamo_url": ""
 }
