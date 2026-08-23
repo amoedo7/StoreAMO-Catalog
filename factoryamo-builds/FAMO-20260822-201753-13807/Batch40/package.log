@@ -17,35 +17,36 @@ aapt2=/usr/local/lib/android/sdk/build-tools/35.0.0/aapt2
 apksigner=/usr/local/lib/android/sdk/build-tools/35.0.0/apksigner
 zipalign=/usr/local/lib/android/sdk/build-tools/35.0.0/zipalign
 
-== Android build tools ==
-total 19880
-drwxrwxrwx 6 root root    4096 Aug 16 21:30 .
-drwxrwxrwx 8 root root    4096 Aug 16 21:30 ..
--rwxrwxrwx 1 root root 1068025 Aug 16 21:30 NOTICE.txt
--rwxrwxrwx 1 root root 1541752 Aug 16 21:30 aapt
--rwxrwxrwx 1 root root 6299424 Aug 16 21:30 aapt2
--rwxrwxrwx 1 root root     343 Aug 16 21:30 aarch64-linux-android-ld
--rwxrwxrwx 1 root root 4847544 Aug 16 21:30 aidl
--rwxrwxrwx 1 root root    2959 Aug 16 21:30 apksigner
--rwxrwxrwx 1 root root     343 Aug 16 21:30 arm-linux-androideabi-ld
--rwxrwxrwx 1 root root   38776 Aug 16 21:30 bcc_compat
--rwxrwxrwx 1 root root   15149 Aug 16 21:30 core-lambda-stubs.jar
--rwxrwxrwx 1 root root    2678 Aug 16 21:30 d8
--rwxrwxrwx 1 root root 3620016 Aug 16 21:30 dexdump
--rwxrwxrwx 1 root root     343 Aug 16 21:30 i686-linux-android-ld
-drwxrwxrwx 2 root root    4096 Aug 16 21:30 lib
-drwxrwxrwx 2 root root    4096 Aug 16 21:30 lib64
--rwxrwxrwx 1 root root     647 Aug 16 21:30 lld
-drwxrwxrwx 2 root root    4096 Aug 16 21:30 lld-bin
--rwxrwxrwx 1 root root 1056448 Aug 16 21:30 llvm-rs-cc
--rwxrwxrwx 1 root root     343 Aug 16 21:30 mipsel-linux-android-ld
--rwxrwxrwx 1 root root   18339 Aug 16 21:30 package.xml
-drwxrwxrwx 5 root root    4096 Aug 16 21:30 renderscript
--rwxrwxrwx 1 root root      17 Aug 16 21:30 runtime.properties
--rwxrwxrwx 1 root root      63 Aug 16 21:30 source.properties
--rwxrwxrwx 1 root root 1498360 Aug 16 21:30 split-select
--rwxrwxrwx 1 root root     343 Aug 16 21:30 x86_64-linux-android-ld
--rwxrwxrwx 1 root root  273032 Aug 16 21:30 zipalign
+== generator context ==
+   272	            raise RuntimeError(f"{slug}: APK unexpectedly small")
+   273	        with zipfile.ZipFile(apk) as z:
+   274	            if z.testzip() is not None:
+   275	                raise RuntimeError(f"{slug}: corrupt APK")
+   276	        badging = run([aapt, "dump", "badging", str(apk)]).stdout
+   277	        expected = f"package: name='com.desarrollamo.{slug}' versionCode='1' versionName='{VERSION}'"
+   278	        if expected not in badging:
+   279	            raise RuntimeError(f"{slug}: identity mismatch: {badging[:300]}")
+   280	        permissions = run([aapt, "dump", "permissions", str(apk)]).stdout
+   281	        if "uses-permission:" in permissions:
+   282	            raise RuntimeError(f"{slug}: unexpected permission: {permissions}")
+   283	        sig = run([apksigner, "verify", "--verbose", "--print-certs", str(apk)]).stdout
+   284	        m = re.search(r"Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F]+)", sig)
+   285	        if not m:
+   286	            raise RuntimeError(f"{slug}: signer digest unavailable")
+   287	        cert = m.group(1).lower()
+   288	        data = apk.read_bytes(); sha = hashlib.sha256(data).hexdigest(); size = len(data)
+   289	        dest_dir = ROOT / "public-artifacts" / slug / VERSION
+   290	        dest_dir.mkdir(parents=True, exist_ok=True)
+   291	        dest = dest_dir / f"{name}-{VERSION}.apk"
+   292	        shutil.copy2(apk, dest)
+   293	        write(dest_dir / "sha256.txt", f"{sha}  {dest.name}\n")
+   294	        artifact_url = f"https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/{slug}/{VERSION}/{dest.name}"
+
+== monedamo signer ==
+Signer #1 certificate DN: C=US, O=Android, CN=Android Debug
+Signer #1 certificate SHA-256 digest: 1ba75f163d754ded25b72a39d2ce55b2991dacd5b3fcee0f53811f17a402193c
+Signer #1 certificate SHA-1 digest: b1a3f84cff79720236767cb8c670a7ceb198d9d7
+Signer #1 certificate MD5 digest: aa187fb1e69ec04fb33b8a2ee7596878
 
 == APK files ==
 factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/base64amo/debug/app-base64amo-debug.apk
