@@ -1,1 +1,1 @@
-Final marker for ClimaAMO 0.2.1 PR validation.
+Final marker for ClimaAMO 0.2.1 PR validation using canonical DesarrollAMO candidate signing.
