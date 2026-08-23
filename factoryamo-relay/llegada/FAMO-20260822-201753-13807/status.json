@@ -2,17 +2,10 @@
   "schema": "factoryamo.relay.v1",
   "job_id": "FAMO-20260822-201753-13807",
   "app_name": "ClimaAMO",
-  "stage": "PUBLISHING",
-  "progress": 100,
-  "message": "FactoryAMO Batch40: 40/40 APK empaquetados y 40/40 entradas StoreAMO preparadas. Pendiente merge a main para la verificación HTTPS pública final.",
+  "stage": "DESIGNING",
+  "progress": 12,
+  "message": "Diseñando ClimaAMO 0.2.1: botón Aquí con ubicación GPS real, detalle navegable por día futuro y enriquecimiento meteorológico con fuentes reales adicionales sin datos simulados.",
   "question": "",
-  "updated_at": "2026-08-23T09:10:27.329870+00:00",
-  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk",
-  "current_state": "PUBLISHING",
-  "current_index": 40,
-  "current_app": "SlugAMO",
-  "completed": 40,
-  "blocked": 0,
-  "last_completed_action": "Compilados y empaquetados los 40 APK dentro de public-artifacts; catálogo reconstruido.",
-  "next_action": "Fusionar a main y verificar 40/40 descargas públicas por HTTP 200, tamaño y SHA-256."
+  "updated_at": "2026-08-23T11:12:00+02:00",
+  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk"
 }
