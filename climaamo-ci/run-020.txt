@@ -1,0 +1,1 @@
+Validate ClimaAMO 0.2.0 candidate build.
