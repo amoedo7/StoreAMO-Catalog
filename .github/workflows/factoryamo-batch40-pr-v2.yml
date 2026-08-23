@@ -35,13 +35,38 @@ jobs:
           cat "$BATCH"/generator.part0* | base64 -d | gzip -d > "$BATCH/generate.py"
           python3 - <<'PY'
           from pathlib import Path
+
           p=Path('factoryamo-builds/FAMO-20260822-201753-13807/Batch40/generate.py')
-          s=p.read_text()
-          old='        sig = run([apksigner, "verify", "--verbose", "--print-certs", str(apk)]).stdout'
-          new='        sig_p = run([apksigner, "verify", "--verbose", "--print-certs", str(apk)])\n        sig = (sig_p.stdout or "") + "\\n" + (sig_p.stderr or "")'
-          if old not in s:
-              raise SystemExit('expected apksigner stdout parser line not found')
-          p.write_text(s.replace(old,new,1))
+          lines=p.read_text().splitlines()
+
+          sig_i=next((i for i,l in enumerate(lines) if 'sig=run([apksigner' in l and '--print-certs' in l), None)
+          if sig_i is None:
+              sig_i=next((i for i,l in enumerate(lines) if 'sig = run([apksigner' in l and '--print-certs' in l), None)
+          if sig_i is None:
+              raise SystemExit('apksigner invocation not found')
+          indent=lines[sig_i][:len(lines[sig_i])-len(lines[sig_i].lstrip())]
+          lines[sig_i:sig_i+1]=[
+              indent+'sig_p=run([apksigner,"verify","--verbose","--print-certs",str(apk)])',
+              indent+'sig=(sig_p.stdout or "")+"\\n"+(sig_p.stderr or "")',
+          ]
+
+          cert_i=next((i for i,l in enumerate(lines) if 'Signer #1 certificate SHA-256 digest:' in l and 're.search' in l), None)
+          if cert_i is None:
+              raise SystemExit('signer digest parser not found')
+          if cert_i+3 >= len(lines) or 'signer digest unavailable' not in lines[cert_i+2] or 'm.group' not in lines[cert_i+3]:
+              raise SystemExit('unexpected signer digest parser layout')
+          indent=lines[cert_i][:len(lines[cert_i])-len(lines[cert_i].lstrip())]
+          lines[cert_i:cert_i+4]=[
+              indent+'cert=""',
+              indent+'for _line in sig.splitlines():',
+              indent+'    if "Signer #1 certificate SHA-256 digest:" in _line:',
+              indent+'        cert=_line.split(":",1)[1].strip().lower()',
+              indent+'        break',
+              indent+'if not re.fullmatch(r"[0-9a-f]{64}",cert):',
+              indent+'    raise RuntimeError(f"{slug}: signer digest unavailable")',
+          ]
+
+          p.write_text('\n'.join(lines)+'\n')
           PY
           python3 -m py_compile "$BATCH/generate.py"
           python3 "$BATCH/generate.py" generate
@@ -65,8 +90,6 @@ jobs:
 
       - name: Verify and package all 40 candidates
         shell: bash
-        env:
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
         run: |
           set -euo pipefail
           export PATH="$ANDROID_HOME/build-tools/35.0.0:$PATH"
