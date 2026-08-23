@@ -1,0 +1,26 @@
+{
+  "schema": "storeamo.verification.v1",
+  "job_id": "FAMO-20260822-201753-13807",
+  "app_id": "romanamo",
+  "name": "RomanAMO",
+  "version": "0.1.0",
+  "status": "candidate",
+  "checks": {
+    "logic_tests": true,
+    "android_build": true,
+    "apk_integrity": true,
+    "application_id": true,
+    "version": true,
+    "signature": true,
+    "permissions_none": true,
+    "https_public_download": false,
+    "device_smoke": false
+  },
+  "artifact": {
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/romanamo/0.1.0/RomanAMO-0.1.0.apk",
+    "sha256": "20583eed099999fc48060f2728c3f68141a90aee214a4b04701c343e8d106fc6",
+    "size_bytes": 17605,
+    "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5"
+  },
+  "note": "https_public_download se marca true después del commit y verificación remota; device-smoke corresponde al usuario desde StoreAMO."
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "storeamo.verification.v1",
+  "job_id": "FAMO-20260822-201753-13807",
+  "app_id": "textoamo",
+  "name": "TextoAMO",
+  "version": "0.1.0",
+  "status": "candidate",
+  "checks": {
+    "logic_tests": true,
+    "android_build": true,
+    "apk_integrity": true,
+    "application_id": true,
+    "version": true,
+    "signature": true,
+    "permissions_none": true,
+    "https_public_download": false,
+    "device_smoke": false
+  },
+  "artifact": {
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/textoamo/0.1.0/TextoAMO-0.1.0.apk",
+    "sha256": "f1319a6ed3aa561a2b271da71e4b0e2e645e3dffc5a610c56701739c721e6de9",
+    "size_bytes": 17609,
+    "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5"
+  },
+  "note": "https_public_download se marca true después del commit y verificación remota; device-smoke corresponde al usuario desde StoreAMO."
+}

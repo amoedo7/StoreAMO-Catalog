@@ -1,0 +1,26 @@
+{
+  "schema": "storeamo.verification.v1",
+  "job_id": "FAMO-20260822-201753-13807",
+  "app_id": "intervalamo",
+  "name": "IntervalAMO",
+  "version": "0.1.0",
+  "status": "candidate",
+  "checks": {
+    "logic_tests": true,
+    "android_build": true,
+    "apk_integrity": true,
+    "application_id": true,
+    "version": true,
+    "signature": true,
+    "permissions_none": true,
+    "https_public_download": false,
+    "device_smoke": false
+  },
+  "artifact": {
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/intervalamo/0.1.0/IntervalAMO-0.1.0.apk",
+    "sha256": "43bb69aee66d76b19e3eef8c4fb46ff5165ba2b587fa9d7f06088d753d2c9054",
+    "size_bytes": 17617,
+    "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5"
+  },
+  "note": "https_public_download se marca true después del commit y verificación remota; device-smoke corresponde al usuario desde StoreAMO."
+}

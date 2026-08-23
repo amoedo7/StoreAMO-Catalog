@@ -1,4 +1,4 @@
-#Sun Aug 23 08:10:11 UTC 2026
+#Sun Aug 23 09:10:14 UTC 2026
 base.1=/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/dex/promediamoDebug/mergeProjectDexPromediamoDebug/4/classes.dex
 path.1=4/classes.dex
 base.0=/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/dex/promediamoDebug/mergeProjectDexPromediamoDebug/0/classes.dex

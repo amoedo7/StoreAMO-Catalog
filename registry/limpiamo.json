@@ -1,0 +1,54 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "limpiamo",
+  "name": "LimpiAMO",
+  "tagline": "Limpiá espacios y líneas de un texto",
+  "description": "Limpiá espacios y líneas de un texto. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+  "category": "Texto",
+  "audience": "public",
+  "featured": false,
+  "status": "candidate",
+  "supported_platforms": [
+    "android"
+  ],
+  "source": {
+    "visibility": "public",
+    "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40"
+  },
+  "store": {
+    "homepage": "https://desarrollamo.com.ar",
+    "screenshots": [],
+    "notes": "LimpiAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+  },
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": [
+      "integrity",
+      "application-id",
+      "signature",
+      "permissions",
+      "tests",
+      "https",
+      "device-smoke"
+    ]
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "universal",
+      "format": "apk",
+      "version": "0.1.0",
+      "version_code": "1",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/limpiamo/0.1.0/LimpiAMO-0.1.0.apk",
+      "sha256": "f00988f51c156ed5246f68e66e708a45fbfafb681b8a5ba739792909d2ab0cb8",
+      "size_bytes": 17605,
+      "min_os": "Android 8.0 (API 26)",
+      "application_id": "com.desarrollamo.limpiamo",
+      "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+      "verified": false,
+      "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/limpiamo-v0.1.0.json",
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/limpiamo/0.1.0",
+      "source": "factoryamo-batch40"
+    }
+  ]
+}
