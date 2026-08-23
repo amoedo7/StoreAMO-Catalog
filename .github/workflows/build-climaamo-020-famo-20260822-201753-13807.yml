@@ -22,22 +22,17 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
-
       - uses: android-actions/setup-android@v3
-
       - name: Install Android 35 build tools
         shell: bash
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
-
       - name: Unit tests and APK build
         working-directory: factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO
         run: gradle --no-daemon testDebugUnitTest assembleDebug
@@ -78,21 +73,23 @@ jobs:
         run: |
           set -euo pipefail
           APK='factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO/app/build/outputs/apk/debug/app-debug.apk'
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          APKSIGNER="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          test -x "$AAPT"
+          test -x "$APKSIGNER"
           test -s "$APK"
           unzip -tqq "$APK"
-          BADGING="$(aapt dump badging "$APK")"
+          BADGING="$("$AAPT" dump badging "$APK")"
           echo "$BADGING" | grep -q "package: name='com.desarrollamo.climaamo' versionCode='2' versionName='0.2.0'"
           echo "$BADGING" | grep -q "sdkVersion:'26'"
           echo "$BADGING" | grep -q "targetSdkVersion:'35'"
-          PERMS="$(aapt dump permissions "$APK")"
+          PERMS="$("$AAPT" dump permissions "$APK")"
           echo "$PERMS" | grep -q 'android.permission.INTERNET'
-          if echo "$PERMS" | grep -v 'android.permission.INTERNET' | grep -q 'uses-permission'; then
-            echo 'Unexpected permission:'
-            echo "$PERMS"
-            exit 1
-          fi
-          apksigner verify --verbose --print-certs "$APK"
-          CERT="$(apksigner verify --print-certs "$APK" | sed -n 's/Signer #1 certificate SHA-256 digest: //p' | head -1)"
+          EXTRA="$(echo "$PERMS" | grep 'uses-permission' | grep -v 'android.permission.INTERNET' || true)"
+          test -z "$EXTRA" || { echo "Unexpected permissions: $EXTRA"; exit 1; }
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+          CERT="$("$APKSIGNER" verify --print-certs "$APK" | sed -n 's/Signer #1 certificate SHA-256 digest: //p' | head -1)"
+          test -n "$CERT"
           SHA="$(sha256sum "$APK" | awk '{print $1}')"
           SIZE="$(stat -c%s "$APK")"
           echo "cert=$CERT" >> "$GITHUB_OUTPUT"
