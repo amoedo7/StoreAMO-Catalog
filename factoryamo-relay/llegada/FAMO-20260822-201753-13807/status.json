@@ -1,18 +1,11 @@
 {
   "schema": "factoryamo.relay.v1",
   "job_id": "FAMO-20260822-201753-13807",
-  "app_name": "FACTORYAMO — LOTE 40",
-  "stage": "PUBLISHING",
-  "message": "Controlador de lote activado. Objetivo: producir, probar, compilar, publicar y verificar 40 APK Android distintos en StoreAMO sin pedir confirmación entre aplicaciones.",
+  "app_name": "ClimaAMO",
+  "stage": "PUBLISHED",
+  "progress": 100,
+  "message": "ClimaAMO 0.2.0 candidate publicada en StoreAMO. Amplía la app con datos reales de Open-Meteo: condiciones actuales, 12 horas, precipitación, viento y ráfagas, humedad, presión, visibilidad, nubosidad, amanecer, atardecer, UV, detalle de 5 días y gráficos de tendencias. Build, tests, APK, firma, permisos y consulta HTTPS verificados; smoke test físico pendiente para Verified.",
   "question": "",
-  "updated_at": "2026-08-23T01:57:00+02:00",
-  "target": 40,
-  "completed": 0,
-  "blocked": 0,
-  "current_index": 40,
-  "current_app": "SlugAMO",
-  "current_state": "PUBLISHING",
-  "last_completed_action": "40/40 self-tests superados; 40 APK compilados; identidad, versión, integridad, firma y cero permisos validados.",
-  "next_action": "Fusionar el PR de artefactos a main y verificar las 40 descargas públicas por HTTPS y SHA-256.",
-  "storeamo_url": ""
+  "updated_at": "2026-08-23T10:25:30+02:00",
+  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk"
 }
