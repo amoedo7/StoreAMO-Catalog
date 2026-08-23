@@ -2,10 +2,17 @@
   "schema": "factoryamo.relay.v1",
   "job_id": "FAMO-20260822-201753-13807",
   "app_name": "ClimaAMO",
-  "stage": "PUBLISHED",
+  "stage": "PUBLISHING",
   "progress": 100,
-  "message": "ClimaAMO 0.2.0 candidate publicada en StoreAMO. Amplía la app con datos reales de Open-Meteo: condiciones actuales, 12 horas, precipitación, viento y ráfagas, humedad, presión, visibilidad, nubosidad, amanecer, atardecer, UV, detalle de 5 días y gráficos de tendencias. Build, tests, APK, firma, permisos y consulta HTTPS verificados; smoke test físico pendiente para Verified.",
+  "message": "FactoryAMO Batch40: 40/40 APK empaquetados y 40/40 entradas StoreAMO preparadas. Pendiente merge a main para la verificación HTTPS pública final.",
   "question": "",
-  "updated_at": "2026-08-23T10:25:30+02:00",
-  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk"
+  "updated_at": "2026-08-23T09:10:27.329870+00:00",
+  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk",
+  "current_state": "PUBLISHING",
+  "current_index": 40,
+  "current_app": "SlugAMO",
+  "completed": 40,
+  "blocked": 0,
+  "last_completed_action": "Compilados y empaquetados los 40 APK dentro de public-artifacts; catálogo reconstruido.",
+  "next_action": "Fusionar a main y verificar 40/40 descargas públicas por HTTP 200, tamaño y SHA-256."
 }

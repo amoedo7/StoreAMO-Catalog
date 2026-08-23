@@ -1,0 +1,54 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "primoamo",
+  "name": "PrimoAMO",
+  "tagline": "Comprobá si un número es primo",
+  "description": "Comprobá si un número es primo. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+  "category": "Matemática",
+  "audience": "public",
+  "featured": false,
+  "status": "candidate",
+  "supported_platforms": [
+    "android"
+  ],
+  "source": {
+    "visibility": "public",
+    "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40"
+  },
+  "store": {
+    "homepage": "https://desarrollamo.com.ar",
+    "screenshots": [],
+    "notes": "PrimoAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+  },
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": [
+      "integrity",
+      "application-id",
+      "signature",
+      "permissions",
+      "tests",
+      "https",
+      "device-smoke"
+    ]
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "universal",
+      "format": "apk",
+      "version": "0.1.0",
+      "version_code": "1",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/primoamo/0.1.0/PrimoAMO-0.1.0.apk",
+      "sha256": "9c3d4d7c4b80093b9fb3daaa19830133387990b934b5bb6d36fc6deb1988fb49",
+      "size_bytes": 17601,
+      "min_os": "Android 8.0 (API 26)",
+      "application_id": "com.desarrollamo.primoamo",
+      "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+      "verified": false,
+      "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/primoamo-v0.1.0.json",
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/primoamo/0.1.0",
+      "source": "factoryamo-batch40"
+    }
+  ]
+}

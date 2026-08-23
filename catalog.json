@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-23T08:24:52+00:00",
+  "generated_at": "2026-08-23T09:10:27+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -297,6 +297,110 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/qramomini.json"
     },
     {
+      "id": "base64amo",
+      "name": "Base64AMO",
+      "tagline": "Codificá y decodificá Base64 localmente",
+      "description": "Codificá y decodificá Base64 localmente. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "Base64AMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/base64amo/0.1.0/Base64AMO-0.1.0.apk",
+          "sha256": "90c2d0fb558778e75c5e51b893f307e737da8fe6dd7774cb5c2115582f70e942",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.base64amo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/base64amo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/base64amo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/base64amo.json"
+    },
+    {
+      "id": "baseamo",
+      "name": "BaseAMO",
+      "tagline": "Convertí números entre binario, octal, decimal y hexadecimal",
+      "description": "Convertí números entre binario, octal, decimal y hexadecimal. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "BaseAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/baseamo/0.1.0/BaseAMO-0.1.0.apk",
+          "sha256": "25508dd74c44e37745ee2714f7dd5610cd27d532a309f59249f76fc6cf5735f2",
+          "size_bytes": 17625,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.baseamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/baseamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/baseamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/baseamo.json"
+    },
+    {
       "id": "brujulamo",
       "name": "BrujulAMO",
       "tagline": "Brújula magnética offline y privada.",
@@ -346,6 +450,58 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/brujulamo.json"
     },
     {
+      "id": "bytesamo",
+      "name": "BytesAMO",
+      "tagline": "Convertí bytes, KB, MB y GB",
+      "description": "Convertí bytes, KB, MB y GB. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "BytesAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/bytesamo/0.1.0/BytesAMO-0.1.0.apk",
+          "sha256": "27b573624341adcbf8bc963d71d187f3fc7c189c351df7c26db38baa974c2d54",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.bytesamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/bytesamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/bytesamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/bytesamo.json"
+    },
+    {
       "id": "calculamo",
       "name": "CalculAMO",
       "tagline": "Calculadora rápida con historial local.",
@@ -393,6 +549,58 @@
       ],
       "repository": "amoedo7/StoreAMO-Catalog",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/calculamo.json"
+    },
+    {
+      "id": "cesaramo",
+      "name": "CesarAMO",
+      "tagline": "Cifrado César local para aprendizaje",
+      "description": "Cifrado César local para aprendizaje. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "CesarAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cesaramo/0.1.0/CesarAMO-0.1.0.apk",
+          "sha256": "40bbddca20cd7915a7922c35c3aa7ad814e52dda9659db74ffad250f52449b94",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.cesaramo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/cesaramo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/cesaramo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/cesaramo.json"
     },
     {
       "id": "climaamo",
@@ -445,6 +653,110 @@
       ],
       "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/climaamo.json"
+    },
+    {
+      "id": "coloramo",
+      "name": "ColorAMO",
+      "tagline": "Convertí colores HEX y RGB",
+      "description": "Convertí colores HEX y RGB. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Diseño",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "ColorAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/coloramo/0.1.0/ColorAMO-0.1.0.apk",
+          "sha256": "7eef7bde15d1350cc4fb73e0d9978bc4a657c6a60c83dded0ab6d535478262ab",
+          "size_bytes": 17593,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.coloramo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/coloramo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/coloramo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/coloramo.json"
+    },
+    {
+      "id": "combustamo",
+      "name": "CombustAMO",
+      "tagline": "Calculá costo y consumo de combustible",
+      "description": "Calculá costo y consumo de combustible. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Viajes",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "CombustAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/combustamo/0.1.0/CombustAMO-0.1.0.apk",
+          "sha256": "9f0b18b5074f63f0225550409257d06ed964f782ccf641feec87e6c403e569fa",
+          "size_bytes": 17613,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.combustamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/combustamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/combustamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/combustamo.json"
     },
     {
       "id": "contamo",
@@ -592,6 +904,58 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/cronamo.json"
     },
     {
+      "id": "cuotamo",
+      "name": "CuotAMO",
+      "tagline": "Calculá cuotas de un préstamo",
+      "description": "Calculá cuotas de un préstamo. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Finanzas",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "CuotAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cuotamo/0.1.0/CuotAMO-0.1.0.apk",
+          "sha256": "e566124ee157c76f7ffa4ebbfb76277d09efa95b3e2087722623ec8fdb527d79",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.cuotamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/cuotamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/cuotamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/cuotamo.json"
+    },
+    {
       "id": "dadosamo",
       "name": "DadosAMO",
       "tagline": "Dados digitales para jugar donde quieras.",
@@ -705,6 +1069,318 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/DiagnosticoAMO/main/storeamo.json"
     },
     {
+      "id": "diasamo",
+      "name": "DiasAMO",
+      "tagline": "Días entre dos fechas",
+      "description": "Días entre dos fechas. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Utilidades",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "DiasAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/diasamo/0.1.0/DiasAMO-0.1.0.apk",
+          "sha256": "76d6386a170b9d9cb20b8e5351bc5ae9214260dac72c9a5ea4388ab87fe9e93e",
+          "size_bytes": 17593,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.diasamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/diasamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/diasamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/diasamo.json"
+    },
+    {
+      "id": "dividamo",
+      "name": "DividAMO",
+      "tagline": "Dividí una cuenta entre varias personas",
+      "description": "Dividí una cuenta entre varias personas. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Finanzas",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "DividAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/dividamo/0.1.0/DividAMO-0.1.0.apk",
+          "sha256": "8a0e633ed8484d13348e170f4e8727a2dcbede7d5460106f3ce70c37e4c6678c",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.dividamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/dividamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/dividamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/dividamo.json"
+    },
+    {
+      "id": "edadamo",
+      "name": "EdadAMO",
+      "tagline": "Calculá edad exacta desde una fecha de nacimiento",
+      "description": "Calculá edad exacta desde una fecha de nacimiento. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Utilidades",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "EdadAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/edadamo/0.1.0/EdadAMO-0.1.0.apk",
+          "sha256": "eba0a5a8ab076b0ef7d2bad2570d77e1bbbedc80aebd8656e5a61f903b14048c",
+          "size_bytes": 17617,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.edadamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/edadamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/edadamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/edadamo.json"
+    },
+    {
+      "id": "faltanamo",
+      "name": "FaltanAMO",
+      "tagline": "Cuenta cuántos días faltan para una fecha",
+      "description": "Cuenta cuántos días faltan para una fecha. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Utilidades",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "FaltanAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/faltanamo/0.1.0/FaltanAMO-0.1.0.apk",
+          "sha256": "17aa50f77b0b098fdf2e161acf1579081a8bd736b5687414a850cf4037ada155",
+          "size_bytes": 17613,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.faltanamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/faltanamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/faltanamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/faltanamo.json"
+    },
+    {
+      "id": "figuraamo",
+      "name": "FiguraAMO",
+      "tagline": "Área y perímetro de figuras básicas",
+      "description": "Área y perímetro de figuras básicas. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Matemática",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "FiguraAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/figuraamo/0.1.0/FiguraAMO-0.1.0.apk",
+          "sha256": "84e59e67010af9ecf103c0e15c39c25dce2a480ca97e9f032f2400e68b224f78",
+          "size_bytes": 17613,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.figuraamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/figuraamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/figuraamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/figuraamo.json"
+    },
+    {
+      "id": "fraccionamo",
+      "name": "FraccionAMO",
+      "tagline": "Simplificá fracciones",
+      "description": "Simplificá fracciones. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Matemática",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "FraccionAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/fraccionamo/0.1.0/FraccionAMO-0.1.0.apk",
+          "sha256": "06ccc8df4f6c9d98e7b36bc274b2378a2bca68cf08272e9db515a599a88c10f3",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.fraccionamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/fraccionamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/fraccionamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/fraccionamo.json"
+    },
+    {
       "id": "gastamo",
       "name": "GastAMO",
       "tagline": "Anotá lo que entra y lo que sale.",
@@ -803,6 +1479,422 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/habitamo.json"
+    },
+    {
+      "id": "interesamo",
+      "name": "InteresAMO",
+      "tagline": "Interés compuesto simple y claro",
+      "description": "Interés compuesto simple y claro. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Finanzas",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "InteresAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/interesamo/0.1.0/InteresAMO-0.1.0.apk",
+          "sha256": "5b84e9b20dd8a313b881797959b0de1ce7411be94d0d1444054816e1f591fa2f",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.interesamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/interesamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/interesamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/interesamo.json"
+    },
+    {
+      "id": "intervalamo",
+      "name": "IntervalAMO",
+      "tagline": "Temporizador de intervalos trabajo/descanso",
+      "description": "Temporizador de intervalos trabajo/descanso. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Productividad",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "IntervalAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/intervalamo/0.1.0/IntervalAMO-0.1.0.apk",
+          "sha256": "43bb69aee66d76b19e3eef8c4fb46ff5165ba2b587fa9d7f06088d753d2c9054",
+          "size_bytes": 17617,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.intervalamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/intervalamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/intervalamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/intervalamo.json"
+    },
+    {
+      "id": "jsonamo",
+      "name": "JSONAMO",
+      "tagline": "Formateá y validá JSON localmente",
+      "description": "Formateá y validá JSON localmente. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "JSONAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/jsonamo/0.1.0/JSONAMO-0.1.0.apk",
+          "sha256": "59d72198e00a876899f4e33eb5efc7698467d42e4c46cf59f44745f198179fe3",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.jsonamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/jsonamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/jsonamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/jsonamo.json"
+    },
+    {
+      "id": "limpiamo",
+      "name": "LimpiAMO",
+      "tagline": "Limpiá espacios y líneas de un texto",
+      "description": "Limpiá espacios y líneas de un texto. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "LimpiAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/limpiamo/0.1.0/LimpiAMO-0.1.0.apk",
+          "sha256": "f00988f51c156ed5246f68e66e708a45fbfafb681b8a5ba739792909d2ab0cb8",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.limpiamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/limpiamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/limpiamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/limpiamo.json"
+    },
+    {
+      "id": "listaamo",
+      "name": "ListaAMO",
+      "tagline": "Ordená y quitá duplicados de listas",
+      "description": "Ordená y quitá duplicados de listas. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "ListaAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/listaamo/0.1.0/ListaAMO-0.1.0.apk",
+          "sha256": "683706a9609ea638a230c427ecb5bbd071941147ac5860e7ccc6f4e910a34e62",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.listaamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/listaamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/listaamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/listaamo.json"
+    },
+    {
+      "id": "marcadoramo",
+      "name": "MarcadorAMO",
+      "tagline": "Marcador simple para dos equipos",
+      "description": "Marcador simple para dos equipos. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Juegos",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MarcadorAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/marcadoramo/0.1.0/MarcadorAMO-0.1.0.apk",
+          "sha256": "1b2ab1073ad406fc55de586d805bffbdd33462f6ea56a7fb194c1b4fe7049d38",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.marcadoramo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/marcadoramo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/marcadoramo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/marcadoramo.json"
+    },
+    {
+      "id": "mayusamo",
+      "name": "MayusAMO",
+      "tagline": "Mayúsculas, minúsculas y formato título",
+      "description": "Mayúsculas, minúsculas y formato título. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MayusAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/mayusamo/0.1.0/MayusAMO-0.1.0.apk",
+          "sha256": "257fee45298bcfc58b799fde1f9f2f858d337a9babfaf07e3c0af1ec6b6c6cef",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.mayusamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/mayusamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/mayusamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/mayusamo.json"
+    },
+    {
+      "id": "mcdamo",
+      "name": "MCDAMO",
+      "tagline": "Máximo común divisor y mínimo común múltiplo",
+      "description": "Máximo común divisor y mínimo común múltiplo. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Matemática",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MCDAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/mcdamo/0.1.0/MCDAMO-0.1.0.apk",
+          "sha256": "eaca4ef7934e1072398781fa0dbc77cc0e028030f0638bd9e4c0bfb9cf582823",
+          "size_bytes": 17609,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.mcdamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/mcdamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/mcdamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/mcdamo.json"
     },
     {
       "id": "mensajamo",
@@ -1004,6 +2096,110 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
     },
     {
+      "id": "monedamo",
+      "name": "MonedAMO",
+      "tagline": "Moneda al aire y contador de resultados",
+      "description": "Moneda al aire y contador de resultados. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Juegos",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MonedAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/monedamo/0.1.0/MonedAMO-0.1.0.apk",
+          "sha256": "7c8250781dd21c510bf851dcb47cf187b8db1aef5e549ba80cf1db1a726b4f47",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.monedamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/monedamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/monedamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/monedamo.json"
+    },
+    {
+      "id": "morseamo",
+      "name": "MorseAMO",
+      "tagline": "Convertí texto a código Morse",
+      "description": "Convertí texto a código Morse. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "MorseAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/morseamo/0.1.0/MorseAMO-0.1.0.apk",
+          "sha256": "d12f2c174e993e97796b8466588c2bcf76715d57a4141553605034e0721af32c",
+          "size_bytes": 17601,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.morseamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/morseamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/morseamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/morseamo.json"
+    },
+    {
       "id": "notasamo",
       "name": "NotasAMO",
       "tagline": "Notas locales con búsqueda y favoritos.",
@@ -1053,6 +2249,58 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/notasamo.json"
     },
     {
+      "id": "pomodoramo",
+      "name": "PomodorAMO",
+      "tagline": "Temporizador Pomodoro local",
+      "description": "Temporizador Pomodoro local. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Productividad",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "PomodorAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/pomodoramo/0.1.0/PomodorAMO-0.1.0.apk",
+          "sha256": "badefd90213ad33acf88345053a7691a77f104bba4475a658e112d141faa0d57",
+          "size_bytes": 17601,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.pomodoramo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/pomodoramo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/pomodoramo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/pomodoramo.json"
+    },
+    {
       "id": "porcentamo",
       "name": "PorcentAMO",
       "tagline": "Porcentajes, descuentos y aumentos en segundos.",
@@ -1083,6 +2331,266 @@
       "artifacts": [],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/porcentamo.json"
+    },
+    {
+      "id": "primoamo",
+      "name": "PrimoAMO",
+      "tagline": "Comprobá si un número es primo",
+      "description": "Comprobá si un número es primo. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Matemática",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "PrimoAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/primoamo/0.1.0/PrimoAMO-0.1.0.apk",
+          "sha256": "9c3d4d7c4b80093b9fb3daaa19830133387990b934b5bb6d36fc6deb1988fb49",
+          "size_bytes": 17601,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.primoamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/primoamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/primoamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/primoamo.json"
+    },
+    {
+      "id": "promediamo",
+      "name": "PromediAMO",
+      "tagline": "Promedio y mediana de una lista de números",
+      "description": "Promedio y mediana de una lista de números. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Matemática",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "PromediAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/promediamo/0.1.0/PromediAMO-0.1.0.apk",
+          "sha256": "de87ff784e3067c54635d4a842b0f53f5227eea21837758f8cfd383f8228a3bf",
+          "size_bytes": 17609,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.promediamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/promediamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/promediamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/promediamo.json"
+    },
+    {
+      "id": "propinamo",
+      "name": "PropinAMO",
+      "tagline": "Calculá propina y total por persona",
+      "description": "Calculá propina y total por persona. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Finanzas",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "PropinAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/propinamo/0.1.0/PropinAMO-0.1.0.apk",
+          "sha256": "e86a409084bb3ba9d0485ba91b32e55aefd90a64f8cc4c767353d8c161e9d68f",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.propinamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/propinamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/propinamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/propinamo.json"
+    },
+    {
+      "id": "regexamo",
+      "name": "RegexAMO",
+      "tagline": "Probá expresiones regulares sobre texto",
+      "description": "Probá expresiones regulares sobre texto. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "RegexAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/regexamo/0.1.0/RegexAMO-0.1.0.apk",
+          "sha256": "2ec7b46e7607faa04ea6304c0fefd5a31768d206385dc0b9290b865797e9c7d2",
+          "size_bytes": 17609,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.regexamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/regexamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/regexamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/regexamo.json"
+    },
+    {
+      "id": "reglatresamo",
+      "name": "ReglaTresAMO",
+      "tagline": "Regla de tres directa",
+      "description": "Regla de tres directa. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Matemática",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "ReglaTresAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/reglatresamo/0.1.0/ReglaTresAMO-0.1.0.apk",
+          "sha256": "d1c85fa0438adc5ad95f15710e0532c13d8cf985d574418c264a6a0ff9b57865",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.reglatresamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/reglatresamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/reglatresamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/reglatresamo.json"
     },
     {
       "id": "relojamo",
@@ -1132,6 +2640,214 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/relojamo.json"
+    },
+    {
+      "id": "repetamo",
+      "name": "RepetAMO",
+      "tagline": "Repetí texto una cantidad controlada de veces",
+      "description": "Repetí texto una cantidad controlada de veces. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "RepetAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/repetamo/0.1.0/RepetAMO-0.1.0.apk",
+          "sha256": "6a2cf76646b742b41406112a7d532110b6f1f518aa6d086fdbf3461795d8a636",
+          "size_bytes": 17613,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.repetamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/repetamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/repetamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/repetamo.json"
+    },
+    {
+      "id": "respiramo",
+      "name": "RespirAMO",
+      "tagline": "Guía de respiración 4-4-4-4",
+      "description": "Guía de respiración 4-4-4-4. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Bienestar",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "RespirAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/respiramo/0.1.0/RespirAMO-0.1.0.apk",
+          "sha256": "2e8fb6a3a069ca293757f80ca464804bda9c215ec069bddbdf0f66d2d7cd7b84",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.respiramo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/respiramo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/respiramo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/respiramo.json"
+    },
+    {
+      "id": "romanamo",
+      "name": "RomanAMO",
+      "tagline": "Convertí números decimales a romanos",
+      "description": "Convertí números decimales a romanos. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Utilidades",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "RomanAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/romanamo/0.1.0/RomanAMO-0.1.0.apk",
+          "sha256": "20583eed099999fc48060f2728c3f68141a90aee214a4b04701c343e8d106fc6",
+          "size_bytes": 17605,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.romanamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/romanamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/romanamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/romanamo.json"
+    },
+    {
+      "id": "slugamo",
+      "name": "SlugAMO",
+      "tagline": "Convertí títulos a slugs de URL",
+      "description": "Convertí títulos a slugs de URL. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "SlugAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/slugamo/0.1.0/SlugAMO-0.1.0.apk",
+          "sha256": "8295d299e91b527169674312a79dbcc67510f947ae920bb43a8d9efc5dbef316",
+          "size_bytes": 17601,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.slugamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/slugamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/slugamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/slugamo.json"
     },
     {
       "id": "sorteamo",
@@ -1278,6 +2994,370 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/temporizamo.json"
+    },
+    {
+      "id": "textoamo",
+      "name": "TextoAMO",
+      "tagline": "Contá palabras, caracteres y líneas",
+      "description": "Contá palabras, caracteres y líneas. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Texto",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "TextoAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/textoamo/0.1.0/TextoAMO-0.1.0.apk",
+          "sha256": "f1319a6ed3aa561a2b271da71e4b0e2e645e3dffc5a610c56701739c721e6de9",
+          "size_bytes": 17609,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.textoamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/textoamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/textoamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/textoamo.json"
+    },
+    {
+      "id": "unixamo",
+      "name": "UnixAMO",
+      "tagline": "Convertí fecha y timestamp Unix",
+      "description": "Convertí fecha y timestamp Unix. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "UnixAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/unixamo/0.1.0/UnixAMO-0.1.0.apk",
+          "sha256": "8c844553913592d061c2a809cad92a472e2c23989c1b2fcb6d465576c5fd702b",
+          "size_bytes": 17601,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.unixamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/unixamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/unixamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/unixamo.json"
+    },
+    {
+      "id": "urlamo",
+      "name": "UrlAMO",
+      "tagline": "Codificá y decodificá componentes de URL",
+      "description": "Codificá y decodificá componentes de URL. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "UrlAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/urlamo/0.1.0/UrlAMO-0.1.0.apk",
+          "sha256": "3badfd5cce30720ac50137001421863c57fa078c4674b6674fa8359f8798f372",
+          "size_bytes": 17601,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.urlamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/urlamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/urlamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/urlamo.json"
+    },
+    {
+      "id": "uuidamo",
+      "name": "UUIDAMO",
+      "tagline": "Generador local de UUID v4",
+      "description": "Generador local de UUID v4. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Desarrollo",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "UUIDAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/uuidamo/0.1.0/UUIDAMO-0.1.0.apk",
+          "sha256": "7cc250e52a6be75bb63c56d1bb9ea3431128f95e8b4cf3e507de25c7c7f5f3cc",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.uuidamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/uuidamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/uuidamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/uuidamo.json"
+    },
+    {
+      "id": "velocamo",
+      "name": "VelocAMO",
+      "tagline": "Convertí km/h, mph y m/s",
+      "description": "Convertí km/h, mph y m/s. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Utilidades",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "VelocAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/velocamo/0.1.0/VelocAMO-0.1.0.apk",
+          "sha256": "ac1395999e0f99b534af8318f9b1fe1c6485c583ba412cf43f0ee21f2ffd1212",
+          "size_bytes": 17597,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.velocamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/velocamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/velocamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/velocamo.json"
+    },
+    {
+      "id": "viajeamo",
+      "name": "ViajeAMO",
+      "tagline": "Estimá duración de un viaje por distancia y velocidad",
+      "description": "Estimá duración de un viaje por distancia y velocidad. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Viajes",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "ViajeAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/viajeamo/0.1.0/ViajeAMO-0.1.0.apk",
+          "sha256": "1ee7030f138043b6bdc6634b3832bf71317eedf8e1c232bffaf039f4cc5096ea",
+          "size_bytes": 17625,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.viajeamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/viajeamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/viajeamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/viajeamo.json"
+    },
+    {
+      "id": "zonaamo",
+      "name": "ZonaAMO",
+      "tagline": "Compará horarios por desplazamiento UTC",
+      "description": "Compará horarios por desplazamiento UTC. Aplicación Android local-first, sin cuenta, sin telemetría y sin permisos de Android.",
+      "category": "Utilidades",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "ZonaAMO 0.1.0 candidate. Tests lógicos, build, integridad, identidad, firma, permisos y descarga pública verificados por FactoryAMO; device-smoke pendiente."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests",
+          "https",
+          "device-smoke"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/zonaamo/0.1.0/ZonaAMO-0.1.0.apk",
+          "sha256": "b9afc5278560ef71fd895b7b19e217ff2279b76f09fcc2436a7e0a1d17f892d7",
+          "size_bytes": 17609,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.zonaamo",
+          "signing_cert_sha256": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
+          "verified": false,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/zonaamo-v0.1.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/zonaamo/0.1.0",
+          "source": "factoryamo-batch40"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/Batch40",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/zonaamo.json"
     }
   ]
 }

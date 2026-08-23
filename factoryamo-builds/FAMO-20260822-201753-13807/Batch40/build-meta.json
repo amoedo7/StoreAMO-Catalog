@@ -8,9 +8,9 @@
       "id": "monedamo",
       "name": "MonedAMO",
       "apk": "public-artifacts/monedamo/0.1.0/MonedAMO-0.1.0.apk",
-      "sha256": "c0f67a98b30e2bfd719fd2ced81f445066315d4912824c1e5175c37fdd5fb3cf",
+      "sha256": "7c8250781dd21c510bf851dcb47cf187b8db1aef5e549ba80cf1db1a726b4f47",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/monedamo/0.1.0/MonedAMO-0.1.0.apk"
     },
     {
@@ -18,9 +18,9 @@
       "id": "edadamo",
       "name": "EdadAMO",
       "apk": "public-artifacts/edadamo/0.1.0/EdadAMO-0.1.0.apk",
-      "sha256": "37a99904ba2f51a8e99b7488318e694424e292290f2a6aff57d7d9fd37142acd",
+      "sha256": "eba0a5a8ab076b0ef7d2bad2570d77e1bbbedc80aebd8656e5a61f903b14048c",
       "size_bytes": 17617,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/edadamo/0.1.0/EdadAMO-0.1.0.apk"
     },
     {
@@ -28,9 +28,9 @@
       "id": "dividamo",
       "name": "DividAMO",
       "apk": "public-artifacts/dividamo/0.1.0/DividAMO-0.1.0.apk",
-      "sha256": "6713324f80926785d244501c16b9b637962fcd13fefc5098f4293aeae07cc2b7",
+      "sha256": "8a0e633ed8484d13348e170f4e8727a2dcbede7d5460106f3ce70c37e4c6678c",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/dividamo/0.1.0/DividAMO-0.1.0.apk"
     },
     {
@@ -38,9 +38,9 @@
       "id": "propinamo",
       "name": "PropinAMO",
       "apk": "public-artifacts/propinamo/0.1.0/PropinAMO-0.1.0.apk",
-      "sha256": "b1a425c6d00f7ece9d64187b977d4e28c047d4729e2c4058a2a2333118ac5273",
+      "sha256": "e86a409084bb3ba9d0485ba91b32e55aefd90a64f8cc4c767353d8c161e9d68f",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/propinamo/0.1.0/PropinAMO-0.1.0.apk"
     },
     {
@@ -48,9 +48,9 @@
       "id": "combustamo",
       "name": "CombustAMO",
       "apk": "public-artifacts/combustamo/0.1.0/CombustAMO-0.1.0.apk",
-      "sha256": "22151be8aaa2558e69315d1faadeba657d7ef4f3d35da04358410f98c7d9cc50",
+      "sha256": "9f0b18b5074f63f0225550409257d06ed964f782ccf641feec87e6c403e569fa",
       "size_bytes": 17613,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/combustamo/0.1.0/CombustAMO-0.1.0.apk"
     },
     {
@@ -58,9 +58,9 @@
       "id": "viajeamo",
       "name": "ViajeAMO",
       "apk": "public-artifacts/viajeamo/0.1.0/ViajeAMO-0.1.0.apk",
-      "sha256": "54955df479d000303aa4fe730b19078b81ea52e7eb1e1f76d096ecf5423436fa",
+      "sha256": "1ee7030f138043b6bdc6634b3832bf71317eedf8e1c232bffaf039f4cc5096ea",
       "size_bytes": 17625,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/viajeamo/0.1.0/ViajeAMO-0.1.0.apk"
     },
     {
@@ -68,9 +68,9 @@
       "id": "cuotamo",
       "name": "CuotAMO",
       "apk": "public-artifacts/cuotamo/0.1.0/CuotAMO-0.1.0.apk",
-      "sha256": "e4d4e80be06a2c5ef9a2e27c434d879917780ebd4abd9efdc3e9f069e0e382d2",
+      "sha256": "e566124ee157c76f7ffa4ebbfb76277d09efa95b3e2087722623ec8fdb527d79",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cuotamo/0.1.0/CuotAMO-0.1.0.apk"
     },
     {
@@ -78,9 +78,9 @@
       "id": "interesamo",
       "name": "InteresAMO",
       "apk": "public-artifacts/interesamo/0.1.0/InteresAMO-0.1.0.apk",
-      "sha256": "6a753ff0b3cc3767dd169d07a59a6442e7950017c2605e986f3c571dca61093b",
+      "sha256": "5b84e9b20dd8a313b881797959b0de1ce7411be94d0d1444054816e1f591fa2f",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/interesamo/0.1.0/InteresAMO-0.1.0.apk"
     },
     {
@@ -88,9 +88,9 @@
       "id": "reglatresamo",
       "name": "ReglaTresAMO",
       "apk": "public-artifacts/reglatresamo/0.1.0/ReglaTresAMO-0.1.0.apk",
-      "sha256": "c8245ec15bcf7e17f4eb33e03d10e787f6d044f34ca931cf53419b0d29bdb9ed",
+      "sha256": "d1c85fa0438adc5ad95f15710e0532c13d8cf985d574418c264a6a0ff9b57865",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/reglatresamo/0.1.0/ReglaTresAMO-0.1.0.apk"
     },
     {
@@ -98,9 +98,9 @@
       "id": "promediamo",
       "name": "PromediAMO",
       "apk": "public-artifacts/promediamo/0.1.0/PromediAMO-0.1.0.apk",
-      "sha256": "618f60c60d251b52fdae0a043cc8902eeb66ac4d43896af6f6677bd885af0319",
+      "sha256": "de87ff784e3067c54635d4a842b0f53f5227eea21837758f8cfd383f8228a3bf",
       "size_bytes": 17609,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/promediamo/0.1.0/PromediAMO-0.1.0.apk"
     },
     {
@@ -108,9 +108,9 @@
       "id": "fraccionamo",
       "name": "FraccionAMO",
       "apk": "public-artifacts/fraccionamo/0.1.0/FraccionAMO-0.1.0.apk",
-      "sha256": "c66cd921facfc7227163b198fa4e5e04123806950d7b53fb562c9c6f2fa20f3d",
+      "sha256": "06ccc8df4f6c9d98e7b36bc274b2378a2bca68cf08272e9db515a599a88c10f3",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/fraccionamo/0.1.0/FraccionAMO-0.1.0.apk"
     },
     {
@@ -118,9 +118,9 @@
       "id": "primoamo",
       "name": "PrimoAMO",
       "apk": "public-artifacts/primoamo/0.1.0/PrimoAMO-0.1.0.apk",
-      "sha256": "c14dc397e7124e298a559ce1e34a0dac0ecc2b1a6b114a0f452a376f8b14260a",
+      "sha256": "9c3d4d7c4b80093b9fb3daaa19830133387990b934b5bb6d36fc6deb1988fb49",
       "size_bytes": 17601,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/primoamo/0.1.0/PrimoAMO-0.1.0.apk"
     },
     {
@@ -128,9 +128,9 @@
       "id": "mcdamo",
       "name": "MCDAMO",
       "apk": "public-artifacts/mcdamo/0.1.0/MCDAMO-0.1.0.apk",
-      "sha256": "e05db6ca1b135defae488808074c04469361a9424d61a2b45829999d18c0b9c2",
+      "sha256": "eaca4ef7934e1072398781fa0dbc77cc0e028030f0638bd9e4c0bfb9cf582823",
       "size_bytes": 17609,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/mcdamo/0.1.0/MCDAMO-0.1.0.apk"
     },
     {
@@ -138,9 +138,9 @@
       "id": "baseamo",
       "name": "BaseAMO",
       "apk": "public-artifacts/baseamo/0.1.0/BaseAMO-0.1.0.apk",
-      "sha256": "28d9d966fc5d8c044c36f29d9b5ca3edebcf90245d7eebd9621a0ce84bfa3413",
+      "sha256": "25508dd74c44e37745ee2714f7dd5610cd27d532a309f59249f76fc6cf5735f2",
       "size_bytes": 17625,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/baseamo/0.1.0/BaseAMO-0.1.0.apk"
     },
     {
@@ -148,9 +148,9 @@
       "id": "romanamo",
       "name": "RomanAMO",
       "apk": "public-artifacts/romanamo/0.1.0/RomanAMO-0.1.0.apk",
-      "sha256": "e673d2713df1f9b94291a46b59152c4e9baeefedead8d449e7ac314aa08d04c1",
+      "sha256": "20583eed099999fc48060f2728c3f68141a90aee214a4b04701c343e8d106fc6",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/romanamo/0.1.0/RomanAMO-0.1.0.apk"
     },
     {
@@ -158,9 +158,9 @@
       "id": "coloramo",
       "name": "ColorAMO",
       "apk": "public-artifacts/coloramo/0.1.0/ColorAMO-0.1.0.apk",
-      "sha256": "4d54832cbf88b4e032e642c7ffd0dcbffbe95561a28e5cdeaf3b7915e3e6c0c5",
+      "sha256": "7eef7bde15d1350cc4fb73e0d9978bc4a657c6a60c83dded0ab6d535478262ab",
       "size_bytes": 17593,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/coloramo/0.1.0/ColorAMO-0.1.0.apk"
     },
     {
@@ -168,9 +168,9 @@
       "id": "textoamo",
       "name": "TextoAMO",
       "apk": "public-artifacts/textoamo/0.1.0/TextoAMO-0.1.0.apk",
-      "sha256": "dfe356be1c232ca3d7b1fca9e08fce83bab2cdc94700c879a93c96f53996939a",
+      "sha256": "f1319a6ed3aa561a2b271da71e4b0e2e645e3dffc5a610c56701739c721e6de9",
       "size_bytes": 17609,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/textoamo/0.1.0/TextoAMO-0.1.0.apk"
     },
     {
@@ -178,9 +178,9 @@
       "id": "mayusamo",
       "name": "MayusAMO",
       "apk": "public-artifacts/mayusamo/0.1.0/MayusAMO-0.1.0.apk",
-      "sha256": "4ca3753de1a6031aa753dddfaf2d42cd216cedf659b330f522c9d5b3775d13f7",
+      "sha256": "257fee45298bcfc58b799fde1f9f2f858d337a9babfaf07e3c0af1ec6b6c6cef",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/mayusamo/0.1.0/MayusAMO-0.1.0.apk"
     },
     {
@@ -188,9 +188,9 @@
       "id": "limpiamo",
       "name": "LimpiAMO",
       "apk": "public-artifacts/limpiamo/0.1.0/LimpiAMO-0.1.0.apk",
-      "sha256": "67d828632608bb5000b4e1f64c508c6762909184da02a5b2ebcb3f5468cebed5",
+      "sha256": "f00988f51c156ed5246f68e66e708a45fbfafb681b8a5ba739792909d2ab0cb8",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/limpiamo/0.1.0/LimpiAMO-0.1.0.apk"
     },
     {
@@ -198,9 +198,9 @@
       "id": "repetamo",
       "name": "RepetAMO",
       "apk": "public-artifacts/repetamo/0.1.0/RepetAMO-0.1.0.apk",
-      "sha256": "2a04f2648775523d44c240d4b91ac2f1f7353ac1d86581e8a55cc038070b12be",
+      "sha256": "6a2cf76646b742b41406112a7d532110b6f1f518aa6d086fdbf3461795d8a636",
       "size_bytes": 17613,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/repetamo/0.1.0/RepetAMO-0.1.0.apk"
     },
     {
@@ -208,9 +208,9 @@
       "id": "uuidamo",
       "name": "UUIDAMO",
       "apk": "public-artifacts/uuidamo/0.1.0/UUIDAMO-0.1.0.apk",
-      "sha256": "817ebf82592213a1678d78e914967aa8255011cc9e1ca96ef449af62ce8731e0",
+      "sha256": "7cc250e52a6be75bb63c56d1bb9ea3431128f95e8b4cf3e507de25c7c7f5f3cc",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/uuidamo/0.1.0/UUIDAMO-0.1.0.apk"
     },
     {
@@ -218,9 +218,9 @@
       "id": "base64amo",
       "name": "Base64AMO",
       "apk": "public-artifacts/base64amo/0.1.0/Base64AMO-0.1.0.apk",
-      "sha256": "b8f7d6362f4c12071cc43eebb3bfc1bfa53bfcd2c084198f65f93ec6be4618fe",
+      "sha256": "90c2d0fb558778e75c5e51b893f307e737da8fe6dd7774cb5c2115582f70e942",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/base64amo/0.1.0/Base64AMO-0.1.0.apk"
     },
     {
@@ -228,9 +228,9 @@
       "id": "urlamo",
       "name": "UrlAMO",
       "apk": "public-artifacts/urlamo/0.1.0/UrlAMO-0.1.0.apk",
-      "sha256": "b2d4730a32c518e7a3678e45430092a594474cc4c4d456430f20f9b96ed986c3",
+      "sha256": "3badfd5cce30720ac50137001421863c57fa078c4674b6674fa8359f8798f372",
       "size_bytes": 17601,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/urlamo/0.1.0/UrlAMO-0.1.0.apk"
     },
     {
@@ -238,9 +238,9 @@
       "id": "jsonamo",
       "name": "JSONAMO",
       "apk": "public-artifacts/jsonamo/0.1.0/JSONAMO-0.1.0.apk",
-      "sha256": "0cc3dc244705f2950c535ad33c776158c75e8da2923c373a6053e8291a92c9a9",
+      "sha256": "59d72198e00a876899f4e33eb5efc7698467d42e4c46cf59f44745f198179fe3",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/jsonamo/0.1.0/JSONAMO-0.1.0.apk"
     },
     {
@@ -248,9 +248,9 @@
       "id": "regexamo",
       "name": "RegexAMO",
       "apk": "public-artifacts/regexamo/0.1.0/RegexAMO-0.1.0.apk",
-      "sha256": "e39675acbebfa04acd07efabf06b51b3970d8f8574d6411c3c3ba0492ecd7d94",
+      "sha256": "2ec7b46e7607faa04ea6304c0fefd5a31768d206385dc0b9290b865797e9c7d2",
       "size_bytes": 17609,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/regexamo/0.1.0/RegexAMO-0.1.0.apk"
     },
     {
@@ -258,9 +258,9 @@
       "id": "listaamo",
       "name": "ListaAMO",
       "apk": "public-artifacts/listaamo/0.1.0/ListaAMO-0.1.0.apk",
-      "sha256": "1e14ef6472f3267079f5be07a03920c4af4faf858d0fc2e6f3af440b0b1e09d6",
+      "sha256": "683706a9609ea638a230c427ecb5bbd071941147ac5860e7ccc6f4e910a34e62",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/listaamo/0.1.0/ListaAMO-0.1.0.apk"
     },
     {
@@ -268,9 +268,9 @@
       "id": "morseamo",
       "name": "MorseAMO",
       "apk": "public-artifacts/morseamo/0.1.0/MorseAMO-0.1.0.apk",
-      "sha256": "1c16ceb9000d15769737fb674c148db9162f19f19149351f4b6e9b7bbe942920",
+      "sha256": "d12f2c174e993e97796b8466588c2bcf76715d57a4141553605034e0721af32c",
       "size_bytes": 17601,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/morseamo/0.1.0/MorseAMO-0.1.0.apk"
     },
     {
@@ -278,9 +278,9 @@
       "id": "cesaramo",
       "name": "CesarAMO",
       "apk": "public-artifacts/cesaramo/0.1.0/CesarAMO-0.1.0.apk",
-      "sha256": "9b3abea34dc4fee4ef6a97bdcc34dbe7ce536209f0448d7c494ee68a51debfd7",
+      "sha256": "40bbddca20cd7915a7922c35c3aa7ad814e52dda9659db74ffad250f52449b94",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/cesaramo/0.1.0/CesarAMO-0.1.0.apk"
     },
     {
@@ -288,9 +288,9 @@
       "id": "marcadoramo",
       "name": "MarcadorAMO",
       "apk": "public-artifacts/marcadoramo/0.1.0/MarcadorAMO-0.1.0.apk",
-      "sha256": "5456e8b8b0ce87c972077b9dd7f42a8ce9a2aa7b3280b86f88a869ce2707fcc3",
+      "sha256": "1b2ab1073ad406fc55de586d805bffbdd33462f6ea56a7fb194c1b4fe7049d38",
       "size_bytes": 17605,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/marcadoramo/0.1.0/MarcadorAMO-0.1.0.apk"
     },
     {
@@ -298,9 +298,9 @@
       "id": "pomodoramo",
       "name": "PomodorAMO",
       "apk": "public-artifacts/pomodoramo/0.1.0/PomodorAMO-0.1.0.apk",
-      "sha256": "b7d13f259057f58714efa94dbe68c311c7233273167a3eea0748e7d3f6573f3b",
+      "sha256": "badefd90213ad33acf88345053a7691a77f104bba4475a658e112d141faa0d57",
       "size_bytes": 17601,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/pomodoramo/0.1.0/PomodorAMO-0.1.0.apk"
     },
     {
@@ -308,9 +308,9 @@
       "id": "respiramo",
       "name": "RespirAMO",
       "apk": "public-artifacts/respiramo/0.1.0/RespirAMO-0.1.0.apk",
-      "sha256": "da2d50960e696ff91ea49b29be528a938f2a1fdb7b5d28af58d44bc3b7e0e572",
+      "sha256": "2e8fb6a3a069ca293757f80ca464804bda9c215ec069bddbdf0f66d2d7cd7b84",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/respiramo/0.1.0/RespirAMO-0.1.0.apk"
     },
     {
@@ -318,9 +318,9 @@
       "id": "intervalamo",
       "name": "IntervalAMO",
       "apk": "public-artifacts/intervalamo/0.1.0/IntervalAMO-0.1.0.apk",
-      "sha256": "b0c16bcd3137f36972a348e496750942e6db448a4945146bbae50519a8372aaa",
+      "sha256": "43bb69aee66d76b19e3eef8c4fb46ff5165ba2b587fa9d7f06088d753d2c9054",
       "size_bytes": 17617,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/intervalamo/0.1.0/IntervalAMO-0.1.0.apk"
     },
     {
@@ -328,9 +328,9 @@
       "id": "diasamo",
       "name": "DiasAMO",
       "apk": "public-artifacts/diasamo/0.1.0/DiasAMO-0.1.0.apk",
-      "sha256": "71c6f78c3e5154b4e3388f331e645b6779447324b7e772717fba7d7d17bc10a2",
+      "sha256": "76d6386a170b9d9cb20b8e5351bc5ae9214260dac72c9a5ea4388ab87fe9e93e",
       "size_bytes": 17593,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/diasamo/0.1.0/DiasAMO-0.1.0.apk"
     },
     {
@@ -338,9 +338,9 @@
       "id": "faltanamo",
       "name": "FaltanAMO",
       "apk": "public-artifacts/faltanamo/0.1.0/FaltanAMO-0.1.0.apk",
-      "sha256": "1966d75fe00bb1cda77241481df6b5ade0ebefb3f0e0cf26eb9ae38bc467ece6",
+      "sha256": "17aa50f77b0b098fdf2e161acf1579081a8bd736b5687414a850cf4037ada155",
       "size_bytes": 17613,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/faltanamo/0.1.0/FaltanAMO-0.1.0.apk"
     },
     {
@@ -348,9 +348,9 @@
       "id": "unixamo",
       "name": "UnixAMO",
       "apk": "public-artifacts/unixamo/0.1.0/UnixAMO-0.1.0.apk",
-      "sha256": "79d78b553fcc47d06f36e00c7184147ee6a757060fbc6a10e148bda539c38ede",
+      "sha256": "8c844553913592d061c2a809cad92a472e2c23989c1b2fcb6d465576c5fd702b",
       "size_bytes": 17601,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/unixamo/0.1.0/UnixAMO-0.1.0.apk"
     },
     {
@@ -358,9 +358,9 @@
       "id": "zonaamo",
       "name": "ZonaAMO",
       "apk": "public-artifacts/zonaamo/0.1.0/ZonaAMO-0.1.0.apk",
-      "sha256": "a744ab27acfddd80d0e69f493055a90eb24a4a92603da42a9d5142ac0ec4a591",
+      "sha256": "b9afc5278560ef71fd895b7b19e217ff2279b76f09fcc2436a7e0a1d17f892d7",
       "size_bytes": 17609,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/zonaamo/0.1.0/ZonaAMO-0.1.0.apk"
     },
     {
@@ -368,9 +368,9 @@
       "id": "figuraamo",
       "name": "FiguraAMO",
       "apk": "public-artifacts/figuraamo/0.1.0/FiguraAMO-0.1.0.apk",
-      "sha256": "e1967bdefe4e81f3a510ad1f8ddcc9fc2f5bfedc408d82f2fbfdd42dddabd255",
+      "sha256": "84e59e67010af9ecf103c0e15c39c25dce2a480ca97e9f032f2400e68b224f78",
       "size_bytes": 17613,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/figuraamo/0.1.0/FiguraAMO-0.1.0.apk"
     },
     {
@@ -378,9 +378,9 @@
       "id": "velocamo",
       "name": "VelocAMO",
       "apk": "public-artifacts/velocamo/0.1.0/VelocAMO-0.1.0.apk",
-      "sha256": "82abe63c79ba94236f51bc4f39be49813a9dd005dc2fc85a01f105ab1d4b3336",
+      "sha256": "ac1395999e0f99b534af8318f9b1fe1c6485c583ba412cf43f0ee21f2ffd1212",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/velocamo/0.1.0/VelocAMO-0.1.0.apk"
     },
     {
@@ -388,9 +388,9 @@
       "id": "bytesamo",
       "name": "BytesAMO",
       "apk": "public-artifacts/bytesamo/0.1.0/BytesAMO-0.1.0.apk",
-      "sha256": "b17e44719fc229e9a744e7c710d00a90b89449b7b043327e97d31029d7fd3a9d",
+      "sha256": "27b573624341adcbf8bc963d71d187f3fc7c189c351df7c26db38baa974c2d54",
       "size_bytes": 17597,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/bytesamo/0.1.0/BytesAMO-0.1.0.apk"
     },
     {
@@ -398,9 +398,9 @@
       "id": "slugamo",
       "name": "SlugAMO",
       "apk": "public-artifacts/slugamo/0.1.0/SlugAMO-0.1.0.apk",
-      "sha256": "820d8c3a02d9e9ddda90e8218d2537d9744e022eb83ad2b2d3e75c18e3c311e1",
+      "sha256": "8295d299e91b527169674312a79dbcc67510f947ae920bb43a8d9efc5dbef316",
       "size_bytes": 17601,
-      "cert": "186a7f97171a45d7d601dfd5fed49e85ff24f0efe32d2b1c0d17ff80fad1d90d",
+      "cert": "24a9e13e412f4c5686147ef209118fa76f21dd689e3c01ed9a30f55c2d35aaf5",
       "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/slugamo/0.1.0/SlugAMO-0.1.0.apk"
     }
   ]

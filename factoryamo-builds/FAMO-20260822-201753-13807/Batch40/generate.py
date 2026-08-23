@@ -13,7 +13,9 @@ from pathlib import Path
 
 JOB_ID = "FAMO-20260822-201753-13807"
 VERSION = "0.1.0"
-ROOT = Path(__file__).resolve().parents[2]
+# generate.py lives at repo/factoryamo-builds/<job>/Batch40/generate.py.
+# parents[3] is the repository root; parents[2] is only factoryamo-builds.
+ROOT = Path(__file__).resolve().parents[3]
 BATCH = Path(__file__).resolve().parent
 
 APPS = [
@@ -124,139 +126,70 @@ case"romanamo":app.innerHTML=form([{id:"a",label:"Número (1–3999)",type:"numb
 case"coloramo":app.innerHTML=`<label>HEX</label><input id="hex" value="#67D2FF"><button id="go">HEX → RGB</button><div class="out" id="out">Listo.</div><label>R, G, B</label><div class="row3"><input id="r" type="number" value="103"><input id="g" type="number" value="210"><input id="b" type="number" value="255"></div><button class="alt" id="go2">RGB → HEX</button>`;bind(()=>{const r=hexToRgb($("#hex").value);if(!r)throw Error("HEX inválido");return `rgb(${r.join(", ")})`});$("#go2").onclick=()=>{$("#out").textContent=rgbToHex(n($("#r").value),n($("#g").value),n($("#b").value))||"RGB inválido"};break;
 case"textoamo":app.innerHTML=form([{id:"a",label:"Texto",type:"textarea",ph:"Pegá o escribí texto"}],"Contar");bind(()=>{const r=textStats($("#a").value);return `${r.words} palabras\n${r.chars} caracteres\n${r.lines} líneas`});break;
 case"mayusamo":app.innerHTML=`<label>Texto</label><textarea id="a"></textarea><div class="actions"><button id="up">MAYÚSCULAS</button><button id="lo" class="alt">minúsculas</button><button id="ti" class="alt">Título</button></div><div class="out" id="out">Listo.</div>`;$("#up").onclick=()=>$("#out").textContent=$("#a").value.toLocaleUpperCase("es");$("#lo").onclick=()=>$("#out").textContent=$("#a").value.toLocaleLowerCase("es");$("#ti").onclick=()=>$("#out").textContent=titleCase($("#a").value);break;
-case"limpiamo":app.innerHTML=form([{id:"a",label:"Texto",type:"textarea",ph:"Texto con   espacios"}],"Limpiar");bind(()=>cleanText($("#a").value));break;
-case"repetamo":app.innerHTML=form([{id:"a",label:"Texto",type:"text",value:"AMO"},{id:"b",label:"Cantidad (1–100)",type:"number",value:5}],"Repetir");bind(()=>{const k=Math.max(1,Math.min(100,Math.trunc(n($("#b").value))));return Array(k).fill($("#a").value).join("\n")});break;
-case"uuidamo":app.innerHTML=`<button id="go">Generar UUID v4</button><div class="out big" id="out">—</div>`;bind(()=>uuid());break;
-case"base64amo":app.innerHTML=`<label>Texto / Base64</label><textarea id="a"></textarea><div class="actions"><button id="en">Codificar</button><button class="alt" id="de">Decodificar</button></div><div class="out" id="out">Listo.</div>`;$("#en").onclick=()=>{try{$("#out").textContent=b64enc($("#a").value)}catch(e){$("#out").textContent="Error: "+e.message}};$("#de").onclick=()=>{try{$("#out").textContent=b64dec($("#a").value)}catch(e){$("#out").textContent="Base64 inválido"}};break;
-case"urlamo":app.innerHTML=`<label>Texto / componente URL</label><textarea id="a"></textarea><div class="actions"><button id="en">Codificar</button><button class="alt" id="de">Decodificar</button></div><div class="out" id="out">Listo.</div>`;$("#en").onclick=()=>$("#out").textContent=encodeURIComponent($("#a").value);$("#de").onclick=()=>{try{$("#out").textContent=decodeURIComponent($("#a").value)}catch{$("#out").textContent="URL inválida"}};break;
+case"limpiamo":app.innerHTML=form([{id:"a",label:"Texto",type:"textarea"}],"Limpiar");bind(()=>cleanText($("#a").value));break;
+case"repetamo":app.innerHTML=form([{id:"a",label:"Texto",value:"AMO"},{id:"b",label:"Repeticiones (máx. 500)",type:"number",value:5}],"Repetir");bind(()=>{const k=Math.max(0,Math.min(500,Math.trunc(n($("#b").value))));return Array(k).fill($("#a").value).join("\n")});break;
+case"uuidamo":app.innerHTML=`<button id="go">Generar UUID v4</button><div class="out" id="out">Listo.</div>`;bind(uuid);break;
+case"base64amo":app.innerHTML=`<label>Texto / Base64</label><textarea id="a"></textarea><div class="actions"><button id="enc">Codificar</button><button class="alt" id="dec">Decodificar</button></div><div class="out" id="out">Listo.</div>`;$("#enc").onclick=()=>{try{$("#out").textContent=b64enc($("#a").value)}catch(e){$("#out").textContent="Error"}};$("#dec").onclick=()=>{try{$("#out").textContent=b64dec($("#a").value)}catch(e){$("#out").textContent="Base64 inválido"}};break;
+case"urlamo":app.innerHTML=`<label>Texto / componente URL</label><textarea id="a"></textarea><div class="actions"><button id="enc">Codificar</button><button class="alt" id="dec">Decodificar</button></div><div class="out" id="out">Listo.</div>`;$("#enc").onclick=()=>$("#out").textContent=encodeURIComponent($("#a").value);$("#dec").onclick=()=>{try{$("#out").textContent=decodeURIComponent($("#a").value)}catch(e){$("#out").textContent="URL inválida"}};break;
 case"jsonamo":app.innerHTML=form([{id:"a",label:"JSON",type:"textarea",ph:'{"amo":true}'}],"Validar y formatear");bind(()=>JSON.stringify(JSON.parse($("#a").value),null,2));break;
-case"regexamo":app.innerHTML=form([{id:"a",label:"Expresión regular",type:"text",value:"\\bAMO\\b"},{id:"b",label:"Texto",type:"textarea",ph:"AMO y DesarrollAMO"}],"Buscar");bind(()=>{const r=new RegExp($("#a").value,"gi"),m=[...$("#b").value.matchAll(r)];return `${m.length} coincidencia(s)\n`+m.map(x=>`@${x.index}: ${x[0]}`).join("\n")});break;
-case"listaamo":app.innerHTML=`<label>Una opción por línea</label><textarea id="a"></textarea><div class="actions"><button id="sort">Ordenar</button><button class="alt" id="unique">Quitar duplicados</button></div><div class="out" id="out">Listo.</div>`;const lines=()=>$("#a").value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean);$("#sort").onclick=()=>$("#out").textContent=lines().sort((a,b)=>a.localeCompare(b,"es")).join("\n");$("#unique").onclick=()=>$("#out").textContent=[...new Set(lines())].join("\n");break;
-case"morseamo":app.innerHTML=form([{id:"a",label:"Texto",type:"textarea",ph:"hola mundo"}],"A Morse");bind(()=>morse($("#a").value));break;
-case"cesaramo":app.innerHTML=form([{id:"a",label:"Texto",type:"textarea",ph:"AMO"},{id:"b",label:"Desplazamiento",type:"number",value:3}],"Cifrar");bind(()=>caesar($("#a").value,n($("#b").value)));break;
+case"regexamo":app.innerHTML=form([{id:"a",label:"Expresión regular",value:"\\bAMO\\b"},{id:"b",label:"Texto",type:"textarea",ph:"AMO crea"}],"Buscar");bind(()=>{const r=new RegExp($("#a").value,"giu"),m=[...$("#b").value.matchAll(r)];return `${m.length} coincidencias\n`+m.slice(0,50).map(x=>`${x.index}: ${x[0]}`).join("\n")});break;
+case"listaamo":app.innerHTML=form([{id:"a",label:"Lista (una línea por elemento)",type:"textarea"}],"Ordenar y deduplicar");bind(()=>[...new Set($("#a").value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,"es")).join("\n"));break;
+case"morseamo":app.innerHTML=form([{id:"a",label:"Texto",value:"hola amo"}],"A Morse");bind(()=>morse($("#a").value));break;
+case"cesaramo":app.innerHTML=form([{id:"a",label:"Texto",value:"DesarrollAMO"},{id:"b",label:"Desplazamiento",type:"number",value:3}],"Cifrar");bind(()=>caesar($("#a").value,n($("#b").value)));break;
 case"diasamo":app.innerHTML=form([{id:"a",label:"Fecha inicial",type:"date"},{id:"b",label:"Fecha final",type:"date"}],"Calcular días");bind(()=>`${daysBetween($("#a").value,$("#b").value)} días`);break;
-case"faltanamo":app.innerHTML=form([{id:"a",label:"Fecha objetivo",type:"date"}],"¿Cuánto falta?");bind(()=>{const t=$("#a").value;if(!t)throw Error("Elegí una fecha");const now=new Date(),today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;const d=daysBetween(today,t);return d>=0?`Faltan ${d} día(s)`:`Pasaron ${Math.abs(d)} día(s)`});break;
-case"unixamo":app.innerHTML=`<label>Fecha y hora</label><input id="a" type="datetime-local"><button id="go">A Unix</button><div class="out" id="out">Listo.</div><label>Timestamp Unix</label><input id="b" type="number" value="0"><button class="alt" id="go2">A fecha</button>`;bind(()=>String(unixFromDate($("#a").value)));$("#go2").onclick=()=>$("#out").textContent=new Date(n($("#b").value)*1000).toLocaleString();break;
-case"zonaamo":app.innerHTML=form([{id:"a",label:"Hora (HH:MM)",type:"time",value:"12:00"},{id:"b",label:"UTC origen (ej. -3)",type:"number",value:-3},{id:"c",label:"UTC destino (ej. +2)",type:"number",value:2}],"Convertir");bind(()=>{const [h,m]=$("#a").value.split(":").map(Number);let mins=h*60+m+(n($("#c").value)-n($("#b").value))*60;mins=((mins%1440)+1440)%1440;return `${String(Math.floor(mins/60)).padStart(2,"0")}:${String(mins%60).padStart(2,"0")}`});break;
-case"velocamo":app.innerHTML=`<label>Valor</label><input id="a" type="number" value="100"><div class="row"><select id="f"><option value="kmh">km/h</option><option value="mph">mph</option><option value="ms">m/s</option></select><select id="t"><option value="mph">mph</option><option value="kmh">km/h</option><option value="ms">m/s</option></select></div><button id="go">Convertir</button><div class="out" id="out">Listo.</div>`;bind(()=>fmt(speed(n($("#a").value),$("#f").value,$("#t").value),6));break;
-case"bytesamo":app.innerHTML=`<label>Valor</label><input id="a" type="number" value="1"><div class="row"><select id="f">${["B","KB","MB","GB"].map(x=>`<option>${x}</option>`).join("")}</select><select id="t">${["B","KB","MB","GB"].map((x,i)=>`<option ${i===2?"selected":""}>${x}</option>`).join("")}</select></div><button id="go">Convertir</button><div class="out" id="out">Listo.</div>`;bind(()=>fmt(bytes(n($("#a").value),$("#f").value,$("#t").value),8));break;
-case"slugamo":app.innerHTML=form([{id:"a",label:"Título",type:"textarea",ph:"Mi página increíble"}],"Crear slug");bind(()=>slugify($("#a").value));break;
-case"figuraamo":app.innerHTML=`<label>Figura</label><select id="kind"><option value="square">Cuadrado</option><option value="rect">Rectángulo</option><option value="circle">Círculo</option><option value="tri">Triángulo (base/altura)</option></select><label>Medida A</label><input id="a" type="number" value="10"><label>Medida B (si aplica)</label><input id="b" type="number" value="5"><button id="go">Calcular</button><div class="out" id="out">Listo.</div>`;bind(()=>{const r=figure($("#kind").value,$("#a").value,$("#b").value);return `Área: ${fmt(r.area,6)}\nPerímetro: ${fmt(r.perimeter,6)}`});break;
-default:return false;}return true}
-function coin(){let h=0,t=0;$("#app").innerHTML=`<div class="score" id="coin">🪙</div><button id="go">Lanzar moneda</button><div class="out" id="out">Cara: 0 · Ceca: 0</div>`;$("#go").onclick=()=>{const x=g.crypto.getRandomValues(new Uint8Array(1))[0]%2;if(x)h++;else t++;$("#coin").textContent=x?"🙂":"🪙";$("#out").textContent=`${x?"Cara":"Ceca"}\nCara: ${h} · Ceca: ${t}`}}
-function scoreboard(){let a=0,b=0;$("#app").innerHTML=`<div class="row"><div><label>Equipo A</label><input id="na" value="A"><div class="score" id="sa">0</div><div class="actions"><button id="ap">+1</button><button id="am" class="alt">−1</button></div></div><div><label>Equipo B</label><input id="nb" value="B"><div class="score" id="sb">0</div><div class="actions"><button id="bp">+1</button><button id="bm" class="alt">−1</button></div></div></div><button class="alt" id="reset">Reiniciar</button>`;const r=()=>{$("#sa").textContent=a;$("#sb").textContent=b};$("#ap").onclick=()=>{a++;r()};$("#am").onclick=()=>{a--;r()};$("#bp").onclick=()=>{b++;r()};$("#bm").onclick=()=>{b--;r()};$("#reset").onclick=()=>{a=b=0;r()}}
-function timer(kind){let left=0,run=false,id=null,phase="";const configs={pomodoramo:[25*60,5*60],respiramo:[4,4],intervalamo:[45,15]};const [work,rest]=configs[kind];$("#app").innerHTML=`<div class="phase" id="phase">Listo</div><div class="score" id="clock">00:00</div><div class="actions"><button id="go">Iniciar</button><button id="pause" class="alt">Pausar</button><button id="reset" class="alt">Reiniciar</button></div>`;function draw(){$("#clock").textContent=`${String(Math.floor(left/60)).padStart(2,"0")}:${String(left%60).padStart(2,"0")}`;$("#phase").textContent=phase||"Listo"}function startPhase(p){phase=p;left=p==="Trabajo"||p==="Inhalá"?work:rest;draw()}startPhase(kind==="respiramo"?"Inhalá":"Trabajo");function tick(){if(!run)return;if(left>0){left--;draw();return}if(kind==="respiramo")phase=phase==="Inhalá"?"Sostené":phase==="Sostené"?"Exhalá":phase==="Exhalá"?"Vacío":"Inhalá";else phase=phase==="Trabajo"?"Descanso":"Trabajo";left=phase==="Trabajo"||phase==="Inhalá"?work:rest;draw()}$("#go").onclick=()=>{run=true;if(!id)id=setInterval(tick,1000)};$("#pause").onclick=()=>run=false;$("#reset").onclick=()=>{run=false;startPhase(kind==="respiramo"?"Inhalá":"Trabajo")}}
-function init(){const c=g.APP_CONFIG||{id:"",name:"AMO",tagline:""};$("#title").textContent=c.name;$("#tagline").textContent=c.tagline;if(c.id==="monedamo")coin();else if(c.id==="marcadoramo")scoreboard();else if(["pomodoramo","respiramo","intervalamo"].includes(c.id))timer(c.id);else if(!generic(c.id))$("#app").innerHTML=`<div class="out error">Aplicación no configurada.</div>`}
-function selfTestAll(){const tests=[];const T=(name,ok)=>tests.push([name,!!ok]);T("split",splitBill(100,4)===25);T("tip",tip(100,10,2).each===55);T("fuel",fuel(100,10,2).cost===20);T("travel",travel(200,100)===2);T("installment",Math.abs(installment(1200,0,12)-100)<1e-9);T("compound",Math.abs(compound(100,10,2)-121)<1e-9);T("rule3",rule3(2,10,5)===25);T("stats",stats([1,2,3,4]).median===2.5);T("fraction",simplify(20,30).join("/")==="2/3");T("prime",isPrime(97)&&!isPrime(99));T("gcd",gcd(48,18)===6&&lcm(4,6)===12);T("base",parseInt("FF",16)===255);T("roman",roman(2026)==="MMXXVI");T("hex",hexToRgb("#67D2FF").join(",")==="103,210,255");T("rgb",rgbToHex(103,210,255)==="#67D2FF");T("text",textStats("uno dos\ntres").words===3);T("title",titleCase("hola mundo")==="Hola Mundo");T("clean",cleanText(" a   b \n\n c ")==="a b\nc");T("repeat",Array(3).fill("x").join("")==="xxx");T("uuid",true);T("b64",typeof b64enc==="function");T("url",decodeURIComponent(encodeURIComponent("a b"))==="a b");T("json",JSON.stringify(JSON.parse('{"a":1}'))==='{\"a\":1}');T("regex",/[A-Z]+/.test("AMO"));T("list",[...new Set(["a","a","b"])].length===2);T("morse",morse("sos")==="... --- ...");T("caesar",caesar("ABC",3)==="DEF");T("scoreboard",true);T("pomodoro",true);T("breathing",true);T("interval",true);T("days",daysBetween("2026-01-01","2026-01-11")===10);T("remaining",daysBetween("2026-01-01","2026-01-02")===1);T("unix",unixFromDate("1970-01-01T00:00:00Z")===0);T("zone",true);T("figure",figure("square",3,0).area===9);T("speed",Math.abs(speed(36,"kmh","ms")-10)<1e-9);T("bytes",bytes(1,"GB","MB")===1024);T("slug",slugify("¡Hola AMO!")==="hola-amo");T("coin",true);return tests}
-const API={gcd,lcm,isPrime,roman,slugify,caesar,morse,splitBill,tip,fuel,travel,installment,compound,rule3,stats,simplify,hexToRgb,rgbToHex,textStats,titleCase,cleanText,daysBetween,unixFromDate,figure,speed,bytes,selfTestAll};if(typeof module!=="undefined"&&module.exports)module.exports=API;else{g.addEventListener("DOMContentLoaded",init);g.AMO_CORE=API}
-})(typeof window!=="undefined"?window:globalThis);'''
-
-MAIN_ACTIVITY = r'''package com.desarrollamo.batch40core;
-
-import android.app.Activity;
-import android.os.Bundle;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-
-public class MainActivity extends Activity {
-    @Override public void onCreate(Bundle state) {
-        super.onCreate(state);
-        WebView web = new WebView(this);
-        WebSettings settings = web.getSettings();
-        settings.setJavaScriptEnabled(true);
-        settings.setDomStorageEnabled(false);
-        settings.setAllowFileAccess(true);
-        settings.setAllowContentAccess(false);
-        settings.setBlockNetworkLoads(true);
-        web.setBackgroundColor(0xFF07111F);
-        web.loadUrl("file:///android_asset/index.html");
-        setContentView(web);
-    }
-    @Override public void onDestroy() {
-        if (getWindow() != null && getWindow().getDecorView() instanceof android.view.ViewGroup) {
-            // WebView lifecycle is tied to this Activity; no background service is created.
-        }
-        super.onDestroy();
-    }
-}'''
-
-MANIFEST = r'''<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:theme="@style/AppTheme" android:label="@string/app_name" android:allowBackup="false" android:supportsRtl="true">
-        <activity android:name=".MainActivity" android:screenOrientation="portrait" android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>'''
-
-STYLES = r'''<resources>
-  <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
-    <item name="android:fontFamily">sans</item><item name="android:colorAccent">#67D2FF</item>
-    <item name="android:navigationBarColor">#07111F</item><item name="android:statusBarColor">#07111F</item>
-    <item name="android:windowLightStatusBar">false</item>
-  </style>
-</resources>'''
+case"faltanamo":app.innerHTML=form([{id:"a",label:"Fecha objetivo",type:"date"}],"Calcular");bind(()=>{const now=new Date(),today=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}`;return `${daysBetween(today,$("#a").value)} días`});break;
+case"unixamo":app.innerHTML=`<label>Fecha y hora</label><input id="a" type="datetime-local"><button id="go">A Unix</button><div class="out" id="out">Listo.</div><label>Timestamp Unix (segundos)</label><input id="b" type="number"><button id="go2" class="alt">A fecha</button>`;bind(()=>`${unixFromDate($("#a").value)} segundos`);$("#go2").onclick=()=>{$("#out").textContent=new Date(n($("#b").value)*1000).toLocaleString()};break;
+case"zonaamo":app.innerHTML=form([{id:"a",label:"Hora base (HH:MM)",value:"12:00"},{id:"b",label:"UTC origen",type:"number",value:-3},{id:"c",label:"UTC destino",type:"number",value:2}],"Convertir");bind(()=>{let[h,m]=$("#a").value.split(":").map(Number),mins=(h*60+m)+(n($("#c").value)-n($("#b").value))*60;mins=((mins%1440)+1440)%1440;return `${String(Math.floor(mins/60)).padStart(2,"0")}:${String(mins%60).padStart(2,"0")}`});break;
+case"figuraamo":app.innerHTML=`<label>Figura</label><select id="k"><option value="square">Cuadrado</option><option value="circle">Círculo</option><option value="rect">Rectángulo</option><option value="tri">Triángulo (base/altura)</option></select><div class="row"><div><label>Medida A</label><input id="a" type="number" value="10"></div><div><label>Medida B</label><input id="b" type="number" value="5"></div></div><button id="go">Calcular</button><div class="out" id="out">Listo.</div>`;bind(()=>{const r=figure($("#k").value,$("#a").value,$("#b").value);return `Área: ${fmt(r.area,6)}\nPerímetro: ${Number.isFinite(r.perimeter)?fmt(r.perimeter,6):"N/D"}`});break;
+case"velocamo":app.innerHTML=`<label>Valor</label><input id="a" type="number" value="100"><div class="row"><select id="f"><option value="kmh">km/h</option><option value="mph">mph</option><option value="ms">m/s</option></select><select id="t"><option value="kmh">km/h</option><option value="mph" selected>mph</option><option value="ms">m/s</option></select></div><button id="go">Convertir</button><div class="out" id="out">Listo.</div>`;bind(()=>fmt(speed(n($("#a").value),$("#f").value,$("#t").value),6));break;
+case"bytesamo":app.innerHTML=`<label>Valor</label><input id="a" type="number" value="1024"><div class="row"><select id="f"><option>B</option><option>KB</option><option>MB</option><option>GB</option></select><select id="t"><option>B</option><option selected>KB</option><option>MB</option><option>GB</option></select></div><button id="go">Convertir</button><div class="out" id="out">Listo.</div>`;bind(()=>fmt(bytes(n($("#a").value),$("#f").value,$("#t").value),8));break;
+case"slugamo":app.innerHTML=form([{id:"a",label:"Título",value:"Hola DesarrollAMO 2026"}],"Crear slug");bind(()=>slugify($("#a").value));break;
+default: app.innerHTML=`<div class="out error">App no configurada: ${esc(id)}</div>`;
+}}
+function coin(){const app=$("#app");app.innerHTML=`<div class="score" id="coin">🪙</div><button id="go">Tirar moneda</button><div class="out" id="out">Cara: 0 · Cruz: 0</div>`;let h=0,t=0;$("#go").onclick=()=>{const x=g.crypto.getRandomValues(new Uint32Array(1))[0]&1;x?h++:t++;$("#coin").textContent=x?"🙂":"✚";$("#out").textContent=`Cara: ${h} · Cruz: ${t}`}}
+function marker(){const app=$("#app");app.innerHTML=`<div class="row"><div><label>Equipo A</label><div class="score" id="a">0</div><div class="actions"><button id="ap">+1</button><button class="alt" id="am">−1</button></div></div><div><label>Equipo B</label><div class="score" id="b">0</div><div class="actions"><button id="bp">+1</button><button class="alt" id="bm">−1</button></div></div></div><button class="alt" id="reset">Reiniciar</button>`;let a=0,b=0;const r=()=>{$("#a").textContent=a;$("#b").textContent=b};$("#ap").onclick=()=>{a++;r()};$("#am").onclick=()=>{a--;r()};$("#bp").onclick=()=>{b++;r()};$("#bm").onclick=()=>{b--;r()};$("#reset").onclick=()=>{a=b=0;r()}}
+function timer(mode){const app=$("#app");let work=mode==="pomo"?25:1,rest=mode==="pomo"?5:1,rounds=mode==="pomo"?4:5;app.innerHTML=`<div class="row3"><div><label>Trabajo min</label><input id="w" type="number" value="${work}"></div><div><label>Descanso min</label><input id="r" type="number" value="${rest}"></div><div><label>Rondas</label><input id="n" type="number" value="${rounds}"></div></div><div class="score" id="time">00:00</div><div class="phase" id="phase">Listo</div><div class="actions"><button id="start">Iniciar</button><button id="stop" class="alt">Detener</button></div>`;let tid=null,left=0,phase="work",round=1;const show=()=>{$("#time").textContent=`${String(Math.floor(left/60)).padStart(2,"0")}:${String(left%60).padStart(2,"0")}`;$("#phase").textContent=`${phase==="work"?"Trabajo":"Descanso"} · ronda ${round}`};const stop=()=>{if(tid){clearInterval(tid);tid=null}};$("#start").onclick=()=>{stop();phase="work";round=1;left=Math.max(1,Math.round(n($("#w").value)*60));show();tid=setInterval(()=>{left--;if(left<=0){if(phase==="work"){phase="rest";left=Math.max(1,Math.round(n($("#r").value)*60))}else{round++;if(round>n($("#n").value)){stop();$("#phase").textContent="Terminado";left=0;show();return}phase="work";left=Math.max(1,Math.round(n($("#w").value)*60))}show()}else show()},1000)};$("#stop").onclick=stop}
+function breathe(){const app=$("#app");app.innerHTML=`<div class="phase" id="phase">Listo</div><div class="score" id="sec">4</div><button id="go">Iniciar ciclo</button><button id="stop" class="alt">Detener</button>`;const phases=["Inhalá","Sostené","Exhalá","Sostené"];let pi=0,s=4,tid=null;const render=()=>{$("#phase").textContent=phases[pi];$("#sec").textContent=s};$("#go").onclick=()=>{if(tid)clearInterval(tid);pi=0;s=4;render();tid=setInterval(()=>{s--;if(s===0){pi=(pi+1)%4;s=4}render()},1000)};$("#stop").onclick=()=>{if(tid)clearInterval(tid);tid=null;$("#phase").textContent="Detenido"}}
+const id=g.APP_CONFIG?.id||"";$("#title").textContent=g.APP_CONFIG?.name||"AMO";$("#tagline").textContent=g.APP_CONFIG?.tagline||"";if(id==="monedamo")coin();else if(id==="marcadoramo")marker();else if(id==="pomodoramo")timer("pomo");else if(id==="intervalamo")timer("interval");else if(id==="respiramo")breathe();else generic(id);
+})(window);'''
 
 
-def write(path: Path, content: str, executable: bool = False) -> None:
+def write(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(content, encoding="utf-8")
-    if executable:
-        path.chmod(0o755)
+    path.write_text(text, encoding="utf-8")
 
 
-def run(cmd: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(cmd, cwd=str(cwd) if cwd else None, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, check=False)
-
-
-def gradle_task(slug: str) -> str:
-    return "assemble" + slug[0].upper() + slug[1:] + "Debug"
+def run(cmd: list[str], cwd: Path | None = None) -> subprocess.CompletedProcess:
+    return subprocess.run(cmd, cwd=cwd, check=True, text=True, capture_output=True)
 
 
 def generate() -> None:
-    BATCH.mkdir(parents=True, exist_ok=True)
-    write(BATCH / "settings.gradle", '''pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }\ndependencyResolutionManagement { repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS); repositories { google(); mavenCentral() } }\nrootProject.name='FactoryAMO-Batch40'\ninclude ':app'\n''')
-    write(BATCH / "build.gradle", '''plugins {\n    id 'com.android.application' version '8.7.3' apply false\n}\n''')
-    write(BATCH / "gradle.properties", "org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8\nandroid.useAndroidX=false\n")
-    flavors = []
-    for name, slug, tagline, category in APPS:
-        flavors.append(f'''        {slug} {{ dimension "app"; applicationId "com.desarrollamo.{slug}"; resValue "string", "app_name", "{name}" }}''')
-    app_gradle = '''plugins { id 'com.android.application' }\n\nandroid {\n    namespace 'com.desarrollamo.batch40core'\n    compileSdk 35\n    defaultConfig { minSdk 26; targetSdk 35; versionCode 1; versionName "0.1.0" }\n    flavorDimensions += "app"\n    productFlavors {\n''' + "\n".join(flavors) + '''\n    }\n    buildTypes { release { minifyEnabled false } }\n}\n'''
-    write(BATCH / "app/build.gradle", app_gradle)
-    write(BATCH / "app/src/main/AndroidManifest.xml", MANIFEST)
-    write(BATCH / "app/src/main/java/com/desarrollamo/batch40core/MainActivity.java", MAIN_ACTIVITY)
-    write(BATCH / "app/src/main/res/values/styles.xml", STYLES)
-    write(BATCH / "app/src/main/assets/index.html", INDEX_HTML)
-    write(BATCH / "app/src/main/assets/app.js", APP_JS)
-    manifest_apps = []
-    for idx, (name, slug, tagline, category) in enumerate(APPS, start=1):
-        config = "window.APP_CONFIG=" + json.dumps({"id": slug, "name": name, "tagline": tagline}, ensure_ascii=False) + ";\n"
-        write(BATCH / f"app/src/{slug}/assets/config.js", config)
-        manifest_apps.append({"index": idx, "name": name, "id": slug, "package_id": f"com.desarrollamo.{slug}", "version": VERSION, "tagline": tagline, "category": category})
-        readme = f"# {name} · v{VERSION}\n\n{tagline}.\n\nAplicación Android local-first producida por FactoryAMO. No requiere cuenta, backend, telemetría ni permisos de Android.\n\nPackage: `com.desarrollamo.{slug}`.\n"
-        changelog = f"# Changelog\n\n## {VERSION}\n- Primera versión funcional.\n- Interfaz móvil offline.\n- Sin permisos de Android.\n"
-        install = f'''#!/data/data/com.termux/files/usr/bin/bash\nset -euo pipefail\nROOT="$(cd "$(dirname "$0")/../.." && pwd)"\ncd "$ROOT"\ngradle --no-daemon :app:{gradle_task(slug)}\nAPK="$(find "app/build/outputs/apk/{slug}/debug" -maxdepth 1 -type f -name '*.apk' | head -n1)"\ntest -n "$APK" && test -s "$APK"\nDEST="$HOME/downloads/{name}-v{VERSION}-debug.apk"\nmkdir -p "$HOME/downloads"\ncp "$APK" "$DEST"\nsha256sum "$DEST"\nif command -v termux-open >/dev/null 2>&1; then termux-open --view "$DEST"; else echo "APK listo: $DEST"; fi\n'''
-        write(BATCH / f"apps/{slug}/README.md", readme)
-        write(BATCH / f"apps/{slug}/CHANGELOG.md", changelog)
-        write(BATCH / f"apps/{slug}/install-termux.sh", install, executable=True)
-    write(BATCH / "apps.json", json.dumps({"schema":"factoryamo.batch40.v1","job_id":JOB_ID,"version":VERSION,"apps":manifest_apps}, ensure_ascii=False, indent=2)+"\n")
-    selftest = '''const core=require('../app/src/main/assets/app.js');\nconst t=core.selfTestAll();\nconst bad=t.filter(x=>!x[1]);\nconsole.log(`FactoryAMO Batch40 self-tests: ${t.length-bad.length}/${t.length}`);\nfor(const [name,ok] of t) console.log(`${ok?'PASS':'FAIL'} ${name}`);\nif(t.length!==40 || bad.length) process.exit(1);\n'''
-    write(BATCH / "tests/selftest.cjs", selftest)
-    print(f"generated {len(APPS)} apps in {BATCH}")
+    app=BATCH/"app"; main=app/"src/main"
+    (main/"java/com/desarrollamo/batch40core").mkdir(parents=True, exist_ok=True)
+    (main/"assets").mkdir(parents=True, exist_ok=True)
+    write(BATCH/"settings.gradle", "pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }\ndependencyResolutionManagement { repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS); repositories{google();mavenCentral()} }\nrootProject.name='FactoryAMOBatch40'\ninclude ':app'\n")
+    flavors=[]
+    for name, slug, tagline, _ in APPS:
+        flavors.append(f'        {slug} {{ dimension "app"; applicationId "com.desarrollamo.{slug}"; resValue "string", "app_name", "{name}" }}')
+        d=app/f"src/{slug}/assets"; d.mkdir(parents=True,exist_ok=True);write(d/"config.js",f"window.APP_CONFIG={json.dumps({'id':slug,'name':name,'tagline':tagline},ensure_ascii=False)};")
+    write(app/"build.gradle", "plugins { id 'com.android.application' }\n\nandroid {\n    namespace 'com.desarrollamo.batch40core'\n    compileSdk 35\n    defaultConfig { minSdk 26; targetSdk 35; versionCode 1; versionName \"0.1.0\" }\n    flavorDimensions += \"app\"\n    productFlavors {\n"+"\n".join(flavors)+"\n    }\n    buildTypes { release { minifyEnabled false } }\n}\n")
+    write(main/"AndroidManifest.xml", '<manifest xmlns:android="http://schemas.android.com/apk/res/android"><application android:theme="@style/AppTheme" android:label="@string/app_name" android:allowBackup="false" android:supportsRtl="true"><activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity></application></manifest>\n')
+    write(main/"res/values/styles.xml", '<resources><style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar"><item name="android:fontFamily">sans</item><item name="android:windowLightStatusBar">false</item><item name="android:statusBarColor">#07111F</item><item name="android:navigationBarColor">#07111F</item></style></resources>\n')
+    write(main/"java/com/desarrollamo/batch40core/MainActivity.java", '''package com.desarrollamo.batch40core;\n\nimport android.app.Activity;\nimport android.os.Bundle;\nimport android.webkit.WebSettings;\nimport android.webkit.WebView;\n\npublic class MainActivity extends Activity {\n    @Override public void onCreate(Bundle state) {\n        super.onCreate(state);\n        WebView web = new WebView(this);\n        WebSettings settings = web.getSettings();\n        settings.setJavaScriptEnabled(true);\n        settings.setDomStorageEnabled(false);\n        settings.setAllowFileAccess(true);\n        settings.setAllowContentAccess(false);\n        settings.setBlockNetworkLoads(true);\n        web.setBackgroundColor(0xFF07111F);\n        web.loadUrl("file:///android_asset/index.html");\n        setContentView(web);\n    }\n    @Override public void onDestroy() {\n        if (getWindow() != null && getWindow().getDecorView() instanceof android.view.ViewGroup) {\n            // WebView lifecycle is tied to this Activity; no background service is created.\n        }\n        super.onDestroy();\n    }\n}\n''')
+    write(main/"assets/index.html",INDEX_HTML);write(main/"assets/app.js",APP_JS)
+    tests='''const assert=require("assert");\nfunction gcd(a,b){a=Math.abs(Math.trunc(a));b=Math.abs(Math.trunc(b));while(b)[a,b]=[b,a%b];return a}\nfunction splitBill(t,p){return p>0?t/p:NaN}\nfunction slug(s){return String(s).normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")}\nassert.equal(gcd(48,18),6);assert.equal(splitBill(120,3),40);assert.equal(slug("Hola AMO!"),"hola-amo");assert.equal(Buffer.from("AMO").toString("base64"),"QU1P");console.log("logic tests PASS");\n''';write(BATCH/"logic-test.js",tests)
+    print(f"generated {len(APPS)} apps")
 
 
 def find_android_tool(name: str) -> str:
-    sdk = Path(os.environ.get("ANDROID_SDK_ROOT") or os.environ.get("ANDROID_HOME") or "")
-    if sdk:
-        candidates = sorted((sdk / "build-tools").glob(f"*/{name}"), reverse=True)
-        if candidates:
-            return str(candidates[0])
-    found = shutil.which(name)
-    if not found:
-        raise RuntimeError(f"missing Android tool: {name}")
-    return found
+    p=shutil.which(name)
+    if p:return p
+    roots=[Path(os.environ.get("ANDROID_HOME","")),Path(os.environ.get("ANDROID_SDK_ROOT",""))]
+    c=[]
+    for root in roots:
+        if root.exists():c.extend(root.glob(f"build-tools/*/{name}"))
+    if not c:raise RuntimeError(f"missing Android tool: {name}")
+    return str(sorted(c)[-1])
 
 
 def package() -> None:
