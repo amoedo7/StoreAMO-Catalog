@@ -1,0 +1,82 @@
+Traceback (most recent call last):
+  File "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/generate.py", line 330, in <module>
+    if __name__=="__main__": raise SystemExit(main())
+                                              ^^^^^^
+  File "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/generate.py", line 326, in main
+    elif a.command=="package":package()
+                              ^^^^^^^^^
+  File "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/generate.py", line 286, in package
+    raise RuntimeError(f"{slug}: signer digest unavailable")
+RuntimeError: monedamo: signer digest unavailable
+
+== Android build tools ==
+total 19880
+drwxrwxrwx 6 root root    4096 Aug 16 21:30 .
+drwxrwxrwx 8 root root    4096 Aug 16 21:30 ..
+-rwxrwxrwx 1 root root 1068025 Aug 16 21:30 NOTICE.txt
+-rwxrwxrwx 1 root root 1541752 Aug 16 21:30 aapt
+-rwxrwxrwx 1 root root 6299424 Aug 16 21:30 aapt2
+-rwxrwxrwx 1 root root     343 Aug 16 21:30 aarch64-linux-android-ld
+-rwxrwxrwx 1 root root 4847544 Aug 16 21:30 aidl
+-rwxrwxrwx 1 root root    2959 Aug 16 21:30 apksigner
+-rwxrwxrwx 1 root root     343 Aug 16 21:30 arm-linux-androideabi-ld
+-rwxrwxrwx 1 root root   38776 Aug 16 21:30 bcc_compat
+-rwxrwxrwx 1 root root   15149 Aug 16 21:30 core-lambda-stubs.jar
+-rwxrwxrwx 1 root root    2678 Aug 16 21:30 d8
+-rwxrwxrwx 1 root root 3620016 Aug 16 21:30 dexdump
+-rwxrwxrwx 1 root root     343 Aug 16 21:30 i686-linux-android-ld
+drwxrwxrwx 2 root root    4096 Aug 16 21:30 lib
+drwxrwxrwx 2 root root    4096 Aug 16 21:30 lib64
+-rwxrwxrwx 1 root root     647 Aug 16 21:30 lld
+drwxrwxrwx 2 root root    4096 Aug 16 21:30 lld-bin
+-rwxrwxrwx 1 root root 1056448 Aug 16 21:30 llvm-rs-cc
+-rwxrwxrwx 1 root root     343 Aug 16 21:30 mipsel-linux-android-ld
+-rwxrwxrwx 1 root root   18339 Aug 16 21:30 package.xml
+drwxrwxrwx 5 root root    4096 Aug 16 21:30 renderscript
+-rwxrwxrwx 1 root root      17 Aug 16 21:30 runtime.properties
+-rwxrwxrwx 1 root root      63 Aug 16 21:30 source.properties
+-rwxrwxrwx 1 root root 1498360 Aug 16 21:30 split-select
+-rwxrwxrwx 1 root root     343 Aug 16 21:30 x86_64-linux-android-ld
+-rwxrwxrwx 1 root root  273032 Aug 16 21:30 zipalign
+
+== APK files ==
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/base64amo/debug/app-base64amo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/baseamo/debug/app-baseamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/bytesamo/debug/app-bytesamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/cesaramo/debug/app-cesaramo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/coloramo/debug/app-coloramo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/combustamo/debug/app-combustamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/cuotamo/debug/app-cuotamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/diasamo/debug/app-diasamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/dividamo/debug/app-dividamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/edadamo/debug/app-edadamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/faltanamo/debug/app-faltanamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/figuraamo/debug/app-figuraamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/fraccionamo/debug/app-fraccionamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/interesamo/debug/app-interesamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/intervalamo/debug/app-intervalamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/jsonamo/debug/app-jsonamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/limpiamo/debug/app-limpiamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/listaamo/debug/app-listaamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/marcadoramo/debug/app-marcadoramo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/mayusamo/debug/app-mayusamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/mcdamo/debug/app-mcdamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/monedamo/debug/app-monedamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/morseamo/debug/app-morseamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/pomodoramo/debug/app-pomodoramo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/primoamo/debug/app-primoamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/promediamo/debug/app-promediamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/propinamo/debug/app-propinamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/regexamo/debug/app-regexamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/reglatresamo/debug/app-reglatresamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/repetamo/debug/app-repetamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/respiramo/debug/app-respiramo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/romanamo/debug/app-romanamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/slugamo/debug/app-slugamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/textoamo/debug/app-textoamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/unixamo/debug/app-unixamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/urlamo/debug/app-urlamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/uuidamo/debug/app-uuidamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/velocamo/debug/app-velocamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/viajeamo/debug/app-viajeamo-debug.apk
+factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/outputs/apk/zonaamo/debug/app-zonaamo-debug.apk
