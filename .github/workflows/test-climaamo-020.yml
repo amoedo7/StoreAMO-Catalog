@@ -34,7 +34,11 @@ jobs:
         run: |
           set -euo pipefail
           APK='factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO/app/build/outputs/apk/debug/app-debug.apk'
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          APKSIGNER="$ANDROID_HOME/build-tools/35.0.0/apksigner"
+          test -x "$AAPT"
+          test -x "$APKSIGNER"
           test -s "$APK"
           unzip -tqq "$APK"
-          aapt dump badging "$APK" | grep -q "package: name='com.desarrollamo.climaamo' versionCode='2' versionName='0.2.0'"
-          apksigner verify --verbose "$APK"
+          "$AAPT" dump badging "$APK" | grep -q "package: name='com.desarrollamo.climaamo' versionCode='2' versionName='0.2.0'"
+          "$APKSIGNER" verify --verbose "$APK"
