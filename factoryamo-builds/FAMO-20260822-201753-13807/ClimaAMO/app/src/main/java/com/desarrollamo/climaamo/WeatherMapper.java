@@ -19,6 +19,14 @@ public final class WeatherMapper {
     }
 
     public static String emoji(int code) {
+        return emoji(code, true);
+    }
+
+    public static String emoji(int code, boolean isDay) {
+        if (!isDay) {
+            if (code == 0) return "🌙";
+            if (code == 1 || code == 2) return "☁️";
+        }
         if (code == 0) return "☀️";
         if (code <= 2) return "🌤️";
         if (code == 3) return "☁️";
