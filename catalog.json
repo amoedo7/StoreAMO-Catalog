@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-23T15:24:37+00:00",
+  "generated_at": "2026-08-23T17:41:55+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -991,8 +991,8 @@
     {
       "id": "depositamo",
       "name": "DepositAMO",
-      "tagline": "Depósito y refinería dimensional para hacer crecer DesarrollAMO.",
-      "description": "Recibe materia prima e ideas, preserva los originales y las refina en átomos y relaciones observables. Permite mirar el ecosistema de MACRO a MICRO, detectar candidatos positivos sólo cuando existe evidencia y preparar mejoras en un laboratorio aislado antes de integrarlas.",
+      "tagline": "Depositá. DepositAMO convierte materia prima en mejoras seguras.",
+      "description": "DepositAMO 0.4.0 preserva cada original y convierte el depósito en un circuito autónomo observable. Sincroniza la materia prima de forma privada, la refina en dimensiones MACRO ↔ MICRO, crea trabajo real en MesaAMO y despierta a DAMO para entender, comparar contra el ecosistema actual, experimentar en laboratorio y sólo integrar una mejora después de tests, regresiones y rollback. El material sensible se bloquea antes del cerebro y la app nunca inventa actividad ni resultados.",
       "category": "Herramientas",
       "audience": "team",
       "featured": false,
@@ -1005,7 +1005,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "DepositAMO 0.3.0 · Refinería dimensional local-first. Añade REFINAR / DIMENSIONES con zoom MACRO → PROYECTOS → ENGRANAJES → MICRO, átomos derivados, bloqueo de material sensible y LABORATORIO / CREAR / MEJORAR con política experimentar → comparar → tests/regresiones → rollback → integrar. Depositar no equivale a instalar; el original se preserva."
+        "notes": "DepositAMO 0.4.0 · Autonomous. Después de activar una vez la conexión segura, el uso normal es simplemente DEPOSITAR o Compartir → DepositAMO. Cada pieza se preserva y entra automáticamente al circuito: refinar → ubicar → MesaAMO → DAMO → entender → comparar → laboratorio → tests/regresiones → rollback → integrar sólo si mejora sin romper. FLUJO AUTÓNOMO muestra el estado real y DIMENSIONES permite mirar de MACRO a MICRO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -1022,17 +1022,17 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.3.0",
-          "version_code": "300",
-          "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.3.0/DepositAMO-0.3.0.apk",
-          "sha256": "9c0cc53059500b6663547cf5f836eb3d45122a91d8d9f68b6522970b46e8d4dc",
-          "size_bytes": 54512,
+          "version": "0.4.0",
+          "version_code": "400",
+          "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.4.0/DepositAMO-0.4.0.apk",
+          "sha256": "399cbbefd7f6ab3c518413e2d9002dc4cace45deeb169ce7fe7958169f93a402",
+          "size_bytes": 67380,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.depositamo",
           "signing_cert_sha256": "2b7ab55c5337735cad89c8006d94bf929244db21277fc9b7bd053f6ab8c5f685",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.3.0/release.json",
+          "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.4.0/release.json",
           "source": "distribution-registry"
         }
       ],
