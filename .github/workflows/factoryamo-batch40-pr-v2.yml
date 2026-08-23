@@ -57,6 +57,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          export PATH="$ANDROID_HOME/build-tools/35.0.0:$PATH"
+          command -v aapt
+          command -v apksigner
+          aapt version
+          apksigner version
           python3 "$BATCH/generate.py" package
           python3 build_catalog.py
           python3 - <<'PY'
