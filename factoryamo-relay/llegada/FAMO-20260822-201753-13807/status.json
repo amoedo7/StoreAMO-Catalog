@@ -2,10 +2,10 @@
   "schema": "factoryamo.relay.v1",
   "job_id": "FAMO-20260822-201753-13807",
   "app_name": "ClimaAMO",
-  "stage": "COMPILING",
-  "progress": 70,
-  "message": "Validación completa superada: tests, build Android, package 0.2.1, permisos GPS opt-in, firma candidate estable y contratos HTTPS reales de Open-Meteo, MET Norway y Air Quality. Integrando la versión validada para generar el APK publicable.",
+  "stage": "VERIFYING",
+  "progress": 91,
+  "message": "APK 0.2.1 ya fue generado y publicado en el repositorio de distribución. Verificando ahora el contrato público final: catálogo StoreAMO, SHA-256, versión, firma candidate canónica y reporte de checks.",
   "question": "",
-  "updated_at": "2026-08-23T11:29:00+02:00",
-  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk"
+  "updated_at": "2026-08-23T11:33:00+02:00",
+  "storeamo_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.1/ClimaAMO-0.2.1.apk"
 }
