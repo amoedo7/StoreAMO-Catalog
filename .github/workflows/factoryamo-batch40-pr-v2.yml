@@ -60,29 +60,36 @@ jobs:
         run: |
           set -euo pipefail
           export PATH="$ANDROID_HOME/build-tools/35.0.0:$PATH"
-          command -v aapt
-          command -v apksigner
-          aapt version
-          apksigner version
+          {
+            echo "ANDROID_HOME=$ANDROID_HOME"
+            echo "PATH=$PATH"
+            for tool in aapt aapt2 apksigner zipalign; do
+              printf '%s=' "$tool"
+              command -v "$tool" || true
+            done
+          } > "$BATCH/tooling.log"
 
           set +e
           python3 -u "$BATCH/generate.py" package > "$BATCH/package.log" 2>&1
           rc=$?
           set -e
+          {
+            echo
+            echo "== tooling =="
+            cat "$BATCH/tooling.log" || true
+            echo
+            echo "== Android build tools =="
+            ls -la "$ANDROID_HOME/build-tools/35.0.0" || true
+            echo
+            echo "== APK files =="
+            find "$BATCH/app/build/outputs/apk" -type f -name '*.apk' -print | sort || true
+          } >> "$BATCH/package.log"
           cat "$BATCH/package.log"
 
           if [ "$rc" -ne 0 ]; then
-            {
-              echo
-              echo "== Android build tools =="
-              ls -la "$ANDROID_HOME/build-tools/35.0.0"
-              echo
-              echo "== APK files =="
-              find "$BATCH/app/build/outputs/apk" -type f -name '*.apk' -print | sort
-            } >> "$BATCH/package.log"
             git config user.name 'FactoryAMO Batch Bot'
             git config user.email 'actions@users.noreply.github.com'
-            git add "$BATCH/package.log"
+            git add "$BATCH/package.log" "$BATCH/tooling.log"
             git commit -m 'diagnostic(factoryamo): capture Batch40 package failure' || true
             git push origin HEAD:"$HEAD_REF" || true
             exit "$rc"
