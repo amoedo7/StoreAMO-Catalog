@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   verify40:
-    if: github.event.pull_request.merged == true && github.event.pull_request.title == 'FACTORYAMO BATCH40 BUILD FAMO-20260822-201753-13807'
+    if: github.event.pull_request.merged == true && (github.event.pull_request.title == 'FACTORYAMO BATCH40 BUILD FAMO-20260822-201753-13807' || github.event.pull_request.title == 'FACTORYAMO BATCH40 VERIFY FAMO-20260822-201753-13807')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
@@ -53,7 +53,7 @@ jobs:
           for round_no in range(1,13):
               for slug,a in list(pending.items()):
                   try:
-                      req=urllib.request.Request(a['url'],headers={'User-Agent':'FactoryAMO-Batch40-Verifier/1.0'})
+                      req=urllib.request.Request(a['url'],headers={'User-Agent':'FactoryAMO-Batch40-Verifier/1.0','Cache-Control':'no-cache'})
                       with urllib.request.urlopen(req,timeout=30) as r:
                           body=r.read(); code=r.status; ctype=r.headers.get('Content-Type','')
                       got=hashlib.sha256(body).hexdigest()
