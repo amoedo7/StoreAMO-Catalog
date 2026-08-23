@@ -1,0 +1,51 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.desarrollamo.batch40core'
+    compileSdk 35
+    defaultConfig { minSdk 26; targetSdk 35; versionCode 1; versionName "0.1.0" }
+    flavorDimensions += "app"
+    productFlavors {
+        monedamo { dimension "app"; applicationId "com.desarrollamo.monedamo"; resValue "string", "app_name", "MonedAMO" }
+        edadamo { dimension "app"; applicationId "com.desarrollamo.edadamo"; resValue "string", "app_name", "EdadAMO" }
+        dividamo { dimension "app"; applicationId "com.desarrollamo.dividamo"; resValue "string", "app_name", "DividAMO" }
+        propinamo { dimension "app"; applicationId "com.desarrollamo.propinamo"; resValue "string", "app_name", "PropinAMO" }
+        combustamo { dimension "app"; applicationId "com.desarrollamo.combustamo"; resValue "string", "app_name", "CombustAMO" }
+        viajeamo { dimension "app"; applicationId "com.desarrollamo.viajeamo"; resValue "string", "app_name", "ViajeAMO" }
+        cuotamo { dimension "app"; applicationId "com.desarrollamo.cuotamo"; resValue "string", "app_name", "CuotAMO" }
+        interesamo { dimension "app"; applicationId "com.desarrollamo.interesamo"; resValue "string", "app_name", "InteresAMO" }
+        reglatresamo { dimension "app"; applicationId "com.desarrollamo.reglatresamo"; resValue "string", "app_name", "ReglaTresAMO" }
+        promediamo { dimension "app"; applicationId "com.desarrollamo.promediamo"; resValue "string", "app_name", "PromediAMO" }
+        fraccionamo { dimension "app"; applicationId "com.desarrollamo.fraccionamo"; resValue "string", "app_name", "FraccionAMO" }
+        primoamo { dimension "app"; applicationId "com.desarrollamo.primoamo"; resValue "string", "app_name", "PrimoAMO" }
+        mcdamo { dimension "app"; applicationId "com.desarrollamo.mcdamo"; resValue "string", "app_name", "MCDAMO" }
+        baseamo { dimension "app"; applicationId "com.desarrollamo.baseamo"; resValue "string", "app_name", "BaseAMO" }
+        romanamo { dimension "app"; applicationId "com.desarrollamo.romanamo"; resValue "string", "app_name", "RomanAMO" }
+        coloramo { dimension "app"; applicationId "com.desarrollamo.coloramo"; resValue "string", "app_name", "ColorAMO" }
+        textoamo { dimension "app"; applicationId "com.desarrollamo.textoamo"; resValue "string", "app_name", "TextoAMO" }
+        mayusamo { dimension "app"; applicationId "com.desarrollamo.mayusamo"; resValue "string", "app_name", "MayusAMO" }
+        limpiamo { dimension "app"; applicationId "com.desarrollamo.limpiamo"; resValue "string", "app_name", "LimpiAMO" }
+        repetamo { dimension "app"; applicationId "com.desarrollamo.repetamo"; resValue "string", "app_name", "RepetAMO" }
+        uuidamo { dimension "app"; applicationId "com.desarrollamo.uuidamo"; resValue "string", "app_name", "UUIDAMO" }
+        base64amo { dimension "app"; applicationId "com.desarrollamo.base64amo"; resValue "string", "app_name", "Base64AMO" }
+        urlamo { dimension "app"; applicationId "com.desarrollamo.urlamo"; resValue "string", "app_name", "UrlAMO" }
+        jsonamo { dimension "app"; applicationId "com.desarrollamo.jsonamo"; resValue "string", "app_name", "JSONAMO" }
+        regexamo { dimension "app"; applicationId "com.desarrollamo.regexamo"; resValue "string", "app_name", "RegexAMO" }
+        listaamo { dimension "app"; applicationId "com.desarrollamo.listaamo"; resValue "string", "app_name", "ListaAMO" }
+        morseamo { dimension "app"; applicationId "com.desarrollamo.morseamo"; resValue "string", "app_name", "MorseAMO" }
+        cesaramo { dimension "app"; applicationId "com.desarrollamo.cesaramo"; resValue "string", "app_name", "CesarAMO" }
+        marcadoramo { dimension "app"; applicationId "com.desarrollamo.marcadoramo"; resValue "string", "app_name", "MarcadorAMO" }
+        pomodoramo { dimension "app"; applicationId "com.desarrollamo.pomodoramo"; resValue "string", "app_name", "PomodorAMO" }
+        respiramo { dimension "app"; applicationId "com.desarrollamo.respiramo"; resValue "string", "app_name", "RespirAMO" }
+        intervalamo { dimension "app"; applicationId "com.desarrollamo.intervalamo"; resValue "string", "app_name", "IntervalAMO" }
+        diasamo { dimension "app"; applicationId "com.desarrollamo.diasamo"; resValue "string", "app_name", "DiasAMO" }
+        faltanamo { dimension "app"; applicationId "com.desarrollamo.faltanamo"; resValue "string", "app_name", "FaltanAMO" }
+        unixamo { dimension "app"; applicationId "com.desarrollamo.unixamo"; resValue "string", "app_name", "UnixAMO" }
+        zonaamo { dimension "app"; applicationId "com.desarrollamo.zonaamo"; resValue "string", "app_name", "ZonaAMO" }
+        figuraamo { dimension "app"; applicationId "com.desarrollamo.figuraamo"; resValue "string", "app_name", "FiguraAMO" }
+        velocamo { dimension "app"; applicationId "com.desarrollamo.velocamo"; resValue "string", "app_name", "VelocAMO" }
+        bytesamo { dimension "app"; applicationId "com.desarrollamo.bytesamo"; resValue "string", "app_name", "BytesAMO" }
+        slugamo { dimension "app"; applicationId "com.desarrollamo.slugamo"; resValue "string", "app_name", "SlugAMO" }
+    }
+    buildTypes { release { minifyEnabled false } }
+}

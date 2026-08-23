@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/promediamo/debug/output-metadata.json

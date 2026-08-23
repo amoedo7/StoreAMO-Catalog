@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/monedamo/debug/output-metadata.json

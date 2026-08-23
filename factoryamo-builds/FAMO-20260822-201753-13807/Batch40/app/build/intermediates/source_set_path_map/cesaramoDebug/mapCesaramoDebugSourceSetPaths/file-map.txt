@@ -1,0 +1,9 @@
+com.desarrollamo.batch40core.app-cesaramo-0 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/pngs/cesaramo/debug
+com.desarrollamo.batch40core.app-cesaramo-1 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/resValues/cesaramo/debug
+com.desarrollamo.batch40core.app-packageCesaramoDebugResources-2 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/incremental/cesaramoDebug/packageCesaramoDebugResources/merged.dir
+com.desarrollamo.batch40core.app-packageCesaramoDebugResources-3 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/incremental/cesaramoDebug/packageCesaramoDebugResources/stripped.dir
+com.desarrollamo.batch40core.app-cesaramoDebug-4 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/merged_res/cesaramoDebug/mergeCesaramoDebugResources
+com.desarrollamo.batch40core.app-cesaramo-5 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/cesaramo/res
+com.desarrollamo.batch40core.app-cesaramoDebug-6 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/cesaramoDebug/res
+com.desarrollamo.batch40core.app-debug-7 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/debug/res
+com.desarrollamo.batch40core.app-main-8 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/res

@@ -1,0 +1,2 @@
+com.desarrollamo.base64amo:style/AppTheme = 0x7f020000
+com.desarrollamo.base64amo:string/app_name = 0x7f010000

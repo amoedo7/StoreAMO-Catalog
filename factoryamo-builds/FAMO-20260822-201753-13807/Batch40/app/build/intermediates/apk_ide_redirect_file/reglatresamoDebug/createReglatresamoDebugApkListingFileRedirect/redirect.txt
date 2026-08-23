@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/reglatresamo/debug/output-metadata.json

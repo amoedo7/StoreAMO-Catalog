@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/combustamo/debug/output-metadata.json

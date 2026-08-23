@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/regexamo/debug/output-metadata.json

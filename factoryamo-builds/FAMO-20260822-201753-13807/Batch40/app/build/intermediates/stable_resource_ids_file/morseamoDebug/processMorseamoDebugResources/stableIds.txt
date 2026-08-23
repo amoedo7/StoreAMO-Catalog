@@ -1,0 +1,2 @@
+com.desarrollamo.morseamo:style/AppTheme = 0x7f020000
+com.desarrollamo.morseamo:string/app_name = 0x7f010000

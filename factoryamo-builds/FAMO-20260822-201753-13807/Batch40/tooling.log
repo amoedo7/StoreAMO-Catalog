@@ -1,0 +1,6 @@
+ANDROID_HOME=/usr/local/lib/android/sdk
+PATH=/usr/local/lib/android/sdk/build-tools/35.0.0:/home/runner/work/_temp/.gradle-actions/gradle-installations/installs/gradle-8.10.2/bin:/usr/local/lib/android/sdk/platform-tools:/usr/local/lib/android/sdk/cmdline-tools/16.0/bin:/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.20-8/x64/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+aapt=/usr/local/lib/android/sdk/build-tools/35.0.0/aapt
+aapt2=/usr/local/lib/android/sdk/build-tools/35.0.0/aapt2
+apksigner=/usr/local/lib/android/sdk/build-tools/35.0.0/apksigner
+zipalign=/usr/local/lib/android/sdk/build-tools/35.0.0/zipalign

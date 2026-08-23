@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/morseamo/debug/output-metadata.json

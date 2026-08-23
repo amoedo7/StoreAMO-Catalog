@@ -1,0 +1,2 @@
+com.desarrollamo.dividamo:style/AppTheme = 0x7f020000
+com.desarrollamo.dividamo:string/app_name = 0x7f010000

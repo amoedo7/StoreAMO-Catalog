@@ -1,0 +1,2 @@
+com.desarrollamo.mcdamo:style/AppTheme = 0x7f020000
+com.desarrollamo.mcdamo:string/app_name = 0x7f010000
