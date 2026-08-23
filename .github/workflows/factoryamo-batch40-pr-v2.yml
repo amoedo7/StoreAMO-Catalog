@@ -33,6 +33,16 @@ jobs:
           echo 'a3b094d9966d2fe36a804713b02d7963de469acc9bfd7a187984c0dd179de6ab  '"$BATCH/generator.part02" | sha256sum -c -
           echo '8da5e7cb5c0f68065485e609fd7d63491d5d8cf9f71ac9441464770e9663ca06  '"$BATCH/generator.part03" | sha256sum -c -
           cat "$BATCH"/generator.part0* | base64 -d | gzip -d > "$BATCH/generate.py"
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('factoryamo-builds/FAMO-20260822-201753-13807/Batch40/generate.py')
+          s=p.read_text()
+          bad=r'r"Signer #1 certificate SHA-256 digest:\\s*([0-9a-fA-F]+)"'
+          good=r'r"Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F]+)"'
+          if bad not in s:
+              raise SystemExit('expected buggy signer regex not found')
+          p.write_text(s.replace(bad,good,1))
+          PY
           python3 -m py_compile "$BATCH/generate.py"
           python3 "$BATCH/generate.py" generate
           node "$BATCH/tests/selftest.cjs"
@@ -60,48 +70,7 @@ jobs:
         run: |
           set -euo pipefail
           export PATH="$ANDROID_HOME/build-tools/35.0.0:$PATH"
-          {
-            echo "ANDROID_HOME=$ANDROID_HOME"
-            echo "PATH=$PATH"
-            for tool in aapt aapt2 apksigner zipalign; do
-              printf '%s=' "$tool"
-              command -v "$tool" || true
-            done
-          } > "$BATCH/tooling.log"
-
-          nl -ba "$BATCH/generate.py" | sed -n '272,294p' > "$BATCH/generator-context.log"
-          MONO="$BATCH/app/build/outputs/apk/monedamo/debug/app-monedamo-debug.apk"
-          apksigner verify --print-certs "$MONO" > "$BATCH/monedamo-signer.log" 2>&1 || true
-
-          set +e
-          python3 -u "$BATCH/generate.py" package > "$BATCH/package.log" 2>&1
-          rc=$?
-          set -e
-          {
-            echo
-            echo "== tooling =="
-            cat "$BATCH/tooling.log" || true
-            echo
-            echo "== generator context =="
-            cat "$BATCH/generator-context.log" || true
-            echo
-            echo "== monedamo signer =="
-            cat "$BATCH/monedamo-signer.log" || true
-            echo
-            echo "== APK files =="
-            find "$BATCH/app/build/outputs/apk" -type f -name '*.apk' -print | sort || true
-          } >> "$BATCH/package.log"
-          cat "$BATCH/package.log"
-
-          if [ "$rc" -ne 0 ]; then
-            git config user.name 'FactoryAMO Batch Bot'
-            git config user.email 'actions@users.noreply.github.com'
-            git add "$BATCH/package.log" "$BATCH/tooling.log" "$BATCH/generator-context.log" "$BATCH/monedamo-signer.log"
-            git commit -m 'diagnostic(factoryamo): capture signer parser failure' || true
-            git push origin HEAD:"$HEAD_REF" || true
-            exit "$rc"
-          fi
-
+          python3 -u "$BATCH/generate.py" package
           python3 build_catalog.py
           python3 - <<'PY'
           import json, os
