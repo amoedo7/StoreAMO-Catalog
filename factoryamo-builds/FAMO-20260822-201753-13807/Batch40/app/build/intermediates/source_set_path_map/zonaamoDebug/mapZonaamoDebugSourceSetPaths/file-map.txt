@@ -1,0 +1,9 @@
+com.desarrollamo.batch40core.app-zonaamo-0 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/pngs/zonaamo/debug
+com.desarrollamo.batch40core.app-zonaamo-1 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/resValues/zonaamo/debug
+com.desarrollamo.batch40core.app-packageZonaamoDebugResources-2 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/incremental/zonaamoDebug/packageZonaamoDebugResources/merged.dir
+com.desarrollamo.batch40core.app-packageZonaamoDebugResources-3 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/incremental/zonaamoDebug/packageZonaamoDebugResources/stripped.dir
+com.desarrollamo.batch40core.app-zonaamoDebug-4 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/merged_res/zonaamoDebug/mergeZonaamoDebugResources
+com.desarrollamo.batch40core.app-debug-5 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/debug/res
+com.desarrollamo.batch40core.app-main-6 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/res
+com.desarrollamo.batch40core.app-zonaamo-7 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/zonaamo/res
+com.desarrollamo.batch40core.app-zonaamoDebug-8 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/zonaamoDebug/res

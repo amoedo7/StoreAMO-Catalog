@@ -1,0 +1,2 @@
+#- File Locator -
+listingFile=../../../../outputs/apk/intervalamo/debug/output-metadata.json

@@ -1,0 +1,53 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:1:1-10:12
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:1:1-10:12
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:1:1-10:12
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:1:1-10:12
+	package
+		INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:1:11-69
+application
+ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:2:5-9:19
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:2:5-9:19
+	android:extractNativeLibs
+		INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+	android:supportsRtl
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:2:111-137
+	android:label
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:2:50-82
+	android:allowBackup
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:2:83-110
+	android:theme
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:2:18-49
+activity#com.desarrollamo.batch40core.MainActivity
+ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:3:9-8:20
+	android:screenOrientation
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:3:48-84
+	android:exported
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:3:85-108
+	android:name
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:3:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:4:13-7:29
+action#android.intent.action.MAIN
+ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:5:17-69
+	android:name
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:5:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:6:17-77
+	android:name
+		ADDED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml:6:27-74
+uses-sdk
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/AndroidManifest.xml

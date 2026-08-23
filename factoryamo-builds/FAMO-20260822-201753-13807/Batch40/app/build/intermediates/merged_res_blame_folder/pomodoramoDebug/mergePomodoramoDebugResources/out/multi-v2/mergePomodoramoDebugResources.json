@@ -1,0 +1,45 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.desarrollamo.batch40core.app-pomodoramoDebug-4:/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/resValues/pomodoramo/debug/values/gradleResValues.xml",
+                    "from": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "165",
+                        "endColumns": "68",
+                        "endOffsets": "229"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "68",
+                        "endOffsets": "119"
+                    }
+                },
+                {
+                    "source": "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "2",
+                        "startOffsets": "14",
+                        "endLines": "5",
+                        "endColumns": "10",
+                        "endOffsets": "367"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "124",
+                        "endLines": "7",
+                        "endColumns": "10",
+                        "endOffsets": "477"
+                    }
+                }
+            ]
+        }
+    ]
+}

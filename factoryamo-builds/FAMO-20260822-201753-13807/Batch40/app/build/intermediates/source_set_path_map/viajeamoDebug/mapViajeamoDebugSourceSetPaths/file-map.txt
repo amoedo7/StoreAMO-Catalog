@@ -1,0 +1,9 @@
+com.desarrollamo.batch40core.app-viajeamo-0 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/pngs/viajeamo/debug
+com.desarrollamo.batch40core.app-viajeamo-1 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/resValues/viajeamo/debug
+com.desarrollamo.batch40core.app-packageViajeamoDebugResources-2 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/incremental/viajeamoDebug/packageViajeamoDebugResources/merged.dir
+com.desarrollamo.batch40core.app-packageViajeamoDebugResources-3 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/incremental/viajeamoDebug/packageViajeamoDebugResources/stripped.dir
+com.desarrollamo.batch40core.app-viajeamoDebug-4 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/merged_res/viajeamoDebug/mergeViajeamoDebugResources
+com.desarrollamo.batch40core.app-debug-5 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/debug/res
+com.desarrollamo.batch40core.app-main-6 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/res
+com.desarrollamo.batch40core.app-viajeamo-7 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/viajeamo/res
+com.desarrollamo.batch40core.app-viajeamoDebug-8 /home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/viajeamoDebug/res

@@ -1,0 +1,2 @@
+com.desarrollamo.urlamo:style/AppTheme = 0x7f020000
+com.desarrollamo.urlamo:string/app_name = 0x7f010000

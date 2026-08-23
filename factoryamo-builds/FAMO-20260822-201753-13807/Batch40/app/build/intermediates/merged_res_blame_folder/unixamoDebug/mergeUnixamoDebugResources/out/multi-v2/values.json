@@ -1,0 +1,45 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.desarrollamo.batch40core.app-mergeUnixamoDebugResources-2:/values/values.xml",
+            "map": [
+                {
+                    "source": "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/generated/res/resValues/unixamo/debug/values/gradleResValues.xml",
+                    "from": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "162",
+                        "endColumns": "65",
+                        "endOffsets": "223"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+                },
+                {
+                    "source": "/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "2",
+                        "startOffsets": "14",
+                        "endLines": "5",
+                        "endColumns": "10",
+                        "endOffsets": "367"
+                    },
+                    "to": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "121",
+                        "endLines": "7",
+                        "endColumns": "10",
+                        "endOffsets": "474"
+                    }
+                }
+            ]
+        }
+    ]
+}

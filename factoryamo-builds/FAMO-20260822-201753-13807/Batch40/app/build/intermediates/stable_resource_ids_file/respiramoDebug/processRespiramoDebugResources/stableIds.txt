@@ -1,0 +1,2 @@
+com.desarrollamo.respiramo:style/AppTheme = 0x7f020000
+com.desarrollamo.respiramo:string/app_name = 0x7f010000

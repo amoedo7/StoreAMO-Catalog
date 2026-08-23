@@ -1,0 +1,2 @@
+com.desarrollamo.fraccionamo:style/AppTheme = 0x7f020000
+com.desarrollamo.fraccionamo:string/app_name = 0x7f010000

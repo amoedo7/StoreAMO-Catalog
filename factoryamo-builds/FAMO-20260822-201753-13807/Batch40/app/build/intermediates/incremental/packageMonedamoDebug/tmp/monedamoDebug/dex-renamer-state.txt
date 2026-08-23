@@ -1,0 +1,7 @@
+#Sun Aug 23 08:10:10 UTC 2026
+base.1=/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/dex/monedamoDebug/mergeProjectDexMonedamoDebug/4/classes.dex
+path.1=4/classes.dex
+base.0=/home/runner/work/StoreAMO-Catalog/StoreAMO-Catalog/factoryamo-builds/FAMO-20260822-201753-13807/Batch40/app/build/intermediates/dex/monedamoDebug/mergeProjectDexMonedamoDebug/0/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=0/classes.dex

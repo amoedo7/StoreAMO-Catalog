@@ -1,0 +1,367 @@
+{
+  "schema": "factoryamo.batch40.v1",
+  "job_id": "FAMO-20260822-201753-13807",
+  "version": "0.1.0",
+  "apps": [
+    {
+      "index": 1,
+      "name": "MonedAMO",
+      "id": "monedamo",
+      "package_id": "com.desarrollamo.monedamo",
+      "version": "0.1.0",
+      "tagline": "Moneda al aire y contador de resultados",
+      "category": "Juegos"
+    },
+    {
+      "index": 2,
+      "name": "EdadAMO",
+      "id": "edadamo",
+      "package_id": "com.desarrollamo.edadamo",
+      "version": "0.1.0",
+      "tagline": "Calculá edad exacta desde una fecha de nacimiento",
+      "category": "Utilidades"
+    },
+    {
+      "index": 3,
+      "name": "DividAMO",
+      "id": "dividamo",
+      "package_id": "com.desarrollamo.dividamo",
+      "version": "0.1.0",
+      "tagline": "Dividí una cuenta entre varias personas",
+      "category": "Finanzas"
+    },
+    {
+      "index": 4,
+      "name": "PropinAMO",
+      "id": "propinamo",
+      "package_id": "com.desarrollamo.propinamo",
+      "version": "0.1.0",
+      "tagline": "Calculá propina y total por persona",
+      "category": "Finanzas"
+    },
+    {
+      "index": 5,
+      "name": "CombustAMO",
+      "id": "combustamo",
+      "package_id": "com.desarrollamo.combustamo",
+      "version": "0.1.0",
+      "tagline": "Calculá costo y consumo de combustible",
+      "category": "Viajes"
+    },
+    {
+      "index": 6,
+      "name": "ViajeAMO",
+      "id": "viajeamo",
+      "package_id": "com.desarrollamo.viajeamo",
+      "version": "0.1.0",
+      "tagline": "Estimá duración de un viaje por distancia y velocidad",
+      "category": "Viajes"
+    },
+    {
+      "index": 7,
+      "name": "CuotAMO",
+      "id": "cuotamo",
+      "package_id": "com.desarrollamo.cuotamo",
+      "version": "0.1.0",
+      "tagline": "Calculá cuotas de un préstamo",
+      "category": "Finanzas"
+    },
+    {
+      "index": 8,
+      "name": "InteresAMO",
+      "id": "interesamo",
+      "package_id": "com.desarrollamo.interesamo",
+      "version": "0.1.0",
+      "tagline": "Interés compuesto simple y claro",
+      "category": "Finanzas"
+    },
+    {
+      "index": 9,
+      "name": "ReglaTresAMO",
+      "id": "reglatresamo",
+      "package_id": "com.desarrollamo.reglatresamo",
+      "version": "0.1.0",
+      "tagline": "Regla de tres directa",
+      "category": "Matemática"
+    },
+    {
+      "index": 10,
+      "name": "PromediAMO",
+      "id": "promediamo",
+      "package_id": "com.desarrollamo.promediamo",
+      "version": "0.1.0",
+      "tagline": "Promedio y mediana de una lista de números",
+      "category": "Matemática"
+    },
+    {
+      "index": 11,
+      "name": "FraccionAMO",
+      "id": "fraccionamo",
+      "package_id": "com.desarrollamo.fraccionamo",
+      "version": "0.1.0",
+      "tagline": "Simplificá fracciones",
+      "category": "Matemática"
+    },
+    {
+      "index": 12,
+      "name": "PrimoAMO",
+      "id": "primoamo",
+      "package_id": "com.desarrollamo.primoamo",
+      "version": "0.1.0",
+      "tagline": "Comprobá si un número es primo",
+      "category": "Matemática"
+    },
+    {
+      "index": 13,
+      "name": "MCDAMO",
+      "id": "mcdamo",
+      "package_id": "com.desarrollamo.mcdamo",
+      "version": "0.1.0",
+      "tagline": "Máximo común divisor y mínimo común múltiplo",
+      "category": "Matemática"
+    },
+    {
+      "index": 14,
+      "name": "BaseAMO",
+      "id": "baseamo",
+      "package_id": "com.desarrollamo.baseamo",
+      "version": "0.1.0",
+      "tagline": "Convertí números entre binario, octal, decimal y hexadecimal",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 15,
+      "name": "RomanAMO",
+      "id": "romanamo",
+      "package_id": "com.desarrollamo.romanamo",
+      "version": "0.1.0",
+      "tagline": "Convertí números decimales a romanos",
+      "category": "Utilidades"
+    },
+    {
+      "index": 16,
+      "name": "ColorAMO",
+      "id": "coloramo",
+      "package_id": "com.desarrollamo.coloramo",
+      "version": "0.1.0",
+      "tagline": "Convertí colores HEX y RGB",
+      "category": "Diseño"
+    },
+    {
+      "index": 17,
+      "name": "TextoAMO",
+      "id": "textoamo",
+      "package_id": "com.desarrollamo.textoamo",
+      "version": "0.1.0",
+      "tagline": "Contá palabras, caracteres y líneas",
+      "category": "Texto"
+    },
+    {
+      "index": 18,
+      "name": "MayusAMO",
+      "id": "mayusamo",
+      "package_id": "com.desarrollamo.mayusamo",
+      "version": "0.1.0",
+      "tagline": "Mayúsculas, minúsculas y formato título",
+      "category": "Texto"
+    },
+    {
+      "index": 19,
+      "name": "LimpiAMO",
+      "id": "limpiamo",
+      "package_id": "com.desarrollamo.limpiamo",
+      "version": "0.1.0",
+      "tagline": "Limpiá espacios y líneas de un texto",
+      "category": "Texto"
+    },
+    {
+      "index": 20,
+      "name": "RepetAMO",
+      "id": "repetamo",
+      "package_id": "com.desarrollamo.repetamo",
+      "version": "0.1.0",
+      "tagline": "Repetí texto una cantidad controlada de veces",
+      "category": "Texto"
+    },
+    {
+      "index": 21,
+      "name": "UUIDAMO",
+      "id": "uuidamo",
+      "package_id": "com.desarrollamo.uuidamo",
+      "version": "0.1.0",
+      "tagline": "Generador local de UUID v4",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 22,
+      "name": "Base64AMO",
+      "id": "base64amo",
+      "package_id": "com.desarrollamo.base64amo",
+      "version": "0.1.0",
+      "tagline": "Codificá y decodificá Base64 localmente",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 23,
+      "name": "UrlAMO",
+      "id": "urlamo",
+      "package_id": "com.desarrollamo.urlamo",
+      "version": "0.1.0",
+      "tagline": "Codificá y decodificá componentes de URL",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 24,
+      "name": "JSONAMO",
+      "id": "jsonamo",
+      "package_id": "com.desarrollamo.jsonamo",
+      "version": "0.1.0",
+      "tagline": "Formateá y validá JSON localmente",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 25,
+      "name": "RegexAMO",
+      "id": "regexamo",
+      "package_id": "com.desarrollamo.regexamo",
+      "version": "0.1.0",
+      "tagline": "Probá expresiones regulares sobre texto",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 26,
+      "name": "ListaAMO",
+      "id": "listaamo",
+      "package_id": "com.desarrollamo.listaamo",
+      "version": "0.1.0",
+      "tagline": "Ordená y quitá duplicados de listas",
+      "category": "Texto"
+    },
+    {
+      "index": 27,
+      "name": "MorseAMO",
+      "id": "morseamo",
+      "package_id": "com.desarrollamo.morseamo",
+      "version": "0.1.0",
+      "tagline": "Convertí texto a código Morse",
+      "category": "Texto"
+    },
+    {
+      "index": 28,
+      "name": "CesarAMO",
+      "id": "cesaramo",
+      "package_id": "com.desarrollamo.cesaramo",
+      "version": "0.1.0",
+      "tagline": "Cifrado César local para aprendizaje",
+      "category": "Texto"
+    },
+    {
+      "index": 29,
+      "name": "MarcadorAMO",
+      "id": "marcadoramo",
+      "package_id": "com.desarrollamo.marcadoramo",
+      "version": "0.1.0",
+      "tagline": "Marcador simple para dos equipos",
+      "category": "Juegos"
+    },
+    {
+      "index": 30,
+      "name": "PomodorAMO",
+      "id": "pomodoramo",
+      "package_id": "com.desarrollamo.pomodoramo",
+      "version": "0.1.0",
+      "tagline": "Temporizador Pomodoro local",
+      "category": "Productividad"
+    },
+    {
+      "index": 31,
+      "name": "RespirAMO",
+      "id": "respiramo",
+      "package_id": "com.desarrollamo.respiramo",
+      "version": "0.1.0",
+      "tagline": "Guía de respiración 4-4-4-4",
+      "category": "Bienestar"
+    },
+    {
+      "index": 32,
+      "name": "IntervalAMO",
+      "id": "intervalamo",
+      "package_id": "com.desarrollamo.intervalamo",
+      "version": "0.1.0",
+      "tagline": "Temporizador de intervalos trabajo/descanso",
+      "category": "Productividad"
+    },
+    {
+      "index": 33,
+      "name": "DiasAMO",
+      "id": "diasamo",
+      "package_id": "com.desarrollamo.diasamo",
+      "version": "0.1.0",
+      "tagline": "Días entre dos fechas",
+      "category": "Utilidades"
+    },
+    {
+      "index": 34,
+      "name": "FaltanAMO",
+      "id": "faltanamo",
+      "package_id": "com.desarrollamo.faltanamo",
+      "version": "0.1.0",
+      "tagline": "Cuenta cuántos días faltan para una fecha",
+      "category": "Utilidades"
+    },
+    {
+      "index": 35,
+      "name": "UnixAMO",
+      "id": "unixamo",
+      "package_id": "com.desarrollamo.unixamo",
+      "version": "0.1.0",
+      "tagline": "Convertí fecha y timestamp Unix",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 36,
+      "name": "ZonaAMO",
+      "id": "zonaamo",
+      "package_id": "com.desarrollamo.zonaamo",
+      "version": "0.1.0",
+      "tagline": "Compará horarios por desplazamiento UTC",
+      "category": "Utilidades"
+    },
+    {
+      "index": 37,
+      "name": "FiguraAMO",
+      "id": "figuraamo",
+      "package_id": "com.desarrollamo.figuraamo",
+      "version": "0.1.0",
+      "tagline": "Área y perímetro de figuras básicas",
+      "category": "Matemática"
+    },
+    {
+      "index": 38,
+      "name": "VelocAMO",
+      "id": "velocamo",
+      "package_id": "com.desarrollamo.velocamo",
+      "version": "0.1.0",
+      "tagline": "Convertí km/h, mph y m/s",
+      "category": "Utilidades"
+    },
+    {
+      "index": 39,
+      "name": "BytesAMO",
+      "id": "bytesamo",
+      "package_id": "com.desarrollamo.bytesamo",
+      "version": "0.1.0",
+      "tagline": "Convertí bytes, KB, MB y GB",
+      "category": "Desarrollo"
+    },
+    {
+      "index": 40,
+      "name": "SlugAMO",
+      "id": "slugamo",
+      "package_id": "com.desarrollamo.slugamo",
+      "version": "0.1.0",
+      "tagline": "Convertí títulos a slugs de URL",
+      "category": "Desarrollo"
+    }
+  ]
+}
