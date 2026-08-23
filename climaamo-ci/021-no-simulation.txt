@@ -1,0 +1,1 @@
+0.2.1 policy: UI values must come from API responses or be shown as N/D. No simulated weather values.
