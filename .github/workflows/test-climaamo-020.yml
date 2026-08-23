@@ -29,7 +29,7 @@ jobs:
       - name: Unit tests and build
         working-directory: factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO
         run: gradle --no-daemon testDebugUnitTest assembleDebug
-      - name: Package checks
+      - name: Package checks and signer continuity
         shell: bash
         run: |
           set -euo pipefail
@@ -45,7 +45,10 @@ jobs:
           echo "$PERMS" | grep -q 'android.permission.INTERNET'
           echo "$PERMS" | grep -q 'android.permission.ACCESS_COARSE_LOCATION'
           echo "$PERMS" | grep -q 'android.permission.ACCESS_FINE_LOCATION'
-          "$APKSIGNER" verify --verbose "$APK"
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+          CERT="$($APKSIGNER verify --print-certs "$APK" | sed -n 's/Signer #1 certificate SHA-256 digest: //p' | head -1)"
+          echo "SIGNER_SHA256=$CERT"
+          test "$CERT" = 'af77602ce2f9c5452fe302ff57b9f5c576971e110886f97e6bce04b020f2dd78'
       - name: Live weather source contracts
         shell: bash
         run: |
