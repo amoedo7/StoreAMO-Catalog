@@ -1,0 +1,84 @@
+name: factoryamo-batch40-pr
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build40:
+    if: github.event.pull_request.title == 'FACTORYAMO BATCH40 BUILD FAMO-20260822-201753-13807'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      JOB_ID: FAMO-20260822-201753-13807
+      BATCH: factoryamo-builds/FAMO-20260822-201753-13807/Batch40
+      STATUS: factoryamo-relay/llegada/FAMO-20260822-201753-13807/status.json
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+
+      - name: Generate Batch40 source and self-test
+        shell: bash
+        run: |
+          set -euo pipefail
+          base64 -d "$BATCH/generator.py.gz.b64" | gzip -d > "$BATCH/generate.py"
+          python3 -m py_compile "$BATCH/generate.py"
+          python3 "$BATCH/generate.py" generate
+          node "$BATCH/tests/selftest.cjs"
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Install Android SDK
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0" >/dev/null
+
+      - name: Compile all 40 Android variants
+        working-directory: factoryamo-builds/FAMO-20260822-201753-13807/Batch40
+        run: gradle --no-daemon :app:assembleDebug --stacktrace
+
+      - name: Verify and package all 40 candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 "$BATCH/generate.py" package
+          python3 build_catalog.py
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          p=Path(os.environ['STATUS']); d=json.loads(p.read_text())
+          d.update(stage='PUBLISHING', current_state='PUBLISHING', current_index=40, current_app='SlugAMO',
+                   last_completed_action='40/40 self-tests superados; 40 APK compilados; identidad, versión, integridad, firma y cero permisos validados.',
+                   next_action='Fusionar el PR de artefactos a main y verificar las 40 descargas públicas por HTTPS y SHA-256.')
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          PY
+
+      - name: Commit source APKs registry reports and catalog to PR branch
+        shell: bash
+        env:
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          set -euo pipefail
+          git config user.name 'FactoryAMO Batch Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add "$BATCH" registry verification-reports catalog.json "$STATUS"
+          git add -f public-artifacts
+          test "$(python3 - <<'PY'
+          import json
+          print(len(json.load(open('factoryamo-builds/FAMO-20260822-201753-13807/Batch40/build-meta.json'))['apps']))
+          PY
+          )" = '40'
+          git commit -m 'artifact(factoryamo): build and stage 40 StoreAMO Android candidates'
+          git push origin HEAD:"$HEAD_REF"
