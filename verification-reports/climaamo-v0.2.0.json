@@ -1,0 +1,42 @@
+{
+  "schema": "storeamo.verification-report.v1",
+  "app_id": "climaamo",
+  "version": "0.2.0",
+  "version_code": "2",
+  "application_id": "com.desarrollamo.climaamo",
+  "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk",
+  "sha256": "8889d4a5e5afe89fe71bcdddea5171207373195c3697c065948b788c53c3e72d",
+  "size_bytes": 30875,
+  "signing_cert_sha256": "af77602ce2f9c5452fe302ff57b9f5c576971e110886f97e6bce04b020f2dd78",
+  "verified": false,
+  "checks": {
+    "integrity": {
+      "status": "PASS",
+      "evidence": "APK built by CI, non-empty, ZIP integrity passed and SHA-256 recorded."
+    },
+    "application_id": {
+      "status": "PASS",
+      "evidence": "Packaged APK is com.desarrollamo.climaamo, versionCode 2, versionName 0.2.0, minSdk 26, targetSdk 35."
+    },
+    "signature": {
+      "status": "PASS",
+      "evidence": "APK signature verifies and certificate SHA-256 was recorded for this candidate build."
+    },
+    "permissions": {
+      "status": "PASS",
+      "evidence": "Packaged manifest declares only android.permission.INTERNET."
+    },
+    "tests": {
+      "status": "PASS",
+      "evidence": "JUnit tests and assembleDebug completed before artifact publication."
+    },
+    "https": {
+      "status": "PASS",
+      "evidence": "The exact Open-Meteo geocoding and forecast field sets used by ClimaAMO returned valid real data during CI."
+    },
+    "device_smoke": {
+      "status": "NOT_RUN",
+      "evidence": "0.2.0 still requires a physical Android smoke test before StoreAMO Verified."
+    }
+  }
+}

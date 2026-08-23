@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-23T08:10:30+00:00",
+  "generated_at": "2026-08-23T08:24:52+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -397,8 +397,8 @@
     {
       "id": "climaamo",
       "name": "ClimaAMO",
-      "tagline": "Clima actual y 5 días, sin cuenta ni claves.",
-      "description": "Consultá una ciudad y mirá el clima actual y el pronóstico de 5 días usando Open-Meteo por HTTPS. No requiere cuenta, registro ni API key y mantiene una interfaz oscura simple con identidad DesarrollAMO.",
+      "tagline": "Clima actual, próximas horas y 5 días sin cuentas ni claves.",
+      "description": "ClimaAMO 0.2.0 amplía la consulta por ciudad con condiciones actuales, 12 horas, lluvia, viento, ráfagas, humedad, presión, visibilidad, nubosidad, amanecer, atardecer, UV, detalle diario y tendencias de temperatura y humedad/lluvia. Todos los valores provienen de Open-Meteo por HTTPS; no usa datos simulados, cuenta ni API key.",
       "category": "Clima",
       "audience": "public",
       "featured": false,
@@ -408,9 +408,9 @@
       ],
       "source_visibility": "public",
       "store": {
-        "homepage": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/factoryamo-builds/FAMO-20260822-201753-13807/ClimaAMO",
+        "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "ClimaAMO 0.1.0 candidate. Open-Meteo por HTTPS, únicamente permiso INTERNET, sin cuenta ni API key. Falta smoke test en Android físico para considerar una futura promoción a StoreAMO Verified."
+        "notes": "ClimaAMO 0.2.0 candidate. Fuente Open-Meteo Forecast API. Sólo INTERNET. Device smoke pendiente. El signer de 0.1.0 fue efímero, por lo que la migración a esta candidate puede requerir una desinstalación única."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -429,17 +429,17 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.1.0",
-          "version_code": "1",
-          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.1.0/ClimaAMO-0.1.0.apk",
-          "sha256": "88c8a820e1c76cb4198807f46a2e8a87499f775d7570175a0d2dfbb5d6bccaa1",
-          "size_bytes": 19683,
+          "version": "0.2.0",
+          "version_code": "2",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.0/ClimaAMO-0.2.0.apk",
+          "sha256": "8889d4a5e5afe89fe71bcdddea5171207373195c3697c065948b788c53c3e72d",
+          "size_bytes": 30875,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.climaamo",
-          "signing_cert_sha256": "a367903dd262bef57121e87eb2a2f92688b8a4a86e22aedb72e6573ed080315e",
+          "signing_cert_sha256": "af77602ce2f9c5452fe302ff57b9f5c576971e110886f97e6bce04b020f2dd78",
           "verified": false,
-          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/climaamo-v0.1.0.json",
-          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/climaamo/0.1.0",
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/climaamo-v0.2.0.json",
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/climaamo/0.2.0",
           "source": "distribution-registry"
         }
       ],
