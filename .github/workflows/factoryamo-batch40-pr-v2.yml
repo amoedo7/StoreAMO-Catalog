@@ -37,11 +37,11 @@ jobs:
           from pathlib import Path
           p=Path('factoryamo-builds/FAMO-20260822-201753-13807/Batch40/generate.py')
           s=p.read_text()
-          bad=r'r"Signer #1 certificate SHA-256 digest:\\s*([0-9a-fA-F]+)"'
-          good=r'r"Signer #1 certificate SHA-256 digest:\s*([0-9a-fA-F]+)"'
-          if bad not in s:
-              raise SystemExit('expected buggy signer regex not found')
-          p.write_text(s.replace(bad,good,1))
+          old='        sig = run([apksigner, "verify", "--verbose", "--print-certs", str(apk)]).stdout'
+          new='        sig_p = run([apksigner, "verify", "--verbose", "--print-certs", str(apk)])\n        sig = (sig_p.stdout or "") + "\\n" + (sig_p.stderr or "")'
+          if old not in s:
+              raise SystemExit('expected apksigner stdout parser line not found')
+          p.write_text(s.replace(old,new,1))
           PY
           python3 -m py_compile "$BATCH/generate.py"
           python3 "$BATCH/generate.py" generate
