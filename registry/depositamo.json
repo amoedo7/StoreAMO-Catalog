@@ -2,8 +2,8 @@
   "schema": "storeamo.app.v1",
   "id": "depositamo",
   "name": "DepositAMO",
-  "tagline": "Depositá. DepositAMO convierte materia prima en mejoras seguras.",
-  "description": "DepositAMO 0.4.0 preserva cada original y convierte el depósito en un circuito autónomo observable. Sincroniza la materia prima de forma privada, la refina en dimensiones MACRO ↔ MICRO, crea trabajo real en MesaAMO y despierta a DAMO para entender, comparar contra el ecosistema actual, experimentar en laboratorio y sólo integrar una mejora después de tests, regresiones y rollback. El material sensible se bloquea antes del cerebro y la app nunca inventa actividad ni resultados.",
+  "tagline": "Depositá. DepositAMO mira, entiende y refina por sí mismo.",
+  "description": "DepositAMO 0.4.1 vuelve al concepto original del boceto: recibe imágenes y otros materiales, preserva el original y realiza la interpretación visual en el propio dispositivo. Usa OCR, etiquetado visual y análisis determinista de patrones/layout para responder qué es, qué partes contiene y dónde podría encajar, sin delegar ese entendimiento a DAMO ni a MesaAMO. Mantiene ledger local por SHA-256, reinterpreta originales previos disponibles y deja la nube como archivo/sincronización opcional. Cuando la evidencia no alcanza, no inventa conclusiones.",
   "category": "Herramientas",
   "audience": "team",
   "featured": false,
@@ -22,7 +22,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "DepositAMO 0.4.0 · Autonomous. Después de activar una vez la conexión segura, el uso normal es simplemente DEPOSITAR o Compartir → DepositAMO. Cada pieza se preserva y entra automáticamente al circuito: refinar → ubicar → MesaAMO → DAMO → entender → comparar → laboratorio → tests/regresiones → rollback → integrar sólo si mejora sin romper. FLUJO AUTÓNOMO muestra el estado real y DIMENSIONES permite mirar de MACRO a MICRO."
+    "notes": "DepositAMO 0.4.1 · intérprete visual propio. DEPOSITAR → MIRAR → ENTENDER. OCR + etiquetas visuales + patrones/layout en el teléfono, DAMO y MesaAMO fuera del motor de interpretación, ledger local por SHA-256 y reinterpretación automática de originales locales previos cuando siguen disponibles."
   },
   "verification": {
     "policy": "storeamo-default-v1",
@@ -39,17 +39,17 @@
       "platform": "android",
       "arch": "universal",
       "format": "apk",
-      "version": "0.4.0",
-      "version_code": "400",
-      "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.4.0/DepositAMO-0.4.0.apk",
-      "sha256": "399cbbefd7f6ab3c518413e2d9002dc4cace45deeb169ce7fe7958169f93a402",
+      "version": "0.4.1",
+      "version_code": "401",
+      "url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.4.1/DepositAMO-0.4.1.apk",
+      "sha256": "d4e21804b92b22781ed652f34d08529f4a956f28ebc9f68f5d5400740d472023",
       "signing_cert_sha256": "2b7ab55c5337735cad89c8006d94bf929244db21277fc9b7bd053f6ab8c5f685",
-      "size_bytes": 67380,
+      "size_bytes": 42811478,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.depositamo",
       "verified": false,
       "verification_report": null,
-      "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.4.0/release.json",
+      "release_url": "https://ydmnavyadpztydontaqh.supabase.co/storage/v1/object/public/depositamo-releases/depositamo/0.4.1/release.json",
       "source": "distribution-registry"
     }
   ]
