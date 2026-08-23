@@ -1,0 +1,1 @@
+Validate ClimaAMO 0.2.1 GPS, future-day drilldown, multi-source forecast and air-quality candidate build.
