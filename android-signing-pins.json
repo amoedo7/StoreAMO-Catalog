@@ -32,6 +32,19 @@
           "migration": "one_time_reinstall_required"
         }
       ]
+    },
+    "com.desarrollamo.climaamo": {
+      "app_id": "climaamo",
+      "canonical_cert_sha256": "a7b89589f88a8f97702e93614807e151e0721ca651dff61109e2ed16049561a7",
+      "canonical_since_version": "0.2.1",
+      "legacy_certificates": [
+        {
+          "cert_sha256": "af77602ce2f9c5452fe302ff57b9f5c576971e110886f97e6bce04b020f2dd78",
+          "last_version": "0.2.0",
+          "reason": "legacy CI debug signer; private key was ephemeral and was not preserved",
+          "migration": "one_time_reinstall_required"
+        }
+      ]
     }
   }
 }

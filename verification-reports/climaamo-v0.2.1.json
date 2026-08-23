@@ -1,0 +1,46 @@
+{
+  "schema": "storeamo.verification-report.v1",
+  "app_id": "climaamo",
+  "version": "0.2.1",
+  "version_code": "3",
+  "application_id": "com.desarrollamo.climaamo",
+  "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/climaamo/0.2.1/ClimaAMO-0.2.1.apk",
+  "sha256": "380795ec99dc2ac73d473dca1bfe7ee0dccf12bc0ae8522f6a713a2e76ab958b",
+  "size_bytes": 41576,
+  "signing_cert_sha256": "a7b89589f88a8f97702e93614807e151e0721ca651dff61109e2ed16049561a7",
+  "verified": false,
+  "checks": {
+    "integrity": {
+      "status": "PASS",
+      "evidence": "CI built APK, ZIP integrity and SHA-256 passed."
+    },
+    "application_id": {
+      "status": "PASS",
+      "evidence": "com.desarrollamo.climaamo versionCode 3 versionName 0.2.1 minSdk 26 targetSdk 35."
+    },
+    "signature": {
+      "status": "PASS",
+      "evidence": "APK signature verifies with pinned canonical candidate signer."
+    },
+    "permissions": {
+      "status": "PASS",
+      "evidence": "Only INTERNET, ACCESS_COARSE_LOCATION and ACCESS_FINE_LOCATION; location is requested only after the user taps Aquí."
+    },
+    "tests": {
+      "status": "PASS",
+      "evidence": "JUnit tests and assembleDebug passed."
+    },
+    "https": {
+      "status": "PASS",
+      "evidence": "Live contract checks passed for Open-Meteo Forecast, Open-Meteo Air Quality and MET Norway Locationforecast."
+    },
+    "no_simulation": {
+      "status": "PASS",
+      "evidence": "UI uses provider response values or N/D; secondary provider failures are not replaced by invented data."
+    },
+    "device_smoke": {
+      "status": "NOT_RUN",
+      "evidence": "Physical GPS/day-navigation smoke test remains required for StoreAMO Verified."
+    }
+  }
+}
