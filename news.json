@@ -1,21 +1,76 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-24T08:44:51.509724+00:00",
+  "generated_at": "2026-08-24T10:17:34.499080+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "gastamo-registry-bbe95ebd663e",
+      "id": "chessi-registry-640ccff6a158",
+      "app_id": "chessi",
+      "app_name": "Chessi",
+      "type": "candidate",
+      "title": "Chessi avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-24T10:17:09+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "gastamo-registry-19d226f2b687",
       "app_id": "gastamo",
       "app_name": "GastAMO",
       "type": "candidate",
       "title": "GastAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-24T08:44:33+00:00",
+      "published_at": "2026-08-24T09:27:31+00:00",
       "status": "candidate",
       "source_visibility": "private"
+    },
+    {
+      "id": "storeamo-c4af08ebd56a",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "Release StoreAMO 0.4.3.76",
+      "published_at": "2026-08-24T09:17:29+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-b62f450030c7",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "trigger StoreAMO 0.4.3.76 build",
+      "published_at": "2026-08-24T09:17:11+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-7c1da524f042",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "keep 0.4.3.75 community checks forward-compatible",
+      "published_at": "2026-08-24T09:10:17+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-a93cfc6a0ea5",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "publish StoreAMO 0.4.3.76 signature migration fix",
+      "published_at": "2026-08-24T09:07:04+00:00",
+      "status": "development",
+      "source_visibility": "public"
     },
     {
       "id": "depositamo-registry-fff343156978",
@@ -29,17 +84,6 @@
       "source_visibility": "private"
     },
     {
-      "id": "storeamo-13d4edbda858",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.75: valoraciones, feedback y migración guiada",
-      "published_at": "2026-08-23T12:57:28+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
       "id": "factoryamo-registry-fc844c401c92",
       "app_id": "factoryamo",
       "app_name": "FactoryAMO",
@@ -49,17 +93,6 @@
       "published_at": "2026-08-22T14:13:05+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "storeamo-3f5009e0226c",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.74 · correct Solar Calm version",
-      "published_at": "2026-08-22T12:58:25+00:00",
-      "status": "development",
-      "source_visibility": "public"
     },
     {
       "id": "cerebramo-registry-8dd5bdedbe99",
@@ -81,28 +114,6 @@
       "summary": "GeneralAMO 0.1.16: ajustes y actualización directa",
       "published_at": "2026-08-21T20:59:48+00:00",
       "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-fc8f41b73818",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.73 · Solar Calm",
-      "published_at": "2026-08-21T20:55:19+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-36d2c67f1609",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "define StoreAMO 0.4.3.73 Solar Calm direction",
-      "published_at": "2026-08-21T20:51:07+00:00",
-      "status": "development",
       "source_visibility": "public"
     },
     {
