@@ -3,7 +3,7 @@
   "id": "gastamo",
   "name": "GastAMO",
   "tagline": "Anotá un gasto en segundos.",
-  "description": "Registro local y rápido de ingresos y gastos. La pantalla principal prioriza cargar un movimiento en pocos toques; las categorías son reutilizables y se guardan en el teléfono. Incluye historial y un resumen por período con métricas y gastos por categoría.",
+  "description": "Registro local y rápido de ingresos y gastos con últimos movimientos visibles al registrar, Dashboard financiero con gráficos y Grupos para separar contextos como Personal, Familia, Amigos o Trabajo. Las categorías, movimientos, grupos y participantes se guardan en el teléfono.",
   "category": "Finanzas",
   "audience": "public",
   "featured": false,
@@ -21,24 +21,23 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "GastAMO 0.2.0 candidate. Registro ultrarrápido, categorías persistentes, historial y resumen. La v0.1.0 usó una firma debug efímera distinta: Android puede requerir una única desinstalación antes de instalar 0.2.0."
+    "notes": "GastAMO 0.3.0 candidate. Registrar muestra los últimos movimientos; Dashboard agrega métricas y gráficos; Grupos permite separar Personal, Familia, Amigos, Trabajo u otros contextos con participantes locales. Los movimientos existentes sin grupo se interpretan como Personal."
   },
   "artifacts": [
     {
       "platform": "android",
       "arch": "universal",
       "format": "apk",
-      "version": "0.2.0",
-      "version_code": "2",
-      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.2.0.apk",
-      "sha256": "1c12f76eca3f0de9b4a8521f75f0bd198cb844af4c0678d4f635120b60c7ca24",
-      "size_bytes": 22445,
+      "version": "0.3.0",
+      "version_code": "3",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.3.0.apk",
+      "sha256": "ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d",
+      "size_bytes": 36785,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.gastamo",
-      "signing_cert_sha256": "3adcace5aefb56619e72dcb99230fb1feec5673df1ebee1b9fc0e7e014ac7c0c",
-      "verified": true,
-      "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.2.0.json",
-      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.2.0",
+      "signing_cert_sha256": "14a55d450502f9b391acf55e483ec736b60afed832a02d8feba70b0fbce711ca",
+      "verified": false,
+      "verification_report": null,
       "source": "distribution-registry"
     }
   ],
