@@ -1,0 +1,10 @@
+expected_sha256=ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d
+staged_sha256=ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d
+public_repo_sha256=ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d
+public_http_sha256=ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d
+expected_size_bytes=36785
+staged_size_bytes=36785
+public_repo_size_bytes=36785
+public_http_size_bytes=36785
+public_url=https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/gastamo/0.3.0/GastAMO-0.3.0.apk
+result=PASS
