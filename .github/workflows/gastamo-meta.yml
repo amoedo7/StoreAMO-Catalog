@@ -2,6 +2,11 @@ name: gastamo-meta
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/gastamo-meta.yml
+      - .release-input/GastAMO-0.2.0.apk
+      - gastamo-meta.trigger
   push:
     branches: [main]
     paths:
@@ -33,7 +38,8 @@ jobs:
             echo "git_blob=$(git hash-object "$APK")"
           } > diagnostics/gastamo-0.2.0-meta.txt
           cat diagnostics/gastamo-0.2.0-meta.txt
-      - name: Commit metadata
+      - name: Commit metadata on main push
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         shell: bash
         run: |
           set -euo pipefail
