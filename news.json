@@ -1,19 +1,19 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-24T11:43:33.688003+00:00",
+  "generated_at": "2026-08-24T11:53:53.739111+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
     {
-      "id": "gastamo-registry-43a43813d308",
+      "id": "gastamo-registry-9242fde2545c",
       "app_id": "gastamo",
       "app_name": "GastAMO",
       "type": "candidate",
       "title": "GastAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-24T11:42:56+00:00",
+      "published_at": "2026-08-24T11:53:18+00:00",
       "status": "candidate",
       "source_visibility": "private"
     },
