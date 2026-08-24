@@ -1,0 +1,46 @@
+name: gastamo-meta
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/gastamo-meta.yml
+      - .release-input/GastAMO-0.2.0.apk
+      - gastamo-meta.trigger
+
+permissions:
+  contents: write
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Capture exact staged bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK='.release-input/GastAMO-0.2.0.apk'
+          test -s "$APK"
+          unzip -tqq "$APK"
+          mkdir -p diagnostics
+          {
+            echo "sha256=$(sha256sum "$APK" | awk '{print $1}')"
+            echo "size_bytes=$(stat -c%s "$APK")"
+            echo "git_blob=$(git hash-object "$APK")"
+          } > diagnostics/gastamo-0.2.0-meta.txt
+          cat diagnostics/gastamo-0.2.0-meta.txt
+      - name: Commit metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add diagnostics/gastamo-0.2.0-meta.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'diag: capture GastAMO 0.2.0 staged metadata'
+          git pull --rebase origin main
+          git push origin HEAD:main
