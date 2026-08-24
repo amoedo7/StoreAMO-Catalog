@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-24T10:17:34.499080+00:00",
+  "generated_at": "2026-08-24T11:43:33.688003+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "gastamo-registry-43a43813d308",
+      "app_id": "gastamo",
+      "app_name": "GastAMO",
+      "type": "candidate",
+      "title": "GastAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-24T11:42:56+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "chessi-registry-640ccff6a158",
       "app_id": "chessi",
@@ -14,17 +25,6 @@
       "title": "Chessi avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-24T10:17:09+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "gastamo-registry-19d226f2b687",
-      "app_id": "gastamo",
-      "app_name": "GastAMO",
-      "type": "candidate",
-      "title": "GastAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-24T09:27:31+00:00",
       "status": "candidate",
       "source_visibility": "private"
     },
