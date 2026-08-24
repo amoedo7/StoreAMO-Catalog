@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-24T08:43:43.947543+00:00",
+  "generated_at": "2026-08-24T08:44:51.509724+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "gastamo-registry-bbe95ebd663e",
+      "app_id": "gastamo",
+      "app_name": "GastAMO",
+      "type": "candidate",
+      "title": "GastAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-24T08:44:33+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "depositamo-registry-fff343156978",
       "app_id": "depositamo",
@@ -155,17 +166,6 @@
       "app_name": "RelojAMO",
       "type": "candidate",
       "title": "RelojAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T10:47:21+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "gastamo-registry-05684ea76492",
-      "app_id": "gastamo",
-      "app_name": "GastAMO",
-      "type": "candidate",
-      "title": "GastAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T10:47:21+00:00",
       "status": "candidate",
