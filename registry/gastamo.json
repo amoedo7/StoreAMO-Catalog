@@ -21,7 +21,7 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "GastAMO 0.3.0 candidate. Registrar muestra los últimos movimientos; Dashboard agrega métricas y gráficos; Grupos permite separar Personal, Familia, Amigos, Trabajo u otros contextos con participantes locales. Los movimientos existentes sin grupo se interpretan como Personal."
+    "notes": "GastAMO 0.3.0 candidate. Registrar muestra los últimos movimientos; Dashboard agrega métricas y gráficos; Grupos permite separar Personal, Familia, Amigos, Trabajo u otros contextos con participantes locales. Los movimientos existentes sin grupo se interpretan como Personal. El APK se publica en una ruta pública inmutable para evitar contenido cacheado obsoleto durante la verificación SHA-256."
   },
   "artifacts": [
     {
@@ -30,7 +30,7 @@
       "format": "apk",
       "version": "0.3.0",
       "version_code": "3",
-      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.3.0.apk",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/gastamo/0.3.0/GastAMO-0.3.0.apk",
       "sha256": "ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d",
       "size_bytes": 36785,
       "min_os": "Android 8.0 (API 26)",
@@ -38,6 +38,7 @@
       "signing_cert_sha256": "14a55d450502f9b391acf55e483ec736b60afed832a02d8feba70b0fbce711ca",
       "verified": false,
       "verification_report": null,
+      "release_url": null,
       "source": "distribution-registry"
     }
   ],
