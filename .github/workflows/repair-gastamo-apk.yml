@@ -1,0 +1,55 @@
+name: repair-gastamo-apk
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/repair-gastamo-apk.yml
+      - repair-gastamo-apk.trigger
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Download valid GastAMO CI artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL='https://sdmntprpolandcentral.oaiusercontent.com/files/00000000-f4d4-820a-b144-47f1138dcf6c/raw?se=2026-08-24T09%3A27%3A40Z&sp=r&sv=2026-02-06&sr=b&scid=914e3e0b-791b-517a-bd7c-d8edfb2ea811&skoid=b971d227-1348-4524-8797-edb0fdf15147&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-08-24T05%3A36%3A04Z&ske=2026-08-25T05%3A36%3A04Z&sks=b&skv=2026-02-06&sig=z/o4Htg2ITpicHxWEI/GmGqyZJmDGvun/OHJcnlFQzU%3D'
+          curl -fL --retry 4 --connect-timeout 15 "$URL" -o /tmp/gastamo-artifact.zip
+          rm -rf /tmp/gastamo && mkdir -p /tmp/gastamo
+          unzip -q /tmp/gastamo-artifact.zip -d /tmp/gastamo
+          APK=/tmp/gastamo/GastAMO-0.2.0.apk
+          test -s "$APK"
+          test "$(stat -c%s "$APK")" = '22445'
+          test "$(sha256sum "$APK" | awk '{print $1}')" = '1c12f76eca3f0de9b4a8521f75f0bd198cb844af4c0678d4f635120b60c7ca24'
+          unzip -tqq "$APK"
+          cp "$APK" .release-input/GastAMO-0.2.0.apk
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('registry/gastamo.json')
+          data=json.loads(p.read_text())
+          a=data['artifacts'][0]
+          a['sha256']='1c12f76eca3f0de9b4a8521f75f0bd198cb844af4c0678d4f635120b60c7ca24'
+          a['size_bytes']=22445
+          a['verified']=False
+          a['verification_report']=None
+          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+          PY
+      - name: Commit repaired staged APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add .release-input/GastAMO-0.2.0.apk registry/gastamo.json
+          git commit -m 'fix: replace truncated GastAMO 0.2.0 APK'
+          git pull --rebase origin main
+          git push origin HEAD:main
