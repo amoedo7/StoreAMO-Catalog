@@ -35,9 +35,9 @@
       "size_bytes": 22445,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.gastamo",
-      "signing_cert_sha256": "5ac6879fea8301dd1e49ac027965c460dbfbba3a0dc66b54fa64e65952369099",
-      "verified": false,
-      "verification_report": null,
+      "signing_cert_sha256": "3adcace5aefb56619e72dcb99230fb1feec5673df1ebee1b9fc0e7e014ac7c0c",
+      "verified": true,
+      "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.2.0.json",
       "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.2.0",
       "source": "distribution-registry"
     }

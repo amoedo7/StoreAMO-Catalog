@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-24T08:44:44+00:00",
+  "generated_at": "2026-08-24T09:27:21+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -1417,13 +1417,13 @@
           "version": "0.2.0",
           "version_code": "2",
           "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.2.0.apk",
-          "sha256": "38f203a956c92aafb83a6b82877dd2911008801415003a10da58caa439874f76",
+          "sha256": "1c12f76eca3f0de9b4a8521f75f0bd198cb844af4c0678d4f635120b60c7ca24",
           "size_bytes": 22445,
           "min_os": "Android 8.0 (API 26)",
           "application_id": "com.desarrollamo.gastamo",
-          "signing_cert_sha256": "5ac6879fea8301dd1e49ac027965c460dbfbba3a0dc66b54fa64e65952369099",
-          "verified": false,
-          "verification_report": null,
+          "signing_cert_sha256": "3adcace5aefb56619e72dcb99230fb1feec5673df1ebee1b9fc0e7e014ac7c0c",
+          "verified": true,
+          "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/gastamo-v0.2.0.json",
           "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.2.0",
           "source": "distribution-registry"
         }
