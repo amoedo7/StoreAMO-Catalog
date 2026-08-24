@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/gastamo-meta.yml
       - .release-input/GastAMO-0.3.0.apk
+      - public-artifacts/gastamo/0.3.0/GastAMO-0.3.0.apk
+      - registry/gastamo.json
       - gastamo-meta.trigger
 
 permissions:
@@ -19,28 +21,55 @@ jobs:
       - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - name: Capture exact staged bytes
+      - name: Verify staged and public GastAMO bytes
         shell: bash
         run: |
           set -euo pipefail
-          APK='.release-input/GastAMO-0.3.0.apk'
-          test -s "$APK"
-          unzip -tqq "$APK"
-          mkdir -p diagnostics
+          STAGED='.release-input/GastAMO-0.3.0.apk'
+          PUBLIC_LOCAL='public-artifacts/gastamo/0.3.0/GastAMO-0.3.0.apk'
+          PUBLIC_URL='https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/gastamo/0.3.0/GastAMO-0.3.0.apk'
+          EXPECTED='ac2cda9e0812af0bd362eb4618e49cdf3bce9f86fc2cbfe42cf5dbc6c412654d'
+          EXPECTED_SIZE=36785
+          test -s "$STAGED"
+          test -s "$PUBLIC_LOCAL"
+          unzip -tqq "$STAGED"
+          unzip -tqq "$PUBLIC_LOCAL"
+          mkdir -p diagnostics /tmp/gastamo-public
+          curl -fL --retry 3 --retry-delay 1 -H 'Cache-Control: no-cache' -A 'StoreAMO-Public-Verify/0.3.0' "$PUBLIC_URL" -o /tmp/gastamo-public/GastAMO-0.3.0.apk
+          unzip -tqq /tmp/gastamo-public/GastAMO-0.3.0.apk
+          STAGED_SHA="$(sha256sum "$STAGED" | awk '{print $1}')"
+          LOCAL_SHA="$(sha256sum "$PUBLIC_LOCAL" | awk '{print $1}')"
+          PUBLIC_SHA="$(sha256sum /tmp/gastamo-public/GastAMO-0.3.0.apk | awk '{print $1}')"
+          STAGED_SIZE="$(stat -c%s "$STAGED")"
+          LOCAL_SIZE="$(stat -c%s "$PUBLIC_LOCAL")"
+          PUBLIC_SIZE="$(stat -c%s /tmp/gastamo-public/GastAMO-0.3.0.apk)"
+          test "$STAGED_SHA" = "$EXPECTED"
+          test "$LOCAL_SHA" = "$EXPECTED"
+          test "$PUBLIC_SHA" = "$EXPECTED"
+          test "$STAGED_SIZE" = "$EXPECTED_SIZE"
+          test "$LOCAL_SIZE" = "$EXPECTED_SIZE"
+          test "$PUBLIC_SIZE" = "$EXPECTED_SIZE"
           {
-            echo "sha256=$(sha256sum "$APK" | awk '{print $1}')"
-            echo "size_bytes=$(stat -c%s "$APK")"
-            echo "git_blob=$(git hash-object "$APK")"
-          } > diagnostics/gastamo-0.3.0-meta.txt
-          cat diagnostics/gastamo-0.3.0-meta.txt
+            echo "expected_sha256=$EXPECTED"
+            echo "staged_sha256=$STAGED_SHA"
+            echo "public_repo_sha256=$LOCAL_SHA"
+            echo "public_http_sha256=$PUBLIC_SHA"
+            echo "expected_size_bytes=$EXPECTED_SIZE"
+            echo "staged_size_bytes=$STAGED_SIZE"
+            echo "public_repo_size_bytes=$LOCAL_SIZE"
+            echo "public_http_size_bytes=$PUBLIC_SIZE"
+            echo "public_url=$PUBLIC_URL"
+            echo "result=PASS"
+          } > diagnostics/gastamo-0.3.0-public-meta.txt
+          cat diagnostics/gastamo-0.3.0-public-meta.txt
       - name: Commit metadata
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'StoreAMO Bot'
           git config user.email 'actions@users.noreply.github.com'
-          git add diagnostics/gastamo-0.3.0-meta.txt
+          git add diagnostics/gastamo-0.3.0-public-meta.txt
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'diag: capture GastAMO 0.3.0 staged metadata'
+          git commit -m 'diag: verify public GastAMO 0.3.0 bytes'
           git pull --rebase origin main
           git push origin HEAD:main
