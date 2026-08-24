@@ -21,7 +21,7 @@ jobs:
         run: |
           set -euo pipefail
           test -f .staging/gastamo041/READY
-          test "$(find .staging/gastamo041 -name 'chunk*.b64' -type f | wc -l)" = "9"
+          test "$(find .staging/gastamo041 -name 'chunk*.b64' -type f | wc -l)" = "4"
           cat .staging/gastamo041/chunk*.b64 | base64 -d > /tmp/GastAMO-0.4.1.apk
           test "$(stat -c%s /tmp/GastAMO-0.4.1.apk)" = "55509"
           test "$(sha256sum /tmp/GastAMO-0.4.1.apk | awk '{print $1}')" = "478a9b4b4abdf0cadfa776f36612f20c2f789fe546e3aa66623da62e0dafcf24"
