@@ -2,8 +2,8 @@
   "schema": "storeamo.app.v1",
   "id": "gastamo",
   "name": "GastAMO",
-  "tagline": "Anotá lo que entra y lo que sale.",
-  "description": "Registro local sencillo de ingresos y gastos con saldo, categorías, notas e historial. Los datos permanecen en el dispositivo.",
+  "tagline": "Anotá un gasto en segundos.",
+  "description": "Registro local y rápido de ingresos y gastos. La pantalla principal prioriza cargar un movimiento en pocos toques; las categorías son reutilizables y se guardan en el teléfono. Incluye historial y un resumen por período con métricas y gastos por categoría.",
   "category": "Finanzas",
   "audience": "public",
   "featured": false,
@@ -21,23 +21,24 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "GastAMO 0.1.0 candidate. Source privado; APK público directo con integridad, identidad, firma, permisos y tests verificados."
+    "notes": "GastAMO 0.2.0 candidate. Registro ultrarrápido, categorías persistentes, historial y resumen. La v0.1.0 usó una firma debug efímera distinta: Android puede requerir una única desinstalación antes de instalar 0.2.0."
   },
   "artifacts": [
     {
       "platform": "android",
       "arch": "universal",
       "format": "apk",
-      "version": "0.1.0",
-      "version_code": "1",
-      "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/gastamo-v0.1.0/GastAMO-0.1.0.apk",
-      "sha256": "cd3133f83d97dbc8aed44c3c0552ee051d4a8794502e9d36bc1c2a3f9bcdbfb1",
-      "size_bytes": 14949,
+      "version": "0.2.0",
+      "version_code": "2",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/GastAMO-0.2.0.apk",
+      "sha256": "38f203a956c92aafb83a6b82877dd2911008801415003a10da58caa439874f76",
+      "size_bytes": 22445,
       "min_os": "Android 8.0 (API 26)",
       "application_id": "com.desarrollamo.gastamo",
+      "signing_cert_sha256": "5ac6879fea8301dd1e49ac027965c460dbfbba3a0dc66b54fa64e65952369099",
       "verified": false,
       "verification_report": null,
-      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.1.0",
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/gastamo-v0.2.0",
       "source": "distribution-registry"
     }
   ],

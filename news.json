@@ -1,11 +1,33 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-23T09:12:35.326901+00:00",
+  "generated_at": "2026-08-24T08:43:43.947543+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "depositamo-registry-fff343156978",
+      "app_id": "depositamo",
+      "app_name": "DepositAMO",
+      "type": "candidate",
+      "title": "DepositAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-08-23T21:14:39+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "storeamo-13d4edbda858",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.75: valoraciones, feedback y migración guiada",
+      "published_at": "2026-08-23T12:57:28+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "factoryamo-registry-fc844c401c92",
       "app_id": "factoryamo",
@@ -93,28 +115,6 @@
       "published_at": "2026-08-21T14:23:44+00:00",
       "status": "candidate",
       "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-bbe58baf6c0e",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.72 · identity redesign and news filters",
-      "published_at": "2026-08-21T14:16:55+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "depositamo-registry-0e0c7464d25e",
-      "app_id": "depositamo",
-      "app_name": "DepositAMO",
-      "type": "candidate",
-      "title": "DepositAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-21T09:56:10+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
     },
     {
       "id": "mensajamo-registry-17de6a451a68",
