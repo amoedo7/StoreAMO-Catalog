@@ -1,0 +1,62 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "chessi",
+  "name": "Chessi",
+  "tagline": "Ajedrez asistido con panel flotante y cinco niveles.",
+  "description": "Asistente Android de ajedrez con panel flotante completo sobre la partida, detección automática de tablero, reglas legales, seguimiento de jugadas y Stockfish 18 con cinco niveles.",
+  "category": "Juegos",
+  "featured": true,
+  "audience": "public",
+  "status": "candidate",
+  "supported_platforms": [
+    "android"
+  ],
+  "source": {
+    "visibility": "private",
+    "repository": "amoedo7/Chessi"
+  },
+  "distribution": {
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "mode": "direct-artifacts"
+  },
+  "store": {
+    "screenshots": [],
+    "notes": "Chessi 0.4.1 candidate: controles completos desde el flotante, cinco niveles, detección automática y Stockfish 18. Fuente privada; APK público."
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "arm64-v8a",
+      "format": "apk",
+      "url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/download/chessi-v0.4.1/Chessi-v0.4.1-debug.apk",
+      "sha256": "bfdb0634bd3ff7311feac140c3b5e95a3f7c24b448e6cf7e2363e0d908b9f766",
+      "version": "0.4.1",
+      "version_code": 14,
+      "application_id": "com.desarrollamo.chessi",
+      "min_os": "Android 11 (API 30)",
+      "size_bytes": 80151802,
+      "verified": false,
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/releases/tag/chessi-v0.4.1",
+      "source": "distribution-registry"
+    }
+  ],
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": [
+      "sha256",
+      "application-id",
+      "signature",
+      "permissions",
+      "tests",
+      "chess-rules",
+      "perft",
+      "castling",
+      "en-passant",
+      "promotion",
+      "checkmate",
+      "stalemate",
+      "draw-rules",
+      "device-smoke"
+    ]
+  }
+}
