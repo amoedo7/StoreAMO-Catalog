@@ -1,0 +1,165 @@
+name: build-chessi-v040
+
+on:
+  push:
+    paths:
+      - .release-input/chessi-v0.4.0-source.part*
+      - .github/workflows/build-chessi-v040.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-chessi-v040
+  cancel-in-progress: false
+
+jobs:
+  build-and-publish-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Extract Chessi source
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat .release-input/chessi-v0.4.0-source.part* | base64 -d > /tmp/chessi-v0.4.0-source.zip
+          rm -rf /tmp/chessi-src
+          mkdir -p /tmp/chessi-src
+          unzip -q /tmp/chessi-v0.4.0-source.zip -d /tmp/chessi-src
+          test -f /tmp/chessi-src/Chessi_v0.4.0/app/build.gradle
+
+      - name: Verify chess rules
+        shell: bash
+        working-directory: /tmp/chessi-src/Chessi_v0.4.0
+        run: |
+          set -euo pipefail
+          bash tests/run-rules-test.sh | tee /tmp/chessi-rules.txt
+          grep -q 'perft=20/400/8902/197281' /tmp/chessi-rules.txt
+          grep -q 'mate=OK' /tmp/chessi-rules.txt
+          grep -q 'stalemate=OK' /tmp/chessi-rules.txt
+          grep -q 'draw_rules=OK' /tmp/chessi-rules.txt
+
+      - name: Prepare Android SDK 35
+        shell: bash
+        run: |
+          set -euo pipefail
+          yes | sdkmanager --licenses >/dev/null 2>&1 || true
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0' >/dev/null
+
+      - name: Pin official Stockfish 18 ARMv8
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC=/tmp/chessi-src/Chessi_v0.4.0
+          mkdir -p /tmp/stockfish "$SRC/app/src/main/jniLibs/arm64-v8a"
+          curl --fail --location --retry 3 -o /tmp/stockfish/stockfish.tar https://github.com/official-stockfish/Stockfish/releases/download/sf_18/stockfish-android-armv8.tar
+          tar -xf /tmp/stockfish/stockfish.tar -C /tmp/stockfish
+          SF_BIN="$(find /tmp/stockfish -type f -name 'stockfish*' -size +1M | head -n 1)"
+          test -n "$SF_BIN"
+          cp "$SF_BIN" "$SRC/app/src/main/jniLibs/arm64-v8a/libstockfish.so"
+          chmod 755 "$SRC/app/src/main/jniLibs/arm64-v8a/libstockfish.so"
+          test -s "$SRC/app/src/main/jniLibs/arm64-v8a/libstockfish.so"
+
+      - name: Build Android APK
+        shell: bash
+        working-directory: /tmp/chessi-src/Chessi_v0.4.0
+        run: |
+          set -euo pipefail
+          gradle --no-daemon --console=plain :app:assembleDebug
+          test -s app/build/outputs/apk/debug/app-debug.apk
+          unzip -tqq app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Validate APK identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK=/tmp/chessi-src/Chessi_v0.4.0/app/build/outputs/apk/debug/app-debug.apk
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          "$AAPT" dump badging "$APK" | tee /tmp/chessi-badging.txt
+          grep -q "package: name='com.desarrollamo.chessi'" /tmp/chessi-badging.txt
+          grep -q "versionCode='13'" /tmp/chessi-badging.txt
+          grep -q "versionName='0.4.0'" /tmp/chessi-badging.txt
+
+      - name: Publish candidate artifact and registry manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK=/tmp/chessi-src/Chessi_v0.4.0/app/build/outputs/apk/debug/app-debug.apk
+          DEST=public-artifacts/chessi/0.4.0/Chessi-v0.4.0-debug.apk
+          mkdir -p "$(dirname "$DEST")" registry
+          cp "$APK" "$DEST"
+          SHA="$(sha256sum "$DEST" | awk '{print $1}')"
+          SIZE="$(stat -c%s "$DEST")"
+          python3 - "$SHA" "$SIZE" <<'PY'
+          import json, sys
+          from pathlib import Path
+          sha, size = sys.argv[1], int(sys.argv[2])
+          manifest = {
+            "schema": "storeamo.app.v1",
+            "id": "chessi",
+            "name": "Chessi",
+            "tagline": "Ajedrez asistido con tablero automático y cinco niveles.",
+            "description": "Chessi sigue una partida visible usando un estado legal de ajedrez, re-detección automática de tablero, SAN localizado y Stockfish 18. Incluye cinco niveles, desde APRENDIZ hasta MESSI, y recuperación segura cuando la visión es ambigua.",
+            "category": "Juegos",
+            "featured": True,
+            "audience": "public",
+            "status": "candidate",
+            "supported_platforms": ["android"],
+            "source": {"visibility": "public", "repository": "amoedo7/StoreAMO-Catalog"},
+            "distribution": {"repository": "amoedo7/StoreAMO-Catalog", "mode": "direct-artifacts"},
+            "store": {"screenshots": []},
+            "artifacts": [{
+              "platform": "android",
+              "arch": "arm64-v8a",
+              "format": "apk",
+              "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/chessi/0.4.0/Chessi-v0.4.0-debug.apk",
+              "sha256": sha,
+              "version": "0.4.0",
+              "version_code": 13,
+              "application_id": "com.desarrollamo.chessi",
+              "min_os": "Android 11",
+              "size_bytes": size,
+              "verified": False
+            }],
+            "verification": {
+              "policy": "storeamo-default-v1",
+              "required_checks": ["sha256", "application-id", "signature", "permissions", "tests", "chess-rules", "perft", "castling", "en-passant", "promotion", "checkmate", "stalemate", "draw-rules"]
+            }
+          }
+          Path('registry/chessi.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n')
+          PY
+          python3 - <<'PY'
+          import json
+          m=json.load(open('registry/chessi.json'))
+          assert m['status']=='candidate'
+          assert len(m['artifacts'][0]['sha256'])==64
+          assert m['artifacts'][0]['application_id']=='com.desarrollamo.chessi'
+          print('REGISTRY_OK', m['artifacts'][0]['sha256'])
+          PY
+
+      - name: Commit publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'StoreAMO Artifact Bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git pull --rebase origin main
+          git add -f public-artifacts/chessi/0.4.0/Chessi-v0.4.0-debug.apk
+          git add registry/chessi.json
+          git commit -m 'release: publish Chessi 0.4.0 candidate in StoreAMO' || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
