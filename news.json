@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-24T11:53:53.739111+00:00",
+  "generated_at": "2026-08-25T14:39:58.155465+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "webamo-059208aa0614",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "release",
+      "title": "Nueva versión de WebAMO",
+      "summary": "WebAMO Android v0.1.0",
+      "published_at": "2026-08-25T14:37:06+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "gastamo-registry-9242fde2545c",
       "app_id": "gastamo",
@@ -359,14 +370,14 @@
       "source_visibility": "public"
     },
     {
-      "id": "miweb-3605d6717d10",
-      "app_id": "miweb",
-      "app_name": "MiWeb",
+      "id": "webamo-3605d6717d10",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
       "type": "activity",
-      "title": "Actividad reciente en MiWeb",
+      "title": "Actividad reciente en WebAMO",
       "summary": "Register MiWeb with StoreAMO",
       "published_at": "2026-08-19T06:44:51+00:00",
-      "status": "development",
+      "status": "candidate",
       "source_visibility": "public"
     },
     {
@@ -546,36 +557,25 @@
       "source_visibility": "public"
     },
     {
-      "id": "miweb-6075249bef89",
-      "app_id": "miweb",
-      "app_name": "MiWeb",
+      "id": "webamo-6075249bef89",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
       "type": "activity",
-      "title": "Actividad reciente en MiWeb",
+      "title": "Actividad reciente en WebAMO",
       "summary": "Validate MiWeb parser across platforms",
       "published_at": "2026-08-19T05:26:30+00:00",
-      "status": "development",
+      "status": "candidate",
       "source_visibility": "public"
     },
     {
-      "id": "miweb-32fd53e4ce79",
-      "app_id": "miweb",
-      "app_name": "MiWeb",
+      "id": "webamo-32fd53e4ce79",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
       "type": "activity",
-      "title": "Actividad reciente en MiWeb",
+      "title": "Actividad reciente en WebAMO",
       "summary": "Add MiWeb offline smoke test",
       "published_at": "2026-08-19T05:26:23+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "miweb-d47bcb0bf348",
-      "app_id": "miweb",
-      "app_name": "MiWeb",
-      "type": "activity",
-      "title": "Actividad reciente en MiWeb",
-      "summary": "Add non intrusive website auditor",
-      "published_at": "2026-08-19T05:26:18+00:00",
-      "status": "development",
+      "status": "candidate",
       "source_visibility": "public"
     },
     {

@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-24T11:53:34+00:00",
+  "generated_at": "2026-08-25T14:39:34+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -353,6 +353,54 @@
       ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/qramomini.json"
+    },
+    {
+      "id": "webamo",
+      "name": "WebAMO",
+      "tagline": "Auditor web técnico, claro y directo desde Android.",
+      "description": "Audita una URL pública desde el teléfono: HTTP/HTTPS, headers de seguridad, SEO técnico, tiempo de respuesta, peso HTML, accesibilidad básica, robots, sitemap, firmas conocidas de trackers y cookies observadas. Genera puntajes por área y un informe compartible/JSON sin backend propio de WebAMO.",
+      "category": "Web",
+      "audience": "public",
+      "featured": true,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "screenshots": [],
+        "notes": "Candidate no intrusiva. No ejecuta exploits ni JavaScript como navegador completo; el puntaje es orientativo y no equivale a Lighthouse, pentest ni dictamen legal de privacidad."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "0.1.0",
+          "url": "https://github.com/amoedo7/MiWeb/releases/download/v0.1.0/WebAMO-0.1.0.apk",
+          "sha256": "99e9f2beb00ad3aec77edfb4759f478f94ff70bf7a087df2b6d8051df67e919b",
+          "size_bytes": 27693,
+          "min_os": null,
+          "application_id": "com.desarrollamo.webamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/MiWeb/releases/tag/v0.1.0",
+          "source": "github-release"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/MiWeb",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
     },
     {
       "id": "base64amo",
@@ -2123,36 +2171,6 @@
       "artifacts": [],
       "repository": "https://github.com/amoedo7/MiSistema",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiSistema/main/storeamo.json"
-    },
-    {
-      "id": "miweb",
-      "name": "MiWeb",
-      "tagline": "Una lectura técnica rápida de una web pública.",
-      "description": "Auditoría no intrusiva de HTTP, HTTPS, SEO técnico, recursos y headers de seguridad.",
-      "category": "Web",
-      "audience": "public",
-      "featured": false,
-      "status": "development",
-      "supported_platforms": [
-        "windows",
-        "macos",
-        "linux",
-        "android"
-      ],
-      "source_visibility": "public",
-      "store": {
-        "screenshots": []
-      },
-      "verification": {
-        "policy": "storeamo-default-v1",
-        "required_checks": [
-          "tests",
-          "integrity"
-        ]
-      },
-      "artifacts": [],
-      "repository": "https://github.com/amoedo7/MiWeb",
-      "source_manifest": "https://raw.githubusercontent.com/amoedo7/MiWeb/main/storeamo.json"
     },
     {
       "id": "monedamo",
