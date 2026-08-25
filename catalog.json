@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-25T14:39:34+00:00",
+  "generated_at": "2026-08-25T16:14:16+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -357,8 +357,8 @@
     {
       "id": "webamo",
       "name": "WebAMO",
-      "tagline": "Auditor web técnico, claro y directo desde Android.",
-      "description": "Audita una URL pública desde el teléfono: HTTP/HTTPS, headers de seguridad, SEO técnico, tiempo de respuesta, peso HTML, accesibilidad básica, robots, sitemap, firmas conocidas de trackers y cookies observadas. Genera puntajes por área y un informe compartible/JSON sin backend propio de WebAMO.",
+      "tagline": "Auditor web técnico, visual y explicable desde Android.",
+      "description": "Audita una web pública desde el teléfono con un dashboard visual y cobertura explícita: HTTP/HTTPS, TLS/DNS, headers de seguridad, CORS, cookies, SEO técnico, datos estructurados, mini-crawl, assets, rendimiento observado, accesibilidad estática, privacidad, terceros, PWA/IA y fingerprint de plataforma/stack. Prioriza hallazgos por severidad, conserva historial local y exporta un JSON completo sin backend propio.",
       "category": "Web",
       "audience": "public",
       "featured": true,
@@ -369,7 +369,7 @@
       "source_visibility": "public",
       "store": {
         "screenshots": [],
-        "notes": "Candidate no intrusiva. No ejecuta exploits ni JavaScript como navegador completo; el puntaje es orientativo y no equivale a Lighthouse, pentest ni dictamen legal de privacidad."
+        "notes": "WebAMO 0.1.1 candidate. Auditoría pública, defensiva y no destructiva. Los controles que requieren navegador renderizado, interacción o autorización se muestran como N/V y reducen cobertura en lugar de inventar resultados. No equivale a Lighthouse, pentest ni dictamen legal."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -377,6 +377,7 @@
           "integrity",
           "application-id",
           "signature",
+          "permissions",
           "tests"
         ]
       },
@@ -385,17 +386,17 @@
           "platform": "android",
           "arch": "universal",
           "format": "apk",
-          "version": "0.1.0",
-          "version_code": "0.1.0",
-          "url": "https://github.com/amoedo7/MiWeb/releases/download/v0.1.0/WebAMO-0.1.0.apk",
-          "sha256": "99e9f2beb00ad3aec77edfb4759f478f94ff70bf7a087df2b6d8051df67e919b",
-          "size_bytes": 27693,
+          "version": "0.1.1",
+          "version_code": "0.1.1",
+          "url": "https://github.com/amoedo7/MiWeb/releases/download/v0.1.1/WebAMO-0.1.1.apk",
+          "sha256": "dc8a56ac51720eb30cf5a6ce072171dd2b972b58c2db5c83cd449746c3f14986",
+          "size_bytes": 64671,
           "min_os": null,
           "application_id": "com.desarrollamo.webamo",
           "signing_cert_sha256": null,
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/MiWeb/releases/tag/v0.1.0",
+          "release_url": "https://github.com/amoedo7/MiWeb/releases/tag/v0.1.1",
           "source": "github-release"
         }
       ],

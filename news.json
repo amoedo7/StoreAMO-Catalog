@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-25T14:39:58.155465+00:00",
+  "generated_at": "2026-08-25T16:14:38.646987+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "webamo-0dcba7521582",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "release",
+      "title": "Nueva versión de WebAMO",
+      "summary": "WebAMO Android v0.1.1 · auditoría profunda + dashboard",
+      "published_at": "2026-08-25T16:11:43+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "webamo-059208aa0614",
       "app_id": "webamo",
@@ -564,17 +575,6 @@
       "title": "Actividad reciente en WebAMO",
       "summary": "Validate MiWeb parser across platforms",
       "published_at": "2026-08-19T05:26:30+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-32fd53e4ce79",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "activity",
-      "title": "Actividad reciente en WebAMO",
-      "summary": "Add MiWeb offline smoke test",
-      "published_at": "2026-08-19T05:26:23+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
