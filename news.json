@@ -1,11 +1,66 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-25T16:14:38.646987+00:00",
+  "generated_at": "2026-08-26T10:05:35.917702+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "webamo-397f194bab8a",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "release",
+      "title": "Nueva versión de WebAMO",
+      "summary": "WebAMO Android v0.1.2 · copiar informe",
+      "published_at": "2026-08-26T10:03:27+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-bde381596b23",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "StoreAMO updates: real network + catalog candidate adapter",
+      "published_at": "2026-08-26T09:14:54+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-db94784d45a2",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "StoreAMO: coordinate Update All policy + execution",
+      "published_at": "2026-08-26T07:19:52+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-bc996ce4abe5",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "StoreAMO updates: persist batch recovery state",
+      "published_at": "2026-08-26T05:16:07+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-290353f3cedf",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "StoreAMO: sequential update batch executor + recovery",
+      "published_at": "2026-08-26T03:31:02+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "webamo-0dcba7521582",
       "app_id": "webamo",
@@ -49,50 +104,6 @@
       "published_at": "2026-08-24T10:17:09+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "storeamo-c4af08ebd56a",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "Release StoreAMO 0.4.3.76",
-      "published_at": "2026-08-24T09:17:29+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-b62f450030c7",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "trigger StoreAMO 0.4.3.76 build",
-      "published_at": "2026-08-24T09:17:11+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-7c1da524f042",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "keep 0.4.3.75 community checks forward-compatible",
-      "published_at": "2026-08-24T09:10:17+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-a93cfc6a0ea5",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "publish StoreAMO 0.4.3.76 signature migration fix",
-      "published_at": "2026-08-24T09:07:04+00:00",
-      "status": "development",
-      "source_visibility": "public"
     },
     {
       "id": "depositamo-registry-fff343156978",
@@ -565,17 +576,6 @@
       "summary": "Add read-only storage analyzer",
       "published_at": "2026-08-19T05:26:58+00:00",
       "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-6075249bef89",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "activity",
-      "title": "Actividad reciente en WebAMO",
-      "summary": "Validate MiWeb parser across platforms",
-      "published_at": "2026-08-19T05:26:30+00:00",
-      "status": "candidate",
       "source_visibility": "public"
     },
     {
