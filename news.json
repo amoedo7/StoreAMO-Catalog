@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-26T10:05:35.917702+00:00",
+  "generated_at": "2026-08-26T10:09:52.158936+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "webamo-4808015ce40e",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "release",
+      "title": "Nueva versión de WebAMO",
+      "summary": "align StoreAMO metadata with WebAMO 0.1.2",
+      "published_at": "2026-08-26T10:08:50+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "webamo-397f194bab8a",
       "app_id": "webamo",
@@ -389,17 +400,6 @@
       "summary": "Register MiArchivos with StoreAMO",
       "published_at": "2026-08-19T06:45:03+00:00",
       "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-3605d6717d10",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "activity",
-      "title": "Actividad reciente en WebAMO",
-      "summary": "Register MiWeb with StoreAMO",
-      "published_at": "2026-08-19T06:44:51+00:00",
-      "status": "candidate",
       "source_visibility": "public"
     },
     {
