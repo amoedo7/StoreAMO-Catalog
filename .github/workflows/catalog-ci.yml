@@ -10,6 +10,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: catalog-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   STOREAMO_VERIFY_SHA: 8dc7c9298bedac14a71899d10d8a4218e5b9ea7d
 
