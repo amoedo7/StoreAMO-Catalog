@@ -1,4 +1,4 @@
-# StoreAMO discovery v3: catalog + public activity feed; private sources remain sanitized. Refresh final WebAMO 0.1.2 artifact.
+# StoreAMO discovery v3: catalog + public activity feed; private sources remain sanitized. Refresh canonical WebAMO 0.1.2 signer.
 name: discover-apps
 
 on:
