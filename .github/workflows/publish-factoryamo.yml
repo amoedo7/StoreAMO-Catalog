@@ -86,7 +86,7 @@ jobs:
           CERT="$(sed -n 's/^Signer #1 certificate SHA-256 digest: //p' /tmp/factoryamo.signature | head -n1 | tr 'A-F' 'a-f')"
           test "$CERT" = "$EXPECTED_CERT"
           echo FACTORYAMO_011_PUBLIC_ARTIFACT_PASS
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       - name: Rebuild StoreAMO catalog and news
