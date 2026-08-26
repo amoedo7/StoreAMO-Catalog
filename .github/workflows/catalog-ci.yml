@@ -10,6 +10,9 @@ on:
 permissions:
   contents: read
 
+env:
+  STOREAMO_VERIFY_SHA: 8dc7c9298bedac14a71899d10d8a4218e5b9ea7d
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -20,7 +23,10 @@ jobs:
           python-version: '3.x'
       - name: Validate pinned Android signers
         run: python scripts/validate_android_signing_pins.py
-      - name: Fetch StoreAMO verifier
-        run: git clone --depth 1 https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
+      - name: Fetch pinned StoreAMO verifier
+        run: |
+          git clone --no-checkout https://github.com/amoedo7/StoreAMO-Verify.git /tmp/storeamo-verify
+          git -C /tmp/storeamo-verify checkout --detach "$STOREAMO_VERIFY_SHA"
+          test "$(git -C /tmp/storeamo-verify rev-parse HEAD)" = "$STOREAMO_VERIFY_SHA"
       - name: Validate catalog
         run: python /tmp/storeamo-verify/verify_catalog.py catalog.json
