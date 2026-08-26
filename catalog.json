@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-26T10:47:15+00:00",
+  "generated_at": "2026-08-26T17:09:26+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -2988,7 +2988,25 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": null,
+          "format": "apk",
+          "version": "0.4.3.80",
+          "version_code": "0.4.3.80",
+          "url": "https://github.com/amoedo7/StoreAMO/releases/download/v0.4.3.80/StoreAMO-0.4.3.80.apk",
+          "sha256": "147323c1d53f713b681207ea466023e77383912b084c21401b59ade2fed0e80c",
+          "size_bytes": 9138460,
+          "min_os": "Android 8.0",
+          "application_id": "com.desarrollamo.storeamo.debug",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO/releases/tag/v0.4.3.80",
+          "source": "github-release"
+        }
+      ],
       "repository": "https://github.com/amoedo7/StoreAMO",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO/main/storeamo.json"
     },
