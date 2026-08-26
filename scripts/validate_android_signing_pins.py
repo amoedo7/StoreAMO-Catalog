@@ -16,6 +16,8 @@ assert pins_doc.get("schema") == "storeamo.android-signing-pins.v1"
 pins = pins_doc.get("packages")
 assert isinstance(pins, dict) and pins
 
+used_app_ids: set[str] = set()
+
 for package_name, pin in pins.items():
     assert isinstance(package_name, str) and package_name.count(".") >= 2
     assert isinstance(pin, dict)
@@ -29,7 +31,11 @@ for package_name, pin in pins.items():
         assert cert != canonical, f"{package_name}: canonical cert listed as legacy"
         legacy_certs.add(cert)
 
-    app_id = str(pin.get("app_id") or "")
+    app_id = str(pin.get("app_id") or "").strip()
+    assert app_id, f"{package_name}: missing app_id"
+    assert app_id not in used_app_ids, f"{package_name}: duplicate app_id in signing pins: {app_id}"
+    used_app_ids.add(app_id)
+
     registry_path = REGISTRY / f"{app_id}.json"
     assert registry_path.is_file(), f"{package_name}: registry entry missing: {registry_path.name}"
     manifest = json.loads(registry_path.read_text(encoding="utf-8"))
@@ -60,4 +66,4 @@ for package_name, pin in pins.items():
                 f"{package_name}: SIGNER_DRIFT in catalog; expected {canonical}, got {cert or '<missing>'}"
             )
 
-print(f"ANDROID_SIGNING_PINS_OK packages={len(pins)}")
+print(f"ANDROID_SIGNING_PINS_OK packages={len(pins)} app_ids={len(used_app_ids)}")
