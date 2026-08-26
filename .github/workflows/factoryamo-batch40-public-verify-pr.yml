@@ -57,7 +57,7 @@ jobs:
       - uses: android-actions/setup-android@v3
         if: steps.staged.outputs.ready != 'true'
 
-      - uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v6
         if: steps.staged.outputs.ready != 'true'
         with:
           gradle-version: '8.10.2'
