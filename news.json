@@ -1,11 +1,77 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-26T10:11:14.312865+00:00",
+  "generated_at": "2026-08-26T10:47:34.081129+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "webamo-80e164bbe785",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "activity",
+      "title": "Actividad reciente en WebAMO",
+      "summary": "pin WebAMO canonical signing identity",
+      "published_at": "2026-08-26T10:46:27+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "webamo-7f7c8e923d81",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "build",
+      "title": "WebAMO prepara cambios",
+      "summary": "make WebAMO signing stable",
+      "published_at": "2026-08-26T10:41:11+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-89cb27cafb76",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "remove one-shot 0.4.3.77 patch workflow",
+      "published_at": "2026-08-26T10:39:35+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-aa3a71a11066",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "remove one-shot 0.4.3.77 patch script",
+      "published_at": "2026-08-26T10:39:28+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-28e21b353245",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "publish StoreAMO 0.4.3.77",
+      "published_at": "2026-08-26T10:39:14+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-ad92c69fc39d",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.77 uninstall fallback",
+      "published_at": "2026-08-26T10:38:37+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "webamo-4808015ce40e",
       "app_id": "webamo",
@@ -14,83 +80,6 @@
       "title": "Nueva versión de WebAMO",
       "summary": "align StoreAMO metadata with WebAMO 0.1.2",
       "published_at": "2026-08-26T10:08:50+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-397f194bab8a",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "release",
-      "title": "Nueva versión de WebAMO",
-      "summary": "WebAMO Android v0.1.2 · copiar informe",
-      "published_at": "2026-08-26T10:03:27+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-bde381596b23",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "StoreAMO updates: real network + catalog candidate adapter",
-      "published_at": "2026-08-26T09:14:54+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-db94784d45a2",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "StoreAMO: coordinate Update All policy + execution",
-      "published_at": "2026-08-26T07:19:52+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-bc996ce4abe5",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "StoreAMO updates: persist batch recovery state",
-      "published_at": "2026-08-26T05:16:07+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-290353f3cedf",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "StoreAMO: sequential update batch executor + recovery",
-      "published_at": "2026-08-26T03:31:02+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-0dcba7521582",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "release",
-      "title": "Nueva versión de WebAMO",
-      "summary": "WebAMO Android v0.1.1 · auditoría profunda + dashboard",
-      "published_at": "2026-08-25T16:11:43+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-059208aa0614",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "release",
-      "title": "Nueva versión de WebAMO",
-      "summary": "WebAMO Android v0.1.0",
-      "published_at": "2026-08-25T14:37:06+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },

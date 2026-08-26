@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-26T10:11:03+00:00",
+  "generated_at": "2026-08-26T10:47:15+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -369,7 +369,7 @@
       "source_visibility": "public",
       "store": {
         "screenshots": [],
-        "notes": "WebAMO 0.1.2 candidate. Mantiene la auditoría pública, defensiva y no destructiva de 0.1.1 y agrega Copiar informe al portapapeles, además de Compartir informe y Copiar JSON completo. Los controles que requieren navegador renderizado, interacción o autorización se muestran como N/V y reducen cobertura en lugar de inventar resultados."
+        "notes": "WebAMO 0.1.2 candidate. Mantiene la auditoría pública, defensiva y no destructiva de 0.1.1 y agrega Copiar informe al portapapeles. Desde esta publicación usa una identidad de firma candidate canónica y estable para que las próximas versiones puedan actualizarse encima sin volver a desinstalar. Una instalación antigua con firma efímera puede requerir una última migración."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -389,11 +389,11 @@
           "version": "0.1.2",
           "version_code": "3",
           "url": "https://github.com/amoedo7/MiWeb/releases/download/v0.1.2/WebAMO-0.1.2.apk",
-          "sha256": "f5834cfe73c039b2ecade27e9c988e77f84290bbc4f82436ff0b6c777c12e09b",
+          "sha256": "72e4e55faf675926bc35f0a8786acacf9d43f8d4ae7b4846e041bb1a935b16ea",
           "size_bytes": 64990,
           "min_os": "Android 6.0 (API 23)",
           "application_id": "com.desarrollamo.webamo",
-          "signing_cert_sha256": null,
+          "signing_cert_sha256": "b34195794371b95087ee32d70c32176d46fa501408702329ebec4d81362ff1e8",
           "verified": false,
           "verification_report": null,
           "release_url": "https://github.com/amoedo7/MiWeb/releases/tag/v0.1.2",
