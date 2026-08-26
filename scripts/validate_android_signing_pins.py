@@ -23,12 +23,21 @@ for package_name, pin in pins.items():
     assert isinstance(pin, dict)
     canonical = str(pin.get("canonical_cert_sha256") or "").lower()
     assert HEX64.fullmatch(canonical), f"{package_name}: invalid canonical cert"
+    canonical_since = str(pin.get("canonical_since_version") or "").strip()
+    assert canonical_since, f"{package_name}: missing canonical_since_version"
+
     legacy = pin.get("legacy_certificates") or []
+    assert isinstance(legacy, list), f"{package_name}: legacy_certificates must be a list"
     legacy_certs = set()
     for row in legacy:
-        cert = str((row or {}).get("cert_sha256") or "").lower()
+        assert isinstance(row, dict), f"{package_name}: invalid legacy certificate entry"
+        cert = str(row.get("cert_sha256") or "").lower()
         assert HEX64.fullmatch(cert), f"{package_name}: invalid legacy cert"
         assert cert != canonical, f"{package_name}: canonical cert listed as legacy"
+        assert cert not in legacy_certs, f"{package_name}: duplicate legacy cert: {cert}"
+        assert str(row.get("last_version") or "").strip(), f"{package_name}: legacy cert missing last_version"
+        assert str(row.get("reason") or "").strip(), f"{package_name}: legacy cert missing reason"
+        assert str(row.get("migration") or "").strip(), f"{package_name}: legacy cert missing migration"
         legacy_certs.add(cert)
 
     app_id = str(pin.get("app_id") or "").strip()
