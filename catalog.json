@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-26T10:09:32+00:00",
+  "generated_at": "2026-08-26T10:11:03+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -389,8 +389,8 @@
           "version": "0.1.2",
           "version_code": "3",
           "url": "https://github.com/amoedo7/MiWeb/releases/download/v0.1.2/WebAMO-0.1.2.apk",
-          "sha256": "9799ebea9c81f7ef73eda2969b27e4bcb65d9ebcd7a383cb4074c5c7618d50fa",
-          "size_bytes": 64989,
+          "sha256": "f5834cfe73c039b2ecade27e9c988e77f84290bbc4f82436ff0b6c777c12e09b",
+          "size_bytes": 64990,
           "min_os": "Android 6.0 (API 23)",
           "application_id": "com.desarrollamo.webamo",
           "signing_cert_sha256": null,
