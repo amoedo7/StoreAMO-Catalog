@@ -1,11 +1,55 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-26T10:47:34.081129+00:00",
+  "generated_at": "2026-08-26T17:16:46.083478+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-41a7549b1d4b",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "fix",
+      "title": "Corrección en StoreAMO",
+      "summary": "align StoreAMO manifest with published APK identity",
+      "published_at": "2026-08-26T13:39:09+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-9ae4b09e3e0a",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "tests",
+      "title": "Pruebas en StoreAMO",
+      "summary": "decouple signature migration regression from exact patch",
+      "published_at": "2026-08-26T13:35:25+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-5ce5ac8693c5",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "decouple community regression from exact release patch",
+      "published_at": "2026-08-26T13:33:47+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-a6200905c2cf",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "allow StoreAMO patch versions after 0.4.3.79",
+      "published_at": "2026-08-26T13:32:23+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "webamo-80e164bbe785",
       "app_id": "webamo",
@@ -26,50 +70,6 @@
       "summary": "make WebAMO signing stable",
       "published_at": "2026-08-26T10:41:11+00:00",
       "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-89cb27cafb76",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot 0.4.3.77 patch workflow",
-      "published_at": "2026-08-26T10:39:35+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-aa3a71a11066",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot 0.4.3.77 patch script",
-      "published_at": "2026-08-26T10:39:28+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-28e21b353245",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "publish StoreAMO 0.4.3.77",
-      "published_at": "2026-08-26T10:39:14+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-ad92c69fc39d",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.77 uninstall fallback",
-      "published_at": "2026-08-26T10:38:37+00:00",
-      "status": "development",
       "source_visibility": "public"
     },
     {
