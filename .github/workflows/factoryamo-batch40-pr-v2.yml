@@ -19,7 +19,7 @@ jobs:
       BATCH: factoryamo-builds/FAMO-20260822-201753-13807/Batch40
       STATUS: factoryamo-relay/llegada/FAMO-20260822-201753-13807/status.json
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
