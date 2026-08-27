@@ -1,0 +1,59 @@
+{
+  "schema": "desarrollamo.amo.v1",
+  "amo_version": "1.0.0",
+  "id": "storeamo-catalog",
+  "name": "StoreAMO-Catalog",
+  "kind": "infrastructure",
+  "origin": "legacy",
+  "membership": "candidate",
+  "trust": "inspected",
+  "unit": {
+    "purpose": "Mantener el catálogo verificable de artefactos y metadatos consumidos por StoreAMO.",
+    "responsibility": "Validar la coherencia del catálogo y los pines de firma Android antes de aceptar cambios en main.",
+    "owner": "human_responsible",
+    "capabilities": ["catalog", "artifact-metadata", "signing-policy", "distribution-metadata"]
+  },
+  "model": {
+    "inherits": [],
+    "context": ["README.md", "catalog.json", "android-signing-pins.json", ".github/workflows/catalog-ci.yml"],
+    "rules": [
+      "El catálogo debe pasar el verificador de StoreAMO fijado por commit.",
+      "Los pines de firma Android deben ser válidos antes de integrar cambios.",
+      "El repositorio no contiene claves privadas de firma."
+    ]
+  },
+  "map": {
+    "parent": "raizamo",
+    "children": [],
+    "relations": [
+      {"type": "catalog-for", "target": "storeamo", "strength": "strong"},
+      {"type": "verified-by", "target": "storeamo-verify", "strength": "strong"}
+    ],
+    "covers": ["catalog.json", "android-signing-pins.json", "artifacts/**"]
+  },
+  "policy": {
+    "contains_private_signing_material": false,
+    "requires_pinned_verifier": true
+  },
+  "provenance": {
+    "source_uri": "https://github.com/amoedo7/StoreAMO-Catalog",
+    "source_type": "git-repository",
+    "source_ref": "c9f024a3e853313cf66fa3e67d206dc6fd25c58e"
+  },
+  "health": {
+    "checks": [
+      {
+        "id": "storeamo-catalog-autocheck",
+        "type": "command",
+        "command": "bash scripts/autocheck.sh",
+        "cwd": ".",
+        "timeout_seconds": 120,
+        "description": "Valida pines de firma y catálogo usando el StoreAMO verifier fijado por commit."
+      }
+    ]
+  },
+  "evidence": {
+    "status": "inspected",
+    "refs": [".github/workflows/catalog-ci.yml", "scripts/autocheck.sh", "scripts/validate_android_signing_pins.py"]
+  }
+}
