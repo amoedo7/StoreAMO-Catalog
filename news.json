@@ -1,11 +1,88 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-26T10:47:34.081129+00:00",
+  "generated_at": "2026-08-29T13:09:20.055617+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "generalamo-89ea26c72b2c",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "activity",
+      "title": "Actividad reciente en GeneralAMO",
+      "summary": "add canonical GeneralAMO AutoCheck",
+      "published_at": "2026-08-28T18:07:12+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "generalamo-44212f28915c",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "release",
+      "title": "Nueva versión de GeneralAMO",
+      "summary": "make stable release publication idempotent",
+      "published_at": "2026-08-28T17:08:39+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-ca9b9e7dab14",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "canonical StoreAMO 0.0.1 seed",
+      "published_at": "2026-08-28T11:52:39+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-a4bc35d20343",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO Install 0.0.6 closes PackageInstaller streams",
+      "published_at": "2026-08-28T11:24:12+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-36e25a2ea198",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "establish canonical StoreAMO production identity",
+      "published_at": "2026-08-28T09:28:22+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-280855be1baa",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "recover production signing and publish 0.4.3.82",
+      "published_at": "2026-08-28T09:18:01+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "plataformamo-750adadcf30e",
+      "app_id": "plataformamo",
+      "app_name": "PlataformAMO",
+      "type": "activity",
+      "title": "Actividad reciente en PlataformAMO",
+      "summary": "add canonical PlataformAMO contract and AutoCheck",
+      "published_at": "2026-08-28T01:10:01+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "webamo-80e164bbe785",
       "app_id": "webamo",
@@ -26,50 +103,6 @@
       "summary": "make WebAMO signing stable",
       "published_at": "2026-08-26T10:41:11+00:00",
       "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-89cb27cafb76",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot 0.4.3.77 patch workflow",
-      "published_at": "2026-08-26T10:39:35+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-aa3a71a11066",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "remove one-shot 0.4.3.77 patch script",
-      "published_at": "2026-08-26T10:39:28+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-28e21b353245",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "publish StoreAMO 0.4.3.77",
-      "published_at": "2026-08-26T10:39:14+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-ad92c69fc39d",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO 0.4.3.77 uninstall fallback",
-      "published_at": "2026-08-26T10:38:37+00:00",
-      "status": "development",
       "source_visibility": "public"
     },
     {
@@ -146,28 +179,6 @@
       "title": "Nueva versión de GeneralAMO",
       "summary": "GeneralAMO 0.1.16: ajustes y actualización directa",
       "published_at": "2026-08-21T20:59:48+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-6c5493fed98f",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "publish GeneralAMO 0.1.15 interaction fix",
-      "published_at": "2026-08-21T14:23:59+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-90bf440a9b56",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "bump GeneralAMO to 0.1.15",
-      "published_at": "2026-08-21T14:23:44+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
@@ -344,17 +355,6 @@
       "title": "Actividad reciente en PlataformAMO",
       "summary": "Retrigger PlataformAMO alpha after lifecycle fix",
       "published_at": "2026-08-19T08:16:34+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "plataformamo-5ca9781ea3ea",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "activity",
-      "title": "Actividad reciente en PlataformAMO",
-      "summary": "Fix PlataformAMO activity result lifecycle",
-      "published_at": "2026-08-19T08:16:21+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
