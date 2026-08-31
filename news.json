@@ -1,11 +1,66 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-29T13:09:20.055617+00:00",
+  "generated_at": "2026-08-31T11:30:53.477397+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-fe9d44812b92",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "align catalog identity with StoreAMO production release",
+      "published_at": "2026-08-31T11:28:07+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "generalamo-8aa5e61cc67f",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "docs",
+      "title": "Novedades de GeneralAMO",
+      "summary": "define GeneralAMO recovery procedure",
+      "published_at": "2026-08-30T21:02:20+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "plataformamo-e948fa191417",
+      "app_id": "plataformamo",
+      "app_name": "PlataformAMO",
+      "type": "build",
+      "title": "PlataformAMO prepara cambios",
+      "summary": "harden Android workflow dependencies",
+      "published_at": "2026-08-30T15:58:05+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "generalamo-b4d1370c5dff",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "build",
+      "title": "GeneralAMO prepara cambios",
+      "summary": "harden Android workflow supply chain",
+      "published_at": "2026-08-30T05:01:08+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "webamo-2343cb7733f7",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "build",
+      "title": "WebAMO prepara cambios",
+      "summary": "harden parser workflow (#5)",
+      "published_at": "2026-08-29T22:59:15+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "generalamo-89ea26c72b2c",
       "app_id": "generalamo",
@@ -62,17 +117,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "storeamo-280855be1baa",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "recover production signing and publish 0.4.3.82",
-      "published_at": "2026-08-28T09:18:01+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
       "id": "plataformamo-750adadcf30e",
       "app_id": "plataformamo",
       "app_name": "PlataformAMO",
@@ -102,17 +146,6 @@
       "title": "WebAMO prepara cambios",
       "summary": "make WebAMO signing stable",
       "published_at": "2026-08-26T10:41:11+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-4808015ce40e",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "release",
-      "title": "Nueva versión de WebAMO",
-      "summary": "align StoreAMO metadata with WebAMO 0.1.2",
-      "published_at": "2026-08-26T10:08:50+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
@@ -170,17 +203,6 @@
       "published_at": "2026-08-22T12:19:20+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "generalamo-4e4a100f19fc",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "GeneralAMO 0.1.16: ajustes y actualización directa",
-      "published_at": "2026-08-21T20:59:48+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
     },
     {
       "id": "mensajamo-registry-17de6a451a68",
@@ -344,17 +366,6 @@
       "title": "Corrección en PlataformAMO",
       "summary": "resolve PlataformAMO progress bar references",
       "published_at": "2026-08-19T08:25:16+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "plataformamo-66722aaefed8",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "activity",
-      "title": "Actividad reciente en PlataformAMO",
-      "summary": "Retrigger PlataformAMO alpha after lifecycle fix",
-      "published_at": "2026-08-19T08:16:34+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },

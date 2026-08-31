@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-08-29T13:09:12+00:00",
+  "generated_at": "2026-08-31T11:30:43+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -2976,7 +2976,7 @@
         "homepage": "https://github.com/amoedo7/StoreAMO",
         "privacy_url": "https://github.com/amoedo7/StoreAMO/blob/main/SECURITY.md",
         "screenshots": [],
-        "notes": "StoreAMO no se presenta como una app normal dentro de sí misma; su versión instalada vive en Ajustes/Actualizaciones."
+        "notes": "StoreAMO no se presenta como una app normal dentro de sí misma; su versión instalada vive en Ajustes/Actualizaciones. La línea estable 0.4.3.82 usa el package canónico y la identidad permanente de firma de producción."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -2999,8 +2999,8 @@
           "sha256": "e7cb1ab96a15a8898625fb3cdca54c21dfa7012bceed09df8f7099bb75befd0a",
           "size_bytes": 6191025,
           "min_os": "Android 8.0",
-          "application_id": "com.desarrollamo.storeamo.debug",
-          "signing_cert_sha256": null,
+          "application_id": "com.desarrollamo.storeamo",
+          "signing_cert_sha256": "48f3671ed5f30d065ee4baac5cb509c4b59d3ff116d21e6ca81b21029862ab51",
           "verified": false,
           "verification_report": null,
           "release_url": "https://github.com/amoedo7/StoreAMO/releases/tag/v0.4.3.82",
