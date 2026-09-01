@@ -1,0 +1,25 @@
+{
+  "schema": "storeamo.verification-report.v1",
+  "app_id": "cerebramo",
+  "version": "0.2.0",
+  "version_code": "2",
+  "application_id": "com.desarrollamo.cerebramo",
+  "artifact_url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.2.0.apk",
+  "sha256": "80633d5ee4946009c834e8a604323028f49a9bf24f79b343a2708745b669cab6",
+  "size_bytes": 37567,
+  "signing_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
+  "verified": true,
+  "verified_at": "2026-09-01T00:28:11+00:00",
+  "source_repo": "amoedo7/IdeAMO",
+  "source_sha": "48510d30bd3d6864e2a294a5fbd245f552e745a0",
+  "signed_release_run_id": "33454172449",
+  "checks": {
+    "integrity": {"status":"PASS","evidence":"Public staged APK is 37567 bytes with SHA-256 80633d5ee4946009c834e8a604323028f49a9bf24f79b343a2708745b669cab6."},
+    "application_id": {"status":"PASS","evidence":"APK identity is com.desarrollamo.cerebramo, versionCode 2, versionName 0.2.0, minSdk 26."},
+    "signature": {"status":"PASS","evidence":"APK signature verifies against canonical certificate SHA-256 c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8."},
+    "permissions": {"status":"PASS","evidence":"The packaged manifest declares only android.permission.INTERNET."},
+    "tests": {"status":"PASS","evidence":"IdeAMO signed release run 33454172449 completed unit tests, release build, signing and identity gates successfully."},
+    "https": {"status":"PASS","evidence":"The exact HTTPS URL consumed by StoreAMO was downloaded again and matched size, SHA-256 and signing certificate."},
+    "update_continuity": {"status":"PASS","evidence":"Compared with StoreAMO 0.1.0: same applicationId, versionCode increased 1 -> 2, same canonical signing certificate; no reinstall migration required."}
+  }
+}

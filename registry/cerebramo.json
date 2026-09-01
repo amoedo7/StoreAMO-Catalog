@@ -2,8 +2,8 @@
   "schema": "storeamo.app.v1",
   "id": "cerebramo",
   "name": "CerebrAMO",
-  "tagline": "Cuotas, saldo y salud de tus cerebros de IA.",
-  "description": "Dashboard local-first para conectar proveedores de IA y consultar cuotas, créditos, resets y estado sin exponer credenciales. MiniMax muestra ventana y límite semanal; OpenAI evita inventar métricas no expuestas; OpenRouter muestra créditos cuando la clave tiene permiso.",
+  "tagline": "Cuotas, saldo, combustible y salud de DesarrollAMO.",
+  "description": "Dashboard local-first para proveedores de IA y recursos verificables del ecosistema. Conserva MiniMax, OpenAI y OpenRouter y añade snapshots cerebramo.resources.v1 para mostrar disponible, límite, estado, vencimiento/reset y fuente sin inventar métricas.",
   "category": "Herramientas",
   "audience": "public",
   "featured": true,
@@ -14,26 +14,26 @@
   "store": {
     "homepage": "https://desarrollamo.com.ar",
     "screenshots": [],
-    "notes": "CerebrAMO 0.1.0 candidate. Source privado; APK público directo con integridad, identidad, firma, permisos, tests y HTTPS verificados."
+    "notes": "CerebrAMO 0.2.0 candidate. Actualización compatible desde 0.1.0: mismo applicationId y mismo certificado canónico. Añade Recursos · Combustible e importación de snapshots verificables."
   },
   "artifacts": [{
     "platform": "android",
     "arch": "universal",
     "format": "apk",
-    "version": "0.1.0",
-    "version_code": "1",
-    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.1.0.apk",
-    "sha256": "ab5472f9d32d33871eba85669b30c805ed417c2a2ec615417b956c2ea042df4c",
-    "size_bytes": 29375,
+    "version": "0.2.0",
+    "version_code": "2",
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/.release-input/CerebrAMO-0.2.0.apk",
+    "sha256": "80633d5ee4946009c834e8a604323028f49a9bf24f79b343a2708745b669cab6",
+    "size_bytes": 37567,
     "min_os": "Android 8.0 (API 26)",
     "application_id": "com.desarrollamo.cerebramo",
     "signing_cert_sha256": "c562fae788b323af653df34c282a011cf6e8dd7ab36620f26f0ba76abc1080b8",
     "verified": true,
-    "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/cerebramo-v0.1.0.json",
+    "verification_report": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/verification-reports/cerebramo-v0.2.0.json",
     "source": "distribution-registry"
   }],
   "verification": {
     "policy": "storeamo-default-v1",
-    "required_checks": ["integrity", "application-id", "signature", "permissions", "tests", "https"]
+    "required_checks": ["integrity", "application-id", "signature", "permissions", "tests", "https", "update-continuity"]
   }
 }
