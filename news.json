@@ -1,11 +1,55 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-01T07:24:20.452570+00:00",
+  "generated_at": "2026-09-01T13:29:26.428457+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-9689b28b67bf",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "release",
+      "title": "Nueva versión de StoreAMO",
+      "summary": "StoreAMO 0.4.3.85",
+      "published_at": "2026-09-01T10:14:30+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-2c89f3ace52d",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "feature",
+      "title": "Nueva mejora en StoreAMO",
+      "summary": "update StoreAMO inside StoreAMO",
+      "published_at": "2026-09-01T09:55:47+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-81717552a27b",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "mark self-update work",
+      "published_at": "2026-09-01T09:48:29+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-cf67f5a7afb0",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "start StoreAMO self-update implementation",
+      "published_at": "2026-09-01T09:48:22+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "camo-71ed154fdddb",
       "app_id": "camo",
@@ -73,17 +117,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "storeamo-fe9d44812b92",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "align catalog identity with StoreAMO production release",
-      "published_at": "2026-08-31T11:28:07+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
       "id": "generalamo-8aa5e61cc67f",
       "app_id": "generalamo",
       "app_name": "GeneralAMO",
@@ -147,39 +180,6 @@
       "summary": "make stable release publication idempotent",
       "published_at": "2026-08-28T17:08:39+00:00",
       "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-ca9b9e7dab14",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "canonical StoreAMO 0.0.1 seed",
-      "published_at": "2026-08-28T11:52:39+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-a4bc35d20343",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "StoreAMO Install 0.0.6 closes PackageInstaller streams",
-      "published_at": "2026-08-28T11:24:12+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-36e25a2ea198",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "release",
-      "title": "Nueva versión de StoreAMO",
-      "summary": "establish canonical StoreAMO production identity",
-      "published_at": "2026-08-28T09:28:22+00:00",
-      "status": "development",
       "source_visibility": "public"
     },
     {

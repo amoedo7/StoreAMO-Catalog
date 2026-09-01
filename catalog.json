@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-09-01T07:23:57+00:00",
+  "generated_at": "2026-09-01T13:29:05+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -3027,7 +3027,7 @@
         "homepage": "https://github.com/amoedo7/StoreAMO",
         "privacy_url": "https://github.com/amoedo7/StoreAMO/blob/main/SECURITY.md",
         "screenshots": [],
-        "notes": "StoreAMO no se presenta como una app normal dentro de sí misma; su versión instalada vive en Ajustes/Actualizaciones. La línea estable 0.4.3.82 usa el package canónico y la identidad permanente de firma de producción."
+        "notes": "StoreAMO no se presenta como una app normal dentro de sí misma; su versión instalada vive en Ajustes/Actualizaciones. La 0.4.3.82 quedó ligada a una clave privada perdida. La 0.4.3.83 adopta explícitamente la identidad local preservada 7BD60F… y requiere una única reinstalación desde 0.4.3.82; las versiones posteriores deben conservar esta firma."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -3044,17 +3044,17 @@
           "platform": "android",
           "arch": null,
           "format": "apk",
-          "version": "0.4.3.82",
-          "version_code": "0.4.3.82",
-          "url": "https://github.com/amoedo7/StoreAMO/releases/download/v0.4.3.82/StoreAMO-0.4.3.82.apk",
-          "sha256": "e7cb1ab96a15a8898625fb3cdca54c21dfa7012bceed09df8f7099bb75befd0a",
+          "version": "0.4.3.85",
+          "version_code": "0.4.3.85",
+          "url": "https://github.com/amoedo7/StoreAMO/releases/download/v0.4.3.85/StoreAMO-0.4.3.85.apk",
+          "sha256": "4991d06a1ae1557e759e0350f00dd3484d46b39ceeb315ff8e255e004c712494",
           "size_bytes": 6191025,
           "min_os": "Android 8.0",
           "application_id": "com.desarrollamo.storeamo",
-          "signing_cert_sha256": "48f3671ed5f30d065ee4baac5cb509c4b59d3ff116d21e6ca81b21029862ab51",
+          "signing_cert_sha256": "7bd60fd751723041cf2802bea01fbd83700410a1fd2dd019cacbcd739cb72dcf",
           "verified": false,
           "verification_report": null,
-          "release_url": "https://github.com/amoedo7/StoreAMO/releases/tag/v0.4.3.82",
+          "release_url": "https://github.com/amoedo7/StoreAMO/releases/tag/v0.4.3.85",
           "source": "github-release"
         }
       ],
