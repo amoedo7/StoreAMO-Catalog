@@ -33,7 +33,7 @@ jobs:
           unzip -tqq "$APK"
           cp "$APK" .release-input/GastAMO-0.3.0.apk
 
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
 
       - name: Verify package and signing certificate
         shell: bash
