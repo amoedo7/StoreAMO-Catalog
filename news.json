@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-01T22:34:29.927192+00:00",
+  "generated_at": "2026-09-01T22:50:52.304175+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-b2f54458c7a6",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "Mostrar utilitarios Android antes de instalar Termux",
+      "published_at": "2026-09-01T22:46:03+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "storeamo-22112f150804",
       "app_id": "storeamo",
@@ -135,17 +146,6 @@
       "title": "Nueva mejora en StoreAMO",
       "summary": "update StoreAMO inside StoreAMO",
       "published_at": "2026-09-01T09:55:47+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-81717552a27b",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "mark self-update work",
-      "published_at": "2026-09-01T09:48:29+00:00",
       "status": "development",
       "source_visibility": "public"
     },
