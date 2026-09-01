@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-09-01T00:28:20+00:00",
+  "generated_at": "2026-09-01T07:23:57+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -657,6 +657,56 @@
       ],
       "repository": "amoedo7/StoreAMO-Catalog",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/calculamo.json"
+    },
+    {
+      "id": "camo",
+      "name": "CAMO",
+      "tagline": "Estado vivo de CoinAMO en BNB Chain",
+      "description": "Panel Android de solo lectura para verificar precio, liquidez, reservas, supply, holders y actividad del token CAMO de DesarrollAMO.",
+      "category": "Finance & telemetry",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "public",
+      "store": {
+        "icon": null,
+        "screenshots": [],
+        "privacy_url": "https://github.com/amoedo7/CAMO/blob/main/PRIVACY.md",
+        "homepage": "https://github.com/amoedo7/CAMO"
+      },
+      "verification": {
+        "policy": "candidate-read-only",
+        "required_checks": [
+          "android-build",
+          "manifest-internet-only",
+          "no-private-key-material",
+          "sha256-release"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0-preview",
+          "version_code": "1",
+          "url": "https://github.com/amoedo7/CAMO/releases/download/v0.1.0/CAMO-0.1.0-preview.apk",
+          "sha256": "7f196c0e5230352a707dd7d8b321ad1225c6ce39585f517bbaa1c79c56b93ec4",
+          "size_bytes": 22027,
+          "min_os": "Android 8.0",
+          "application_id": "com.desarrollamo.camo.preview",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/CAMO/releases/tag/v0.1.0",
+          "source": "github-release"
+        }
+      ],
+      "repository": "https://github.com/amoedo7/CAMO",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/CAMO/main/storeamo.json"
     },
     {
       "id": "cesaramo",
