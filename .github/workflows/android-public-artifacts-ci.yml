@@ -1,0 +1,48 @@
+name: android-public-artifacts-ci
+
+on:
+  pull_request:
+    paths: ['public-artifacts/**', 'registry/**', '.github/workflows/android-public-artifacts-ci.yml']
+  push:
+    branches: [main]
+    paths: ['public-artifacts/**', 'registry/**', '.github/workflows/android-public-artifacts-ci.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { path: public-artifacts/contamo/0.1.0/ContAMO-0.1.0.apk, package: com.desarrollamo.contamo, version: '0.1.0', code: '1', sha: 1f2701b4db6588b15a66c60f8e790fde04544100795b27a6261b64aba85c134e }
+          - { path: public-artifacts/contrasenamo/0.1.0/ContrasenAMO-0.1.0.apk, package: com.desarrollamo.contrasenamo, version: '0.1.0', code: '1', sha: de5158e5d5fc9d4d3f17c9b006836591fcddd249227ad4c10a245bdc0763e336 }
+          - { path: public-artifacts/conversamo/0.1.0/ConversAMO-0.1.0.apk, package: com.desarrollamo.conversamo, version: '0.1.0', code: '1', sha: 785f2b20ab81ceb9b7e8107cacbfae1c2ef93fcf7c897653e56462ffe1ac92ae }
+          - { path: public-artifacts/dadosamo/0.1.0/DadosAMO-0.1.0.apk, package: com.desarrollamo.dadosamo, version: '0.1.0', code: '1', sha: 23f49b58a97b88b51876ed4fdf804b85bfa618a38a02fe960799563fbe8b2f3a }
+          - { path: public-artifacts/porcentamo/0.1.0/PorcentAMO-0.1.0.apk, package: com.desarrollamo.porcentamo, version: '0.1.0', code: '1', sha: 6d11cab6564101fe403a110fcd70de526491d450ad37d274497b8177754592b0 }
+          - { path: public-artifacts/sorteamo/0.1.0/SorteAMO-0.1.0.apk, package: com.desarrollamo.sorteamo, version: '0.1.0', code: '1', sha: 165d1a3d7bb6b1778dede9891c72c9ced14af3d987dd1ca7c42926d3c06c6d99 }
+          - { path: public-artifacts/tareasamo/0.1.0/TareasAMO-0.1.0.apk, package: com.desarrollamo.tareasamo, version: '0.1.0', code: '1', sha: 37d9fed4f0c56af14e2f8054064b19147adb30bb783d2a0d05d2784f4f09586a }
+          - { path: public-artifacts/nivelamo/0.1.0/NivelAMO-0.1.0.apk, package: com.desarrollamo.nivelamo, version: '0.1.0', code: '1', sha: b5c224c546f8238c6cdfeee5b6800440404b29c501a908c05798acc2f0a89d32 }
+          - { path: public-artifacts/mesaiamo/0.2.0/MesaIAMO-0.2.0.apk, package: com.desarrollamo.mesaiamo, version: '0.2.0', code: '200', sha: 310c2a0c7a875d547e7bba6d5a0bfc50897cb4c9c563de03c09e10317804b432 }
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - uses: android-actions/setup-android@v3
+      - name: Verify APK integrity, signature and identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager "build-tools;35.0.0"
+          APK='${{ matrix.path }}'
+          test -s "$APK"
+          unzip -tqq "$APK"
+          printf '%s  %s\n' '${{ matrix.sha }}' "$APK" | sha256sum -c -
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" | tee /tmp/badging.txt
+          grep -Fq "package: name='${{ matrix.package }}'" /tmp/badging.txt
+          grep -Fq "versionCode='${{ matrix.code }}'" /tmp/badging.txt
+          grep -Fq "versionName='${{ matrix.version }}'" /tmp/badging.txt

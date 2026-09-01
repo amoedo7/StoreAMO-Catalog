@@ -1,9 +1,9 @@
 {
   "schema": "storeamo.app.v1",
-  "id": "sorteamo",
-  "name": "SorteAMO",
-  "tagline": "Sorteos rápidos, locales y simples.",
-  "description": "Elige al azar nombres, opciones o números sin enviar datos a ningún servidor.",
+  "id": "nivelamo",
+  "name": "NivelAMO",
+  "tagline": "Nivel de burbuja usando los sensores del teléfono.",
+  "description": "Mide inclinación en tiempo real, calibra la referencia y funciona sin conexión.",
   "category": "Herramientas",
   "audience": "public",
   "featured": false,
@@ -14,10 +14,10 @@
   "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."},
   "artifacts": [{
     "platform": "android", "arch": "universal", "format": "apk", "version": "0.1.0", "version_code": "1",
-    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/sorteamo/0.1.0/SorteAMO-0.1.0.apk",
-    "sha256": "165d1a3d7bb6b1778dede9891c72c9ced14af3d987dd1ca7c42926d3c06c6d99", "size_bytes": 10437,
-    "min_os": "Android 8.0 (API 26)", "application_id": "com.desarrollamo.sorteamo", "verified": false,
-    "verification_report": null, "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/sorteamo/0.1.0",
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/nivelamo/0.1.0/NivelAMO-0.1.0.apk",
+    "sha256": "b5c224c546f8238c6cdfeee5b6800440404b29c501a908c05798acc2f0a89d32", "size_bytes": 821885,
+    "min_os": "Android 8.0 (API 26)", "application_id": "com.desarrollamo.nivelamo", "verified": false,
+    "verification_report": null, "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/nivelamo/0.1.0",
     "source": "workflow-artifact-main"
   }],
   "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
