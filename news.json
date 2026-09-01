@@ -1,11 +1,110 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-01T21:01:07.599083+00:00",
+  "generated_at": "2026-09-01T22:29:18.042639+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "tareasamo-registry-92b7298821e9",
+      "app_id": "tareasamo",
+      "app_name": "TareasAMO",
+      "type": "candidate",
+      "title": "TareasAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "sorteamo-registry-92b7298821e9",
+      "app_id": "sorteamo",
+      "app_name": "SorteAMO",
+      "type": "candidate",
+      "title": "SorteAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "porcentamo-registry-92b7298821e9",
+      "app_id": "porcentamo",
+      "app_name": "PorcentAMO",
+      "type": "candidate",
+      "title": "PorcentAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "nivelamo-registry-92b7298821e9",
+      "app_id": "nivelamo",
+      "app_name": "NivelAMO",
+      "type": "candidate",
+      "title": "NivelAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "mesaiamo-registry-92b7298821e9",
+      "app_id": "mesaiamo",
+      "app_name": "MesaIAMO",
+      "type": "candidate",
+      "title": "MesaIAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "dadosamo-registry-92b7298821e9",
+      "app_id": "dadosamo",
+      "app_name": "DadosAMO",
+      "type": "candidate",
+      "title": "DadosAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "conversamo-registry-92b7298821e9",
+      "app_id": "conversamo",
+      "app_name": "ConversAMO",
+      "type": "candidate",
+      "title": "ConversAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "contrasenamo-registry-92b7298821e9",
+      "app_id": "contrasenamo",
+      "app_name": "ContrasenAMO",
+      "type": "candidate",
+      "title": "ContrasenAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "contamo-registry-92b7298821e9",
+      "app_id": "contamo",
+      "app_name": "ContAMO",
+      "type": "candidate",
+      "title": "ContAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T22:28:42+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
     {
       "id": "storeamo-9689b28b67bf",
       "app_id": "storeamo",
@@ -312,83 +411,6 @@
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T10:09:41+00:00",
       "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "conversamo-registry-77aa7389020b",
-      "app_id": "conversamo",
-      "app_name": "ConversAMO",
-      "type": "development",
-      "title": "ConversAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:01:57+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "contamo-registry-c89b7b7ce31a",
-      "app_id": "contamo",
-      "app_name": "ContAMO",
-      "type": "development",
-      "title": "ContAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:01:50+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "tareasamo-registry-8b1cbf57d620",
-      "app_id": "tareasamo",
-      "app_name": "TareasAMO",
-      "type": "development",
-      "title": "TareasAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:01:41+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "contrasenamo-registry-02410db6694a",
-      "app_id": "contrasenamo",
-      "app_name": "ContrasenAMO",
-      "type": "development",
-      "title": "ContrasenAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:01:35+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "sorteamo-registry-7517735ab008",
-      "app_id": "sorteamo",
-      "app_name": "SorteAMO",
-      "type": "development",
-      "title": "SorteAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:01:27+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "dadosamo-registry-5f8853a90d72",
-      "app_id": "dadosamo",
-      "app_name": "DadosAMO",
-      "type": "development",
-      "title": "DadosAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:01:04+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "porcentamo-registry-7bd3932b58d2",
-      "app_id": "porcentamo",
-      "app_name": "PorcentAMO",
-      "type": "development",
-      "title": "PorcentAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-08-20T07:00:55+00:00",
-      "status": "development",
       "source_visibility": "private"
     },
     {

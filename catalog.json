@@ -1,7 +1,7 @@
 {
   "schema": "storeamo.catalog.v1",
   "catalog_version": 3,
-  "generated_at": "2026-09-01T21:00:46+00:00",
+  "generated_at": "2026-09-01T22:28:58+00:00",
   "generation": {
     "mode": "public-repositories+sanitized-registry",
     "owner": "amoedo7",
@@ -925,7 +925,7 @@
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -933,7 +933,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -945,19 +945,37 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/contamo/0.1.0/ContAMO-0.1.0.apk",
+          "sha256": "1f2701b4db6588b15a66c60f8e790fde04544100795b27a6261b64aba85c134e",
+          "size_bytes": 11933,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.contamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/contamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/contamo.json"
     },
     {
       "id": "contrasenamo",
       "name": "ContrasenAMO",
-      "tagline": "Genera contraseñas localmente, sin guardarlas.",
-      "description": "Generador local de contraseñas configurables sin cuentas, red ni almacenamiento de secretos.",
+      "tagline": "Genera contraseñas sin enviarlas a ningún lado.",
+      "description": "Generador local configurable con SecureRandom, sin historial ni almacenamiento de contraseñas.",
       "category": "Seguridad",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -965,7 +983,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -977,19 +995,37 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/contrasenamo/0.1.0/ContrasenAMO-0.1.0.apk",
+          "sha256": "de5158e5d5fc9d4d3f17c9b006836591fcddd249227ad4c10a245bdc0763e336",
+          "size_bytes": 11249,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.contrasenamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/contrasenamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/contrasenamo.json"
     },
     {
       "id": "conversamo",
       "name": "ConversAMO",
-      "tagline": "Convierte unidades sin conexión.",
-      "description": "Conversor Android offline de longitud, peso, temperatura y volumen.",
+      "tagline": "Unidades útiles en un solo lugar.",
+      "description": "Conversor offline de longitud, peso, temperatura y volumen.",
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -997,7 +1033,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -1009,7 +1045,25 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/conversamo/0.1.0/ConversAMO-0.1.0.apk",
+          "sha256": "785f2b20ab81ceb9b7e8107cacbfae1c2ef93fcf7c897653e56462ffe1ac92ae",
+          "size_bytes": 11657,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.conversamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/conversamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/conversamo.json"
     },
@@ -1117,12 +1171,12 @@
     {
       "id": "dadosamo",
       "name": "DadosAMO",
-      "tagline": "Dados digitales para jugar donde quieras.",
-      "description": "Dados D4, D6, D8, D10, D12 y D20 con múltiples tiradas e historial local.",
+      "tagline": "D4 a D20 en el bolsillo.",
+      "description": "Tira uno o varios dados D4, D6, D8, D10, D12 y D20 con historial local.",
       "category": "Juegos",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -1130,7 +1184,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -1142,7 +1196,25 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/dadosamo/0.1.0/DadosAMO-0.1.0.apk",
+          "sha256": "23f49b58a97b88b51876ed4fdf804b85bfa618a38a02fe960799563fbe8b2f3a",
+          "size_bytes": 10405,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.dadosamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/dadosamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/dadosamo.json"
     },
@@ -2105,6 +2177,56 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/mensajamo.json"
     },
     {
+      "id": "mesaiamo",
+      "name": "MesaIAMO",
+      "tagline": "La mesa de trabajo compartida de las IAs.",
+      "description": "Cliente Android para entrar con token a la mesa común de comunicación y acción de DesarrollAMO.",
+      "category": "Productividad",
+      "audience": "team",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "Requiere la URL del broker MesaIAMO y un token válido. APK producido por el Android CI de main y preservado públicamente para descarga anónima."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.2.0",
+          "version_code": "200",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/mesaiamo/0.2.0/MesaIAMO-0.2.0.apk",
+          "sha256": "310c2a0c7a875d547e7bba6d5a0bfc50897cb4c9c563de03c09e10317804b432",
+          "size_bytes": 20651,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.mesaiamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/mesaiamo/0.2.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/mesaiamo.json"
+    },
+    {
       "id": "miapi",
       "name": "MiAPI",
       "tagline": "Mirá cómo responde un endpoint.",
@@ -2329,6 +2451,56 @@
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/morseamo.json"
     },
     {
+      "id": "nivelamo",
+      "name": "NivelAMO",
+      "tagline": "Nivel de burbuja usando los sensores del teléfono.",
+      "description": "Mide inclinación en tiempo real, calibra la referencia y funciona sin conexión.",
+      "category": "Herramientas",
+      "audience": "public",
+      "featured": false,
+      "status": "candidate",
+      "supported_platforms": [
+        "android"
+      ],
+      "source_visibility": "private",
+      "store": {
+        "homepage": "https://desarrollamo.com.ar",
+        "screenshots": [],
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
+      },
+      "verification": {
+        "policy": "storeamo-default-v1",
+        "required_checks": [
+          "integrity",
+          "application-id",
+          "signature",
+          "permissions",
+          "tests"
+        ]
+      },
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/nivelamo/0.1.0/NivelAMO-0.1.0.apk",
+          "sha256": "b5c224c546f8238c6cdfeee5b6800440404b29c501a908c05798acc2f0a89d32",
+          "size_bytes": 821885,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.nivelamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/nivelamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
+      "repository": "https://desarrollamo.com.ar",
+      "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/nivelamo.json"
+    },
+    {
       "id": "notasamo",
       "name": "NotasAMO",
       "tagline": "Notas locales con búsqueda y favoritos.",
@@ -2432,12 +2604,12 @@
     {
       "id": "porcentamo",
       "name": "PorcentAMO",
-      "tagline": "Porcentajes, descuentos y aumentos en segundos.",
-      "description": "Calculadora offline de porcentajes, descuentos, aumentos, propinas y variación porcentual.",
+      "tagline": "Porcentajes sin vueltas.",
+      "description": "Calcula porcentajes, descuentos, aumentos, propinas y variaciones porcentuales offline.",
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -2445,7 +2617,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -2457,7 +2629,25 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/porcentamo/0.1.0/PorcentAMO-0.1.0.apk",
+          "sha256": "6d11cab6564101fe403a110fcd70de526491d450ad37d274497b8177754592b0",
+          "size_bytes": 10077,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.porcentamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/porcentamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/porcentamo.json"
     },
@@ -2981,12 +3171,12 @@
     {
       "id": "sorteamo",
       "name": "SorteAMO",
-      "tagline": "Sorteos rápidos de nombres, números y opciones.",
-      "description": "Herramienta Android offline para elegir al azar entre opciones o generar números aleatorios.",
+      "tagline": "Sorteos rápidos, locales y simples.",
+      "description": "Elige al azar nombres, opciones o números sin enviar datos a ningún servidor.",
       "category": "Herramientas",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -2994,7 +3184,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -3006,7 +3196,25 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/sorteamo/0.1.0/SorteAMO-0.1.0.apk",
+          "sha256": "165d1a3d7bb6b1778dede9891c72c9ced14af3d987dd1ca7c42926d3c06c6d99",
+          "size_bytes": 10437,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.sorteamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/sorteamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/sorteamo.json"
     },
@@ -3064,12 +3272,12 @@
     {
       "id": "tareasamo",
       "name": "TareasAMO",
-      "tagline": "Tus pendientes, simples y locales.",
-      "description": "Lista de tareas Android con pendientes, completadas y persistencia local offline.",
+      "tagline": "Pendientes claros, sin cuentas.",
+      "description": "Lista local de tareas con estados pendientes y completadas, filtros y persistencia offline.",
       "category": "Productividad",
       "audience": "public",
       "featured": false,
-      "status": "development",
+      "status": "candidate",
       "supported_platforms": [
         "android"
       ],
@@ -3077,7 +3285,7 @@
       "store": {
         "homepage": "https://desarrollamo.com.ar",
         "screenshots": [],
-        "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."
+        "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."
       },
       "verification": {
         "policy": "storeamo-default-v1",
@@ -3089,7 +3297,25 @@
           "tests"
         ]
       },
-      "artifacts": [],
+      "artifacts": [
+        {
+          "platform": "android",
+          "arch": "universal",
+          "format": "apk",
+          "version": "0.1.0",
+          "version_code": "1",
+          "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/tareasamo/0.1.0/TareasAMO-0.1.0.apk",
+          "sha256": "37d9fed4f0c56af14e2f8054064b19147adb30bb783d2a0d05d2784f4f09586a",
+          "size_bytes": 11817,
+          "min_os": "Android 8.0 (API 26)",
+          "application_id": "com.desarrollamo.tareasamo",
+          "signing_cert_sha256": null,
+          "verified": false,
+          "verification_report": null,
+          "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/tareasamo/0.1.0",
+          "source": "workflow-artifact-main"
+        }
+      ],
       "repository": "https://desarrollamo.com.ar",
       "source_manifest": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/registry/tareasamo.json"
     },
