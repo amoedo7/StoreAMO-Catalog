@@ -1,11 +1,33 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-08-31T11:30:53.477397+00:00",
+  "generated_at": "2026-09-01T00:28:40.284383+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "cerebramo-registry-8982cd205d9d",
+      "app_id": "cerebramo",
+      "app_name": "CerebrAMO",
+      "type": "candidate",
+      "title": "CerebrAMO avanza como candidate",
+      "summary": "Se actualizó su información pública de distribución o verificación.",
+      "published_at": "2026-09-01T00:28:11+00:00",
+      "status": "candidate",
+      "source_visibility": "private"
+    },
+    {
+      "id": "plataformamo-411f2676d851",
+      "app_id": "plataformamo",
+      "app_name": "PlataformAMO",
+      "type": "docs",
+      "title": "Novedades de PlataformAMO",
+      "summary": "add recovery procedure",
+      "published_at": "2026-08-31T22:57:31+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "storeamo-fe9d44812b92",
       "app_id": "storeamo",
@@ -194,17 +216,6 @@
       "source_visibility": "private"
     },
     {
-      "id": "cerebramo-registry-8dd5bdedbe99",
-      "app_id": "cerebramo",
-      "app_name": "CerebrAMO",
-      "type": "candidate",
-      "title": "CerebrAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-22T12:19:20+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
       "id": "mensajamo-registry-17de6a451a68",
       "app_id": "mensajamo",
       "app_name": "MensajAMO",
@@ -355,17 +366,6 @@
       "title": "Nueva versión de PlataformAMO",
       "summary": "retry PlataformAMO alpha release after build fix",
       "published_at": "2026-08-19T08:25:40+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "plataformamo-03b91fe8cba2",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "fix",
-      "title": "Corrección en PlataformAMO",
-      "summary": "resolve PlataformAMO progress bar references",
-      "published_at": "2026-08-19T08:25:16+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
