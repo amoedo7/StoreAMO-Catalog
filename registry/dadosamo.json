@@ -2,14 +2,23 @@
   "schema": "storeamo.app.v1",
   "id": "dadosamo",
   "name": "DadosAMO",
-  "tagline": "Dados digitales para jugar donde quieras.",
-  "description": "Dados D4, D6, D8, D10, D12 y D20 con múltiples tiradas e historial local.",
+  "tagline": "D4 a D20 en el bolsillo.",
+  "description": "Tira uno o varios dados D4, D6, D8, D10, D12 y D20 con historial local.",
   "category": "Juegos",
   "audience": "public",
   "featured": false,
-  "status": "development",
+  "status": "candidate",
   "supported_platforms": ["android"],
   "source": {"visibility": "private"},
-  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."},
+  "distribution": {"repository": "amoedo7/StoreAMO-Catalog", "mode": "direct-artifacts"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."},
+  "artifacts": [{
+    "platform": "android", "arch": "universal", "format": "apk", "version": "0.1.0", "version_code": "1",
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/dadosamo/0.1.0/DadosAMO-0.1.0.apk",
+    "sha256": "23f49b58a97b88b51876ed4fdf804b85bfa618a38a02fe960799563fbe8b2f3a", "size_bytes": 10405,
+    "min_os": "Android 8.0 (API 26)", "application_id": "com.desarrollamo.dadosamo", "verified": false,
+    "verification_report": null, "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/dadosamo/0.1.0",
+    "source": "workflow-artifact-main"
+  }],
   "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
 }

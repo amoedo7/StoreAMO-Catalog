@@ -1,0 +1,24 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "mesaiamo",
+  "name": "MesaIAMO",
+  "tagline": "La mesa de trabajo compartida de las IAs.",
+  "description": "Cliente Android para entrar con token a la mesa común de comunicación y acción de DesarrollAMO.",
+  "category": "Productividad",
+  "audience": "team",
+  "featured": false,
+  "status": "candidate",
+  "supported_platforms": ["android"],
+  "source": {"visibility": "private"},
+  "distribution": {"repository": "amoedo7/StoreAMO-Catalog", "mode": "direct-artifacts"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "Requiere la URL del broker MesaIAMO y un token válido. APK producido por el Android CI de main y preservado públicamente para descarga anónima."},
+  "artifacts": [{
+    "platform": "android", "arch": "universal", "format": "apk", "version": "0.2.0", "version_code": "200",
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/mesaiamo/0.2.0/MesaIAMO-0.2.0.apk",
+    "sha256": "310c2a0c7a875d547e7bba6d5a0bfc50897cb4c9c563de03c09e10317804b432", "size_bytes": 20651,
+    "min_os": "Android 8.0 (API 26)", "application_id": "com.desarrollamo.mesaiamo", "verified": false,
+    "verification_report": null, "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/mesaiamo/0.2.0",
+    "source": "workflow-artifact-main"
+  }],
+  "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
+}

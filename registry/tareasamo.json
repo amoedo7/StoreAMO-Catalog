@@ -2,14 +2,23 @@
   "schema": "storeamo.app.v1",
   "id": "tareasamo",
   "name": "TareasAMO",
-  "tagline": "Tus pendientes, simples y locales.",
-  "description": "Lista de tareas Android con pendientes, completadas y persistencia local offline.",
+  "tagline": "Pendientes claros, sin cuentas.",
+  "description": "Lista local de tareas con estados pendientes y completadas, filtros y persistencia offline.",
   "category": "Productividad",
   "audience": "public",
   "featured": false,
-  "status": "development",
+  "status": "candidate",
   "supported_platforms": ["android"],
   "source": {"visibility": "private"},
-  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "MVP v0.1.0 implementado. Esperando artifact firmado antes de candidate."},
+  "distribution": {"repository": "amoedo7/StoreAMO-Catalog", "mode": "direct-artifacts"},
+  "store": {"homepage": "https://desarrollamo.com.ar", "screenshots": [], "notes": "APK producido por el Android CI exitoso del commit main y preservado públicamente para descarga anónima desde StoreAMO."},
+  "artifacts": [{
+    "platform": "android", "arch": "universal", "format": "apk", "version": "0.1.0", "version_code": "1",
+    "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/tareasamo/0.1.0/TareasAMO-0.1.0.apk",
+    "sha256": "37d9fed4f0c56af14e2f8054064b19147adb30bb783d2a0d05d2784f4f09586a", "size_bytes": 11817,
+    "min_os": "Android 8.0 (API 26)", "application_id": "com.desarrollamo.tareasamo", "verified": false,
+    "verification_report": null, "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/tareasamo/0.1.0",
+    "source": "workflow-artifact-main"
+  }],
   "verification": {"policy": "storeamo-default-v1", "required_checks": ["integrity", "application-id", "signature", "permissions", "tests"]}
 }
