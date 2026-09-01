@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-01T22:29:18.042639+00:00",
+  "generated_at": "2026-09-01T22:34:29.927192+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "storeamo-22112f150804",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "activity",
+      "title": "Actividad reciente en StoreAMO",
+      "summary": "Habilitar todos los utilitarios Android compatibles en StoreAMO",
+      "published_at": "2026-09-01T22:29:33+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
     {
       "id": "tareasamo-registry-92b7298821e9",
       "app_id": "tareasamo",
@@ -135,17 +146,6 @@
       "title": "Actividad reciente en StoreAMO",
       "summary": "mark self-update work",
       "published_at": "2026-09-01T09:48:29+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-cf67f5a7afb0",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "start StoreAMO self-update implementation",
-      "published_at": "2026-09-01T09:48:22+00:00",
       "status": "development",
       "source_visibility": "public"
     },
