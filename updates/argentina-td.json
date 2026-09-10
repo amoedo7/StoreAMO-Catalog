@@ -1,0 +1,10 @@
+{
+  "schema": "desarrollamo.play-update.v1",
+  "app_id": "com.desarrollamo.argentinatd",
+  "channel": "google-play-internal",
+  "latest_version": "0.0.2",
+  "latest_version_code": 2,
+  "required": false,
+  "play_store_url": "https://play.google.com/store/apps/details?id=com.desarrollamo.argentinatd",
+  "message": "Argentina TD 0.0.2 disponible."
+}
