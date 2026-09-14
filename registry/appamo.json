@@ -1,0 +1,55 @@
+{
+  "schema": "storeamo.app.v1",
+  "id": "appamo",
+  "name": "AppAMO",
+  "tagline": "Base Android del ecosistema DesarrollAMO.",
+  "description": "AppAMO migrada desde el archivo Android de pruebas de DesarrollAMO. Se conserva como development hasta completar revisión funcional y verificación separada.",
+  "category": "Herramientas",
+  "audience": "team",
+  "featured": false,
+  "status": "development",
+  "supported_platforms": [
+    "android"
+  ],
+  "source": {
+    "visibility": "private"
+  },
+  "distribution": {
+    "repository": "amoedo7/StoreAMO-Catalog",
+    "mode": "direct-artifacts"
+  },
+  "store": {
+    "homepage": "https://desarrollamo.com.ar",
+    "screenshots": [],
+    "notes": "Artefacto recuperado del teléfono y migrado al catálogo canónico. No se declara StoreAMO Verified."
+  },
+  "artifacts": [
+    {
+      "platform": "android",
+      "arch": "universal",
+      "format": "apk",
+      "version": "0.1.0",
+      "version_code": "1",
+      "url": "https://raw.githubusercontent.com/amoedo7/StoreAMO-Catalog/main/public-artifacts/appamo/0.1.0/AppAMO_Template-debug.apk",
+      "sha256": "6bb00123eb13a1ea4f64dfbee344252f92a5c48d7255de5a94d50a3b2a08e4da",
+      "signing_cert_sha256": null,
+      "size_bytes": 12460,
+      "min_os": "Android 6.0 (API 23)",
+      "application_id": "com.desarrollamo.appamo",
+      "verified": false,
+      "verification_report": null,
+      "release_url": "https://github.com/amoedo7/StoreAMO-Catalog/tree/main/public-artifacts/appamo/0.1.0",
+      "source": "migrated-device-archive"
+    }
+  ],
+  "verification": {
+    "policy": "storeamo-default-v1",
+    "required_checks": [
+      "integrity",
+      "application-id",
+      "signature",
+      "permissions",
+      "device-smoke"
+    ]
+  }
+}
