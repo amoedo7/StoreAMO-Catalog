@@ -97,4 +97,9 @@ jobs:
           git config user.email 'actions@users.noreply.github.com'
           git add catalog.json discovery-report.json news.json
           git commit -m 'chore: refresh StoreAMO catalog and Buenas Nuevas'
-          git push
+          # A scheduled/manual run can start from a SHA that becomes stale while it is
+          # generating the catalog. Rebase the generated commit onto the current main
+          # before publishing; never force-push over concurrent repository updates.
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
