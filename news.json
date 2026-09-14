@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-14T06:15:20.321390+00:00",
+  "generated_at": "2026-09-14T11:27:25.300957+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "generalamo-da2759afef49",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "fix",
+      "title": "Corrección en GeneralAMO",
+      "summary": "publish canonical Android versionCode to StoreAMO",
+      "published_at": "2026-09-14T10:27:35+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "diagnosticoamo-7cb75ddbe00c",
       "app_id": "diagnosticoamo",
@@ -355,17 +366,6 @@
       "title": "WebAMO prepara cambios",
       "summary": "harden parser workflow (#5)",
       "published_at": "2026-08-29T22:59:15+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-89ea26c72b2c",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "activity",
-      "title": "Actividad reciente en GeneralAMO",
-      "summary": "add canonical GeneralAMO AutoCheck",
-      "published_at": "2026-08-28T18:07:12+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
