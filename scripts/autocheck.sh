@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-VERIFY_SHA="8dc7c9298bedac14a71899d10d8a4218e5b9ea7d"
+VERIFY_SHA="bc52d320373a8bcb0991c9465cce515dcc33308a"
 TMP_DIR="${TMPDIR:-/tmp}/storeamo-verify-${VERIFY_SHA}"
 
 python scripts/validate_android_signing_pins.py
