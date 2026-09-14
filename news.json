@@ -1,11 +1,132 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-13T23:08:20.693286+00:00",
+  "generated_at": "2026-09-14T01:02:21.348611+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "diagnosticoamo-7cb75ddbe00c",
+      "app_id": "diagnosticoamo",
+      "app_name": "DiagnosticoAMO",
+      "type": "docs",
+      "title": "Novedades de DiagnosticoAMO",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:35+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "miapi-4ad0b788e145",
+      "app_id": "miapi",
+      "app_name": "MiAPI",
+      "type": "docs",
+      "title": "Novedades de MiAPI",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:33+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "miarchivos-af6f4c8e6ba5",
+      "app_id": "miarchivos",
+      "app_name": "MiArchivos",
+      "type": "docs",
+      "title": "Novedades de MiArchivos",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:31+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "webamo-43195d76085b",
+      "app_id": "webamo",
+      "app_name": "WebAMO",
+      "type": "docs",
+      "title": "Novedades de WebAMO",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:29+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "misistema-8b7ec201cf48",
+      "app_id": "misistema",
+      "app_name": "MiSistema",
+      "type": "docs",
+      "title": "Novedades de MiSistema",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:27+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "mired-ca4afe7370e7",
+      "app_id": "mired",
+      "app_name": "MiRed",
+      "type": "docs",
+      "title": "Novedades de MiRed",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:25+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "midispositivo-c2327fb2bae8",
+      "app_id": "midispositivo",
+      "app_name": "MiDispositivo",
+      "type": "docs",
+      "title": "Novedades de MiDispositivo",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:08:23+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "generalamo-e7e03ad5d371",
+      "app_id": "generalamo",
+      "app_name": "GeneralAMO",
+      "type": "docs",
+      "title": "Novedades de GeneralAMO",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:07:12+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "camo-46c0e3f97f85",
+      "app_id": "camo",
+      "app_name": "CAMO",
+      "type": "docs",
+      "title": "Novedades de CAMO",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:06:56+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
+    {
+      "id": "storeamo-82ab646b4fd9",
+      "app_id": "storeamo",
+      "app_name": "StoreAMO",
+      "type": "docs",
+      "title": "Novedades de StoreAMO",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:06:00+00:00",
+      "status": "development",
+      "source_visibility": "public"
+    },
+    {
+      "id": "plataformamo-7444a772e55c",
+      "app_id": "plataformamo",
+      "app_name": "PlataformAMO",
+      "type": "docs",
+      "title": "Novedades de PlataformAMO",
+      "summary": "define MVP acceptance contract",
+      "published_at": "2026-09-14T00:05:56+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "storeamo-b2f54458c7a6",
       "app_id": "storeamo",
@@ -139,17 +260,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "storeamo-2c89f3ace52d",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "feature",
-      "title": "Nueva mejora en StoreAMO",
-      "summary": "update StoreAMO inside StoreAMO",
-      "published_at": "2026-09-01T09:55:47+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
       "id": "camo-71ed154fdddb",
       "app_id": "camo",
       "app_name": "CAMO",
@@ -179,17 +289,6 @@
       "title": "Novedades de CAMO",
       "summary": "add CAMO privacy policy",
       "published_at": "2026-09-01T07:20:16+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "camo-abaf656308de",
-      "app_id": "camo",
-      "app_name": "CAMO",
-      "type": "activity",
-      "title": "Actividad reciente en CAMO",
-      "summary": "store: declare CAMO candidate for StoreAMO discovery",
-      "published_at": "2026-09-01T07:20:08+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
@@ -271,17 +370,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "generalamo-44212f28915c",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "release",
-      "title": "Nueva versión de GeneralAMO",
-      "summary": "make stable release publication idempotent",
-      "published_at": "2026-08-28T17:08:39+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
       "id": "plataformamo-750adadcf30e",
       "app_id": "plataformamo",
       "app_name": "PlataformAMO",
@@ -300,17 +388,6 @@
       "title": "Actividad reciente en WebAMO",
       "summary": "pin WebAMO canonical signing identity",
       "published_at": "2026-08-26T10:46:27+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-7f7c8e923d81",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "build",
-      "title": "WebAMO prepara cambios",
-      "summary": "make WebAMO signing stable",
-      "published_at": "2026-08-26T10:41:11+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
@@ -423,17 +500,6 @@
       "published_at": "2026-08-20T06:59:22+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "plataformamo-8b996e5ddfd9",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "release",
-      "title": "Nueva versión de PlataformAMO",
-      "summary": "retry PlataformAMO alpha release after build fix",
-      "published_at": "2026-08-19T08:25:40+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
     },
     {
       "id": "diagnosticoamo-a58162357d35",
@@ -568,17 +634,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "diagnosticoamo-a80294775fef",
-      "app_id": "diagnosticoamo",
-      "app_name": "DiagnosticoAMO",
-      "type": "activity",
-      "title": "Actividad reciente en DiagnosticoAMO",
-      "summary": "Add local DesarrollAMO report aggregator",
-      "published_at": "2026-08-19T05:28:28+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
       "id": "miapi-54dffa23d01d",
       "app_id": "miapi",
       "app_name": "MiAPI",
@@ -597,17 +652,6 @@
       "title": "Actividad reciente en MiAPI",
       "summary": "Add MiAPI offline smoke test",
       "published_at": "2026-08-19T05:27:47+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "miapi-a34c18dface7",
-      "app_id": "miapi",
-      "app_name": "MiAPI",
-      "type": "activity",
-      "title": "Actividad reciente en MiAPI",
-      "summary": "Add portable API response inspector",
-      "published_at": "2026-08-19T05:27:42+00:00",
       "status": "development",
       "source_visibility": "public"
     },
@@ -634,39 +678,6 @@
       "source_visibility": "public"
     },
     {
-      "id": "miarchivos-104d0c264417",
-      "app_id": "miarchivos",
-      "app_name": "MiArchivos",
-      "type": "activity",
-      "title": "Actividad reciente en MiArchivos",
-      "summary": "Add read-only storage analyzer",
-      "published_at": "2026-08-19T05:26:58+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "misistema-f810fe730819",
-      "app_id": "misistema",
-      "app_name": "MiSistema",
-      "type": "activity",
-      "title": "Actividad reciente en MiSistema",
-      "summary": "Validate MiSistema across desktop platforms",
-      "published_at": "2026-08-19T05:25:38+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "mired-b8dba31a1b61",
-      "app_id": "mired",
-      "app_name": "MiRed",
-      "type": "activity",
-      "title": "Actividad reciente en MiRed",
-      "summary": "Validate MiRed on Ubuntu macOS and Windows",
-      "published_at": "2026-08-19T05:24:55+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
       "id": "midispositivo-f33ab7d35d87",
       "app_id": "midispositivo",
       "app_name": "MiDispositivo",
@@ -685,17 +696,6 @@
       "title": "Actividad reciente en MiDispositivo",
       "summary": "Validate MiDispositivo on Ubuntu macOS and Windows",
       "published_at": "2026-08-19T05:23:13+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "midispositivo-fbee430e0784",
-      "app_id": "midispositivo",
-      "app_name": "MiDispositivo",
-      "type": "activity",
-      "title": "Actividad reciente en MiDispositivo",
-      "summary": "Add safe sample MiDispositivo report",
-      "published_at": "2026-08-19T05:23:05+00:00",
       "status": "development",
       "source_visibility": "public"
     }
