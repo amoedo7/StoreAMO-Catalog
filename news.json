@@ -1,11 +1,22 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-09-15T01:26:51.057202+00:00",
+  "generated_at": "2026-09-15T07:42:45.780643+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
   "items": [
+    {
+      "id": "plataformamo-46a50a4674ea",
+      "app_id": "plataformamo",
+      "app_name": "PlataformAMO",
+      "type": "fix",
+      "title": "Corrección en PlataformAMO",
+      "summary": "publish canonical Android version code",
+      "published_at": "2026-09-15T05:23:49+00:00",
+      "status": "candidate",
+      "source_visibility": "public"
+    },
     {
       "id": "transferamo-registry-f35854c1a1b8",
       "app_id": "transferamo",
@@ -432,17 +443,6 @@
       "title": "WebAMO prepara cambios",
       "summary": "harden parser workflow (#5)",
       "published_at": "2026-08-29T22:59:15+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "plataformamo-750adadcf30e",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "activity",
-      "title": "Actividad reciente en PlataformAMO",
-      "summary": "add canonical PlataformAMO contract and AutoCheck",
-      "published_at": "2026-08-28T01:10:01+00:00",
       "status": "candidate",
       "source_visibility": "public"
     },
