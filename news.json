@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-03T06:30:15.690747+00:00",
+  "generated_at": "2026-10-03T12:31:03.736381+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -566,72 +566,6 @@
       "published_at": "2026-08-20T06:59:22+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "diagnosticoamo-a58162357d35",
-      "app_id": "diagnosticoamo",
-      "app_name": "DiagnosticoAMO",
-      "type": "activity",
-      "title": "Actividad reciente en DiagnosticoAMO",
-      "summary": "Register DiagnosticoAMO with StoreAMO",
-      "published_at": "2026-08-19T06:45:19+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "miapi-0d75ea5b0ce4",
-      "app_id": "miapi",
-      "app_name": "MiAPI",
-      "type": "activity",
-      "title": "Actividad reciente en MiAPI",
-      "summary": "Register MiAPI with StoreAMO",
-      "published_at": "2026-08-19T06:45:10+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "miarchivos-8d77e994c4b9",
-      "app_id": "miarchivos",
-      "app_name": "MiArchivos",
-      "type": "activity",
-      "title": "Actividad reciente en MiArchivos",
-      "summary": "Register MiArchivos with StoreAMO",
-      "published_at": "2026-08-19T06:45:03+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "misistema-e637b18346df",
-      "app_id": "misistema",
-      "app_name": "MiSistema",
-      "type": "activity",
-      "title": "Actividad reciente en MiSistema",
-      "summary": "Register MiSistema with StoreAMO",
-      "published_at": "2026-08-19T06:44:43+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "mired-1e8dc708ffc0",
-      "app_id": "mired",
-      "app_name": "MiRed",
-      "type": "activity",
-      "title": "Actividad reciente en MiRed",
-      "summary": "Register MiRed with StoreAMO",
-      "published_at": "2026-08-19T06:44:32+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "midispositivo-c4ea63614fb4",
-      "app_id": "midispositivo",
-      "app_name": "MiDispositivo",
-      "type": "activity",
-      "title": "Actividad reciente en MiDispositivo",
-      "summary": "Register MiDispositivo with StoreAMO",
-      "published_at": "2026-08-19T06:44:25+00:00",
-      "status": "development",
-      "source_visibility": "public"
     }
   ]
 }
