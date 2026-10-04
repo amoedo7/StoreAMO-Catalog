@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-04T09:44:19.012148+00:00",
+  "generated_at": "2026-10-04T15:20:44.673570+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -509,50 +509,6 @@
       "title": "MensajAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T20:41:43+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "temporizamo-registry-3fbc0d1ee89a",
-      "app_id": "temporizamo",
-      "app_name": "TemporizAMO",
-      "type": "candidate",
-      "title": "TemporizAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T15:05:33+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "notasamo-registry-f5df2fdfe61d",
-      "app_id": "notasamo",
-      "app_name": "NotasAMO",
-      "type": "candidate",
-      "title": "NotasAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T14:55:48+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "relojamo-registry-05684ea76492",
-      "app_id": "relojamo",
-      "app_name": "RelojAMO",
-      "type": "candidate",
-      "title": "RelojAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T10:47:21+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "habitamo-registry-5417e93c02d6",
-      "app_id": "habitamo",
-      "app_name": "HabitAMO",
-      "type": "candidate",
-      "title": "HabitAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T10:09:41+00:00",
       "status": "candidate",
       "source_visibility": "private"
     }
