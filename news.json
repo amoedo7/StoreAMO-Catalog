@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-04T02:36:35.410358+00:00",
+  "generated_at": "2026-10-04T09:44:19.012148+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -553,17 +553,6 @@
       "title": "HabitAMO avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-20T10:09:41+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "qramomini-registry-b95fc0b17e2b",
-      "app_id": "qramomini",
-      "app_name": "QRAMOMini",
-      "type": "candidate",
-      "title": "QRAMOMini avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-20T06:59:22+00:00",
       "status": "candidate",
       "source_visibility": "private"
     }
