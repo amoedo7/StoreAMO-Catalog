@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-07T19:58:39.044976+00:00",
+  "generated_at": "2026-10-08T00:11:42.943255+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -476,17 +476,6 @@
       "title": "Chessi avanza como candidate",
       "summary": "Se actualizó su información pública de distribución o verificación.",
       "published_at": "2026-08-24T10:17:09+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "depositamo-registry-fff343156978",
-      "app_id": "depositamo",
-      "app_name": "DepositAMO",
-      "type": "candidate",
-      "title": "DepositAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-23T21:14:39+00:00",
       "status": "candidate",
       "source_visibility": "private"
     }
