@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-08T05:59:40.551960+00:00",
+  "generated_at": "2026-10-08T13:25:01.882831+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -456,28 +456,6 @@
       "published_at": "2026-08-26T10:46:27+00:00",
       "status": "candidate",
       "source_visibility": "public"
-    },
-    {
-      "id": "gastamo-registry-9242fde2545c",
-      "app_id": "gastamo",
-      "app_name": "GastAMO",
-      "type": "candidate",
-      "title": "GastAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-24T11:53:18+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "chessi-registry-640ccff6a158",
-      "app_id": "chessi",
-      "app_name": "Chessi",
-      "type": "candidate",
-      "title": "Chessi avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-08-24T10:17:09+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
     }
   ]
 }
