@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-10T05:48:47.665614+00:00",
+  "generated_at": "2026-10-10T12:27:49.394330+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -443,17 +443,6 @@
       "title": "WebAMO prepara cambios",
       "summary": "harden parser workflow (#5)",
       "published_at": "2026-08-29T22:59:15+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-80e164bbe785",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "activity",
-      "title": "Actividad reciente en WebAMO",
-      "summary": "pin WebAMO canonical signing identity",
-      "published_at": "2026-08-26T10:46:27+00:00",
       "status": "candidate",
       "source_visibility": "public"
     }
