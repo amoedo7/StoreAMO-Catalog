@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-14T13:41:58.566914+00:00",
+  "generated_at": "2026-10-14T18:36:01.285528+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -410,17 +410,6 @@
       "title": "Novedades de GeneralAMO",
       "summary": "define GeneralAMO recovery procedure",
       "published_at": "2026-08-30T21:02:20+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "plataformamo-e948fa191417",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "build",
-      "title": "PlataformAMO prepara cambios",
-      "summary": "harden Android workflow dependencies",
-      "published_at": "2026-08-30T15:58:05+00:00",
       "status": "candidate",
       "source_visibility": "public"
     }
