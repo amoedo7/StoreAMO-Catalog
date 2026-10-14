@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-14T01:53:57.832070+00:00",
+  "generated_at": "2026-10-14T07:35:00.418480+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -421,17 +421,6 @@
       "title": "PlataformAMO prepara cambios",
       "summary": "harden Android workflow dependencies",
       "published_at": "2026-08-30T15:58:05+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-b4d1370c5dff",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "build",
-      "title": "GeneralAMO prepara cambios",
-      "summary": "harden Android workflow supply chain",
-      "published_at": "2026-08-30T05:01:08+00:00",
       "status": "candidate",
       "source_visibility": "public"
     }
