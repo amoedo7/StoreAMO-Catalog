@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-15T20:20:23.349112+00:00",
+  "generated_at": "2026-10-15T23:41:04.452049+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -390,17 +390,6 @@
       "published_at": "2026-09-01T00:28:11+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "plataformamo-411f2676d851",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "docs",
-      "title": "Novedades de PlataformAMO",
-      "summary": "add recovery procedure",
-      "published_at": "2026-08-31T22:57:31+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
     }
   ]
 }
