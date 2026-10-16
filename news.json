@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-15T23:41:04.452049+00:00",
+  "generated_at": "2026-10-16T04:27:41.095704+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -379,17 +379,6 @@
       "published_at": "2026-09-01T07:20:16+00:00",
       "status": "candidate",
       "source_visibility": "public"
-    },
-    {
-      "id": "cerebramo-registry-8982cd205d9d",
-      "app_id": "cerebramo",
-      "app_name": "CerebrAMO",
-      "type": "candidate",
-      "title": "CerebrAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T00:28:11+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
     }
   ]
 }
