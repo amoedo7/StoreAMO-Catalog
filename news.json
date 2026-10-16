@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-16T04:27:41.095704+00:00",
+  "generated_at": "2026-10-16T09:46:26.406280+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -346,39 +346,6 @@
       "published_at": "2026-09-01T22:28:42+00:00",
       "status": "candidate",
       "source_visibility": "private"
-    },
-    {
-      "id": "camo-71ed154fdddb",
-      "app_id": "camo",
-      "app_name": "CAMO",
-      "type": "release",
-      "title": "Nueva versión de CAMO",
-      "summary": "build and publish CAMO 0.1.0 preview",
-      "published_at": "2026-09-01T07:20:47+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "camo-35581942fe3a",
-      "app_id": "camo",
-      "app_name": "CAMO",
-      "type": "activity",
-      "title": "Actividad reciente en CAMO",
-      "summary": "ignore Android build outputs",
-      "published_at": "2026-09-01T07:20:23+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "camo-7dc9b4955fa8",
-      "app_id": "camo",
-      "app_name": "CAMO",
-      "type": "docs",
-      "title": "Novedades de CAMO",
-      "summary": "add CAMO privacy policy",
-      "published_at": "2026-09-01T07:20:16+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
     }
   ]
 }
