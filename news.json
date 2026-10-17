@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-16T22:04:58.418648+00:00",
+  "generated_at": "2026-10-17T00:27:21.981738+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -225,127 +225,6 @@
       "published_at": "2026-09-14T00:05:56+00:00",
       "status": "candidate",
       "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-b2f54458c7a6",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "Mostrar utilitarios Android antes de instalar Termux",
-      "published_at": "2026-09-01T22:46:03+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-22112f150804",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "activity",
-      "title": "Actividad reciente en StoreAMO",
-      "summary": "Habilitar todos los utilitarios Android compatibles en StoreAMO",
-      "published_at": "2026-09-01T22:29:33+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "tareasamo-registry-92b7298821e9",
-      "app_id": "tareasamo",
-      "app_name": "TareasAMO",
-      "type": "candidate",
-      "title": "TareasAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "sorteamo-registry-92b7298821e9",
-      "app_id": "sorteamo",
-      "app_name": "SorteAMO",
-      "type": "candidate",
-      "title": "SorteAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "porcentamo-registry-92b7298821e9",
-      "app_id": "porcentamo",
-      "app_name": "PorcentAMO",
-      "type": "candidate",
-      "title": "PorcentAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "nivelamo-registry-92b7298821e9",
-      "app_id": "nivelamo",
-      "app_name": "NivelAMO",
-      "type": "candidate",
-      "title": "NivelAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "mesaiamo-registry-92b7298821e9",
-      "app_id": "mesaiamo",
-      "app_name": "MesaIAMO",
-      "type": "candidate",
-      "title": "MesaIAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "dadosamo-registry-92b7298821e9",
-      "app_id": "dadosamo",
-      "app_name": "DadosAMO",
-      "type": "candidate",
-      "title": "DadosAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "conversamo-registry-92b7298821e9",
-      "app_id": "conversamo",
-      "app_name": "ConversAMO",
-      "type": "candidate",
-      "title": "ConversAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "contrasenamo-registry-92b7298821e9",
-      "app_id": "contrasenamo",
-      "app_name": "ContrasenAMO",
-      "type": "candidate",
-      "title": "ContrasenAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "contamo-registry-92b7298821e9",
-      "app_id": "contamo",
-      "app_name": "ContAMO",
-      "type": "candidate",
-      "title": "ContAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-01T22:28:42+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
     }
   ]
 }
