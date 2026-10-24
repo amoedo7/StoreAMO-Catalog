@@ -54,7 +54,7 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
         if: steps.staged.outputs.ready != 'true'
 
       - uses: gradle/actions/setup-gradle@v4

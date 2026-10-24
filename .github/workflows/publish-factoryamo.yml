@@ -53,7 +53,7 @@ jobs:
             test "$(stat -c%s "$TARGET")" = "$EXPECTED_SIZE"
             test "$(sha256sum "$TARGET" | awk '{print $1}')" = "$EXPECTED_SHA"
           fi
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
       - name: Install Android build tools
         run: sdkmanager "build-tools;35.0.0" >/dev/null
       - name: Verify public FactoryAMO 0.1.1 artifact contract
