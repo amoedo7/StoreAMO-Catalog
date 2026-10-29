@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-28T23:12:16.364288+00:00",
+  "generated_at": "2026-10-29T02:25:19.293470+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -102,127 +102,6 @@
       "title": "Corrección en GeneralAMO",
       "summary": "publish canonical Android versionCode to StoreAMO",
       "published_at": "2026-09-14T10:27:35+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "diagnosticoamo-7cb75ddbe00c",
-      "app_id": "diagnosticoamo",
-      "app_name": "DiagnosticoAMO",
-      "type": "docs",
-      "title": "Novedades de DiagnosticoAMO",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:35+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "miapi-4ad0b788e145",
-      "app_id": "miapi",
-      "app_name": "MiAPI",
-      "type": "docs",
-      "title": "Novedades de MiAPI",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:33+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "miarchivos-af6f4c8e6ba5",
-      "app_id": "miarchivos",
-      "app_name": "MiArchivos",
-      "type": "docs",
-      "title": "Novedades de MiArchivos",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:31+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "webamo-43195d76085b",
-      "app_id": "webamo",
-      "app_name": "WebAMO",
-      "type": "docs",
-      "title": "Novedades de WebAMO",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:29+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "misistema-8b7ec201cf48",
-      "app_id": "misistema",
-      "app_name": "MiSistema",
-      "type": "docs",
-      "title": "Novedades de MiSistema",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:27+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "mired-ca4afe7370e7",
-      "app_id": "mired",
-      "app_name": "MiRed",
-      "type": "docs",
-      "title": "Novedades de MiRed",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:25+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "midispositivo-c2327fb2bae8",
-      "app_id": "midispositivo",
-      "app_name": "MiDispositivo",
-      "type": "docs",
-      "title": "Novedades de MiDispositivo",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:08:23+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "generalamo-e7e03ad5d371",
-      "app_id": "generalamo",
-      "app_name": "GeneralAMO",
-      "type": "docs",
-      "title": "Novedades de GeneralAMO",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:07:12+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "camo-46c0e3f97f85",
-      "app_id": "camo",
-      "app_name": "CAMO",
-      "type": "docs",
-      "title": "Novedades de CAMO",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:06:56+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    },
-    {
-      "id": "storeamo-82ab646b4fd9",
-      "app_id": "storeamo",
-      "app_name": "StoreAMO",
-      "type": "docs",
-      "title": "Novedades de StoreAMO",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:06:00+00:00",
-      "status": "development",
-      "source_visibility": "public"
-    },
-    {
-      "id": "plataformamo-7444a772e55c",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "docs",
-      "title": "Novedades de PlataformAMO",
-      "summary": "define MVP acceptance contract",
-      "published_at": "2026-09-14T00:05:56+00:00",
       "status": "candidate",
       "source_visibility": "public"
     }
