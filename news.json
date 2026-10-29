@@ -1,6 +1,6 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-29T16:54:50.202911+00:00",
+  "generated_at": "2026-10-29T21:47:39.931577+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
@@ -16,72 +16,6 @@
       "published_at": "2026-09-15T05:23:49+00:00",
       "status": "candidate",
       "source_visibility": "public"
-    },
-    {
-      "id": "transferamo-registry-f35854c1a1b8",
-      "app_id": "transferamo",
-      "app_name": "TransferAMO",
-      "type": "candidate",
-      "title": "TransferAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-14T18:06:39+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "presupuestamo-registry-f35854c1a1b8",
-      "app_id": "presupuestamo",
-      "app_name": "PresupuestAMO",
-      "type": "candidate",
-      "title": "PresupuestAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-14T18:06:39+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "pagamo-registry-f35854c1a1b8",
-      "app_id": "pagamo",
-      "app_name": "PagAMO",
-      "type": "development",
-      "title": "PagAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-09-14T18:06:39+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "installamo-registry-f35854c1a1b8",
-      "app_id": "installamo",
-      "app_name": "InstallAMO",
-      "type": "candidate",
-      "title": "InstallAMO avanza como candidate",
-      "summary": "Se actualizó su información pública de distribución o verificación.",
-      "published_at": "2026-09-14T18:06:39+00:00",
-      "status": "candidate",
-      "source_visibility": "private"
-    },
-    {
-      "id": "finamo-registry-f35854c1a1b8",
-      "app_id": "finamo",
-      "app_name": "FinAMO",
-      "type": "development",
-      "title": "FinAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-09-14T18:06:39+00:00",
-      "status": "development",
-      "source_visibility": "private"
-    },
-    {
-      "id": "appamo-registry-f35854c1a1b8",
-      "app_id": "appamo",
-      "app_name": "AppAMO",
-      "type": "development",
-      "title": "AppAMO está en desarrollo",
-      "summary": "Hubo actividad reciente. StoreAMO mostrará sus avances públicos sin revelar el código privado.",
-      "published_at": "2026-09-14T18:06:39+00:00",
-      "status": "development",
-      "source_visibility": "private"
     }
   ]
 }
