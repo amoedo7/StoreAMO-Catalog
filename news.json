@@ -1,21 +1,9 @@
 {
   "schema": "storeamo.news.v1",
-  "generated_at": "2026-10-30T01:57:26.353273+00:00",
+  "generated_at": "2026-10-30T08:36:22.643729+00:00",
   "privacy": {
     "public_repositories": "recent public commit summaries",
     "private_repositories": "sanitized registry activity only"
   },
-  "items": [
-    {
-      "id": "plataformamo-46a50a4674ea",
-      "app_id": "plataformamo",
-      "app_name": "PlataformAMO",
-      "type": "fix",
-      "title": "Corrección en PlataformAMO",
-      "summary": "publish canonical Android version code",
-      "published_at": "2026-09-15T05:23:49+00:00",
-      "status": "candidate",
-      "source_visibility": "public"
-    }
-  ]
+  "items": []
 }
